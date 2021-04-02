@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace PictYours
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour UserListItem.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class UserListItem : UserControl
     {
-        public MainWindow()
+        public UserListItem()
         {
             InitializeComponent();
         }

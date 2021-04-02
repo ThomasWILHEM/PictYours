@@ -15,31 +15,138 @@
         
         xmlns:local="clr-namespace:PictYours"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1200">
-    <DockPanel>
-        <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="9*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <materialDesign:Card  Padding="30" Margin="5">
-                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" >PictYours</TextBlock>
+        Title="Votre Profil" Height="800" Width="1200">
+        <!--MinWidth="1080" MinHeight="800"-->
+    
+    <DockPanel Margin="10">
+        <materialDesign:Card DockPanel.Dock="Top" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontStyle="Italic" FontWeight="Bold">PictYours</TextBlock>
 
-            </materialDesign:Card>
-            <Border Grid.Column="1">
-                <Image Source="img/user.png" Width="60"></Image>
-            </Border>
-        </Grid>
+                <Button Background="Transparent" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Grid.Column="1" Cursor="Hand">
+                    <Button.Content>
+                        <Image Source="img/Estelle_rond.png"/>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </materialDesign:Card>
 
-        <ListBox DockPanel.Dock="Left" Background="DarkSalmon" Width="200">
-            <ListBoxItem>fdsfdsfjsdjkfk</ListBoxItem>
-            <ListBoxItem>gfdgjkldjgldkfjgfkj</ListBoxItem>
-            <ListBoxItem>gfdgdfjgldkfjgkldfgdf</ListBoxItem>
-            <ListBoxItem>gdfgdgdfdgdgdg</ListBoxItem>
-        </ListBox>
-        <DockPanel>
-            <StackPanel>
-            </StackPanel>
-        </DockPanel>
+        <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
+            <ListBox  Background="LightGray">
+                <ListBoxItem BorderBrush="Red" BorderThickness="1" Background="Blue">
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+                <ListBoxItem >
+                    <local:UserListItem/>
+                </ListBoxItem>
+            </ListBox>
+        </materialDesign:Card>
+
+        <materialDesign:Card Margin="5,5,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"/>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="6*"/>
+                        <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="img/user.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+
+                    <StackPanel Grid.Row="1" Margin="40,0,0,0" Orientation="Vertical">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Foreground" Value="White"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="Nom Prénom" FontSize="26" Grid.Row="1"/>
+                        <TextBlock Text="@MonIdentifiant" FontSize="18" Grid.Row="2"/>
+                        <TextBlock Text="27 ans" FontSize="16" Grid.Row="3" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+
+                    <Border Grid.Row="2" BorderBrush="White" BorderThickness="3" Padding="10,10,0,10" Margin="20,10" CornerRadius="10" Background="Gray">
+                        <ScrollViewer Padding="5">
+                            <TextBlock FontSize="15" FontFamily="Comic sans MS" TextWrapping="Wrap" Text="Ceci oin de moi l'idée de graver dans le marbre de tailler dans une écorce d'arbre loin de moi l'idée de suggérer que je m'en moque que je n'en ai rien à faire que guère je ne m'en soucie loin de moi ces folies mais je m'échine depuis octobre et pourquoi donc depuis début octobre même et qui m'aime me suive depuis octobre depuis ce même dernier octobre le trois du mois je crois depuis ce temps-là depuis trois mois depuis trois mois et une semaine je m'échine ailleurs et le très long texte n'a pas avancé d'un poil pas beaucoup sans doute est-ce mon côté velléitaire qui ne cesse de me jouer des tours et les méandres du très long texte se sont figés comme une gelée le long des parois d'un bocal de verre et je vitupère contre mes essais éphémères mon tempérament affreusement velléitaire et ce teint d'albâtre qui n'est pas le mien comme je voudrais qu'il fût d'albâtre ou d'ébène ou autrement même sans métaphore mais au moins qu'il ait quelque tenue que mon visage sans retenue puisse soudain passer pour un tissu une pierre un songe soit en quelque sorte un tableau fasse tableau mais ce n'est pas le cas même ce mot albâtre jeté au visage jeté tout à trac sur la page en haut de page ce mot me défigure ne me figure pas ne me représente pas ne figure rien de ce que je suis de ce que je pense être et je suis encore et toujours "/>
+                        </ScrollViewer>
+                    </Border>
+                    
+                    <Grid Grid.Row="3">
+                        <Grid.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Margin" Value="15"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Button  Grid.Column="0" Padding="5" Margin="20,10,10,20">
+                            <Button.Content>
+                                <TextBlock Text="Modifier le profil" TextWrapping="Wrap" TextAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                        <Button  Grid.Column="1" Padding="5" Margin="10,10,20,20">
+                            <Button.Content>
+                                <TextBlock Text="Modifier le profil" TextWrapping="Wrap" TextAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </Grid>
+
+                <ListBox Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox.Resources>
+                        <Style TargetType="Image">
+                            <Setter Property="Width" Value="300"/>
+                        </Style>
+                    </ListBox.Resources>
+                    <Image Source="img/Estelle_rond.png"/>
+                    <Image Source="img/Estelle_rond.png"/>
+                    <Image Source="img/Estelle_rond.png"/>
+                    <Image Source="img/Estelle_rond.png"/>
+                </ListBox>
+            </Grid>
+        </materialDesign:Card>
+        
     </DockPanel>
 </Window>
