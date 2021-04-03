@@ -15,9 +15,9 @@
         
         xmlns:local="clr-namespace:PictYours"
         mc:Ignorable="d"
-        Title="Votre Profil" Height="800" Width="1200">
-        <!--MinWidth="1080" MinHeight="800"-->
-    
+        Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750">
+
+
     <DockPanel Margin="10">
         <materialDesign:Card DockPanel.Dock="Top" Padding="10">
             <Grid>
@@ -37,8 +37,13 @@
 
         <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
             <ListBox  Background="LightGray">
-                <ListBoxItem BorderBrush="Red" BorderThickness="1" Background="Blue">
+                <ContentControl>
                     <local:UserListItem/>
+                </ContentControl>
+                <ListBoxItem BorderBrush="Red" BorderThickness="1" Background="Blue">
+                    <ContentControl>
+                        <local:UserListItem/>
+                    </ContentControl>
                 </ListBoxItem>
                 <ListBoxItem >
                     <local:UserListItem/>
@@ -70,8 +75,8 @@
         <materialDesign:Card Margin="5,5,0,0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
-                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -88,7 +93,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <Image Source="img/user.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
+                    <Image Source="img/pp.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
 
                     <StackPanel Grid.Row="1" Margin="40,0,0,0" Orientation="Vertical">
                         <StackPanel.Resources>
@@ -104,10 +109,13 @@
 
                     <Border Grid.Row="2" BorderBrush="White" BorderThickness="3" Padding="10,10,0,10" Margin="20,10" CornerRadius="10" Background="Gray">
                         <ScrollViewer Padding="5">
-                            <TextBlock FontSize="15" FontFamily="Comic sans MS" TextWrapping="Wrap" Text="Ceci oin de moi l'idée de graver dans le marbre de tailler dans une écorce d'arbre loin de moi l'idée de suggérer que je m'en moque que je n'en ai rien à faire que guère je ne m'en soucie loin de moi ces folies mais je m'échine depuis octobre et pourquoi donc depuis début octobre même et qui m'aime me suive depuis octobre depuis ce même dernier octobre le trois du mois je crois depuis ce temps-là depuis trois mois depuis trois mois et une semaine je m'échine ailleurs et le très long texte n'a pas avancé d'un poil pas beaucoup sans doute est-ce mon côté velléitaire qui ne cesse de me jouer des tours et les méandres du très long texte se sont figés comme une gelée le long des parois d'un bocal de verre et je vitupère contre mes essais éphémères mon tempérament affreusement velléitaire et ce teint d'albâtre qui n'est pas le mien comme je voudrais qu'il fût d'albâtre ou d'ébène ou autrement même sans métaphore mais au moins qu'il ait quelque tenue que mon visage sans retenue puisse soudain passer pour un tissu une pierre un songe soit en quelque sorte un tableau fasse tableau mais ce n'est pas le cas même ce mot albâtre jeté au visage jeté tout à trac sur la page en haut de page ce mot me défigure ne me figure pas ne me représente pas ne figure rien de ce que je suis de ce que je pense être et je suis encore et toujours "/>
+                            <TextBlock FontSize="15" FontFamily="Comic sans MS" TextWrapping="Wrap"
+                                       Text="Responsable adjointe, avec 9 ans d'expérience dans le domaine du prêt-à-porter féminin, je cherche un emploi de directrice de magasin chez Zara.
+En tant que bras droit du directeur d'une boutique Sandro, j'ai augmenté de 20% le chiffre d'affaires en 1 an.
+Aujourd'hui, je souhaite mettre mes compétences en gestion commerciale et management d'équipes de 15 à 30 personnes, au service de l'atteinte de vos objectifs commerciaux. "/>
                         </ScrollViewer>
                     </Border>
-                    
+
                     <Grid Grid.Row="3">
                         <Grid.Resources>
                             <Style TargetType="Button">
@@ -128,25 +136,96 @@
                         </Button>
                         <Button  Grid.Column="1" Padding="5" Margin="10,10,20,20">
                             <Button.Content>
-                                <TextBlock Text="Modifier le profil" TextWrapping="Wrap" TextAlignment="Center"/>
+                                <TextBlock Text="Poster" TextWrapping="Wrap" TextAlignment="Center"/>
                             </Button.Content>
                         </Button>
                     </Grid>
                 </Grid>
 
-                <ListBox Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Auto">
-                    <ListBox.Resources>
-                        <Style TargetType="Image">
-                            <Setter Property="Width" Value="300"/>
-                        </Style>
-                    </ListBox.Resources>
-                    <Image Source="img/Estelle_rond.png"/>
-                    <Image Source="img/Estelle_rond.png"/>
-                    <Image Source="img/Estelle_rond.png"/>
-                    <Image Source="img/Estelle_rond.png"/>
-                </ListBox>
+                <ScrollViewer Grid.Column="1">
+                    <UniformGrid Columns="2">
+                        <UniformGrid.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                            </Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Margin" Value="15"/>
+                                <Setter Property="CornerRadius" Value="20"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="BorderBrush" Value="DarkSalmon"/>
+                            </Style>
+
+                        </UniformGrid.Resources>
+                        <Button>
+                            <Border>
+                                <Image Source="img/montagne.jpg"/>
+                            </Border>
+                        </Button>
+
+                        <Button>
+                            <Border>
+                                <Image Source="img/vacances1.jpg"/>
+                            </Border>
+                        </Button>
+                        <Button>
+                            <Border>
+                                <Image Source="img/vacances2.jpg"/>
+                            </Border>
+                        </Button>
+                        <Button>
+                            <Border>
+                                <Image Source="img/vacances3.jpg"/>
+                            </Border>
+                        </Button>
+                        <Button>
+                            <Border>
+                                <Image Source="img/vacances4.jpg"/>
+                            </Border>
+                        </Button>
+                        <Button>
+                            <Border>
+                                <Image Source="img/vacances6.jpg"/>
+                            </Border>
+                        </Button>
+                    </UniformGrid>
+                </ScrollViewer>
+
+
+
+                <!--<ScrollViewer Grid.Column="1">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel.Resources>
+                            <Style TargetType="Image">
+                                <Setter Property="Width" Value="250"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <Image Source="img/montagne.jpg"/>
+                        <Image Source="img/montagne.jpg"/>
+                        <Image Source="img/montagne.jpg"/>
+                        <Image Source="img/montagne.jpg"/>
+                    </StackPanel>
+                </ScrollViewer>-->
+
+                <!--<ScrollViewer Grid.Column="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="Image">
+                                <Setter Property="Width" Value="250"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Image Source="img/montagne.jpg"/>
+                        <Image Source="img/montagne.jpg" Grid.Column="1"/>
+                        <Image Source="img/montagne.jpg" Grid.Row="1"/>
+                        <Image Source="img/montagne.jpg" Grid.Row="1" Grid.Column="1"/>
+                    </Grid>
+                </ScrollViewer>-->
             </Grid>
         </materialDesign:Card>
-        
+
     </DockPanel>
 </Window>

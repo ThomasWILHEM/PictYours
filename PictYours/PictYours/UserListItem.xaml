@@ -7,14 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="250">
 
-    <StackPanel>
-        <Border CornerRadius="10" BorderThickness="2" BorderBrush="LightBlue" Background="DarkSalmon">
-            <DockPanel>
-                <Image Source="img/user.png" DockPanel.Dock="Left" Margin="4" Width="60"/>
-                <TextBlock Text="Estelle" Foreground="White" VerticalAlignment="Center" FontSize="15" DockPanel.Dock="Right" TextWrapping="WrapWithOverflow" Width="Auto"/>
-            </DockPanel>
-        </Border>
-    </StackPanel>
-    
+    <Border CornerRadius="10" BorderThickness="2" BorderBrush="LightBlue" Background="DarkSalmon">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Image Source="img/Estelle_rond.png" Margin="4"/>
+            <TextBlock Text="Estelle" Foreground="White" VerticalAlignment="Center" FontSize="15" Grid.Column="1" TextWrapping="WrapWithOverflow"/>
+        </Grid>
+    </Border>
+
 
 </UserControl>
