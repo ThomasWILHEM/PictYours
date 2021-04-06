@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:PictYours"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="250">
-    <Border CornerRadius="10" BorderThickness="2" BorderBrush="LightBlue" Background="DarkSalmon">
+    <Border CornerRadius="10" BorderThickness="2" BorderBrush="LightBlue" Background="#FF424242">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
