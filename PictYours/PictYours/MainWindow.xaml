@@ -5,17 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        xmlns:local="clr-namespace:PictYours"
+        mc:Ignorable="d"
+        Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750">
+    
+        <!-- TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"        
-        Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{DynamicResource MaterialDesignFont}"
         
-        xmlns:local="clr-namespace:PictYours"
-        mc:Ignorable="d"
-        Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750">
+        FontFamily="{DynamicResource MaterialDesignFont}" -->
+        
+        
 
 
     <DockPanel Margin="10">
@@ -29,46 +32,40 @@
 
                 <Button Background="Transparent" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Grid.Column="1" Cursor="Hand">
                     <Button.Content>
-                        <Image Source="img/Estelle_rond.png"/>
+                        <Image Source="/img/estelle_rond.png"/>
                     </Button.Content>
                 </Button>
             </Grid>
         </materialDesign:Card>
 
         <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
-            <ListBox  Background="LightGray">
-                <ContentControl>
-                    <local:UserListItem/>
-                </ContentControl>
-                <ListBoxItem BorderBrush="Red" BorderThickness="1" Background="Blue">
-                    <ContentControl>
-                        <local:UserListItem/>
-                    </ContentControl>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
-                <ListBoxItem >
-                    <local:UserListItem/>
-                </ListBoxItem>
+            <ListBox  Background="LightGray" HorizontalContentAlignment="Stretch">
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
+                <local:UserListItem/>
             </ListBox>
         </materialDesign:Card>
 

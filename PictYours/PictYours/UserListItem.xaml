@@ -13,7 +13,11 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="img/Estelle_rond.png" Margin="4"/>
+            <Ellipse Width="60" Height="60" Margin="5">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/img/estelle_rond.png" Stretch="Uniform"/>
+                </Ellipse.Fill>
+            </Ellipse>
             <TextBlock Text="Estelle" Foreground="White" VerticalAlignment="Center" FontSize="15" Grid.Column="1" TextWrapping="WrapWithOverflow"/>
         </Grid>
     </Border>
