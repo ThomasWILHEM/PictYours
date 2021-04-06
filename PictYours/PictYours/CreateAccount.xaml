@@ -69,7 +69,7 @@
                 </Grid>
             </Grid>
 
-            <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray">
+            <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray" Padding="5">
                 <GroupBox.Header>
                     Description
                 </GroupBox.Header>
@@ -80,7 +80,7 @@
 
             <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel.Resources>
-                    <Style TargetType="TextBox">
+                    <Style TargetType="PasswordBox">
                         <Setter Property="HorizontalAlignment" Value="Center"/>
                         <Setter Property="Width" Value="200"/>
                         <Setter Property="Margin" Value="5"/>
@@ -90,8 +90,8 @@
                     </Style>
                 </StackPanel.Resources>
                 <TextBlock Text="Mot de passe" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBox/>
-                <TextBox/>
+                <PasswordBox/>
+                <PasswordBox/>
             </StackPanel>
 
             <Button Grid.Row="4" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"/>
