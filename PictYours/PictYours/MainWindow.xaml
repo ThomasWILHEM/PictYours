@@ -5,21 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Background="{DynamicResource MaterialDesignPaper}"
-        xmlns:local="clr-namespace:PictYours"
-        mc:Ignorable="d"
-        Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750">
-    
-        <!-- TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto"        
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         
-        FontFamily="{DynamicResource MaterialDesignFont}" -->
-        
-        
-
+        xmlns:local="clr-namespace:PictYours"
+        mc:Ignorable="d"
+        Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750" Background="#FF303030">
 
     <DockPanel Margin="10">
         <materialDesign:Card DockPanel.Dock="Top" Padding="10">

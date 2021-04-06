@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:PictYours"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="250">
-
     <Border CornerRadius="10" BorderThickness="2" BorderBrush="LightBlue" Background="DarkSalmon">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -15,12 +14,10 @@
             </Grid.ColumnDefinitions>
             <Ellipse Width="60" Height="60" Margin="5">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="/img/estelle_rond.png" Stretch="Uniform"/>
+                    <ImageBrush ImageSource="\img\estelle_rond.png" Stretch="Uniform"/>
                 </Ellipse.Fill>
             </Ellipse>
             <TextBlock Text="Estelle" Foreground="White" VerticalAlignment="Center" FontSize="15" Grid.Column="1" TextWrapping="WrapWithOverflow"/>
         </Grid>
     </Border>
-
-
 </UserControl>
