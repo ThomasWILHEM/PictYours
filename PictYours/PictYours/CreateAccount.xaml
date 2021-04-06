@@ -6,8 +6,14 @@
         xmlns:local="clr-namespace:AppWpf"
         mc:Ignorable="d"
         Title="Création d'un compte" Height="700" Width="700"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Background="#FF424242">
     <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+        </DockPanel.Resources>
         <Button Content="Retour" DockPanel.Dock="Top" HorizontalAlignment="Left" Padding="20,5" Margin="5"/>
         <Grid>
             <Grid.RowDefinitions>
@@ -25,16 +31,17 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Image Source="img/user.png"/>
-                        <Grid Grid.Column="1">
+                <Grid Grid.Column="1">
                     <Grid.Resources>
                         <Style TargetType="StackPanel">
-                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="Margin" Value="10,0"/>
                         </Style>
                         <Style TargetType="TextBox">
-                            <Setter Property="Height" Value="18"/>
+                            <Setter Property="Height" Value="25"/>
                             <Setter Property="Width" Value="200"/>
-                            <Setter Property="BorderThickness" Value="3"/>
+                            <Setter Property="BorderThickness" Value="2"/>
                             <Setter Property="HorizontalAlignment" Value="Left"/>
+                            <Setter Property="VerticalContentAlignment" Value="Center"/>
                         </Style>
                     </Grid.Resources>
                     <Grid.RowDefinitions>
@@ -62,22 +69,24 @@
                 </Grid>
             </Grid>
 
-            <GroupBox Grid.Row="2" Margin="30,10" FontSize="16" FontWeight="Bold" Background="LightGray">
+            <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray">
                 <GroupBox.Header>
                     Description
                 </GroupBox.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <TextBox FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}"/>
+                    <TextBox FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2"/>
                 </ScrollViewer>
             </GroupBox>
 
-            <StackPanel Grid.Row="3" Orientation="Vertical">
+            <StackPanel Grid.Row="3" Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="TextBox">
                         <Setter Property="HorizontalAlignment" Value="Center"/>
                         <Setter Property="Width" Value="200"/>
-                        <Setter Property="Margin" Value="10"/>
-                        <Setter Property="BorderThickness" Value="3"/>
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
                     </Style>
                 </StackPanel.Resources>
                 <TextBlock Text="Mot de passe" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
