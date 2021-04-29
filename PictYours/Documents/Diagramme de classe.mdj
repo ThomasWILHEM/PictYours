@@ -1038,7 +1038,7 @@
 											"top": 670,
 											"width": 223,
 											"height": 13,
-											"text": "+/Prénom: string",
+											"text": "+/Prenom: string",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1614,7 +1614,7 @@
 											"width": 515.51220703125,
 											"height": 13,
 											"underline": true,
-											"text": "+RechercherParCategorie(Categ: Catégorie): List<Photo>",
+											"text": "+RechercherParCategorie(Categ: Categorie): List<Photo>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2154,7 +2154,7 @@
 											"top": 276,
 											"width": 135,
 											"height": 13,
-											"text": "Catégorie"
+											"text": "Categorie"
 										},
 										{
 											"_type": "LabelView",
@@ -2633,7 +2633,7 @@
 											"top": 505,
 											"width": 215.71875,
 											"height": 13,
-											"text": "+Descrition: string",
+											"text": "+/Descrition: string",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2884,7 +2884,7 @@
 											"top": 693,
 											"width": 144.8916015625,
 											"height": 13,
-											"text": "+SiteWeb: string",
+											"text": "+/SiteWeb: string",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2918,7 +2918,7 @@
 											"top": 716,
 											"width": 144.8916015625,
 											"height": 13,
-											"text": "+Promulguer une photo()",
+											"text": "+PromulguerPhoto()",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3007,8 +3007,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 786,
-									"top": 585,
+									"left": 808,
+									"top": 587,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -3028,8 +3028,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 774,
-									"top": 576,
+									"left": 808,
+									"top": 572,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -3049,8 +3049,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 811,
-									"top": 602,
+									"left": 808,
+									"top": 617,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -3068,7 +3068,7 @@
 								"$ref": "AAAAAAF4sCatf9NzmNU="
 							},
 							"lineStyle": 1,
-							"points": "771:639;828:561",
+							"points": "729:639;728:608;888:608;888:561",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF5HJFX66AmlL8="
@@ -3101,8 +3101,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 953,
-									"top": 605,
+									"left": 951,
+									"top": 617,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -3122,8 +3122,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 940,
-									"top": 613,
+									"left": 951,
+									"top": 632,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -3143,8 +3143,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 978,
-									"top": 590,
+									"left": 952,
+									"top": 587,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -3162,7 +3162,7 @@
 								"$ref": "AAAAAAF5HI9qkJp1K30="
 							},
 							"lineStyle": 1,
-							"points": "993:647;939:561",
+							"points": "1018:647;1016:608;888:608;888:561",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF5HJFtR6B6Whw="
@@ -3609,16 +3609,16 @@
 										"$ref": "AAAAAAF5HJe6GqkJz6E="
 									},
 									"font": "Arial;13;0",
-									"left": 408,
+									"left": 404,
 									"top": 413,
-									"width": 63.958984375,
+									"width": 71.1826171875,
 									"height": 13,
 									"alpha": 1.2268871145539086,
 									"distance": 40.162171256046406,
 									"hostEdge": {
 										"$ref": "AAAAAAF5HJe6GqkL+Ao="
 									},
-									"text": "+Catégorie"
+									"text": "+/Categorie"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3757,10 +3757,11 @@
 									"model": {
 										"$ref": "AAAAAAF5HJi4dq2hxnI="
 									},
+									"visible": false,
 									"font": "Arial;13;0",
-									"left": 487,
+									"left": 481,
 									"top": 632,
-									"width": 78.41259765625,
+									"width": 91.41259765625,
 									"height": 13,
 									"alpha": 1.2246997796422452,
 									"distance": 32.55764119219941,
@@ -3768,7 +3769,7 @@
 										"$ref": "AAAAAAF5HJi4dq2lzg4="
 									},
 									"edgePosition": 1,
-									"text": "+PhotosLikés"
+									"text": "+PhotosAimees"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3884,16 +3885,17 @@
 									"model": {
 										"$ref": "AAAAAAF5HJi4dq2j+0s="
 									},
-									"visible": false,
 									"font": "Arial;13;0",
-									"left": 499,
-									"top": 603,
+									"left": 480,
+									"top": 623,
+									"width": 91.41259765625,
 									"height": 13,
-									"alpha": -0.5235987755982988,
-									"distance": 30,
+									"alpha": -0.38954763497403067,
+									"distance": 62.22539674441618,
 									"hostEdge": {
 										"$ref": "AAAAAAF5HJi4dq2lzg4="
-									}
+									},
+									"text": "+PhotosAimees"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4172,16 +4174,16 @@
 										"$ref": "AAAAAAF5HK7T1ez/xr8="
 									},
 									"font": "Arial;13;0",
-									"left": 495,
+									"left": 494,
 									"top": 457,
-									"width": 86.3662109375,
+									"width": 89.97802734375,
 									"height": 13,
 									"alpha": 0.3577428669002198,
 									"distance": 79.90619500389191,
 									"hostEdge": {
 										"$ref": "AAAAAAF5HK7T1e0BC/8="
 									},
-									"text": "+ToutesPhotos"
+									"text": "+/ToutesPhotos"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -4358,7 +4360,7 @@
 										"_parent": {
 											"$ref": "AAAAAAF5HJe6GqkHbIQ="
 										},
-										"name": "Catégorie",
+										"name": "/Categorie",
 										"reference": {
 											"$ref": "AAAAAAF5HIejdoUPY/4="
 										},
@@ -4523,7 +4525,6 @@
 									"_parent": {
 										"$ref": "AAAAAAF4sCatfdNxY/Y="
 									},
-									"name": "PhotosLikés",
 									"end1": {
 										"_type": "UMLAssociationEnd",
 										"_id": "AAAAAAF5HJi4dq2iy70=",
@@ -4541,6 +4542,7 @@
 										"_parent": {
 											"$ref": "AAAAAAF5HJi4dq2hxnI="
 										},
+										"name": "PhotosAimees",
 										"reference": {
 											"$ref": "AAAAAAF4twziB/aoULA="
 										},
@@ -4556,7 +4558,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF4sCatfdNxY/Y="
 									},
-									"name": "/Prénom",
+									"name": "/Prenom",
 									"type": "string"
 								},
 								{
@@ -4621,7 +4623,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF4tzU3tRDkveo="
 							},
-							"name": "Catégorie",
+							"name": "Categorie",
 							"documentation": "Enumération des différents type de photo disponibles",
 							"literals": [
 								{
@@ -4777,7 +4779,8 @@
 										"$ref": "AAAAAAF5HIzw8pDbnf0="
 									},
 									"name": "Descrition",
-									"type": "string"
+									"type": "string",
+									"isDerived": true
 								}
 							],
 							"operations": [
@@ -4888,7 +4891,8 @@
 									},
 									"name": "SiteWeb",
 									"documentation": "Permet de mettre un site Web en description",
-									"type": "string"
+									"type": "string",
+									"isDerived": true
 								}
 							],
 							"operations": [
@@ -4898,7 +4902,7 @@
 									"_parent": {
 										"$ref": "AAAAAAF5HI9qj5pzdac="
 									},
-									"name": "Promulguer une photo",
+									"name": "PromulguerPhoto",
 									"documentation": "Permet de promulguer une photo et de la placer en haut de la sélection lors d'une recherche par catégorie."
 								}
 							]
@@ -5435,7 +5439,7 @@
 										"_parent": {
 											"$ref": "AAAAAAF5HK7T1ez9YBE="
 										},
-										"name": "ToutesPhotos",
+										"name": "/ToutesPhotos",
 										"reference": {
 											"$ref": "AAAAAAF4twziB/aoULA="
 										},

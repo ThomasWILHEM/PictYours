@@ -23,20 +23,6 @@ namespace BiblioClasse
         private string nom;
 
         /// <summary>
-        /// Prenom de l'utilisateur
-        /// </summary>
-        public string Prenom
-        {
-            get => prenom;
-            set
-            {
-                if (value != null)
-                    prenom = value;
-            }
-        }
-        private string prenom;
-
-        /// <summary>
         /// Pseudo de l'utilisateur
         /// </summary>
         public string Pseudo
@@ -51,22 +37,6 @@ namespace BiblioClasse
         private string pseudo;
 
         /// <summary>
-        /// Date de naissance de l'utilisateur
-        /// </summary>
-        public DateTime DateDeNaissance
-        {
-            get
-            {
-                return dateDeNaissance;
-            }
-            set
-            {
-                dateDeNaissance = value;
-            }
-        }
-        private DateTime dateDeNaissance;
-
-        /// <summary>
         /// Mot de passe de l'utilisateur
         /// </summary>
         public string MotDePasse { get; set; }
@@ -77,32 +47,28 @@ namespace BiblioClasse
         public bool EstConnecte { get; set; }
 
         /// <summary>
-        /// Liste des photos de l'utilisateur
+        /// Description du profil de l'utilisateur
         /// </summary>
-        public List<Photo> MesPhotos { get; private set; }
+        public string Description { get; private set; }
 
         /// <summary>
-        /// Liste des photos aimées de l'utilisateur
+        /// Liste des photos de l'utilisateur
         /// </summary>
-        public List<Photo> PhotosAimees { get; private set; }
+        public List<Photo> MesPhotos { get; private set; } = new List<Photo>();
+
+        
 
         /// <summary>
         /// Constructeur d'un utilisateur
         /// </summary>
         /// <param name="nom"></param>
-        /// <param name="prenom"></param>
         /// <param name="pseudo"></param>
-        /// <param name="dateDeNaissance"></param>
         /// <param name="motDePasse"></param>
-        public Utilisateur(string nom, string prenom, string pseudo, DateTime dateDeNaissance, string motDePasse)
+        public Utilisateur(string nom, string pseudo, string motDePasse)
         {
-            Nom = nom;
-            Prenom = prenom;
-            Pseudo = $"@{pseudo}";
-            DateDeNaissance = dateDeNaissance;
-            MotDePasse = motDePasse;
-            MesPhotos = new List<Photo>();
-            PhotosAimees = new List<Photo>();
+            Nom = nom ?? throw new ArgumentNullException(nameof(nom));
+            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(nom)) : $"@{pseudo}";
+            MotDePasse = motDePasse ?? throw new ArgumentNullException(nameof(motDePasse));
         }
 
         /// <summary>
@@ -134,22 +100,6 @@ namespace BiblioClasse
             return false;
         }
 
-        /// <summary>
-        /// Ajoute une photo dans la liste de photos aimées de l'utilisateur
-        /// </summary>
-        /// <param name="photo">Photo à ajouter</param>
-        public void AimerPhoto(Photo photo)
-        {
-            PhotosAimees.Add(photo);
-        }
-
-        /// <summary>
-        /// Supprime une photo de la liste de photos aimées de l'utilisateur
-        /// </summary>
-        /// <param name="photo">Photo à supprimer</param>
-        public void NePlusAimerPhoto(Photo photo)
-        {
-            PhotosAimees.Remove(photo);
-        }
+        
     }
 }

@@ -27,7 +27,7 @@ namespace BiblioClasse
         /// <summary>
         /// Utilisateur ayant posté la photo
         /// </summary>
-        public Utilisateur Prorpiétaire { get; private set; }
+        public Utilisateur Proprietaire { get; private set; }
 
         /// <summary>
         /// Date de publication
@@ -37,33 +37,49 @@ namespace BiblioClasse
         /// <summary>
         /// Nombre de "Like" de la photo
         /// </summary>
-        public int NBJaimes { get; private set; }
+        public int NbJaimes { get; private set; }
 
         /// <summary>
         /// Identifiant de la photo utilisé pour la retrouver facilement
         /// </summary>
         public string Identifiant { get; private set; }
 
+        /// <summary>
+        /// Categorie de la photo
+        /// </summary>
+        public Categorie Categorie { get; private set; }
+
 
         /// <summary>
         /// Constructeur d'une photo
         /// </summary>
-        /// <param name="chemin"></param>
+        /// <param name="cheminPhoto"></param>
         /// <param name="description"></param>
         /// <param name="lieu"></param>
         /// <param name="proprietaire"></param>
         /// <param name="datepub"></param>
         /// <param name="nbJaimes"></param>
         /// <param name="identifiant"></param>
-        public Photo(string chemin, string description, string lieu, Utilisateur proprietaire, DateTime datepub, int nbJaimes, string identifiant)
+        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datepub, int nbJaimes, string identifiant,Categorie categorie)
         {
-            CheminPhoto = chemin;
-            Description = description;
-            Lieu = lieu;
-            Prorpiétaire = proprietaire;
+            CheminPhoto = cheminPhoto ?? throw new ArgumentNullException(nameof(cheminPhoto));
+            Description = description ?? throw new ArgumentNullException(nameof(description));
+            Lieu = lieu ?? throw new ArgumentNullException(nameof(lieu));
+            Proprietaire = proprietaire ?? throw new ArgumentNullException(nameof(proprietaire));
             DatePub = datepub;
-            NBJaimes = nbJaimes;
-            Identifiant = identifiant;
+            NbJaimes = nbJaimes;
+            Identifiant = identifiant ?? throw new ArgumentNullException(nameof(identifiant));
+            Categorie = categorie;
+        }
+
+        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datePub, Categorie categorie)
+        {
+            CheminPhoto = cheminPhoto ?? throw new ArgumentNullException(nameof(cheminPhoto));
+            Description = description ?? throw new ArgumentNullException(nameof(description));
+            Lieu = lieu ?? throw new ArgumentNullException(nameof(lieu));
+            Proprietaire = proprietaire ?? throw new ArgumentNullException(nameof(proprietaire));
+            DatePub = datePub;
+            Categorie = categorie;
         }
     }
 }
