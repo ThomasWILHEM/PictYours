@@ -27,7 +27,7 @@ namespace BiblioClasse
         /// </summary>
         public string Pseudo
         {
-            get => pseudo;
+            get => $"@{pseudo}";
             set
             {
                 if (value != null)
@@ -67,7 +67,7 @@ namespace BiblioClasse
         public Utilisateur(string nom, string pseudo, string motDePasse)
         {
             Nom = nom ?? throw new ArgumentNullException(nameof(nom));
-            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(nom)) : $"@{pseudo}";
+            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(nom)) : pseudo;
             MotDePasse = motDePasse ?? throw new ArgumentNullException(nameof(motDePasse));
         }
 
