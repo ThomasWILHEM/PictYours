@@ -20,10 +20,6 @@
     <DockPanel Margin="10">
         <materialDesign:Card DockPanel.Dock="Top" Padding="10">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="7*"/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
@@ -39,37 +35,70 @@
         </materialDesign:Card>
 
         <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
-            <ListBox  Background="LightGray" HorizontalContentAlignment="Stretch">
-            </ListBox>
+            <StackPanel>
+                <Grid Background="{StaticResource MaterialDesignDarkBackground}">
+                    <Grid.Resources>
+                        <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="GroupName" Value="ModeRecherche"/>
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox materialDesign:HintAssist.Hint="Rechercher" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="White" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <RadioButton Grid.Column="1">
+                        <RadioButton.Content>
+                            <materialDesign:PackIcon Kind="AlphabetLatin"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    <RadioButton Grid.Column="2">
+                        <RadioButton.Content>
+                            <materialDesign:PackIcon Kind="At"/>
+                        </RadioButton.Content>
+                    </RadioButton>
+                </Grid>
+                <ListBox>
+                    <TextBlock Text="Hello"/>
+                    <TextBlock Text="Hello"/>
+                    <TextBlock Text="Hello"/>
+                    <TextBlock Text="Hello"/>
+                    <TextBlock Text="Hello"/>
+                </ListBox>
+            </StackPanel>
         </materialDesign:Card>
 
 
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
 
             <materialDesign:Card Margin="10,5,0,5">
-                <DockPanel Margin="15">
-                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                        <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="img/user.png"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        <TextBlock Text="Nom d'utilisateur" VerticalAlignment="Center" FontSize="24" Margin="5"/>
-                    </StackPanel>
-                    <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal">
-                        <Button Content="Modifier le profil" Margin="5" Height="40" Foreground="White"/>
-                        <Button Height="40" Width="40" Padding="2" Background="Transparent" BorderBrush="Transparent">
-                            <Button.Content>
-                                <Image Source="img/icons_128/down-arrow_128.png" Width="Auto" OpacityMask="Black"/>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
-                </DockPanel>
+                <Expander HorizontalAlignment="Stretch">
+                    <Expander.Header>
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="img/user.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <TextBlock Text="Nom d'utilisateur" VerticalAlignment="Center" FontSize="24" Margin="5"/>
+                            </StackPanel>
+                            <Button DockPanel.Dock="Right" Content="Modifier le profil" Margin="5" Height="40" Foreground="White" HorizontalAlignment="Right"/>
+                        </DockPanel>
+                    </Expander.Header>
+                    <TextBlock Margin="20,10" TextWrapping="Wrap" Text=""/>
+                </Expander>
             </materialDesign:Card>
+
+            <!--<materialDesign:Card Margin="10,5,0,5">
+                
+            </materialDesign:Card>-->
 
             <!--<Grid>
                     <Grid.RowDefinitions>

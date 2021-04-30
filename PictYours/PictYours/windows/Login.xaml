@@ -51,7 +51,8 @@
             </WrapPanel.Resources>
 
             <Button Content="Se connecter" Margin="0,0,0,30" Width="180" VerticalContentAlignment="Center" Padding="0" FontSize="20" Style="{StaticResource MaterialDesignRaisedButton}"/>
-            <Button Content="Créer un compte" Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+            <Button Click="CreateAccount" Content="Créer un compte" Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignOutlinedButton}"/>
+            <Button Width="128" Content="RUN CODE" />
         </WrapPanel>
     </Grid>
 </Window>

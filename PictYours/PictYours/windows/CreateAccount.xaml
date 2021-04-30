@@ -31,7 +31,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Image Source="img/user.png"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                <Button Content="Parcourir" Grid.Row="1" HorizontalAlignment="Center" Margin="5"/>
+                </Grid>
                 <Grid Grid.Column="1">
                     <Grid.Resources>
                         <Style TargetType="StackPanel">
