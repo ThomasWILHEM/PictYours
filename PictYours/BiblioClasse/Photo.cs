@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public class Photo
+    public class Photo : IEquatable<Photo>
     {
         /// <summary>
         /// Chemin de la photo
@@ -80,6 +80,24 @@ namespace BiblioClasse
             Proprietaire = proprietaire ?? throw new ArgumentNullException(nameof(proprietaire));
             DatePub = datePub;
             Categorie = categorie;
+        }
+
+        public bool Equals(Photo other)
+        {
+            return Identifiant.Equals(other.Identifiant);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(obj, null)) return false;
+            if (ReferenceEquals(obj, this)) return true;
+            if (GetType() != obj.GetType()) return false;
+            return Equals(obj as Photo);
+        }
+
+        public override int GetHashCode()
+        {
+            return Identifiant.GetHashCode();
         }
     }
 }

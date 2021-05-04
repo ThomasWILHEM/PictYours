@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public abstract class Amateur : Utilisateur
+    public abstract class Amateur : Utilisateur,IEquatable<Amateur>
     {
         /// <summary>
         /// Prenom de l'Amateur
@@ -69,5 +69,23 @@ namespace BiblioClasse
         /// </summary>
         /// <param name="photo">Photo à supprimer</param>
         public void NePlusAimerPhoto(Photo photo) => PhotosAimees.Remove(photo);
+
+        public bool Equals(Amateur other)
+        {
+            return base.Equals(other);
+    }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(obj,null)) return false;
+            if (ReferenceEquals(obj,this)) return true;
+            if (GetType() != obj.GetType()) return false;
+            return Equals((obj as Amateur));
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
