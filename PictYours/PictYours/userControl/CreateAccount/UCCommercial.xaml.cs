@@ -18,9 +18,9 @@ namespace PictYours.userControl.CreateAccount
     /// <summary>
     /// Logique d'interaction pour Professionnel.xaml
     /// </summary>
-    public partial class UCProfessionnel : UserControl
+    public partial class UCCommercial : UserControl
     {
-        public UCProfessionnel()
+        public UCCommercial()
         {
             InitializeComponent();
         }

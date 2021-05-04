@@ -28,10 +28,10 @@ namespace AppWpf
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.AddedItems[0].Equals("Amateur"))
-                contentControl.Content = new UCAmateur();
-            else
-                contentControl.Content = new UCProfessionnel();
+            //if (e.AddedItems[0].Equals("Amateur"))
+            //    contentControl.Content = new UCAmateur();
+            //else
+            //    contentControl.Content = new UCCommercial();
         }
     }
 }
