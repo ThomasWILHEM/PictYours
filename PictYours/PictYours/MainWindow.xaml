@@ -24,7 +24,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0" Grid.RowSpan="2"/>
+                <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0" Grid.RowSpan="2" Foreground="White"/>
 
                 <Button Background="Transparent" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Grid.Column="1" Cursor="Hand" Grid.RowSpan="2">
                     <Button.Content>
@@ -87,7 +87,7 @@
                                         <ImageBrush ImageSource="img/user.png"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <TextBlock Text="Nom d'utilisateur" VerticalAlignment="Center" FontSize="24" Margin="5"/>
+                                <TextBlock Text="Nom d'utilisateur" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
                             </StackPanel>
                             <Button DockPanel.Dock="Right" Content="Modifier le profil" Margin="5" Height="40" Foreground="White" HorizontalAlignment="Right"/>
                         </DockPanel>
