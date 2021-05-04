@@ -82,6 +82,10 @@ namespace BiblioClasse
             Categorie = categorie;
         }
 
+        public void AugmenterJaimes() => NbJaimes++;
+
+        public void DiminuerJAimes() => NbJaimes -= NbJaimes > 0 ? 1 : 0;
+
         public bool Equals(Photo other)
         {
             return Identifiant.Equals(other.Identifiant);
