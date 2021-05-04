@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public abstract class Amateur : Utilisateur,IEquatable<Amateur>
+    public class Amateur : Utilisateur,IEquatable<Amateur>
     {
         /// <summary>
         /// Prenom de l'Amateur
@@ -41,7 +41,7 @@ namespace BiblioClasse
         /// <summary>
         /// Liste des photos aimées de l'utilisateur
         /// </summary>
-        public List<Photo> PhotosAimees { get; private set; }
+        public List<Photo> PhotosAimees { get; private set; } = new List<Photo>();
 
         /// <summary>
         /// Constructeur d'un utilisateur amateur
