@@ -1,4 +1,5 @@
-﻿using PictYours.userControl.CreateAccount;
+﻿using PictYours;
+using PictYours.userControl.CreateAccount;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace AppWpf
         public CreateAccount()
         {
             InitializeComponent();
-           
+            DataContext = contentControl;           
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -33,5 +34,21 @@ namespace AppWpf
             //else
             //    contentControl.Content = new UCCommercial();
         }
+
+        private void RetourButton_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new();
+            login.Show();
+            Close();
+        }
+
+        private void InscriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new();
+            main.Show();
+            Close();
+        }
+
+        
     }
 }

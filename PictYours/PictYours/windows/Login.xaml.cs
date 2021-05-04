@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using PictYours;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,5 +34,12 @@ namespace AppWpf
             createAccount.Show();
             Close();
         }
-}
+
+        private void ConnectButton_Click(object sender, RoutedEventArgs e)
+        {
+            var main = new MainWindow();
+            main.Show();
+            Close();
+        }
+    }
 }

@@ -17,8 +17,6 @@
                 <Setter Property="Foreground" Value="White"/>
             </Style>
         </DockPanel.Resources>
-       
-        
 
         <Grid>
             <Grid.RowDefinitions>
@@ -31,7 +29,7 @@
             </Grid.RowDefinitions>
 
             
-            <Button Content="Retour" HorizontalAlignment="Left" Padding="20,5" Margin="5" />
+            <Button Content="Retour" HorizontalAlignment="Left" Padding="20,5" Margin="5" Click="RetourButton_Click" x:Name="RetourButton"/>
             <TextBlock Text="PictYours" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="50" FontWeight="Bold"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
@@ -92,7 +90,7 @@
                 <PasswordBox/>
             </StackPanel>
 
-            <Button Grid.Row="4" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"/>
+            <Button Grid.Row="4" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand" x:Name="InscriptionButton" Click="InscriptionButton_Click"/>
             <!--Padding="20,10"-->
         </Grid>
     </DockPanel>
