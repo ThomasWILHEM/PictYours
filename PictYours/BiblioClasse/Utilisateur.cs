@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public class Utilisateur : IEquatable<Utilisateur>
+    public abstract class Utilisateur : IEquatable<Utilisateur>
     {
         /// <summary>
         /// Nom de l'utilisateur
@@ -49,7 +49,7 @@ namespace BiblioClasse
         /// <summary>
         /// Description du profil de l'utilisateur
         /// </summary>
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Liste des photos de l'utilisateur
@@ -70,6 +70,16 @@ namespace BiblioClasse
             Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(nom)) : pseudo;
             MotDePasse = motDePasse ?? throw new ArgumentNullException(nameof(motDePasse));
         }
+
+        public Utilisateur(string nom, string pseudo, string motDePasse, string description)
+            : this(nom, pseudo, motDePasse)
+        {
+            Description = description ?? throw new ArgumentNullException(nameof(description));
+        }
+
+
+
+
 
         /// <summary>
         /// Ajoute une photo passee en paramètre dans la liste

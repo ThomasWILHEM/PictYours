@@ -68,39 +68,40 @@ namespace BiblioClasse
             return false;
         }
 
-        public void CreerUnCompte()
+        public bool CreerUnCompte()
         {
-            Console.WriteLine("=========Création de compte=========");
-            Console.Write("Entrez votre nom : ");
-            string nom = Console.ReadLine();
-            Console.Write("Entrez votre prénom : ");
-            string prénom = Console.ReadLine();
-            Console.Write("Entrez votre nom d'utilisateur : ");
-            string pseudo = Console.ReadLine();
-            Console.Write("Entrez votre date de naissance (JJ/MM/YYYY) : ");
-            string date = Console.ReadLine();
-            Console.Write("Entrez une description : ");
-            string desc = Console.ReadLine();
-            Console.Write("Entrez votre mot de passe : ");
-            string mdp = Console.ReadLine();
-            Utilisateur u = new Utilisateur(nom, prénom, pseudo, Convert.ToDateTime(date), mdp);
-            ListeUtilisateur.Add(u);
+            //Console.WriteLine("=========Création de compte=========");
+            //Console.Write("Entrez votre nom : ");
+            //string nom = Console.ReadLine();
+            //Console.Write("Entrez votre prénom : ");
+            //string prénom = Console.ReadLine();
+            //Console.Write("Entrez votre nom d'utilisateur : ");
+            //string pseudo = Console.ReadLine();
+            //Console.Write("Entrez votre date de naissance (JJ/MM/YYYY) : ");
+            //string date = Console.ReadLine();
+            //Console.Write("Entrez une description : ");
+            //string desc = Console.ReadLine();
+            //Console.Write("Entrez votre mot de passe : ");
+            //string mdp = Console.ReadLine();
+            //Utilisateur u = new Utilisateur(nom, prénom, pseudo, Convert.ToDateTime(date), mdp);
+            //ListeUtilisateur.Add(u);
+            throw new NotImplementedException();
         }
 
         public bool SupprimerCompte()
         {
-            Console.WriteLine("=========Supression de compte=========");
-            Console.Write("Veuillez entrer votre mot de passe : ");
-            string mdp = Console.ReadLine();
-            if (mdp.Equals(UtilisateurActuel.MotDePasse))
-            {
-                ListeUtilisateur.Remove(UtilisateurActuel);
-                UtilisateurActuel = null;
-                Console.WriteLine("Suppersion effectuée");
-                return true;
-            }
-            Console.WriteLine("Mauvais mot de passe.");
-            return false;
+            //Console.WriteLine("=========Supression de compte=========");
+            //Console.Write("Veuillez entrer votre mot de passe : ");
+            //string mdp = Console.ReadLine();
+            //if (mdp.Equals(UtilisateurActuel.MotDePasse))
+            //{
+            //    ListeUtilisateur.Remove(UtilisateurActuel);
+            //    UtilisateurActuel = null;
+            //    Console.WriteLine("Suppersion effectuée");
+            //    return true;
+            //}
+            //Console.WriteLine("Mauvais mot de passe.");
+            throw new NotImplementedException();
         }
 
         public bool ModifierNom(string nouveauNom)
@@ -115,9 +116,10 @@ namespace BiblioClasse
 
         public bool ModifierPrenom(string nouveauPrenom)
         {
-            if (UtilisateurActuel != null && nouveauPrenom != null)
+            Amateur amateur=UtilisateurActuel as Amateur;
+            if (amateur != null && nouveauPrenom != null)
             {
-                UtilisateurActuel.Prenom = nouveauPrenom;
+                amateur.Prenom = nouveauPrenom;
                 return true;
             }
             return false;
@@ -135,9 +137,10 @@ namespace BiblioClasse
 
         public bool ModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
         {
-            if (UtilisateurActuel != null)
+            Amateur amateur = UtilisateurActuel as Amateur;
+            if (amateur != null)
             {
-                UtilisateurActuel.DateDeNaissance = nouvelleDateDeNaissance;
+                amateur.DateDeNaissance = nouvelleDateDeNaissance;
                 return true;
             }
             return false;
