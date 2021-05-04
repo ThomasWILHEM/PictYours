@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public class Utilisateur
+    public class Utilisateur : IEquatable<Utilisateur>
     {
         /// <summary>
         /// Nom de l'utilisateur
@@ -100,6 +100,22 @@ namespace BiblioClasse
             return false;
         }
 
-        
+        public bool Equals(Utilisateur other)
+        {
+            return Pseudo.Equals(other.Pseudo);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(obj, null)) return false;
+            if (ReferenceEquals(obj, this)) return true;
+            if (GetType() != obj.GetType()) return false;
+            return Equals((obj as Utilisateur));
+        }
+
+        public override int GetHashCode()
+        {
+            return Pseudo.GetHashCode();
+        }
     }
 }

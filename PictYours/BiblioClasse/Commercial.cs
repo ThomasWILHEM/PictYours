@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    class Commercial : Utilisateur
+    class Commercial : Utilisateur,IEquatable<Commercial>
     {
         /// <summary>
         /// Nombre de visites sur le profil du compte commercial
@@ -28,6 +28,24 @@ namespace BiblioClasse
         public void PromulguerPhoto(Photo p)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Equals(Commercial other)
+        {
+            return base.Equals(other);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(obj, null)) return false;
+            if (ReferenceEquals(obj, this)) return true;
+            if (GetType() != obj.GetType()) return false;
+            return Equals((obj as Commercial));
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }
