@@ -60,7 +60,7 @@
                                 <TextBlock HorizontalAlignment="Stretch" x:Name="Professionnel">Professionnel</TextBlock>
                             </ComboBoxItem>
                         </ComboBox>
-                        <ContentControl x:Name="contentControl" Grid.Row="1">
+                        <ContentControl x:Name="contentControl" Grid.Row="1" HorizontalAlignment="Center">
                             <CreateUC:UCAmateur/>
                         </ContentControl>
                     </Grid>
