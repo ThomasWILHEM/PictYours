@@ -104,7 +104,16 @@ namespace BiblioClasse
             throw new NotImplementedException();
         }
 
-        public bool ModifierNom(string nouveauNom)
+        public void ManAjouterPhoto(Photo p) => UtilisateurActuel.AjouterPhoto(p);
+
+        public void ManAimerPhoto(Photo p)
+        {
+            Amateur a = UtilisateurActuel as Amateur;
+            if (a == null) return;
+            a.AimerPhoto(p);
+        }
+
+        public bool ManModifierNom(string nouveauNom)
         {
             if (UtilisateurActuel != null && nouveauNom != null)
             {
@@ -114,7 +123,7 @@ namespace BiblioClasse
             return false;
         }
 
-        public bool ModifierPrenom(string nouveauPrenom)
+        public bool ManModifierPrenom(string nouveauPrenom)
         {
             Amateur amateur=UtilisateurActuel as Amateur;
             if (amateur != null && nouveauPrenom != null)
@@ -125,7 +134,7 @@ namespace BiblioClasse
             return false;
         }
 
-        public bool ModifierPseudo(string nouveauPseudo)
+        public bool ManModifierPseudo(string nouveauPseudo)
         {
             if (UtilisateurActuel != null && nouveauPseudo != null)
             {
@@ -135,7 +144,7 @@ namespace BiblioClasse
             return false;
         }
 
-        public bool ModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
+        public bool ManModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
         {
             Amateur amateur = UtilisateurActuel as Amateur;
             if (amateur != null)
@@ -146,7 +155,7 @@ namespace BiblioClasse
             return false;
         }
 
-        public bool ModifierMDP(string nouveauMDP)
+        public bool ManModifierMDP(string nouveauMDP)
         {
             if (UtilisateurActuel != null && nouveauMDP != null)
             {

@@ -62,7 +62,11 @@ namespace BiblioClasse
         /// Ajoute une photo dans la liste de photos aimées de l'utilisateur
         /// </summary>
         /// <param name="photo">Photo à ajouter</param>
-        public void AimerPhoto(Photo photo) => PhotosAimees.Add(photo);
+        public void AimerPhoto(Photo photo)
+        {
+            PhotosAimees.Add(photo);
+            photo.AugmenterJaimes();
+        }
 
         /// <summary>
         /// Supprime une photo de la liste de photos aimées de l'utilisateur
