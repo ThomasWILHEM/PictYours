@@ -23,17 +23,31 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0" Grid.RowSpan="2" Foreground="White"/>
-
-                <Button Background="Transparent" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Grid.Column="1" Cursor="Hand" Grid.RowSpan="2">
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" x:Name="MenuDéroulant" Visibility="Collapsed">
+                    <Button HorizontalAlignment="Center">
+                        Profil
+                    </Button>
+                    <Button HorizontalAlignment="Center">
+                        Mes likes
+                    </Button>
+                    <Button HorizontalAlignment="Center">
+                        Paramètres
+                    </Button>
+                    <Button HorizontalAlignment="Center">
+                        Déconnexion
+                    </Button>
+                </StackPanel>
+                <Button Background="Transparent" x:Name="MenuButton" Click="MenuButton_Click" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Grid.Column="2" Cursor="Hand" Grid.RowSpan="2">
                     <Button.Content>
                         <Image Source="/img/estelle_rond.png"/>
                     </Button.Content>
                 </Button>
+
             </Grid>
         </materialDesign:Card>
-
         <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
             <StackPanel>
                 <Grid Background="{StaticResource MaterialDesignDarkBackground}">

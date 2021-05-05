@@ -24,5 +24,13 @@ namespace PictYours
         {
             InitializeComponent();
         }
+
+        private void MenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (MenuDéroulant.Visibility == Visibility.Collapsed)
+                MenuDéroulant.Visibility = Visibility.Visible;
+            else
+                MenuDéroulant.Visibility = Visibility.Collapsed;
+        }
     }
 }
