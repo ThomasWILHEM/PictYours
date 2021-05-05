@@ -47,6 +47,11 @@ namespace BiblioClasse
         public bool EstConnecte { get; set; }
 
         /// <summary>
+        /// Chemin de la photo de profil de l'utilisateur
+        /// </summary>
+        public string PhotoDeProfil { get; private set; }
+
+        /// <summary>
         /// Description du profil de l'utilisateur
         /// </summary>
         public string Description { get; set; }
@@ -61,20 +66,30 @@ namespace BiblioClasse
         /// <summary>
         /// Constructeur d'un utilisateur
         /// </summary>
-        /// <param name="nom"></param>
-        /// <param name="pseudo"></param>
-        /// <param name="motDePasse"></param>
-        public Utilisateur(string nom, string pseudo, string motDePasse)
+        /// <param name="nom">Nom de l'utilisateur</param>
+        /// <param name="pseudo">Pseudo de l'utilisateur</param>
+        /// <param name="motDePasse">Mot de passe de l'utilisateur</param>
+        /// <param name="photoDeProfil">Chemin de la photo de profil</param>
+        public Utilisateur(string nom, string pseudo, string motDePasse,string photoDeProfil)
         {
-            Nom = nom ?? throw new ArgumentNullException(nameof(nom));
-            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(nom)) : pseudo;
-            MotDePasse = motDePasse ?? throw new ArgumentNullException(nameof(motDePasse));
+            Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom)) : nom;
+            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo)) : pseudo;
+            MotDePasse = string.IsNullOrWhiteSpace(motDePasse) ? throw new ArgumentNullException(nameof(motDePasse)) : motDePasse;
+            PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil)) : photoDeProfil;
         }
 
-        public Utilisateur(string nom, string pseudo, string motDePasse, string description)
-            : this(nom, pseudo, motDePasse)
+        /// <summary>
+        /// Constructeur d'un utilisateur avec une description
+        /// </summary>
+        /// <param name="nom">Nom de l'utilisateur</param>
+        /// <param name="pseudo">Pseudo de l'utilisateur</param>
+        /// <param name="motDePasse">Mot de passe de l'utilisateur</param>
+        /// <param name="photoDeProfil">Chemin de la photo de profil</param>
+        /// <param name="description">Description de l'utilisateur</param>
+        public Utilisateur(string nom, string pseudo, string motDePasse, string photoDeProfil, string description)
+            : this(nom, pseudo, motDePasse,photoDeProfil)
         {
-            Description = description ?? throw new ArgumentNullException(nameof(description));
+            Description = description;
         }
 
         /// <summary>

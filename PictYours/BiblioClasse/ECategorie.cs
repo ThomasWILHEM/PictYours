@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public enum Categorie
+    public enum ECategorie
     {
         Autre,
         Animal,
