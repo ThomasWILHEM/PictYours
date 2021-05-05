@@ -6,41 +6,54 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public partial class ManagerUtilisateur
+    public class ManagerPhoto
     {
-        public void ManPosterUnePhoto(Photo photo)
+        Dictionary<ECategorie, List<Photo>> dicoCategorie;
+        Dictionary<string, List<string>> dicoPhotosAimees;
+
+        public ManagerPhoto()
         {
-            if (UtilisateurActuel.EstConnecte)
+            dicoCategorie = new Dictionary<ECategorie, List<Photo>>();
+        }
+
+        public void PosterUnePhoto(Utilisateur utilisateur, Photo photo)
+        {
+            if (utilisateur.EstConnecte)
             {
-                bool result = UtilisateurActuel.AjouterPhoto(photo);
+                bool result = utilisateur.AjouterPhoto(photo);
                 //Afficher un Dialog en fonction du resultat
             }
         }
 
-        public void ManSupprimerUnePhoto(string identifiant)
+        public void SupprimerUnePhoto(List<Utilisateur> listeUtilisateur,Utilisateur utilisateur, string identifiant)
         {
-            if (UtilisateurActuel.EstConnecte)
+            if (utilisateur.EstConnecte)
             {
-                UtilisateurActuel.SupprimerPhoto(identifiant);
+                //List<string> listePseudo = dicoPhotosAimees.First(s => s.Equals(identifiant)).Value;
+
+                //listeUtilisateur.Where(u => u.Pseudo.Equals(identifiant));
+
+                utilisateur.SupprimerPhoto(identifiant);
                 //Afficher un Dialog en fonction du resultat
             }
         }
 
-        public void ManAimerUnePhoto(Photo photo)
+        public void AimerUnePhoto(Utilisateur utilisateur, Photo photo)
         {
-            if (UtilisateurActuel is Amateur amateur)
+            if (utilisateur is Amateur amateur)
             {
                 bool result = amateur.AimerPhoto(photo);
                 //Afficher un Dialog
             }
         }
 
-        public void ManNePlusAimerUnePhoto(string identifiant)
+        public void NePlusAimerUnePhoto(Utilisateur utilisateur, string identifiant)
         {
-            Amateur a = UtilisateurActuel as Amateur;
-            if (a == null) return;
-            bool result = a.NePlusAimerPhoto(identifiant);
-            //Afficher un Dialog
+            if (utilisateur is Amateur amateur)
+            {
+                bool result = amateur.NePlusAimerPhoto(identifiant);
+                //Afficher un Dialog
+            }
         }
     }
 }

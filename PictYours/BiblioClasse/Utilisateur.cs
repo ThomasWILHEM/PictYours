@@ -28,7 +28,7 @@ namespace BiblioClasse
         public string Pseudo
         {
             get => $"@{pseudo}";
-            set
+            private set
             {
                 if (value != null)
                     pseudo = value;
