@@ -77,10 +77,6 @@ namespace BiblioClasse
             Description = description ?? throw new ArgumentNullException(nameof(description));
         }
 
-
-
-
-
         /// <summary>
         /// Ajoute une photo passee en paramètre dans la liste
         /// de photos de l'utilisateur
@@ -103,18 +99,31 @@ namespace BiblioClasse
         /// </summary>
         /// <param name="photo">Photo à supprimer</param>
         /// <returns>Retourne vrai si tout s'est bien passé si non faux</returns>
-        public bool SupprimerPhoto(Photo photo)
+        public bool SupprimerPhoto(string identifiant)
         {
+            Photo photo = MesPhotos.Find(p => p.Identifiant == identifiant);
             if (photo != null)
                 return MesPhotos.Remove(photo);
             return false;
         }
 
+        /// <summary>
+        /// Permet de voir si l'instance actuel est égale à l'objet en paramètre
+        /// selon les attributs choisis
+        /// </summary>
+        /// <param name="other">Objet à comparer</param>
+        /// <returns>Renvoie vrai si égale, si non faux</returns>
         public bool Equals(Utilisateur other)
         {
             return Pseudo.Equals(other.Pseudo);
         }
 
+        /// <summary>
+        /// Methode virtuelle de Equals
+        /// Permet de voir si l'instance actuel est égale à l'objet en paramètre
+        /// </summary>
+        /// <param name="obj">Objet à comparer</param>
+        /// <returns>Renvoie vrai si égale, si non faux</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(obj, null)) return false;
@@ -123,6 +132,10 @@ namespace BiblioClasse
             return Equals((obj as Utilisateur));
         }
 
+        /// <summary>
+        /// Permet d'obtenir le HashCode de l'objet actuelle
+        /// </summary>
+        /// <returns>Retourne le HashCode de l'objet associé</returns>
         public override int GetHashCode()
         {
             return Pseudo.GetHashCode();

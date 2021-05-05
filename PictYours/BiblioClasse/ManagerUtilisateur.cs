@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public class ManagerUtilisateur
+    public partial class ManagerUtilisateur
     {
 
         public List<Utilisateur> ListeUtilisateur { get; private set; }
@@ -17,55 +17,6 @@ namespace BiblioClasse
         {
             ListeUtilisateur = new List<Utilisateur>();
             UtilisateurActuel = u;
-        }
-
-        /*public void SeConnecter(Utilisateur u)
-        {
-            if (u == null)
-            {
-                return;
-            }
-            if (ListeUtilisateur.Contains(u))
-            {
-                UtilisateurActuel = u;
-                u.EstConnecte  =  true;
-            }
-        }*/
-
-        public bool SeConnecter()
-        {
-            Utilisateur util = null;
-            Console.WriteLine("=========Connexion=========");
-            Console.Write("Entrez votre nom d'utlisateur : ");
-            string pseudo = Console.ReadLine();
-            foreach (Utilisateur u in ListeUtilisateur)
-            {
-                if (u.Pseudo.Equals(pseudo))
-                {
-                    util = u;
-                    break;
-                }
-                return false;
-            }
-            Console.Write("Entrez votre mot de passe: ");
-            string mdp = Console.ReadLine();
-            if (mdp.Equals(util.MotDePasse))
-            {
-                UtilisateurActuel = util;
-                UtilisateurActuel.EstConnecte = true;
-                return true;
-            }
-            return false;
-        }
-
-        public bool SeDeconnecter()
-        {
-            if (UtilisateurActuel.EstConnecte)
-            {
-                UtilisateurActuel.EstConnecte = false;
-                return true;
-            }
-            return false;
         }
 
         public bool CreerUnCompte()
@@ -104,65 +55,6 @@ namespace BiblioClasse
             throw new NotImplementedException();
         }
 
-        public void ManAjouterPhoto(Photo p) => UtilisateurActuel.AjouterPhoto(p);
-
-        public void ManAimerPhoto(Photo p)
-        {
-            Amateur a = UtilisateurActuel as Amateur;
-            if (a == null) return;
-            a.AimerPhoto(p);
-        }
-
-        public bool ManModifierNom(string nouveauNom)
-        {
-            if (UtilisateurActuel != null && nouveauNom != null)
-            {
-                UtilisateurActuel.Nom = nouveauNom;
-                return true;
-            }
-            return false;
-        }
-
-        public bool ManModifierPrenom(string nouveauPrenom)
-        {
-            Amateur amateur=UtilisateurActuel as Amateur;
-            if (amateur != null && nouveauPrenom != null)
-            {
-                amateur.Prenom = nouveauPrenom;
-                return true;
-            }
-            return false;
-        }
-
-        public bool ManModifierPseudo(string nouveauPseudo)
-        {
-            if (UtilisateurActuel != null && nouveauPseudo != null)
-            {
-                UtilisateurActuel.Pseudo = nouveauPseudo;
-                return true;
-            }
-            return false;
-        }
-
-        public bool ManModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
-        {
-            Amateur amateur = UtilisateurActuel as Amateur;
-            if (amateur != null)
-            {
-                amateur.DateDeNaissance = nouvelleDateDeNaissance;
-                return true;
-            }
-            return false;
-        }
-
-        public bool ManModifierMDP(string nouveauMDP)
-        {
-            if (UtilisateurActuel != null && nouveauMDP != null)
-            {
-                UtilisateurActuel.MotDePasse = nouveauMDP;
-                return true;
-            }
-            return false;
-        }
+        
     }
 }
