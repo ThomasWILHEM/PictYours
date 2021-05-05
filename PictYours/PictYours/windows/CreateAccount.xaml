@@ -50,21 +50,29 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <ComboBox Grid.Row="0" Width="220" HorizontalAlignment="Center" Margin="0,0,0,10" x:Name="ComboBox" SelectedIndex="0"  Style="{StaticResource MaterialDesignFilledComboBox}" materialDesign:HintAssist.Hint="Type de compte"  SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBox Grid.Row="0" Width="220" HorizontalAlignment="Center" Margin="0,0,0,10" x:Name="ComboBoxType"  Style="{StaticResource MaterialDesignFilledComboBox}" materialDesign:HintAssist.Hint="Type de compte"  SelectionChanged="ComboBox_SelectionChanged">
                             <ComboBoxItem>
-                                <TextBlock HorizontalAlignment="Stretch" x:Name="Amateur" >Amateur</TextBlock>
+                                <TextBlock HorizontalAlignment="Stretch" x:Name="Amateur">Amateur</TextBlock>
                             </ComboBoxItem>
                             <ComboBoxItem>
-                                <TextBlock HorizontalAlignment="Stretch" x:Name="Professionnel">Professionnel</TextBlock>
+                                <TextBlock HorizontalAlignment="Stretch" x:Name="Professionnel">Commercial</TextBlock>
                             </ComboBoxItem>
                         </ComboBox>
-                        <ContentControl x:Name="contentControl" Grid.Row="1" HorizontalAlignment="Center">
-                            <CreateUC:UCAmateur/>
-                        </ContentControl>
+                        <Border BorderBrush="#393332" BorderThickness="2" Grid.Row="1" Margin="65,10" Visibility="Collapsed" x:Name="Vide" CornerRadius="10">
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextWrapping="Wrap" TextAlignment="Center">
+                                    Veuillez choisir un type de compte
+                                </TextBlock>
+                                <materialDesign:PackIcon Kind="CursorPointer" Width="100" Height="100" HorizontalAlignment="Center" Foreground="#252222"/>
+                            </StackPanel>
+                        </Border>
+                            
+                        <CreateUC:UCAmateur Visibility="Collapsed" x:Name="FormA" Grid.Row="1" HorizontalAlignment="Center"/>
+                        <CreateUC:UCCommercial Visibility="Collapsed" x:Name="FormC" Grid.Row="1" HorizontalAlignment="Center"/>
                     </Grid>
                 </Grid>
             </Grid>
-
+            
             <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray" Padding="5">
                 <GroupBox.Header>
                     Description

@@ -2,6 +2,7 @@
 using PictYours.userControl.CreateAccount;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,15 +25,21 @@ namespace AppWpf
         public CreateAccount()
         {
             InitializeComponent();
-            DataContext = contentControl;           
+            Vide.Visibility = Visibility.Visible;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if (e.AddedItems[0].Equals("Amateur"))
-            //    contentControl.Content = new UCAmateur();
-            //else
-            //    contentControl.Content = new UCCommercial();
+            Vide.Visibility = Visibility.Collapsed;
+            if (e.AddedItems[0].ToString().Contains("Amateur")) {
+                FormA.Visibility = Visibility.Visible;
+                FormC.Visibility = Visibility.Collapsed;
+            }
+            else if (e.AddedItems[0].ToString().Contains("Commercial"))
+            {
+                FormC.Visibility = Visibility.Visible;
+                FormA.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void RetourButton_Click(object sender, RoutedEventArgs e)
