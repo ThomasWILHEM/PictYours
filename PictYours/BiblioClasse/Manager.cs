@@ -13,10 +13,10 @@ namespace BiblioClasse
 
         public Utilisateur UtilisateurActuel { get; private set; }
 
-        public ManagerUtilisateur(Utilisateur u)
+        public ManagerUtilisateur(Utilisateur utilisateur)
         {
             ListeUtilisateur = new List<Utilisateur>();
-            UtilisateurActuel = u;
+            UtilisateurActuel = utilisateur;
         }
 
         public bool CreerUnCompte()

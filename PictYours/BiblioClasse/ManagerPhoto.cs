@@ -8,11 +8,11 @@ namespace BiblioClasse
 {
     public partial class ManagerUtilisateur
     {
-        public void ManPosterUnePhoto(Photo p)
+        public void ManPosterUnePhoto(Photo photo)
         {
             if (UtilisateurActuel.EstConnecte)
             {
-                bool result = UtilisateurActuel.AjouterPhoto(p);
+                bool result = UtilisateurActuel.AjouterPhoto(photo);
                 //Afficher un Dialog en fonction du resultat
             }
         }
@@ -26,12 +26,13 @@ namespace BiblioClasse
             }
         }
 
-        public void ManAimerUnePhoto(string identifiant)
+        public void ManAimerUnePhoto(Photo photo)
         {
-            Amateur a = UtilisateurActuel as Amateur;
-            if (a == null) return;
-            bool result = a.AimerPhoto(identifiant);
-            //Afficher un Dialog
+            if (UtilisateurActuel is Amateur amateur)
+            {
+                bool result = amateur.AimerPhoto(photo);
+                //Afficher un Dialog
+            }
         }
 
         public void ManNePlusAimerUnePhoto(string identifiant)

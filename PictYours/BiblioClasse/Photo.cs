@@ -47,7 +47,7 @@ namespace BiblioClasse
         /// <summary>
         /// Categorie de la photo
         /// </summary>
-        public Categorie Categorie { get; private set; }
+        public ECategorie Categorie { get; private set; }
 
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace BiblioClasse
         /// <param name="datepub"></param>
         /// <param name="nbJaimes"></param>
         /// <param name="identifiant"></param>
-        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datepub, int nbJaimes, string identifiant,Categorie categorie)
+        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datepub, int nbJaimes, string identifiant,ECategorie categorie)
         {
             CheminPhoto = cheminPhoto ?? throw new ArgumentNullException(nameof(cheminPhoto));
             Description = description ?? throw new ArgumentNullException(nameof(description));
@@ -81,7 +81,7 @@ namespace BiblioClasse
         /// <param name="proprietaire"></param>
         /// <param name="datePub"></param>
         /// <param name="categorie"></param>
-        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datePub, Categorie categorie)
+        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datePub, ECategorie categorie)
         {
             CheminPhoto = cheminPhoto ?? throw new ArgumentNullException(nameof(cheminPhoto));
             Description = description ?? throw new ArgumentNullException(nameof(description));
