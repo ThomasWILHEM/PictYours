@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BiblioClasse;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +22,14 @@ namespace PictYours
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Manager LeManager => (App.Current as App).LeManager;
+        public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
+           
+            ListeUtilisateur = LeManager.ManagerUtilisateur.ListeUtilisateur;
+            DataContext = this;
         }
 
         private void MenuButton_Click(object sender, RoutedEventArgs e)
