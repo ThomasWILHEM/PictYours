@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    class Commercial : Utilisateur,IEquatable<Commercial>
+    public class Commercial : Utilisateur,IEquatable<Commercial>
     {
         /// <summary>
         /// Nombre de visites sur le profil du compte commercial
