@@ -178,6 +178,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\BiblioClasse\BiblioClasse.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Resource Include="img\app_icon.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>

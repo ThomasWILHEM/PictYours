@@ -22,6 +22,7 @@ namespace BiblioClasse
                 new Amateur("Tulipe","Estelle","estelletulipe","mdp","/img/estelle_rond.png",DateTime.Now),
                 new Amateur("Wilhem","Thomas","Atrium","mdp","/img/pp.jpg",DateTime.Now)
             };
+            ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);
         }
 
         public void SeConnecter(Utilisateur utilisateur)
