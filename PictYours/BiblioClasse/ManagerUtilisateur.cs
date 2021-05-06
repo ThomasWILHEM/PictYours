@@ -14,6 +14,16 @@ namespace BiblioClasse
         public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; }
         private List<Utilisateur> listeUtilisateur;
 
+        public ManagerUtilisateur()
+        {
+            listeUtilisateur = new List<Utilisateur>
+            {
+                new Amateur("Pierre","Jean","pierre.jean","mdp","/img/user.png",DateTime.Now),
+                new Amateur("Tulipe","Estelle","estelletulipe","mdp","/img/estelle_rond.png",DateTime.Now),
+                new Amateur("Wilhem","Thomas","Atrium","mdp","/img/pp.jpg",DateTime.Now)
+            };
+        }
+
         public void SeConnecter(Utilisateur utilisateur)
         {
             if (UtilisateurActuel == null) return;
