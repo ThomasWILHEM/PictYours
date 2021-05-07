@@ -1,18 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public class ManagerUtilisateur
+    public class ManagerUtilisateur : INotifyPropertyChanged
     {
         public Utilisateur UtilisateurActuel { get; set; }
 
+        public Utilisateur UtilisateurSélectionné 
+        {
+            get => utilisateurSélectionné;
+            set
+            {
+                if(utilisateurSélectionné != value)
+                {
+                    utilisateurSélectionné = value;
+                    OnPropertyChanged(nameof(UtilisateurSélectionné));
+                }
+            }
+        }
+        private Utilisateur utilisateurSélectionné;
+
         public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; }
+
         private List<Utilisateur> listeUtilisateur;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public ManagerUtilisateur()
         {
@@ -20,9 +43,12 @@ namespace BiblioClasse
             {
                 new Amateur("Pierre","Jean","pierre.jean","mdp","/img/user.png",DateTime.Now),
                 new Amateur("Tulipe","Estelle","estelletulipe","mdp","/img/estelle_rond.png",DateTime.Now),
-                new Amateur("Wilhem","Thomas","Atrium","mdp","/img/pp.jpg",DateTime.Now)
+                new Amateur("Wilhem","Thomas","Atrium","mdp","/img/pp.jpg",DateTime.Now),
+                new Commercial("Mozilla","mozilla","mdp","/img/mozilla.png","mozilla.fr")
             };
             ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);
+            
+            UtilisateurSélectionné = ListeUtilisateur[0];
         }
 
         public void SeConnecter(Utilisateur utilisateur)

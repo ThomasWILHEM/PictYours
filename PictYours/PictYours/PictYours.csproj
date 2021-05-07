@@ -40,6 +40,7 @@
 		<None Remove="img\icons_64\user_64.png" />
 		<None Remove="img\image.jpg" />
 		<None Remove="img\montagne.jpg" />
+		<None Remove="img\mozilla.png" />
 		<None Remove="img\pp.jpg" />
 		<None Remove="img\user.png" />
 		<None Remove="img\vacances1.jpg" />
@@ -185,5 +186,8 @@
 	  <Resource Include="img\app_icon.png">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
+	  <Content Include="img\mozilla.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 </Project>

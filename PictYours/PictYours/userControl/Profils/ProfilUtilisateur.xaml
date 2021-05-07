@@ -20,10 +20,10 @@
                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                             <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource=""/>
+                                    <ImageBrush/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <TextBlock Text="Nom d'utilisateur" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
+                            <TextBlock Text="{Binding Prenom}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
                         </StackPanel>
                     </DockPanel>
                 </Expander.Header>

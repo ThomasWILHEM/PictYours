@@ -24,11 +24,16 @@ namespace PictYours
     {
         public Manager LeManager => (App.Current as App).LeManager;
         public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; private set; }
+
+        public Utilisateur UtilisateurSelected; 
         public MainWindow()
         {
             InitializeComponent();
            
             ListeUtilisateur = LeManager.ManagerUtilisateur.ListeUtilisateur;
+
+            UtilisateurSelected = LeManager.ManagerUtilisateur.UtilisateurSélectionné;
+            
             DataContext = this;
         }
 
@@ -38,6 +43,11 @@ namespace PictYours
                 MenuDéroulant.Visibility = Visibility.Visible;
             else
                 MenuDéroulant.Visibility = Visibility.Collapsed;
+        }
+
+        private void ListBoxUtilisateur_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UtilisateurSelected = e.AddedItems[0] as Utilisateur;
         }
     }
 }
