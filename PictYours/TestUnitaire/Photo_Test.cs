@@ -30,9 +30,42 @@ namespace TestUnitaire
         }
 
         [Fact]
+        public void Test_Lieu()
+        {
+            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Assert.Equal("Clermont-Ferrand", photo.Lieu);
+        }
+
+        [Fact]
+        public void Test_Null_Lieu()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Photo("/img/pates.png", "Description de la photo", null, utilisateur, DateTime.Now, ECategorie.Cuisine));
+        }
+
+        [Fact]
+        public void Test_Proprietaire()
+        {
+            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Assert.Equal(utilisateur, photo.Proprietaire);
+        }
+
+        [Fact]
+        public void Test_Null_Proprietaire()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", null, DateTime.Now, ECategorie.Cuisine));
+        }
+
+        [Fact]
+        public void Test_Categorie()
+        {
+            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Assert.Equal(ECategorie.Cuisine, photo.Categorie);
+        }
+
+        [Fact]
         public void Test_Augmenter_Jaimes()
         {
-            Photo photo = new Photo("","","",new Commercial("Commercial","commercial","mdp","img/photo.png","google.fr"),DateTime.Now,ECategorie.Autre);
+            Photo photo = new Photo("d","d","d", utilisateur, DateTime.Now,ECategorie.Autre);
             Assert.Equal(0, photo.NbJaimes);
             photo.AugmenterJaimes();
             Assert.Equal(1, photo.NbJaimes);
@@ -41,7 +74,7 @@ namespace TestUnitaire
         [Fact]
         public void Test_Diminuer_Jaimes()
         {
-            Photo photo = new Photo("", "", "", new Commercial("Commercial", "commercial", "mdp", "img/photo.png", "google.fr"), DateTime.Now, ECategorie.Autre);
+            Photo photo = new Photo("d", "d", "d", utilisateur, DateTime.Now, ECategorie.Autre);
             Assert.Equal(0, photo.NbJaimes);
             photo.DiminuerJaimes();
             Assert.Equal(0, photo.NbJaimes);

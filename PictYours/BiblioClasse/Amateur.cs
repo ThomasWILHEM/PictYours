@@ -112,5 +112,10 @@ namespace BiblioClasse
         {
             return base.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return $"{Nom} {Prenom}({Pseudo},{DateDeNaissance})";
+        }
     }
 }
