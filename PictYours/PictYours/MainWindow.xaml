@@ -13,7 +13,8 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Icon="/img/app_icon.png"
         
-        xmlns:local="clr-namespace:PictYours"
+        xmlns:local="clr-namespace:PictYours" 
+        xmlns:UCProfils="clr-namespace:PictYours.userControl.Profils"
         mc:Ignorable="d"
         Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750" Background="#FF303030">
 
@@ -25,27 +26,28 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0" Grid.RowSpan="2" Foreground="White"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal" x:Name="MenuDéroulant" Visibility="Collapsed">
-                    <Button HorizontalAlignment="Center">
-                        Profil
-                    </Button>
-                    <Button HorizontalAlignment="Center">
-                        Mes likes
-                    </Button>
-                    <Button HorizontalAlignment="Center">
-                        Paramètres
-                    </Button>
-                    <Button HorizontalAlignment="Center">
-                        Déconnexion
+                <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0"  Foreground="White"/>
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                    <StackPanel  VerticalAlignment="Center" Orientation="Horizontal" x:Name="MenuDéroulant" Visibility="Collapsed">
+                        <Button HorizontalAlignment="Center">
+                            Profil
+                        </Button>
+                        <Button HorizontalAlignment="Center">
+                            Mes likes
+                        </Button>
+                        <Button HorizontalAlignment="Center">
+                            Paramètres
+                        </Button>
+                        <Button HorizontalAlignment="Center">
+                            Déconnexion
+                        </Button>
+                    </StackPanel>
+                    <Button Background="Transparent" x:Name="MenuButton" Click="MenuButton_Click" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Cursor="Hand" HorizontalAlignment="Right">
+                        <Button.Content>
+                            <Image Source="/img/estelle_rond.png"/>
+                        </Button.Content>
                     </Button>
                 </StackPanel>
-                <Button Background="Transparent" x:Name="MenuButton" Click="MenuButton_Click" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Grid.Column="2" Cursor="Hand" Grid.RowSpan="2">
-                    <Button.Content>
-                        <Image Source="/img/estelle_rond.png"/>
-                    </Button.Content>
-                </Button>
-
             </Grid>
         </materialDesign:Card>
         <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
@@ -74,7 +76,7 @@
                         </RadioButton.Content>
                     </RadioButton>
                 </Grid>
-                <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}">
+                <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}" SelectionChanged="ListBoxUtilisateur_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -122,81 +124,17 @@
                             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                                 <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="img/user.png"/>
+                                        <ImageBrush/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <TextBlock Text="Nom d'utilisateur" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
+                                <TextBlock Text="{Binding UtilisateurSelected}"  Foreground="White" VerticalAlignment="Center" Width="Auto" FontSize="24" Margin="5"/>
                             </StackPanel>
-                            <Button DockPanel.Dock="Right" Content="Modifier le profil" Margin="5" Height="40" Foreground="White" HorizontalAlignment="Right"/>
                         </DockPanel>
                     </Expander.Header>
                     <TextBlock Margin="20,10" TextWrapping="Wrap" Text=""/>
                 </Expander>
             </materialDesign:Card>
 
-            <!--<materialDesign:Card Margin="10,5,0,5">
-                
-            </materialDesign:Card>-->
-
-            <!--<Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="10*"/>
-                        <RowDefinition Height="3*"/>
-                        <RowDefinition Height="6*"/>
-                        <RowDefinition Height="4*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-
-                    <Image Source="img/pp.jpg" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"/>
-
-                    <StackPanel Grid.Row="1" Margin="40,0,0,0" Orientation="Vertical">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Foreground" Value="White"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBlock Text="Nom Prénom" FontSize="26" Grid.Row="1"/>
-                        <TextBlock Text="@MonIdentifiant" FontSize="18" Grid.Row="2"/>
-                        <TextBlock Text="27 ans" FontSize="16" Grid.Row="3" Margin="0,5,0,0"/>
-                    </StackPanel>
-
-
-                    <Border Grid.Row="2" BorderBrush="White" BorderThickness="3" Padding="10,10,0,10" Margin="20,10" CornerRadius="10" Background="Gray">
-                        <ScrollViewer Padding="5">
-                            <TextBlock FontSize="15" FontFamily="Comic sans MS" TextWrapping="Wrap"
-                                       Text="Responsable adjointe, avec 9 ans d'expérience dans le domaine du prêt-à-porter féminin, je cherche un emploi de directrice de magasin chez Zara.
-En tant que bras droit du directeur d'une boutique Sandro, j'ai augmenté de 20% le chiffre d'affaires en 1 an.
-Aujourd'hui, je souhaite mettre mes compétences en gestion commerciale et management d'équipes de 15 à 30 personnes, au service de l'atteinte de vos objectifs commerciaux. "/>
-                        </ScrollViewer>
-                    </Border>
-
-                    <Grid Grid.Row="3">
-                        <Grid.Resources>
-                            <Style TargetType="Button">
-                                <Setter Property="Margin" Value="15"/>
-                            </Style>
-                        </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="3*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Button  Grid.Column="0" Padding="5" Margin="20,10,10,20">
-                            <Button.Content>
-                                <TextBlock Text="Modifier le profil" TextWrapping="Wrap" TextAlignment="Center"/>
-                            </Button.Content>
-                        </Button>
-                        <Button  Grid.Column="1" Padding="5" Margin="10,10,20,20">
-                            <Button.Content>
-                                <TextBlock Text="Poster" TextWrapping="Wrap" TextAlignment="Center"/>
-                            </Button.Content>
-                        </Button>
-                    </Grid>
-                </Grid>-->
 
             <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="10,5,0,0">
                 <ScrollViewer >
@@ -214,55 +152,9 @@ Aujourd'hui, je souhaite mettre mes compétences en gestion commerciale et manag
                             </Style>
 
                         </UniformGrid.Resources>
-                        <Button>
-                            <Border>
-                                <Image Source="img/montagne.jpg"/>
-                            </Border>
-                        </Button>
 
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances1.jpg"/>
-                            </Border>
-                        </Button>
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances2.jpg"/>
-                            </Border>
-                        </Button>
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances3.jpg"/>
-                            </Border>
-                        </Button>
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances4.jpg"/>
-                            </Border>
-                        </Button>
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances6.jpg"/>
-                            </Border>
-                        </Button>
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances6.jpg"/>
-                            </Border>
-                        </Button>
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances6.jpg"/>
-                            </Border>
-                        </Button>
-                        <Button>
-                            <Border>
-                                <Image Source="img/vacances6.jpg"/>
-                            </Border>
-                        </Button>
                     </UniformGrid>
                 </ScrollViewer>
-
             </materialDesign:Card>
         </Grid>
 
