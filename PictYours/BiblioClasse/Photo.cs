@@ -60,16 +60,11 @@ namespace BiblioClasse
         /// <param name="datepub"></param>
         /// <param name="nbJaimes"></param>
         /// <param name="identifiant"></param>
-        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datepub, int nbJaimes, string identifiant,ECategorie categorie)
+        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datePub, int nbJaimes, string identifiant,ECategorie categorie)
+                        : this(cheminPhoto, description, lieu, proprietaire, datePub, categorie)
         {
-            CheminPhoto = string.IsNullOrWhiteSpace(cheminPhoto) ? throw new ArgumentNullException(nameof(cheminPhoto)) : cheminPhoto;
-            Description = description;
-            Lieu = lieu ?? throw new ArgumentNullException(nameof(lieu));
-            Proprietaire = proprietaire ?? throw new ArgumentNullException(nameof(proprietaire));
-            DatePub = datepub;
             NbJaimes = nbJaimes;
             Identifiant = string.IsNullOrWhiteSpace(identifiant) ? throw new ArgumentNullException(nameof(identifiant)) : identifiant;
-            Categorie = categorie;
         }
 
         /// <summary>
@@ -83,10 +78,10 @@ namespace BiblioClasse
         /// <param name="categorie"></param>
         public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datePub, ECategorie categorie)
         {
-            CheminPhoto = cheminPhoto ?? throw new ArgumentNullException(nameof(cheminPhoto));
-            Description = description ?? throw new ArgumentNullException(nameof(description));
-            Lieu = lieu ?? throw new ArgumentNullException(nameof(lieu));
-            Proprietaire = proprietaire ?? throw new ArgumentNullException(nameof(proprietaire));
+            CheminPhoto = string.IsNullOrWhiteSpace(cheminPhoto) ? throw new ArgumentNullException(nameof(cheminPhoto)) : cheminPhoto;
+            Description = description;
+            Lieu = string.IsNullOrWhiteSpace(lieu) ? throw new ArgumentNullException(nameof(lieu)) : lieu;
+            Proprietaire = proprietaire == null  ? throw new ArgumentNullException(nameof(proprietaire)) : proprietaire;
             DatePub = datePub;
             Categorie = categorie;
         }

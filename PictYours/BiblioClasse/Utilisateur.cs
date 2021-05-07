@@ -27,7 +27,7 @@ namespace BiblioClasse
         /// </summary>
         public string Pseudo
         {
-            get => $"@{pseudo}";
+            get => pseudo;
             private set
             {
                 if (value != null)
@@ -154,6 +154,11 @@ namespace BiblioClasse
         public override int GetHashCode()
         {
             return Pseudo.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"{Nom}({Pseudo}) Description:{Description}";
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BiblioClasse
         /// <summary>
         /// Nombre de visites sur le profil du compte commercial
         /// </summary>
-        public int NombreDeVisite { get; private set; }
+        public int NombreDeVisites { get; private set; }
 
         /// <summary>
         /// Lien du site web du profil commercial
@@ -21,7 +21,7 @@ namespace BiblioClasse
         public Commercial(string nom,string pseudo,string motDePasse, string photoDeProfil, int nombreDeVisite, string siteWeb)
             :base(nom,pseudo,motDePasse, photoDeProfil)
         {
-            NombreDeVisite = nombreDeVisite;
+            NombreDeVisites = nombreDeVisite;
             SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb));
         }
 
@@ -52,6 +52,11 @@ namespace BiblioClasse
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()} Nombres de visites:{NombreDeVisites} SiteWeb:{SiteWeb}";
         }
     }
 }
