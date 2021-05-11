@@ -10,24 +10,32 @@ namespace BiblioClasse
 {
     public class ManagerUtilisateur : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Utilisateur actuellement connecté sur l'application
+        /// </summary>
         public Utilisateur UtilisateurActuel { get; set; }
 
-        public Utilisateur UtilisateurSélectionné 
+        /// <summary>
+        /// Utilisateur sélectionné dans la liste de profil
+        /// </summary>
+        public Utilisateur UtilisateurSelectionne 
         {
-            get => utilisateurSélectionné;
+            get => utilisateurSelectionne;
             set
             {
-                if(utilisateurSélectionné != value)
+                if(utilisateurSelectionne != value)
                 {
-                    utilisateurSélectionné = value;
-                    OnPropertyChanged(nameof(UtilisateurSélectionné));
+                    utilisateurSelectionne = value;
+                    OnPropertyChanged(nameof(UtilisateurSelectionne));
                 }
             }
         }
-        private Utilisateur utilisateurSélectionné;
+        private Utilisateur utilisateurSelectionne;
 
+        /// <summary>
+        /// Liste d'utilisateurs qui est encapsulé en lecture seule
+        /// </summary>
         public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; }
-
         private List<Utilisateur> listeUtilisateur;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -48,7 +56,7 @@ namespace BiblioClasse
             };
             ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);
             
-            UtilisateurSélectionné = ListeUtilisateur[0];
+            UtilisateurSelectionne = ListeUtilisateur[0];
         }
 
         public void SeConnecter(Utilisateur utilisateur)

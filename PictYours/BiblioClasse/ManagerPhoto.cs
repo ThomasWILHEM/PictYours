@@ -47,7 +47,7 @@ namespace BiblioClasse
             }
         }
 
-        public void NePlusAimerUnePhoto(Utilisateur utilisateur, string identifiant)
+        public void NePlusAimerUnePhoto(List<Utilisateur> listeUtilisateurs,Utilisateur utilisateur, string identifiant)
         {
             if (utilisateur is Amateur amateur)
             {
