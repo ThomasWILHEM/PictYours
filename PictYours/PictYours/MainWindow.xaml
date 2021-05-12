@@ -13,11 +13,16 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         Icon="/img/app_icon.png"
         
-        xmlns:local="clr-namespace:PictYours" 
+        xmlns:local="clr-namespace:PictYours"
+        xmlns:converters="clr-namespace:PictYours.converters"
         xmlns:UCProfils="clr-namespace:PictYours.userControl.Profils"
         mc:Ignorable="d"
         Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750" Background="#FF303030">
-
+    <Window.Resources>
+        <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
+        <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
+    </Window.Resources>
+    
     <DockPanel Margin="10">
         <materialDesign:Card DockPanel.Dock="Top" Padding="10">
             <Grid>
@@ -76,7 +81,8 @@
                         </RadioButton.Content>
                     </RadioButton>
                 </Grid>
-                <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}" SelectionChanged="ListBoxUtilisateur_SelectionChanged">
+                <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}" SelectionChanged="ListBoxUtilisateur_SelectionChanged"
+                         SelectedItem="{Binding LeManager.ManagerUtilisateur.UtilisateurSelectionne}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -98,10 +104,9 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{Binding Prenom}"></TextBlock>
-                                    <TextBlock Margin="4,0,0,0"  Grid.Column="1" Text="{Binding Nom}"></TextBlock>
+                                    <TextBlock Grid.Column="0" Text="{Binding Converter={StaticResource Utilisateur2PrenomNom}}"></TextBlock>
                                 </Grid>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo}" FontSize="10"></TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo,Converter={StaticResource Pseudo2Affichage}}" FontSize="10"></TextBlock>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
@@ -111,52 +116,8 @@
         </materialDesign:Card>
 
 
-        <Grid >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="5*"/>
-            </Grid.RowDefinitions>
-
-            <materialDesign:Card Margin="10,5,0,5">
-                <Expander HorizontalAlignment="Stretch">
-                    <Expander.Header>
-                        <DockPanel>
-                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                                <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <Ellipse.Fill>
-                                        <ImageBrush/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <TextBlock Text="{Binding UtilisateurSelected}"  Foreground="White" VerticalAlignment="Center" Width="Auto" FontSize="24" Margin="5"/>
-                            </StackPanel>
-                        </DockPanel>
-                    </Expander.Header>
-                    <TextBlock Margin="20,10" TextWrapping="Wrap" Text=""/>
-                </Expander>
-            </materialDesign:Card>
-
-
-            <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="10,5,0,0">
-                <ScrollViewer >
-                    <UniformGrid Columns="3">
-                        <UniformGrid.Resources>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                            </Style>
-                            <Style TargetType="Border">
-                                <Setter Property="Margin" Value="15"/>
-                                <Setter Property="CornerRadius" Value="20"/>
-                                <Setter Property="BorderThickness" Value="0"/>
-                                <Setter Property="BorderBrush" Value="DarkSalmon"/>
-                            </Style>
-
-                        </UniformGrid.Resources>
-
-                    </UniformGrid>
-                </ScrollViewer>
-            </materialDesign:Card>
+        <Grid>
+            <UCProfils:ProfilUtilisateur/>
         </Grid>
-
     </DockPanel>
 </Window>

@@ -18,12 +18,12 @@ namespace BiblioClasse
         /// <summary>
         /// Utilisateur sélectionné dans la liste de profil
         /// </summary>
-        public Utilisateur UtilisateurSelectionne 
+        public Utilisateur UtilisateurSelectionne
         {
             get => utilisateurSelectionne;
             set
             {
-                if(utilisateurSelectionne != value)
+                if (utilisateurSelectionne != value)
                 {
                     utilisateurSelectionne = value;
                     OnPropertyChanged(nameof(UtilisateurSelectionne));
@@ -39,11 +39,7 @@ namespace BiblioClasse
         private List<Utilisateur> listeUtilisateur;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        void OnPropertyChanged(string propertyName) =>PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public ManagerUtilisateur()
         {
@@ -55,19 +51,19 @@ namespace BiblioClasse
                 new Commercial("Mozilla","mozilla","mdp","/img/mozilla.png","mozilla.fr")
             };
             ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);
-            
+
             UtilisateurSelectionne = ListeUtilisateur[0];
         }
 
         public void SeConnecter(Utilisateur utilisateur)
         {
             if (UtilisateurActuel == null) return;
-            
+
             if (ListeUtilisateur.Contains(UtilisateurActuel))
             {
                 SeDeconnecter();
                 UtilisateurActuel = utilisateur;
-                utilisateur.EstConnecte  =  true;
+                utilisateur.EstConnecte = true;
             }
         }
 
@@ -103,7 +99,7 @@ namespace BiblioClasse
 
         public bool ModifierPrenom(string nouveauPrenom)
         {
-            if(UtilisateurActuel is Amateur amateur && nouveauPrenom != null)
+            if (UtilisateurActuel is Amateur amateur && nouveauPrenom != null)
             {
                 amateur.Prenom = nouveauPrenom;
                 return true;

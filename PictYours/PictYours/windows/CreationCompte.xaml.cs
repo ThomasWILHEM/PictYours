@@ -1,5 +1,5 @@
 ﻿using PictYours;
-using PictYours.userControl.CreateAccount;
+using PictYours.userControl.CreationCompte;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -20,9 +20,9 @@ namespace AppWpf
     /// <summary>
     /// Logique d'interaction pour CreateAccount.xaml
     /// </summary>
-    public partial class CreateAccount : Window
+    public partial class CreationCompte : Window
     {
-        public CreateAccount()
+        public CreationCompte()
         {
             InitializeComponent();
             Vide.Visibility = Visibility.Visible;
