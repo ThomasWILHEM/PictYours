@@ -7,8 +7,9 @@
              xmlns:local="clr-namespace:PictYours.userControl.Profils"
              xmlns:converters="clr-namespace:PictYours.converters"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
+    <Grid DataContext="{Binding ElementName=root}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="5*"/>
@@ -25,16 +26,16 @@
                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                             <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurSelectionne.PhotoDeProfil}"/>
+                                    <ImageBrush ImageSource="{Binding Utilisateur.PhotoDeProfil}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <TextBlock Text="{Binding LeManager.ManagerUtilisateur.UtilisateurSelectionne.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
+                            <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
                         </StackPanel>
                     </DockPanel>
                 </Expander.Header>
-                <StackPanel Orientation="Vertical">
-                    <TextBlock Margin="20,10" TextWrapping="Wrap" Text="{Binding LeManager.ManagerUtilisateur.UtilisateurSelectionne,Converter={StaticResource Utilisateur2PrenomNom}}"/>
-                    <!--<TextBlock Margin="20,10" TextWrapping="Wrap" Text="{Binding Description}"/>-->
+                <StackPanel Orientation="Vertical" Margin="20,10">
+                    <TextBlock  TextWrapping="Wrap" Text="{Binding Utilisateur,Converter={StaticResource Utilisateur2PrenomNom}}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Description}"/>
                 </StackPanel>
             </Expander>
         </materialDesign:Card>

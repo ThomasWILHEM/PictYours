@@ -22,6 +22,15 @@ namespace PictYours.userControl.Profils
     /// </summary>
     public partial class ProfilUtilisateur : UserControl
     {
+        public static readonly DependencyProperty UtilisateurProperty
+            =DependencyProperty.Register(nameof(Utilisateur),typeof(Utilisateur),typeof(ProfilUtilisateur));
+
+        public Utilisateur Utilisateur
+        {
+            get => GetValue(UtilisateurProperty) as Utilisateur;
+            set => SetValue(UtilisateurProperty, value);
+        }
+
         public ProfilUtilisateur()
         {
             InitializeComponent();
