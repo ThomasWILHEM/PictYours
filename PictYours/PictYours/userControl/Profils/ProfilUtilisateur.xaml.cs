@@ -25,8 +25,6 @@ namespace PictYours.userControl.Profils
         public ProfilUtilisateur()
         {
             InitializeComponent();
-
-            DataContext = this;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace AppWpf
 
         private void CreateAccount(object sender, RoutedEventArgs e)
         {
-            var createAccount = new CreateAccount();
+            var createAccount = new CreationCompte();
             createAccount.Show();
             Close();
         }

@@ -13,15 +13,12 @@ namespace PictYours
         public Manager LeManager => (App.Current as App).LeManager;
         public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; private set; }
 
-        public Utilisateur UtilisateurSelected; 
         public MainWindow()
         {
             InitializeComponent();
            
             ListeUtilisateur = LeManager.ManagerUtilisateur.ListeUtilisateur;
 
-            UtilisateurSelected = LeManager.ManagerUtilisateur.UtilisateurSelectionne;
-            
             DataContext = this;
         }
 
@@ -35,7 +32,7 @@ namespace PictYours
 
         private void ListBoxUtilisateur_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UtilisateurSelected = e.AddedItems[0] as Utilisateur;
+            LeManager.ManagerUtilisateur.UtilisateurSelectionne = e.AddedItems[0] as Utilisateur;
         }
     }
 }
