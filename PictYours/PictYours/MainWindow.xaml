@@ -117,7 +117,7 @@
 
 
         <Grid>
-            <UCProfils:ProfilUtilisateur/>
+            <UCProfils:ProfilUtilisateur Utilisateur="{Binding SelectedItem,ElementName=ListBoxUtilisateur}"/>
         </Grid>
     </DockPanel>
 </Window>
