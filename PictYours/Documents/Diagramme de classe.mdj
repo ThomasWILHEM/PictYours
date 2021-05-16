@@ -4355,7 +4355,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -484,
-											"top": -142,
+											"top": -158,
 											"height": 13
 										},
 										{
@@ -4366,7 +4366,7 @@
 											},
 											"font": "Arial;13;1",
 											"left": 21,
-											"top": 183,
+											"top": 175,
 											"width": 584.8857421875,
 											"height": 13,
 											"text": "RechercheUtilisateur"
@@ -4380,7 +4380,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -484,
-											"top": -142,
+											"top": -158,
 											"width": 73.67724609375,
 											"height": 13,
 											"text": "(from Model)"
@@ -4394,7 +4394,7 @@
 											"visible": false,
 											"font": "Arial;13;0",
 											"left": -75,
-											"top": 174,
+											"top": 158,
 											"width": 584.8857421875,
 											"height": 13,
 											"horizontalAlignment": 1
@@ -4402,7 +4402,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 16,
-									"top": 176,
+									"top": 168,
 									"width": 594.8857421875,
 									"height": 25,
 									"stereotypeLabel": {
@@ -4429,7 +4429,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 16,
-									"top": 201,
+									"top": 193,
 									"width": 594.8857421875,
 									"height": 10
 								},
@@ -4454,7 +4454,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 21,
-											"top": 216,
+											"top": 208,
 											"width": 584.8857421875,
 											"height": 13,
 											"underline": true,
@@ -4472,11 +4472,11 @@
 											},
 											"font": "Arial;13;0",
 											"left": 21,
-											"top": 231,
+											"top": 223,
 											"width": 584.8857421875,
 											"height": 13,
 											"underline": true,
-											"text": "+RechercheParPseudo(listeUtilisateurs: List<Utilisateur>, pattern: string, listeFiltree: List<Utilisateur>)",
+											"text": "+RechercheParPseudo(listeUtilisateurs: List<Utilisateur>, pattern: string): List<Utilisateur>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4490,17 +4490,17 @@
 											},
 											"font": "Arial;13;0",
 											"left": 21,
-											"top": 246,
+											"top": 238,
 											"width": 584.8857421875,
 											"height": 13,
 											"underline": true,
-											"text": "+RechercheParNomEtPrenom(liste: List<Utilisateur>, pseudo: string, listeFiltree: List<Utilisateur>)",
+											"text": "+RechercheParNomEtPrenom(liste: List<Utilisateur>, pseudo: string): List<Utilisateur>",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 16,
-									"top": 211,
+									"top": 203,
 									"width": 594.8857421875,
 									"height": 53
 								},
@@ -4516,7 +4516,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -242,
-									"top": -71,
+									"top": -79,
 									"width": 10,
 									"height": 10
 								},
@@ -4532,7 +4532,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": -242,
-									"top": -71,
+									"top": -79,
 									"width": 10,
 									"height": 10
 								}
@@ -4540,7 +4540,7 @@
 							"font": "Arial;13;0",
 							"containerChangeable": true,
 							"left": 16,
-							"top": 176,
+							"top": 168,
 							"width": 594.8857421875,
 							"height": 103,
 							"nameCompartment": {
@@ -6193,7 +6193,8 @@
 										"$ref": "AAAAAAF5F1znhdXNJj4="
 									},
 									"name": "listeFiltree",
-									"type": "List<Utilisateur>"
+									"type": "List<Utilisateur>",
+									"direction": "return"
 								}
 							]
 						},
@@ -6231,7 +6232,8 @@
 										"$ref": "AAAAAAF5W4z8di41Ptk="
 									},
 									"name": "listeFiltree",
-									"type": "List<Utilisateur>"
+									"type": "List<Utilisateur>",
+									"direction": "return"
 								}
 							]
 						}
