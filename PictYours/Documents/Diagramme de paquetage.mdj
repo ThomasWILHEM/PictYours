@@ -5,25 +5,6 @@
 	"ownedElements": [
 		{
 			"_type": "UMLModel",
-			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
-			"_parent": {
-				"$ref": "AAAAAAFF+h6SjaM2Hec="
-			},
-			"name": "Model",
-			"ownedElements": [
-				{
-					"_type": "UMLClassDiagram",
-					"_id": "AAAAAAFF+qBtyKM79qY=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "Main",
-					"defaultDiagram": true
-				}
-			]
-		},
-		{
-			"_type": "UMLModel",
 			"_id": "AAAAAAF5N0qGRZ13nUI=",
 			"_parent": {
 				"$ref": "AAAAAAFF+h6SjaM2Hec="
@@ -568,8 +549,8 @@
 								"$ref": "AAAAAAF5N0qGRp1493I="
 							},
 							"font": "Arial;13;0",
-							"left": 656,
-							"top": 384,
+							"left": 376,
+							"top": 480,
 							"width": 241,
 							"height": 51,
 							"text": "Ce paquetage contient l'ensemble des classes communes à l'application "
@@ -601,7 +582,7 @@
 								"$ref": "AAAAAAF5N01LIZ4DlF0="
 							},
 							"lineStyle": 1,
-							"points": "777:435;778:495"
+							"points": "617:509;735:513"
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -618,6 +599,231 @@
 							},
 							"lineStyle": 1,
 							"points": "1079:733;995:727"
+						},
+						{
+							"_type": "UMLPackageView",
+							"_id": "AAAAAAF5dBh00AKuDVc=",
+							"_parent": {
+								"$ref": "AAAAAAF5N0qGRp1493I="
+							},
+							"model": {
+								"$ref": "AAAAAAF5dBh0zgKsK4s="
+							},
+							"subViews": [
+								{
+									"_type": "UMLNameCompartmentView",
+									"_id": "AAAAAAF5dBh00AKvsDc=",
+									"_parent": {
+										"$ref": "AAAAAAF5dBh00AKuDVc="
+									},
+									"model": {
+										"$ref": "AAAAAAF5dBh0zgKsK4s="
+									},
+									"subViews": [
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF5dBh00AKwd8Q=",
+											"_parent": {
+												"$ref": "AAAAAAF5dBh00AKvsDc="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -352,
+											"top": 208,
+											"height": 13
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF5dBh00AKxCiE=",
+											"_parent": {
+												"$ref": "AAAAAAF5dBh00AKvsDc="
+											},
+											"font": "Arial;13;1",
+											"left": 957,
+											"top": 414,
+											"width": 163.0458984375,
+											"height": 13,
+											"text": "Test_RechercheUtilisateur"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF5dBh00QKyFeo=",
+											"_parent": {
+												"$ref": "AAAAAAF5dBh00AKvsDc="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -352,
+											"top": 208,
+											"width": 80.9072265625,
+											"height": 13,
+											"text": "(from Model1)"
+										},
+										{
+											"_type": "LabelView",
+											"_id": "AAAAAAF5dBh00QKzu7s=",
+											"_parent": {
+												"$ref": "AAAAAAF5dBh00AKvsDc="
+											},
+											"visible": false,
+											"font": "Arial;13;0",
+											"left": -352,
+											"top": 208,
+											"height": 13,
+											"horizontalAlignment": 1
+										}
+									],
+									"font": "Arial;13;0",
+									"left": 952,
+									"top": 407,
+									"width": 173.0458984375,
+									"height": 25,
+									"stereotypeLabel": {
+										"$ref": "AAAAAAF5dBh00AKwd8Q="
+									},
+									"nameLabel": {
+										"$ref": "AAAAAAF5dBh00AKxCiE="
+									},
+									"namespaceLabel": {
+										"$ref": "AAAAAAF5dBh00QKyFeo="
+									},
+									"propertyLabel": {
+										"$ref": "AAAAAAF5dBh00QKzu7s="
+									}
+								}
+							],
+							"font": "Arial;13;0",
+							"containerChangeable": true,
+							"left": 952,
+							"top": 392,
+							"width": 173.0458984375,
+							"height": 40,
+							"nameCompartment": {
+								"$ref": "AAAAAAF5dBh00AKvsDc="
+							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF5dBsM4gLP5Rw=",
+							"_parent": {
+								"$ref": "AAAAAAF5N0qGRp1493I="
+							},
+							"font": "Arial;13;0",
+							"left": 1008,
+							"top": 264,
+							"width": 249,
+							"height": 65,
+							"text": "Ce paquetage contient l'ensemble des tests fonctionnels en rapport avec la recherche d'utilisateur.Il utilise la bibliothèque de classe \"BiblioClasse\"."
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAF5dByZLgLcRpY=",
+							"_parent": {
+								"$ref": "AAAAAAF5N0qGRp1493I="
+							},
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF5dBsM4gLP5Rw="
+							},
+							"tail": {
+								"$ref": "AAAAAAF5dBh00AKuDVc="
+							},
+							"lineStyle": 1,
+							"points": "1054:391;1105:329"
+						},
+						{
+							"_type": "UMLDependencyView",
+							"_id": "AAAAAAF5dBy5AgLh8vs=",
+							"_parent": {
+								"$ref": "AAAAAAF5N0qGRp1493I="
+							},
+							"model": {
+								"$ref": "AAAAAAF5dBy5AgLfDio="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF5dBy5AwLiS04=",
+									"_parent": {
+										"$ref": "AAAAAAF5dBy5AgLh8vs="
+									},
+									"model": {
+										"$ref": "AAAAAAF5dBy5AgLfDio="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 910,
+									"top": 471,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF5dBy5AgLh8vs="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF5dBy5AwLj5Po=",
+									"_parent": {
+										"$ref": "AAAAAAF5dBy5AgLh8vs="
+									},
+									"model": {
+										"$ref": "AAAAAAF5dBy5AgLfDio="
+									},
+									"visible": null,
+									"font": "Arial;13;0",
+									"left": 916,
+									"top": 485,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 30,
+									"hostEdge": {
+										"$ref": "AAAAAAF5dBy5AgLh8vs="
+									},
+									"edgePosition": 1
+								},
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF5dBy5AwLklxU=",
+									"_parent": {
+										"$ref": "AAAAAAF5dBy5AgLh8vs="
+									},
+									"model": {
+										"$ref": "AAAAAAF5dBy5AgLfDio="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 899,
+									"top": 444,
+									"height": 13,
+									"alpha": -1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF5dBy5AgLh8vs="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF5N0u2VJ21DHU="
+							},
+							"tail": {
+								"$ref": "AAAAAAF5dBh00AKuDVc="
+							},
+							"lineStyle": 1,
+							"points": "986:432;824:497",
+							"showVisibility": true,
+							"nameLabel": {
+								"$ref": "AAAAAAF5dBy5AwLiS04="
+							},
+							"stereotypeLabel": {
+								"$ref": "AAAAAAF5dBy5AwLj5Po="
+							},
+							"propertyLabel": {
+								"$ref": "AAAAAAF5dBy5AwLklxU="
+							}
 						}
 					]
 				},
@@ -674,6 +880,29 @@
 						"$ref": "AAAAAAF5N0qGRZ13nUI="
 					},
 					"name": "BiblioClasse"
+				},
+				{
+					"_type": "UMLPackage",
+					"_id": "AAAAAAF5dBh0zgKsK4s=",
+					"_parent": {
+						"$ref": "AAAAAAF5N0qGRZ13nUI="
+					},
+					"name": "Test_RechercheUtilisateur",
+					"ownedElements": [
+						{
+							"_type": "UMLDependency",
+							"_id": "AAAAAAF5dBy5AgLfDio=",
+							"_parent": {
+								"$ref": "AAAAAAF5dBh0zgKsK4s="
+							},
+							"source": {
+								"$ref": "AAAAAAF5dBh0zgKsK4s="
+							},
+							"target": {
+								"$ref": "AAAAAAF5N0u2VJ2zfBI="
+							}
+						}
+					]
 				}
 			]
 		}
