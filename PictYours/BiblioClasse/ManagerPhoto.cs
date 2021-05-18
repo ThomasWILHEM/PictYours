@@ -20,6 +20,13 @@ namespace BiblioClasse
             ListeUtilisateursParPhotosAimees = new Dictionary<Photo, List<Amateur>>();
         }
 
+        /// <summary>
+        /// Permet de poster une photo sur le profil de l'utilisateur
+        /// Ajoute la photo à MesPhotos de l'utilisateur
+        /// Ajoute la photo à la liste correspondante de l'utilisateur dans PhotosUtilisateurs
+        /// </summary>
+        /// <param name="utilisateur"></param>
+        /// <param name="photo"></param>
         public void PosterUnePhoto(Utilisateur utilisateur, Photo photo)
         {
             if (utilisateur == null ||
@@ -41,8 +48,10 @@ namespace BiblioClasse
         }
 
         /// <summary>
-        /// Supprime une photo pour l'utilisateur passé en paramètre et supprime toutes
-        /// les photos aimées par les autres utilisateurs
+        /// Supprime une photo
+        /// Supprime la photo à MesPhotos de l'utilisateur
+        /// Supprime la photo à la liste correspondante de l'utilisateur dans PhotosUtilisateurs
+        /// Supprime toutes les photos aimées par les autres utilisateurs
         /// </summary>
         /// <param name="listeUtilisateurs">La liste de tous les utilisateurs</param>
         /// <param name="pseudo">Pseudo de l'utilisateur à qui appartient la photo à supprimer</param>
@@ -76,9 +85,14 @@ namespace BiblioClasse
             //Afficher un Dialog en fonction du resultat
         }
 
+        /// <summary>
+        /// Ajoute au dictionnaire ListeUtilisateursParPhotosAimees pour la photo donnée en paramètre,l'utilisateur dans la liste correspondante
+        /// </summary>
+        /// <param name="utilisateur">Utilisateur qui a aimé la photo</param>
+        /// <param name="photo">Photo qui a été aimé</param>
         public void AimerUnePhoto(Utilisateur utilisateur, Photo photo)
         {
-            Amateur amateur = utilisateur as Amateur;
+            Amateur amateur = utilisateur as Amateur; //Seul les amateur peuvent ne plus aimer une photo
             if (amateur == null ||
                 photo == null ||
                 !amateur.EstConnecte ||
@@ -88,24 +102,24 @@ namespace BiblioClasse
 
             if (ListeUtilisateursParPhotosAimees.ContainsKey(photo))
             {
-                ListeUtilisateursParPhotosAimees
-                    .GetValueOrDefault(photo)
-                    ?.Add(amateur);
+                ListeUtilisateursParPhotosAimees.GetValueOrDefault(photo)?.Add(amateur);
             }
             else
             {
-                ListeUtilisateursParPhotosAimees.Add(
-                    photo,
-                    new List<Amateur> { amateur }
-                );
+                ListeUtilisateursParPhotosAimees.Add(photo, new List<Amateur> { amateur });
             }
             bool result = amateur.AimerPhoto(photo);
             //Afficher un Dialog
         }
 
+        /// <summary>
+        /// Supprime du dictionnaire ListeUtilisateursParPhotosAimees pour la photo donnée en paramètre,l'utilisateur dans la liste correspondante
+        /// </summary>
+        /// <param name="utilisateur">Utilisateur qui n'aime plus la photo</param>
+        /// <param name="photo">Photo plus aimé</param>
         public void NePlusAimerUnePhoto(Utilisateur utilisateur, Photo photo)
         {
-            if (utilisateur is Amateur amateur)
+            if (utilisateur is Amateur amateur) //Seul les amateur peuvent ne plus aimer une photo
             {
                 if (!ListeUtilisateursParPhotosAimees.ContainsKey(photo)) return;
                 if (!ListeUtilisateursParPhotosAimees.TryGetValue(photo, out List<Amateur> listeAmateur)) return;
