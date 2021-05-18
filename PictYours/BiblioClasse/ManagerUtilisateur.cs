@@ -43,10 +43,10 @@ namespace BiblioClasse
 
         public ManagerUtilisateur()
         {
-            Amateur a = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", DateTime.Now);
-            Amateur a1 = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", DateTime.Now);
-            Amateur a2 = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", DateTime.Now);
-            Commercial c1 = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr");
+            Amateur a = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", DateTime.Now,"Je suis une grosse banane");
+            Amateur a1 = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", DateTime.Now,"Je suis une plus grosse banane");
+            Amateur a2 = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", DateTime.Now,"Je suis une plus grosse banane");
+            Commercial c1 = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
             listeUtilisateur = new List<Utilisateur> {a,a1,a2,c1};
             ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);

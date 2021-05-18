@@ -18,15 +18,15 @@ namespace BiblioClasse
         /// </summary>
         public string SiteWeb { get; private set; }
 
-        public Commercial(string nom,string pseudo,string motDePasse, string photoDeProfil, int nombreDeVisite, string siteWeb)
-            :base(nom,pseudo,motDePasse, photoDeProfil)
+        public Commercial(string nom,string pseudo,string motDePasse, string photoDeProfil, int nombreDeVisite, string siteWeb, string description)
+            :base(nom,pseudo,motDePasse, photoDeProfil,description)
         {
             NombreDeVisites = nombreDeVisite;
             SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb));
         }
 
-        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, string siteWeb)
-            :base(nom,pseudo,motDePasse,photoDeProfil)
+        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, string siteWeb,string description)
+            :base(nom,pseudo,motDePasse,photoDeProfil,description)
         {
             SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb));
         }

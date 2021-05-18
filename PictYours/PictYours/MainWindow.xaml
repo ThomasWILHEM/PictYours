@@ -22,7 +22,7 @@
         <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
         <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
     </Window.Resources>
-    
+
     <DockPanel Margin="10">
         <materialDesign:Card DockPanel.Dock="Top" Padding="10">
             <Grid>
@@ -32,92 +32,125 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0"  Foreground="White"/>
-                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                    <StackPanel  VerticalAlignment="Center" Orientation="Horizontal" x:Name="MenuDéroulant" Visibility="Collapsed">
-                        <Button HorizontalAlignment="Center">
-                            Profil
+                <materialDesign:PopupBox HorizontalAlignment="Right" PlacementMode="BottomAndAlignRightEdges" Margin="10,0,10,0">
+                    <materialDesign:PopupBox.ToggleContent>
+                        <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil}"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                    </materialDesign:PopupBox.ToggleContent>
+                    <StackPanel>
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                            <Style TargetType="materialDesign:PackIcon">
+                                <Setter Property="Margin" Value="0,0,5,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                            <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="AccountBox"/>
+                                    <TextBlock Text="Profil"/>
+                                </StackPanel>
+                            </Button.Content>
                         </Button>
-                        <Button HorizontalAlignment="Center">
-                            Mes likes
+                            <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Star" />
+                                    <TextBlock Text="Mes Likes"/>
+                                </StackPanel>
+                            </Button.Content>
                         </Button>
-                        <Button HorizontalAlignment="Center">
-                            Paramètres
+                            <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Cog"/>
+                                    <TextBlock Text="Paramètres"/>
+                                </StackPanel>
+                            </Button.Content>
                         </Button>
-                        <Button HorizontalAlignment="Center">
-                            Déconnexion
+                        <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Kind="Logout"/>
+                                    <TextBlock Text="Déconnexion"/>
+                                </StackPanel>
+                            </Button.Content>
                         </Button>
                     </StackPanel>
-                    <Button Background="Transparent" x:Name="MenuButton" Click="MenuButton_Click" BorderBrush="White" BorderThickness="0" Width="60" Height="60" Padding="0" Cursor="Hand" HorizontalAlignment="Right">
-                        <Button.Content>
-                            <Image Source="/img/estelle_rond.png"/>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
+                </materialDesign:PopupBox>
             </Grid>
         </materialDesign:Card>
-        <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
-            <StackPanel>
-                <Grid Background="{StaticResource MaterialDesignDarkBackground}">
-                    <Grid.Resources>
-                        <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
-                            <Setter Property="Padding" Value="0"/>
-                            <Setter Property="GroupName" Value="ModeRecherche"/>
-                        </Style>
-                    </Grid.Resources>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox materialDesign:HintAssist.Hint="Rechercher" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="White" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                    <RadioButton Grid.Column="1">
-                        <RadioButton.Content>
-                            <materialDesign:PackIcon Kind="AlphabetLatin"/>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    <RadioButton Grid.Column="2">
-                        <RadioButton.Content>
-                            <materialDesign:PackIcon Kind="At"/>
-                        </RadioButton.Content>
-                    </RadioButton>
-                </Grid>
-                <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}" SelectionChanged="ListBoxUtilisateur_SelectionChanged"
+        
+        <DockPanel>
+            <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
+                <StackPanel>
+                    <Grid Background="{StaticResource MaterialDesignDarkBackground}">
+                        <Grid.Resources>
+                            <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="GroupName" Value="ModeRecherche"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox materialDesign:HintAssist.Hint="Rechercher" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="White" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                        <RadioButton Grid.Column="1">
+                            <RadioButton.Content>
+                                <materialDesign:PackIcon Kind="AlphabetLatin"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                        <RadioButton Grid.Column="2">
+                            <RadioButton.Content>
+                                <materialDesign:PackIcon Kind="At"/>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </Grid>
+                    <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}" SelectionChanged="ListBoxUtilisateur_SelectionChanged"
                          SelectedItem="{Binding LeManager.ManagerUtilisateur.UtilisateurSelectionne}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <Ellipse Height="40" Width="40" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,10,0">
-                                    <Ellipse.Fill>
-                                        <ImageBrush  ImageSource="{Binding PhotoDeProfil}" ></ImageBrush>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <Grid Grid.Column="1" VerticalAlignment="Center">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{Binding Converter={StaticResource Utilisateur2PrenomNom}}"></TextBlock>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Ellipse Height="40" Width="40" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,10,0">
+                                        <Ellipse.Fill>
+                                            <ImageBrush  ImageSource="{Binding PhotoDeProfil}" ></ImageBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <Grid Grid.Column="1" VerticalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Converter={StaticResource Utilisateur2PrenomNom}}"></TextBlock>
+                                    </Grid>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo,Converter={StaticResource Pseudo2Affichage}}" FontSize="10"></TextBlock>
                                 </Grid>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo,Converter={StaticResource Pseudo2Affichage}}" FontSize="10"></TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    
-                </ListBox>
-            </StackPanel>
-        </materialDesign:Card>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+
+                    </ListBox>
+                </StackPanel>
+            </materialDesign:Card>
 
 
-        <Grid>
-            <UCProfils:ProfilUtilisateur Utilisateur="{Binding SelectedItem,ElementName=ListBoxUtilisateur}"/>
-        </Grid>
+            <Grid>
+                <UCProfils:ProfilUtilisateur Utilisateur="{Binding SelectedItem,ElementName=ListBoxUtilisateur}"/>
+            </Grid>
+        </DockPanel>
     </DockPanel>
 </Window>
