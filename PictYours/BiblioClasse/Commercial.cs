@@ -31,7 +31,7 @@ namespace BiblioClasse
             SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb));
         }
 
-        public void PromulguerPhoto(Photo p)
+        public void MettreEnAvant(Photo p)
         {
             throw new NotImplementedException();
         }
