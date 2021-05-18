@@ -9,6 +9,8 @@ namespace BiblioClasse
 {
     public class Photo : IEquatable<Photo>
     {
+        private static int prochainIdentifiant { get; set; } = 0;
+
         /// <summary>
         /// Chemin de la photo
         /// </summary>
@@ -84,6 +86,8 @@ namespace BiblioClasse
             Proprietaire = proprietaire == null  ? throw new ArgumentNullException(nameof(proprietaire)) : proprietaire;
             DatePub = datePub;
             Categorie = categorie;
+            prochainIdentifiant++;
+            Identifiant = $"p{prochainIdentifiant}";
         }
 
         /// <summary>
@@ -128,6 +132,11 @@ namespace BiblioClasse
         public override int GetHashCode()
         {
             return Identifiant.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"Identifiant:{Identifiant} posté le {DatePub.ToShortDateString()} à {Lieu} par {Proprietaire}";
         }
     }
 }

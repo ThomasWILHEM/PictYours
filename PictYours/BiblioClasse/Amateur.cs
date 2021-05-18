@@ -115,7 +115,7 @@ namespace BiblioClasse
 
         public override string ToString()
         {
-            return $"{Nom} {Prenom}({Pseudo},{DateDeNaissance})";
+            return $"{Nom} {Prenom}({Pseudo},{DateDeNaissance.ToShortDateString()})";
         }
     }
 }

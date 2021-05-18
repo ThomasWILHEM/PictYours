@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUnitaire", "TestUnitair
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_RechercheUtilisateur", "Test_RechercheUtilisateur\Test_RechercheUtilisateur.csproj", "{71CDB5A1-2F61-42AB-AFEE-C88742315A62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_ManagerPhoto", "Test_ManagerPhoto\Test_ManagerPhoto.csproj", "{1D7D70C1-7A66-4087-9258-321819519634}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{71CDB5A1-2F61-42AB-AFEE-C88742315A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71CDB5A1-2F61-42AB-AFEE-C88742315A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71CDB5A1-2F61-42AB-AFEE-C88742315A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D7D70C1-7A66-4087-9258-321819519634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D7D70C1-7A66-4087-9258-321819519634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D7D70C1-7A66-4087-9258-321819519634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D7D70C1-7A66-4087-9258-321819519634}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
