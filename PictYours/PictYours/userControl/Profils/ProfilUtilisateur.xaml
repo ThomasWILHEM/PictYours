@@ -17,6 +17,8 @@
         <Grid.Resources>
             <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
             <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
+            <converters:Date2Age x:Key="Date2Age"/>
+            <converters:Site2SiteDesc x:Key="Site2SiteDesc"/>
         </Grid.Resources>
 
         <materialDesign:Card Margin="10,5,0,5">
@@ -34,8 +36,20 @@
                     </DockPanel>
                 </Expander.Header>
                 <StackPanel Orientation="Vertical" Margin="20,10">
-                    <TextBlock  TextWrapping="Wrap" Text="{Binding Utilisateur,Converter={StaticResource Utilisateur2PrenomNom}}"/>
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="15"/>
+                                <Setter Property="Margin" Value="0,5"/>
+                            </Style>
+                        </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur,Converter={StaticResource Utilisateur2PrenomNom}}"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur, Converter={StaticResource Date2Age}}"/>
+                    </StackPanel>
                     <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Description}"/>
+
+                    <TextBlock Text="{Binding Utilisateur,Converter={StaticResource Site2SiteDesc}}"/>
+
                 </StackPanel>
             </Expander>
         </materialDesign:Card>

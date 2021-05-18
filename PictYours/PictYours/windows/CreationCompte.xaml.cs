@@ -22,6 +22,8 @@ namespace AppWpf
     /// </summary>
     public partial class CreationCompte : Window
     {
+
+        
         public CreationCompte()
         {
             InitializeComponent();
