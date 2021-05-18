@@ -42,21 +42,38 @@
 
 
         <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="10,5,0,0">
-            <ScrollViewer >
-                <UniformGrid Columns="3" x:Name="mUniformGrid">
-                    <UniformGrid.Resources>
-                        <Style TargetType="Button">
-                            <Setter Property="Background" Value="Transparent"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                        </Style>
-                        <Style TargetType="Border">
-                            <Setter Property="Margin" Value="15"/>
-                            <Setter Property="CornerRadius" Value="20"/>
-                            <Setter Property="BorderThickness" Value="0"/>
-                            <Setter Property="BorderBrush" Value="DarkSalmon"/>
-                        </Style>
-                    </UniformGrid.Resources>
-                </UniformGrid>
+            <ScrollViewer>
+
+                <ItemsControl ItemsSource="{Binding Utilisateur.MesPhotos}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+
+                            <UniformGrid x:Name="mUniformGrid" Columns="3" VerticalAlignment="Top">
+                    
+                                <UniformGrid.Resources>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Background" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        <Setter Property="Margin" Value="15"/>
+                                        <Setter Property="Padding" Value="5"/>
+                                    </Style>
+
+                                </UniformGrid.Resources>
+                                
+                                
+
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                       <DataTemplate>
+                            <Button>
+                                <Image Source="{Binding CheminPhoto}"/>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
             </ScrollViewer>
         </materialDesign:Card>
     </Grid>
