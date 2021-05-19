@@ -70,7 +70,7 @@ namespace BiblioClasse
 
         public void SeDeconnecter()
         {
-            if (!UtilisateurActuel.EstConnecte) throw new Exception("L'utilisateur n'est pas connécté");
+            if (!UtilisateurActuel.EstConnecte) throw new InvalidUserException("L'utilisateur n'est pas connécté");
             UtilisateurActuel.EstConnecte = false;
         }
 
@@ -87,7 +87,7 @@ namespace BiblioClasse
 
         public void ModifierNom(string nouveauNom)
         {
-            if (UtilisateurActuel == null) throw new InvalidOperationException("L'utilisateur actuel est nul");
+            if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
             if (nouveauNom == null) throw new ArgumentNullException("Le nouveau nom est nul");
             UtilisateurActuel.Nom = nouveauNom;
         }
@@ -95,7 +95,7 @@ namespace BiblioClasse
         public void ModifierPrenom(string nouveauPrenom)
         {
             if (nouveauPrenom == null) throw new ArgumentNullException("Le nouveau prénom est nul");
-            if (UtilisateurActuel is not Amateur amateur) throw new InvalidOperationException("L'utilisateur actuel n'est pas un amteur, on ne peut pas modifier le prénom");
+            if (UtilisateurActuel is not Amateur amateur) throw new InvalidUserException("L'utilisateur actuel n'est pas un amteur, on ne peut pas modifier le prénom");
             amateur.Prenom = nouveauPrenom;
         }
 
