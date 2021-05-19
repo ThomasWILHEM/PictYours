@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public class Commercial : Utilisateur,IEquatable<Commercial>
+    public class Commercial : UtilisateurPrive,IEquatable<Commercial>
     {
         /// <summary>
         /// Nombre de visites sur le profil du compte commercial
@@ -57,6 +57,11 @@ namespace BiblioClasse
         public override string ToString()
         {
             return $"{base.ToString()} Nombres de visites:{NombreDeVisites} SiteWeb:{SiteWeb}";
+        }
+
+        public override string ToShortString()
+        {
+            return base.ToShortString();
         }
     }
 }

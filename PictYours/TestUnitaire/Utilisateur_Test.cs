@@ -12,28 +12,55 @@ namespace TestUnitaire
         [Fact]
         public void Test_Nom()
         {
-            Amateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
+            Utilisateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
             Assert.Equal("John", a.Nom);
+        }
+        
+        [Fact]
+        public void Test_Avec_Nom_Null()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Amateur(null, "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now));
         }
 
         [Fact]
         public void Test_Pseudo()
         {
-            Amateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
-            Assert.Equal("@johndoe", a.Pseudo);
+            Utilisateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
+            Assert.Equal("johndoe", a.Pseudo);
         }
 
         [Fact]
-        public void Test_MDP()
+        public void Test_Avec_Pseudo_Null()
         {
-            Amateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
-            Assert.Equal("mdp", a.MotDePasse);
+            Assert.Throws<ArgumentNullException>(() => new Amateur("John", "Doe", null, "mdp", "img/amateur.png", DateTime.Now));
         }
+
+        [Fact]
+        public void Test_PhotoDeProfil()
+        {
+            Utilisateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
+            Assert.Equal("img/amateur.png", a.PhotoDeProfil);
+        }
+
+        [Fact]
+        public void Test_Avec_PhotoDeProfil_Null()
+        {
+            Assert.Throws<ArgumentNullException>(() => new Amateur("John", "Doe", "johndoe", "mdp", null, DateTime.Now));
+        }
+
+        [Fact]
+        public void Test_Description()
+        {
+            Utilisateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", "Voici ma description", DateTime.Now);
+            Assert.Equal("Voici ma description", a.Description);
+        }
+
+        //==================================================
 
         [Fact]
         public void Test_AjoutePhoto()
         {
-            Amateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
+            Utilisateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
             Photo p = new Photo("img/photo", "Ceci est une photo", "Clermont-Ferrand", a, DateTime.Now, 0, "p1", ECategorie.Automobile);
             a.AjouterPhoto(p);
 
@@ -43,7 +70,7 @@ namespace TestUnitaire
         [Fact]
         public void Test_SupprimerPhoto()
         {
-            Amateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
+            Utilisateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
             Photo p = new Photo("img/photo", "Ceci est une photo", "Clermont-Ferrand", a, DateTime.Now, 0, "p1", ECategorie.Automobile);
             a.AjouterPhoto(p);
             a.SupprimerPhoto("p1");
@@ -51,38 +78,9 @@ namespace TestUnitaire
             Assert.DoesNotContain(p, a.MesPhotos);
         }
 
-        [Fact]
-        public void Test_Description()
-        {
-            Amateur a = new Amateur("John", "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now);
-            a.Description = "Voici ma description";
-            Assert.Equal("Voici ma description", a.Description);
-        }
+        
 
-        //==================================================
 
-        [Fact]
-        public void Test_Null_Nom()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Amateur(null, "Doe", "johndoe", "mdp", "img/amateur.png", DateTime.Now));
-        }
-
-        [Fact]
-        public void Test_Null_Prenom()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Amateur("John", null, "johndoe", "mdp", "img/amateur.png", DateTime.Now));
-        }
-
-        [Fact]
-        public void Test_Null_MDP()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Amateur("John", "Doe", "johndoe", null, "img/amateur.png", DateTime.Now));
-        }
-
-        [Fact]
-        public void Test_Null_PhotoDeProfil()
-        {
-            Assert.Throws<ArgumentNullException>(() => new Amateur("John", "Doe", "johndoe", "mdp", null, DateTime.Now));
-        }
+        
     }
 }

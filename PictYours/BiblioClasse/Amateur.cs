@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace BiblioClasse
 {
-    public class Amateur : Utilisateur, IEquatable<Amateur>
+    public class Amateur : UtilisateurPrive, IEquatable<Amateur>
     {
         /// <summary>
         /// Prenom de l'Amateur
@@ -14,7 +12,7 @@ namespace BiblioClasse
         public string Prenom
         {
             get => prenom;
-            set
+            internal set
             {
                 if (value != null)
                     prenom = value;
@@ -25,15 +23,19 @@ namespace BiblioClasse
         /// <summary>
         /// Date de naissance de l'Amateur
         /// </summary>
-        public DateTime DateDeNaissance { get; set; }
+        public DateTime DateDeNaissance { get; internal set; }
 
         /// <summary>
-        /// Liste des photos aimées de l'utilisateur
+        /// Liste des photos aimées de l'Amateur 
         /// </summary>
-        public List<Photo> PhotosAimees { get; private set; } = new List<Photo>();
+        private List<Photo> photosAimees = new List<Photo>();
+        /// <summary>
+        /// ReadOnlyCollection de photos aimées de l'Amateur
+        /// </summary>
+        public ReadOnlyCollection<Photo> PhotosAimees { get; }
 
         /// <summary>
-        /// Constructeur d'un utilisateur amateur
+        /// Constructeur d'un utilisateur Amateur
         /// </summary>
         /// <param name="nom">Nom de l'utilisateur</param>
         /// <param name="prenom">Prenom de l'utilisateur</param>
@@ -41,42 +43,56 @@ namespace BiblioClasse
         /// <param name="motDePasse">Mot de passe de l'utilisateur</param>
         /// <param name="photoDeProfil">Chemin de la photo de profil de l'utilisateur</param>
         /// <param name="dateDeNaissance">Date de naissance de l'utilisateur</param>
-        public Amateur(string nom, string prenom, string pseudo, string motDePasse, string photoDeProfil, DateTime dateDeNaissance, string description)
-            : base(nom, pseudo, motDePasse,photoDeProfil,description)
+        public Amateur(string nom, string prenom, string pseudo, string motDePasse, string photoDeProfil, DateTime dateDeNaissance)
+            : base(nom, pseudo, photoDeProfil, motDePasse)
         {
             Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom)) : prenom;
             DateDeNaissance = dateDeNaissance;
+            PhotosAimees = new ReadOnlyCollection<Photo>(photosAimees);
+        }
+
+        /// <summary>
+        /// Constructeur d'un utilisateur Amateur avec Description
+        /// </summary>
+        /// <param name="nom">Nom de l'Amateur</param>
+        /// <param name="prenom">Prenom de l'Amateur</param>
+        /// <param name="pseudo">Pseudo de l'Amateur</param>
+        /// <param name="motDePasse">Mot de passe de l'Amateur</param>
+        /// <param name="photoDeProfil">Chemin de la photo de profil de l'Amateur</param>
+        /// <param name="description">Description du profil de l'Amateur</param>
+        /// <param name="dateDeNaissance">Date de naissance de l'Amateur</param>
+        public Amateur(string nom, string prenom, string pseudo, string motDePasse, string photoDeProfil, string description, DateTime dateDeNaissance)
+            : base(nom, pseudo, photoDeProfil, description, motDePasse)
+        {
+            Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom)) : prenom;
+            DateDeNaissance = dateDeNaissance;
+            PhotosAimees = new ReadOnlyCollection<Photo>(photosAimees);
         }
 
         /// <summary>
         /// Ajoute une photo dans la liste de photos aimées de l'utilisateur
         /// </summary>
         /// <param name="photo">Photo à ajouter</param>
-        public bool AimerPhoto(Photo photo)
+        public void AimerPhoto(Photo photo)
         {
-            if (photo != null)
-            {
-                PhotosAimees.Add(photo);
-                photo.AugmenterJaimes();
-                return true;
-            }
-            return false;
+            if (photo == null) throw new ArgumentNullException("La photo passé en paramètre est nulle");
+            if (PhotosAimees.Contains(photo)) throw new InvalidOperationException($"L'Amateur {ToShortString()} a déjà aimé la Photo {photo.Identifiant}");
+            photosAimees.Add(photo);
+            photo.AugmenterJaimes();
         }
 
         /// <summary>
         /// Supprime une photo de la liste de photos aimées de l'utilisateur
         /// </summary>
         /// <param name="photo">Photo à supprimer</param>
-        public bool NePlusAimerPhoto(string identifiant)
+        public void NePlusAimerPhoto(string identifiant)
         {
-            Photo photo = PhotosAimees.Find(p => p.Identifiant == identifiant);
-            if (photo != null)
-            {
-                PhotosAimees.Remove(photo);
-                photo.DiminuerJaimes();
-                return true;
-            }
-            return false;
+            if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nulle");
+
+            Photo photo = photosAimees.Find(p => p.Identifiant == identifiant);
+            if (photo == null) throw new InvalidOperationException($"La photo associé à l'identifiant {identifiant} passé en paramètre n'est pas aimé par l'Amateur{ToShortString()}");
+            photosAimees.Remove(photo);
+            photo.DiminuerJaimes();
         }
 
         /// <summary>
@@ -113,9 +129,16 @@ namespace BiblioClasse
             return base.GetHashCode();
         }
 
-        public override string ToString()
-        {
-            return $"{Nom} {Prenom}({Pseudo},{DateDeNaissance.ToShortDateString()})";
-        }
+        /// <summary>
+        /// Permet d'obtenir une chaine de caractère qui représente l'objet
+        /// </summary>
+        /// <returns>Renvoie la chaine de caractère d'un Amateur</returns>
+        public override string ToString() => $"{Nom} {Prenom}({Pseudo},{DateDeNaissance.ToShortDateString()})";
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override string ToShortString() => $"{Nom} {Prenom}({Pseudo})";
     }
 }

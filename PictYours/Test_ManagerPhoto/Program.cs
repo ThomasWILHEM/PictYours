@@ -12,7 +12,7 @@ namespace Test_ManagerPhoto
 
         static ManagerPhoto managerPhoto = new ManagerPhoto();
 
-        static Amateur utilisateur = new Amateur(
+        static Utilisateur utilisateur = new Amateur(
             "MARQUES","Florent","florent.marques"
             ,"mdp","/img/photo.png",DateTime.Now);
 
@@ -46,7 +46,7 @@ namespace Test_ManagerPhoto
                 Console.WriteLine(p.Key.ToString() + " | " + p.Value.Count);
             }
             Console.WriteLine("------Photos aimées-------");
-            foreach (var p in utilisateur.PhotosAimees)
+            foreach (var p in (utilisateur as Amateur).PhotosAimees)
             {
                 Console.WriteLine(p);
             }
@@ -56,31 +56,52 @@ namespace Test_ManagerPhoto
         {
             
             utilisateur.EstConnecte=true;
-            managerPhoto.PosterUnePhoto(utilisateur, photo1);
+            try
+            {
 
-            managerPhoto.AimerUnePhoto(utilisateur, photo1);
-            managerPhoto.AimerUnePhoto(utilisateur, photo2); //Ne s'ajoute pas car pas encore postée
+                managerPhoto.PosterUnePhoto(utilisateur, photo1);
 
-            managerPhoto.PosterUnePhoto(utilisateur, photo2);
+                managerPhoto.AimerUnePhoto(utilisateur, photo1);
+                try
+                {
+                    managerPhoto.AimerUnePhoto(utilisateur, photo2); //Ne s'ajoute pas car pas encore postée
+                }
+                catch (InvalidOperationException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
-            managerPhoto.AimerUnePhoto(utilisateur, photo1); //Ne s'ajoute pas car déjà aimée
+                managerPhoto.PosterUnePhoto(utilisateur, photo2);
 
-            managerPhoto.AimerUnePhoto(utilisateur, photo2);
+                try
+                {
+                    managerPhoto.AimerUnePhoto(utilisateur, photo1); //Ne s'ajoute pas car déjà présente
+                }
+                catch (InvalidOperationException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+                managerPhoto.AimerUnePhoto(utilisateur, photo2);
 
-            AffichePhotos();
-            AffichePhotosAimees();
+                AffichePhotos();
+                AffichePhotosAimees();
 
-            managerPhoto.NePlusAimerUnePhoto(utilisateur, photo2);
+                managerPhoto.NePlusAimerUnePhoto(utilisateur, photo2);
 
-            AffichePhotos();
-            AffichePhotosAimees();
+                AffichePhotos();
+                AffichePhotosAimees();
 
-            managerPhoto.SupprimerUnePhoto(utilisateur,photo1);
-            managerPhoto.SupprimerUnePhoto(utilisateur,photo2);
+                managerPhoto.SupprimerUnePhoto(utilisateur, photo1);
+                managerPhoto.SupprimerUnePhoto(utilisateur, photo2);
 
 
-            AffichePhotos();
-            AffichePhotosAimees();
+                AffichePhotos();
+                AffichePhotosAimees();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }

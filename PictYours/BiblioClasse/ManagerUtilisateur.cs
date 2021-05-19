@@ -39,7 +39,7 @@ namespace BiblioClasse
         private List<Utilisateur> listeUtilisateur;
 
         public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged(string propertyName) =>PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public ManagerUtilisateur()
         {
@@ -48,7 +48,7 @@ namespace BiblioClasse
             Amateur a2 = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", DateTime.Now,"Je suis une plus grosse banane");
             Commercial c1 = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
-            listeUtilisateur = new List<Utilisateur> {a,a1,a2,c1};
+            listeUtilisateur = new List<Utilisateur> { a, a1, a2, c1 };
             ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);
 
             UtilisateurSelectionne = ListeUtilisateur[0];
@@ -68,44 +68,35 @@ namespace BiblioClasse
             }
         }
 
-        public bool SeDeconnecter()
+        public void SeDeconnecter()
         {
-            if (UtilisateurActuel.EstConnecte)
-            {
-                UtilisateurActuel.EstConnecte = false;
-                return true;
-            }
-            return false;
+            if (!UtilisateurActuel.EstConnecte) throw new Exception("L'utilisateur n'est pas connécté");
+            UtilisateurActuel.EstConnecte = false;
         }
 
-        public bool CreerUnCompte()
+        public void CreerUnCompte(Utilisateur utilisateur)
+        {
+            if (utilisateur == null) throw new ArgumentNullException("L'utilisateur passé en paramètre est nul");
+            listeUtilisateur.Add(utilisateur);
+        }
+
+        public void SupprimerCompte()
         {
             throw new NotImplementedException();
         }
 
-        public bool SupprimerCompte()
+        public void ModifierNom(string nouveauNom)
         {
-            throw new NotImplementedException();
+            if (UtilisateurActuel == null) throw new InvalidOperationException("L'utilisateur actuel est nul");
+            if (nouveauNom == null) throw new ArgumentNullException("Le nouveau nom est nul");
+            UtilisateurActuel.Nom = nouveauNom;
         }
 
-        public bool ModifierNom(string nouveauNom)
+        public void ModifierPrenom(string nouveauPrenom)
         {
-            if (UtilisateurActuel != null && nouveauNom != null)
-            {
-                UtilisateurActuel.Nom = nouveauNom;
-                return true;
-            }
-            return false;
-        }
-
-        public bool ModifierPrenom(string nouveauPrenom)
-        {
-            if (UtilisateurActuel is Amateur amateur && nouveauPrenom != null)
-            {
-                amateur.Prenom = nouveauPrenom;
-                return true;
-            }
-            return false;
+            if (nouveauPrenom == null) throw new ArgumentNullException("Le nouveau prénom est nul");
+            if (UtilisateurActuel is not Amateur amateur) throw new InvalidOperationException("L'utilisateur actuel n'est pas un amteur, on ne peut pas modifier le prénom");
+            amateur.Prenom = nouveauPrenom;
         }
 
         public bool ModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
@@ -122,7 +113,28 @@ namespace BiblioClasse
         {
             if (UtilisateurActuel != null && nouveauMDP != null)
             {
-                UtilisateurActuel.MotDePasse = nouveauMDP;
+                UtilisateurPrive utilisateurPrive = UtilisateurActuel as UtilisateurPrive;
+                utilisateurPrive.ModifierMDP(nouveauMDP);
+                return true;
+            }
+            return false;
+        }
+
+        public bool ModifierDescription(string nouvelleDescription)
+        {
+            if (UtilisateurActuel != null && nouvelleDescription != null)
+            {
+                UtilisateurActuel.Description = nouvelleDescription;
+                return true;
+            }
+            return false;
+        }
+
+        public bool ModifierPhotoDeProfil(string nouvellePhotoDeProfil)
+        {
+            if (UtilisateurActuel != null && nouvellePhotoDeProfil != null)
+            {
+                UtilisateurActuel.PhotoDeProfil = nouvellePhotoDeProfil;
                 return true;
             }
             return false;

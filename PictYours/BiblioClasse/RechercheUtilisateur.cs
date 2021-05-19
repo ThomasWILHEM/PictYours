@@ -10,7 +10,7 @@ namespace BiblioClasse
     {
         public static Utilisateur RechercheUnUtilisateur(List<Utilisateur> listeUtilisateurs, string pseudo)
         {
-            return listeUtilisateurs.Find(utilisateur => utilisateur.Pseudo.Equals(pseudo));//Where(u => u.Pseudo.Equals(pseudo)).FirstOrDefault();
+            return listeUtilisateurs.Find(utilisateur => utilisateur.Pseudo.Equals(pseudo));
         }
 
         public static List<Utilisateur> RechercheParPseudo(List<Utilisateur> liste,string pattern)
