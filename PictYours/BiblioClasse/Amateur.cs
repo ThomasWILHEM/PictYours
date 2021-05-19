@@ -44,7 +44,7 @@ namespace BiblioClasse
         /// <param name="photoDeProfil">Chemin de la photo de profil de l'utilisateur</param>
         /// <param name="dateDeNaissance">Date de naissance de l'utilisateur</param>
         public Amateur(string nom, string prenom, string pseudo, string motDePasse, string photoDeProfil, DateTime dateDeNaissance)
-            : base(nom, pseudo, photoDeProfil, motDePasse)
+            : base(nom, pseudo, motDePasse, photoDeProfil)
         {
             Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom)) : prenom;
             DateDeNaissance = dateDeNaissance;
@@ -62,7 +62,7 @@ namespace BiblioClasse
         /// <param name="description">Description du profil de l'Amateur</param>
         /// <param name="dateDeNaissance">Date de naissance de l'Amateur</param>
         public Amateur(string nom, string prenom, string pseudo, string motDePasse, string photoDeProfil, string description, DateTime dateDeNaissance)
-            : base(nom, pseudo, photoDeProfil, description, motDePasse)
+            : base(nom, pseudo, motDePasse, photoDeProfil, description)
         {
             Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom)) : prenom;
             DateDeNaissance = dateDeNaissance;

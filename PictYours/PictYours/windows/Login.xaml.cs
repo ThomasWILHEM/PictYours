@@ -1,5 +1,6 @@
 ﻿using MaterialDesignThemes.Wpf;
 using PictYours;
+using BiblioClasse;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,14 +23,17 @@ namespace AppWpf
     /// </summary>
     public partial class Login : Window
     {
-
+        public Manager LeManager => (App.Current as App).LeManager;
+        private List<Utilisateur> listeUtilisateur;
         public Login()
         {
             InitializeComponent();
+            listeUtilisateur = new List<Utilisateur>(LeManager.ManagerUtilisateur.ListeUtilisateur);
         }
 
         private void CreateAccount(object sender, RoutedEventArgs e)
         {
+
             var createAccount = new CreationCompte();
             createAccount.Show();
             Close();
@@ -37,9 +41,36 @@ namespace AppWpf
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
-            var main = new MainWindow();
-            main.Show();
-            Close();
+            if (pseudoBox.Text != string.Empty && mdpBox.Password != string.Empty)
+            {
+                Utilisateur u = RechercheUtilisateur.RechercheUnUtilisateur(listeUtilisateur, pseudoBox.Text);
+                if (u is UtilisateurPrive utilisateur)
+                {
+                    if (utilisateur.MotDePasse.Equals(mdpBox.Password))
+                    {
+                        utilisateur.EstConnecte = true;
+                        LeManager.ManagerUtilisateur.UtilisateurActuel = utilisateur;
+                        LeManager.ManagerUtilisateur.UtilisateurSelectionne = utilisateur;
+                        var main = new MainWindow();
+                        main.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Mot de passe incorrect");
+                        //Affiche un message
+                    }
+                }
+                else
+                {
+                    Debug.WriteLine("Identifiant incorrect");
+                }
+            }
+            else
+            {
+                Debug.WriteLine("Saisir les informations");
+                //Dire de saisir des infos
+            }
         }
     }
 }

@@ -8,13 +8,13 @@ namespace BiblioClasse
 {
     public abstract class UtilisateurPrive : Utilisateur
     {
-        public UtilisateurPrive(string nom, string pseudo, string photoDeProfil, string motDePasse)
+        public UtilisateurPrive(string nom, string pseudo, string motDePasse, string photoDeProfil)
             :base(nom, pseudo, photoDeProfil)
         {
             MotDePasse = string.IsNullOrWhiteSpace(motDePasse) ? throw new ArgumentNullException(nameof(motDePasse)) : motDePasse;
         }
 
-        public UtilisateurPrive(string nom, string pseudo, string photoDeProfil, string description, string motDePasse)
+        public UtilisateurPrive(string nom, string pseudo, string motDePasse, string photoDeProfil, string description)
             : base(nom, pseudo, photoDeProfil, description)
         {
             MotDePasse = string.IsNullOrWhiteSpace(motDePasse) ? throw new ArgumentNullException(nameof(motDePasse)) : motDePasse;
@@ -23,7 +23,7 @@ namespace BiblioClasse
         /// <summary>
         /// Mot de passe de l'utilisateur
         /// </summary>
-        protected string MotDePasse { get; set; }
+        public string MotDePasse { get; private set; }
 
         internal void ModifierMDP(string nouveauMDP)
         {
