@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,10 @@ namespace BiblioClasse
         /// <summary>
         /// Nom de l'utilisateur
         /// </summary>
-        public string Nom 
+        public string Nom
         {
             get => nom;
-            set
+            internal set
             {
                 if (value != null)
                     nom = value;
@@ -37,11 +38,6 @@ namespace BiblioClasse
         private string pseudo;
 
         /// <summary>
-        /// Mot de passe de l'utilisateur
-        /// </summary>
-        public string MotDePasse { get; set; }
-
-        /// <summary>
         /// Si le booleen est vrai alors l'utilisateur est connecté si non faux
         /// </summary>
         public bool EstConnecte { get; set; }
@@ -49,33 +45,33 @@ namespace BiblioClasse
         /// <summary>
         /// Chemin de la photo de profil de l'utilisateur
         /// </summary>
-        public string PhotoDeProfil { get; private set; }
+        public string PhotoDeProfil { get; internal set; }
 
         /// <summary>
         /// Description du profil de l'utilisateur
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; internal set; }
 
         /// <summary>
         /// Liste des photos de l'utilisateur
         /// </summary>
-        public List<Photo> MesPhotos { get; private set; } = new List<Photo>();
+        public ReadOnlyCollection<Photo> MesPhotos { get; }
+        private List<Photo> mesPhotos = new List<Photo>();
 
-        
+
 
         /// <summary>
         /// Constructeur d'un utilisateur
         /// </summary>
         /// <param name="nom">Nom de l'utilisateur</param>
         /// <param name="pseudo">Pseudo de l'utilisateur</param>
-        /// <param name="motDePasse">Mot de passe de l'utilisateur</param>
         /// <param name="photoDeProfil">Chemin de la photo de profil</param>
-        public Utilisateur(string nom, string pseudo, string motDePasse,string photoDeProfil)
+        public Utilisateur(string nom, string pseudo, string photoDeProfil)
         {
             Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom)) : nom;
             Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo)) : pseudo;
-            MotDePasse = string.IsNullOrWhiteSpace(motDePasse) ? throw new ArgumentNullException(nameof(motDePasse)) : motDePasse;
             PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil)) : photoDeProfil;
+            MesPhotos = new ReadOnlyCollection<Photo>(mesPhotos);
         }
 
         /// <summary>
@@ -83,11 +79,10 @@ namespace BiblioClasse
         /// </summary>
         /// <param name="nom">Nom de l'utilisateur</param>
         /// <param name="pseudo">Pseudo de l'utilisateur</param>
-        /// <param name="motDePasse">Mot de passe de l'utilisateur</param>
         /// <param name="photoDeProfil">Chemin de la photo de profil</param>
         /// <param name="description">Description de l'utilisateur</param>
-        public Utilisateur(string nom, string pseudo, string motDePasse, string photoDeProfil, string description)
-            : this(nom, pseudo, motDePasse,photoDeProfil)
+        public Utilisateur(string nom, string pseudo, string photoDeProfil, string description)
+            : this(nom, pseudo, photoDeProfil)
         {
             Description = description;
         }
@@ -97,15 +92,11 @@ namespace BiblioClasse
         /// de photos de l'utilisateur
         /// </summary>
         /// <param name="photo">Photo à supprimer</param>
-        /// <returns>Retourne vrai si tout s'est bien passé si non faux</returns>
-        public bool AjouterPhoto(Photo photo)
+        public void AjouterPhoto(Photo photo)
         {
-            if (photo != null)
-            {
-                MesPhotos.Add(photo);
-                return true;
-            }
-            return false;
+            if (photo == null) throw new ArgumentNullException("La photo passé passé en paramètre est nul");
+            if (MesPhotos.Contains(photo)) throw new Exception($"La photo {photo.Identifiant} à déjà été postée");
+            mesPhotos.Add(photo);
         }
 
         /// <summary>
@@ -113,13 +104,12 @@ namespace BiblioClasse
         /// de photos de l'utilisateur
         /// </summary>
         /// <param name="photo">Photo à supprimer</param>
-        /// <returns>Retourne vrai si tout s'est bien passé si non faux</returns>
-        public bool SupprimerPhoto(string identifiant)
+        public void SupprimerPhoto(string identifiant)
         {
-            Photo photo = MesPhotos.Find(p => p.Identifiant == identifiant);
-            if (photo != null)
-                return MesPhotos.Remove(photo);
-            return false;
+            if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nul");
+            Photo photo = mesPhotos.Find(p => p.Identifiant == identifiant);
+            if (photo == null) throw new InvalidOperationException($"La photo associé à l'identifiant {identifiant} n'est pas présente dans la liste de photo de l'utilisateur {ToShortString()}");
+            mesPhotos.Remove(photo);
         }
 
         /// <summary>
@@ -127,7 +117,6 @@ namespace BiblioClasse
         /// selon les attributs choisis
         /// </summary>
         /// <param name="other">Objet à comparer</param>
-        /// <returns>Renvoie vrai si égale, si non faux</returns>
         public bool Equals(Utilisateur other)
         {
             return Pseudo.Equals(other.Pseudo);
@@ -150,15 +139,21 @@ namespace BiblioClasse
         /// <summary>
         /// Permet d'obtenir le HashCode de l'objet actuelle
         /// </summary>
-        /// <returns>Retourne le HashCode de l'objet associé</returns>
         public override int GetHashCode()
         {
             return Pseudo.GetHashCode();
         }
 
+        /// <summary>
+        /// Méthode ToString d'un utilisateur
+        /// Permet d'afficher un utilisateur
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"{Nom}({Pseudo}) Description:{Description}";
         }
+
+        public virtual string ToShortString() => $"{Nom}({Pseudo})";
     }
 }
