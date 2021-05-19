@@ -34,11 +34,12 @@
             </Grid.RowDefinitions>
             <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Nom d'utilisateur" HorizontalAlignment="Center" Margin="0,0,0,5" />
-                <TextBox Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="pseudoBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center"/>
             </WrapPanel>
             <WrapPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Mot de passe" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                <PasswordBox Width="200" BorderThickness="3" BorderBrush="Black" Height="40" VerticalContentAlignment="Center" FontSize="15"/>
+                <PasswordBox x:Name="mdpBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" VerticalContentAlignment="Center" FontSize="15"/>
+
             </WrapPanel>
         </Grid>
 
@@ -50,7 +51,7 @@
                 </Style>
             </WrapPanel.Resources>
 
-            <Button x:Name="ConnectButton" Content="Se connecter" Click="ConnectButton_Click"  Margin="0,0,0,30" Width="180" VerticalContentAlignment="Center" Padding="0" FontSize="20" Style="{StaticResource MaterialDesignRaisedButton}"/>
+            <Button x:Name="ConnectButton" Content="Se connecter" Click="ConnectButton_Click" Margin="0,0,0,30" Width="180" VerticalContentAlignment="Center" Padding="0" FontSize="20" Style="{StaticResource MaterialDesignRaisedButton}"/>
             <Button Click="CreateAccount" Content="Créer un compte" Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignOutlinedButton}"/>
             
         </WrapPanel>

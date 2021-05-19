@@ -25,6 +25,8 @@ namespace PictYours.userControl.Profils
         public static readonly DependencyProperty UtilisateurProperty
             =DependencyProperty.Register(nameof(Utilisateur),typeof(Utilisateur),typeof(ProfilUtilisateur));
 
+
+
         public Utilisateur Utilisateur
         {
             get => GetValue(UtilisateurProperty) as Utilisateur;
@@ -34,6 +36,7 @@ namespace PictYours.userControl.Profils
         public ProfilUtilisateur()
         {
             InitializeComponent();
+            
         }
 
     }

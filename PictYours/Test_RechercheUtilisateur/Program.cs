@@ -37,7 +37,7 @@ namespace Test_RechercheUtilisateur
                 new Amateur("Pierre","Jean","pierre.jean","mdp","/img/user.png",DateTime.Now),
                 new Amateur("Tulipe","Estelle","estelletulipe","mdp","/img/estelle_rond.png",DateTime.Now),
                 new Amateur("Wilhem","Thomas","Atrium","mdp","/img/pp.jpg",DateTime.Now),
-                new Commercial("Mozilla","mozilla","mdp","/img/mozilla.png","mozilla.fr")
+                new Commercial("Mozilla","mozilla","mdp","/img/mozilla.png","mozilla.fr","description")
             };
 
         static void Test_RechercheParPseudo()

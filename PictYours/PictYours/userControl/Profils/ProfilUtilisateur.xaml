@@ -19,6 +19,7 @@
             <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
             <converters:Date2Age x:Key="Date2Age"/>
             <converters:Site2SiteDesc x:Key="Site2SiteDesc"/>
+            <converters:Utilisateur2Visibility x:Key="Utilisateur2Visibility"/>
         </Grid.Resources>
 
         <materialDesign:Card Margin="10,5,0,5">
@@ -48,7 +49,7 @@
                     </StackPanel>
                     <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Description}"/>
 
-                    <TextBlock Text="{Binding Utilisateur,Converter={StaticResource Site2SiteDesc}}"/>
+                    <TextBlock x:Name="SiteWeb" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2Visibility}}" Text="{Binding Utilisateur,Converter={StaticResource Site2SiteDesc}}"/>
 
                 </StackPanel>
             </Expander>
