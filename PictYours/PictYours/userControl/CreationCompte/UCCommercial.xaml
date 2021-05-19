@@ -31,11 +31,11 @@
             <TextBox/>
         </StackPanel>
         <StackPanel Grid.Row="1">
-                <TextBlock Text="Nom d'utilisateur"/>
+                <TextBlock Text="Pseudo"/>
                 <TextBox/>
             </StackPanel>
             <StackPanel Grid.Row="2">
-                <TextBlock Text="Site Web"/>
+                <TextBlock Text="SiteWeb"/>
                 <TextBox/>
             </StackPanel>
         </Grid>

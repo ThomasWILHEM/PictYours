@@ -1,4 +1,5 @@
-﻿using PictYours;
+﻿using BiblioClasse;
+using PictYours;
 using PictYours.userControl.CreationCompte;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,17 @@ namespace AppWpf
     public partial class CreationCompte : Window
     {
 
-        
+        public Manager LeManager => (App.Current as App).LeManager;
+
+        public Commercial LUtilisateur { get; set; }
+
         public CreationCompte()
         {
             InitializeComponent();
             Vide.Visibility = Visibility.Visible;
+            var c = new Commercial("g", "g", "g", "g", "g", "g");
+            LUtilisateur = new Commercial(c.Nom, c.Pseudo, c.MotDePasse, c.PhotoDeProfil, c.SiteWeb, c.Description);
+            DataContext = this;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -58,6 +65,22 @@ namespace AppWpf
             Close();
         }
 
-        
+        private void parcourirButton_Click(object sender, RoutedEventArgs e)
+        {
+            IconPhoto.Visibility = Visibility.Collapsed;
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.InitialDirectory = @"C:";
+            dialog.FileName = "Images";
+            dialog.DefaultExt = ".jpg | .png";
+
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dialog.FileName;
+                photoProfil.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+            }
+        }
+
     }
 }
