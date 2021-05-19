@@ -873,7 +873,7 @@
 											"top": 360,
 											"width": 415.3525390625,
 											"height": 13,
-											"text": "+SeConnecter(): bool",
+											"text": "+SeConnecter(utilisateur: Utilisateur)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -5528,7 +5528,7 @@
 											"_parent": {
 												"$ref": "AAAAAAF5f5/JYWBxOf0="
 											},
-											"font": "Arial;13;1",
+											"font": "Arial;13;3",
 											"left": 261,
 											"top": 711,
 											"width": 124.63623046875,
@@ -5605,7 +5605,7 @@
 											"top": 734,
 											"width": 124.63623046875,
 											"height": 13,
-											"text": "+/MotDePasse: string",
+											"text": "#/MotDePasse: string",
 											"horizontalAlignment": 0
 										}
 									],
@@ -6521,8 +6521,9 @@
 										"$ref": "AAAAAAF4tyKgqwKh24Q="
 									},
 									"name": "utilisateur",
-									"type": "bool",
-									"direction": "return"
+									"type": {
+										"$ref": "AAAAAAF5HIzw8pDbnf0="
+									}
 								}
 							]
 						},
@@ -7154,9 +7155,11 @@
 								"$ref": "AAAAAAF5f5/JYGBufZo="
 							},
 							"name": "/MotDePasse",
+							"visibility": "protected",
 							"type": "string"
 						}
-					]
+					],
+					"isAbstract": true
 				}
 			]
 		}
