@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppWpf" 
         xmlns:CreateUC="clr-namespace:PictYours.userControl.CreationCompte"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:biblioclasse="clr-namespace:BiblioClasse;assembly=BiblioClasse" d:DataContext="{d:DesignInstance Type=biblioclasse:ManagerUtilisateur}"
         mc:Ignorable="d"
         Title="Création d'un compte" Height="700" Width="700"
         ResizeMode="NoResize"
@@ -41,8 +41,13 @@
                         <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Image Source="/img/estelle_rond.png" Margin="0,10,0,10"/>
-                    <Button Content="Parcourir" Grid.Row="1" HorizontalAlignment="Center" Margin="5"/>
+                    <materialDesign:PackIcon x:Name="IconPhoto" Kind="CameraPlusOutline" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100" Visibility="Visible"/>
+                    <Ellipse Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="photoProfil"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Button  x:Name="parcourirButton" Content="Parcourir" Grid.Row="1" HorizontalAlignment="Center" Margin="5" Click="parcourirButton_Click"/>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid >
@@ -78,7 +83,7 @@
                     Description
                 </GroupBox.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <TextBox FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2"/>
+                    <TextBox Text="{Binding LUtilisateur.Description}" FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2"/>
                 </ScrollViewer>
             </GroupBox>
 
@@ -98,8 +103,7 @@
                 <PasswordBox/>
             </StackPanel>
 
-            <Button Grid.Row="4" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand" x:Name="InscriptionButton" Click="InscriptionButton_Click"/>
-            <!--Padding="20,10"-->
+            <Button Grid.Row="4" x:Name="InscriptionButton" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"  Click="InscriptionButton_Click"/>
         </Grid>
     </DockPanel>
 </Window>
