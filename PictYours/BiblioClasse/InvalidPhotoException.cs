@@ -1,12 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    class InvalidPhotoException
+    public class InvalidPhotoException : Exception
     {
+        public InvalidPhotoException(string message) : base(message)
+        {
+        }
+
+        public InvalidPhotoException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
     }
 }

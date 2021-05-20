@@ -27,7 +27,7 @@ namespace BiblioClasse
 
         internal void ModifierMDP(string nouveauMDP)
         {
-            if (!EstConnecte) throw new InvalidOperationException($"L'utilisateur {ToShortString()} n'est pas connecté donc ne peut pas changer le mot de passe");
+            if (!EstConnecte) throw new InvalidUserException($"L'utilisateur {ToShortString()} n'est pas connecté donc ne peut pas changer le mot de passe");
             if (nouveauMDP == null) throw new ArgumentNullException("Le nouveau mot de passe est nul");
             MotDePasse = nouveauMDP;
         }

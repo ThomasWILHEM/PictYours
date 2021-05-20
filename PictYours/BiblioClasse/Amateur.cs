@@ -76,7 +76,8 @@ namespace BiblioClasse
         public void AimerPhoto(Photo photo)
         {
             if (photo == null) throw new ArgumentNullException("La photo passé en paramètre est nulle");
-            if (PhotosAimees.Contains(photo)) throw new InvalidOperationException($"L'Amateur {ToShortString()} a déjà aimé la Photo {photo.Identifiant}");
+            if (PhotosAimees.Contains(photo)) throw new InvalidPhotoException($"L'Amateur {ToShortString()} a déjà aimé la Photo {photo.Identifiant}");
+            if (!photo.Proprietaire.MesPhotos.Contains(photo)) throw new InvalidPhotoException($"Le propiétaire de la photo n'a pas posté la photo {photo.Identifiant}");
             photosAimees.Add(photo);
             photo.AugmenterJaimes();
         }
@@ -90,7 +91,7 @@ namespace BiblioClasse
             if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nulle");
 
             Photo photo = photosAimees.Find(p => p.Identifiant == identifiant);
-            if (photo == null) throw new InvalidOperationException($"La photo associé à l'identifiant {identifiant} passé en paramètre n'est pas aimé par l'Amateur{ToShortString()}");
+            if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} passé en paramètre n'est pas aimé par l'Amateur{ToShortString()}");
             photosAimees.Remove(photo);
             photo.DiminuerJaimes();
         }
@@ -136,9 +137,9 @@ namespace BiblioClasse
         public override string ToString() => $"{Nom} {Prenom}({Pseudo},{DateDeNaissance.ToShortDateString()})";
 
         /// <summary>
-        /// 
+        /// Permet d'obtenir les informations essentielles d'un Amateur
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Renvoie la chaine de caractère d'un Amateur sous forme réduite</returns>
         public override string ToShortString() => $"{Nom} {Prenom}({Pseudo})";
     }
 }
