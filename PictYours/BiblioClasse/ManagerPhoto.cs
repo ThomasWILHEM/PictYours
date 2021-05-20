@@ -6,14 +6,26 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
+    /// <summary>
+    /// Le ManagerPhoto s'occupe de la gestion des interactions avec les photos
+    /// </summary>
     public class ManagerPhoto
     {
         //Dictionary<ECategorie, List<Photo>> dicoCategorie;
 
+        /// <summary>
+        /// Dictonnaire qui possède en clé un Utilisateur et en valeur la liste de ses photos
+        /// </summary>
         public Dictionary<Utilisateur, List<Photo>> PhotosParUtilisateurs { get; private set; }
 
+        /// <summary>
+        /// Dictionnaire qui possède en clé une photo et en valeur la liste des personnes qui ont aimées cette photo
+        /// </summary>
         public Dictionary<Photo, List<Amateur>> ListeUtilisateursParPhotosAimees { get; private set; }
 
+        /// <summary>
+        /// Constructeur du ManagerPhoto
+        /// </summary>
         public ManagerPhoto()
         {
             PhotosParUtilisateurs = new Dictionary<Utilisateur, List<Photo>>();
@@ -30,9 +42,8 @@ namespace BiblioClasse
         public void PosterUnePhoto(Utilisateur utilisateur, Photo photo)
         {
             if (utilisateur == null || photo == null) throw new ArgumentNullException("La photo et/ou l'utilisateur envoyé est/sont nuls");
-            if (!utilisateur.EstConnecte) throw new InvalidOperationException($"L'utilisateur {utilisateur.ToShortString()} n'est pas connecté");
-            if (utilisateur.MesPhotos.Contains(photo)) throw new Exception("La photo à déjà été postée");
-               
+            if (!utilisateur.EstConnecte) throw new InvalidPhotoException($"L'utilisateur {utilisateur.ToShortString()} n'est pas connecté");
+            if (utilisateur.MesPhotos.Contains(photo)) throw new InvalidPhotoException("La photo à déjà été postée");
 
             if (PhotosParUtilisateurs.ContainsKey(utilisateur))
             {
@@ -46,22 +57,22 @@ namespace BiblioClasse
             //Afficher un Dialog en fonction du resultat
         }
 
+
         /// <summary>
         /// Supprime une photo
         /// Supprime la photo à MesPhotos de l'utilisateur
         /// Supprime la photo à la liste correspondante de l'utilisateur dans PhotosUtilisateurs
-        /// Supprime toutes les photos aimées par les autres utilisateurs
+        /// Supprime toutes les photos aimées par les autres utilisateurs (ListeUtilisateursParPhotosAimees)
         /// </summary>
-        /// <param name="listeUtilisateurs">La liste de tous les utilisateurs</param>
-        /// <param name="pseudo">Pseudo de l'utilisateur à qui appartient la photo à supprimer</param>
-        /// <param name="identifiant">Identifiant de la photo à supprimer</param>
+        /// <param name="utilisateur">Utilisateur qui supprime une photo</param>
+        /// <param name="photo">Photo à supprimer</param>
         public void SupprimerUnePhoto(Utilisateur utilisateur, Photo photo)
         {
             if (utilisateur == null || photo == null) throw new ArgumentNullException("La photo et/ou l'utilisateur envoyé est/sont nuls");
-            if (!utilisateur.EstConnecte) throw new Exception($"L'utilisateur {utilisateur.ToShortString()} n'est pas connecté");
+            if (!utilisateur.EstConnecte) throw new InvalidUserException($"L'utilisateur {utilisateur.ToShortString()} n'est pas connecté");
 
-            if (!PhotosParUtilisateurs.TryGetValue(utilisateur, out List<Photo> listePhoto)) throw new Exception($"L'utilisateur {utilisateur.ToShortString()} n'existe pas dans le dictionnaire PhotosParUtilisateurs");
-            if (!listePhoto.Remove(photo)) throw new InvalidOperationException($"La photo {photo.Identifiant} n'est pas présente dans la liste de photos de l'utilisateur {utilisateur.ToShortString()}");
+            if (!PhotosParUtilisateurs.TryGetValue(utilisateur, out List<Photo> listePhoto)) throw new InvalidUserException($"L'utilisateur {utilisateur.ToShortString()} n'existe pas dans le dictionnaire PhotosParUtilisateurs");
+            if (!listePhoto.Remove(photo)) throw new InvalidPhotoException($"La photo {photo.Identifiant} n'est pas présente dans la liste de photos de l'utilisateur {utilisateur.ToShortString()}");
             if (listePhoto.Count == 0) PhotosParUtilisateurs.Remove(utilisateur);
 
             //Recupere la liste des utilisateurs qui ont aimé la photo
@@ -69,14 +80,15 @@ namespace BiblioClasse
             if (ListeUtilisateursParPhotosAimees.TryGetValue(photo, out List<Amateur> utilisateursPhotoAimees))
             {
                 //On supprime toutes les occurences de la photo dans la liste des photos aimées des autres utilisateurs
-                for (int i = 0; i < utilisateursPhotoAimees.Count; i++)
+                foreach(var u in utilisateursPhotoAimees)
                 {
-                    utilisateursPhotoAimees[i].NePlusAimerPhoto(photo.Identifiant);
+                    u.NePlusAimerPhoto(photo.Identifiant);
                 }
+                //for (int i = 0; i < utilisateursPhotoAimees.Count; i++)
+                //{
+                //    utilisateursPhotoAimees[i].NePlusAimerPhoto(photo.Identifiant);
+                //}
             }
-
-
-
             ListeUtilisateursParPhotosAimees.Remove(photo);
 
             //Supprime dans MesPhotos de l'utilisateur
@@ -92,11 +104,11 @@ namespace BiblioClasse
         /// <param name="photo">Photo qui a été aimé</param>
         public void AimerUnePhoto(Utilisateur utilisateur, Photo photo)
         {
-            Amateur amateur = utilisateur as Amateur; //Seul les amateur peuvent ne plus aimer une photo
+            Amateur amateur = utilisateur as Amateur; //Seul les amateurs peuvent aimer une photo
             if (amateur == null || photo == null) throw new ArgumentNullException("La photo et/ou l'utilisateur envoyé est/sont nuls");
-            if (!amateur.EstConnecte) throw new InvalidOperationException($"L'Amateur {amateur.ToShortString()} n'est pas connecté");
-            if (amateur.PhotosAimees.Contains(photo)) throw new InvalidOperationException($"L'Amateur {amateur.ToShortString()} a déjà aimé la photo {photo.Identifiant}");
-            if (!photo.Proprietaire.MesPhotos.Contains(photo)) throw new InvalidOperationException($"Le propiétaire de la photo n'a pas posté la photo {photo.Identifiant}");
+            if (!amateur.EstConnecte) throw new InvalidUserException($"L'Amateur {amateur.ToShortString()} n'est pas connecté");
+            if (amateur.PhotosAimees.Contains(photo)) throw new InvalidPhotoException($"L'Amateur {amateur.ToShortString()} a déjà aimé la photo {photo.Identifiant}");
+            if (!photo.Proprietaire.MesPhotos.Contains(photo)) throw new InvalidPhotoException($"Le propiétaire de la photo n'a pas posté la photo {photo.Identifiant}");
                 
             if (ListeUtilisateursParPhotosAimees.ContainsKey(photo))
             {
@@ -117,9 +129,9 @@ namespace BiblioClasse
         /// <param name="photo">Photo plus aimé</param>
         public void NePlusAimerUnePhoto(Utilisateur utilisateur, Photo photo)
         {
-            if (utilisateur is Amateur amateur) //Seul les amateur peuvent ne plus aimer une photo
+            if (utilisateur is Amateur amateur) //Seul les amateurs peuvent ne plus aimer une photo
             {
-                if (!ListeUtilisateursParPhotosAimees.ContainsKey(photo)) throw new Exception("La photo n'a pas été aimée, elle n'est pas dans le dictionnaire de photo aimée");
+                if (!ListeUtilisateursParPhotosAimees.ContainsKey(photo)) throw new InvalidPhotoException("La photo n'a pas été aimée, elle n'est pas dans le dictionnaire de photo aimée");
                 if (!ListeUtilisateursParPhotosAimees.TryGetValue(photo, out List<Amateur> listeAmateur)) return;
                 listeAmateur.Remove(amateur);
                 if (listeAmateur.Count == 0) ListeUtilisateursParPhotosAimees.Remove(photo); //Supprime dans le dictionnaire si plus aucun j'aimes sur la photo

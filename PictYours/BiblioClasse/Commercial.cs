@@ -59,6 +59,10 @@ namespace BiblioClasse
             return $"{base.ToString()} Nombres de visites:{NombreDeVisites} SiteWeb:{SiteWeb}";
         }
 
+        /// <summary>
+        /// Permet d'obtenir les informations essentielles d'un Commercial
+        /// </summary>
+        /// <returns>Renvoie la chaine de caractère d'un Commercial sous forme réduite</returns>
         public override string ToShortString()
         {
             return base.ToShortString();

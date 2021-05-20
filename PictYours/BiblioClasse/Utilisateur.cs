@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
+    /// <summary>
+    /// Définit les attributs communs d'un utilisateur
+    /// </summary>
     public abstract class Utilisateur : IEquatable<Utilisateur>
     {
         /// <summary>
@@ -57,8 +60,6 @@ namespace BiblioClasse
         /// </summary>
         public ReadOnlyCollection<Photo> MesPhotos { get; }
         private List<Photo> mesPhotos = new List<Photo>();
-
-
 
         /// <summary>
         /// Constructeur d'un utilisateur
@@ -154,6 +155,10 @@ namespace BiblioClasse
             return $"{Nom}({Pseudo}) Description:{Description}";
         }
 
+        /// <summary>
+        /// Permet d'obtenir les informations essentielles d'un Utilisateur
+        /// </summary>
+        /// <returns>Renvoie la chaine de caractère d'un Utilisateur sous forme réduite</returns>
         public virtual string ToShortString() => $"{Nom}({Pseudo})";
     }
 }

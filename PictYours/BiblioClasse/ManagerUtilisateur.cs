@@ -43,7 +43,7 @@ namespace BiblioClasse
 
         public ManagerUtilisateur()
         {
-            Amateur a = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png","Gross kartofen",DateTime.Now);
+            Amateur a = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", "Gross kartofen", DateTime.Now);
             Amateur a1 = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", "Je suis une plus grosse banane", DateTime.Now);
             Amateur a2 = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", "Je suis une plus grosse banane", DateTime.Now);
             Commercial c1 = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
@@ -73,7 +73,7 @@ namespace BiblioClasse
 
         public void CreerUnCompte(Utilisateur utilisateur)
         {
-            if (utilisateur == null) throw new ArgumentNullException("L'utilisateur passé en paramètre est nul");
+            if (utilisateur == null) throw new InvalidUserException("L'utilisateur passé en paramètre est nul");
             listeUtilisateur.Add(utilisateur);
         }
 
@@ -91,50 +91,35 @@ namespace BiblioClasse
 
         public void ModifierPrenom(string nouveauPrenom)
         {
-            if (nouveauPrenom == null) throw new ArgumentNullException("Le nouveau prénom est nul");
             if (UtilisateurActuel is not Amateur amateur) throw new InvalidUserException("L'utilisateur actuel n'est pas un amteur, on ne peut pas modifier le prénom");
+            if (nouveauPrenom == null) throw new ArgumentNullException("Le nouveau prénom est nul");
             amateur.Prenom = nouveauPrenom;
         }
 
-        public bool ModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
+        public void ModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
         {
-            if (UtilisateurActuel is Amateur amateur)
-            {
-                amateur.DateDeNaissance = nouvelleDateDeNaissance;
-                return true;
-            }
-            return false;
+            if (UtilisateurActuel is Amateur amateur) { amateur.DateDeNaissance = nouvelleDateDeNaissance; }
         }
 
-        public bool ModifierMDP(string nouveauMDP)
+        public void ModifierMDP(string nouveauMDP)
         {
-            if (UtilisateurActuel != null && nouveauMDP != null)
-            {
-                UtilisateurPrive utilisateurPrive = UtilisateurActuel as UtilisateurPrive;
-                utilisateurPrive.ModifierMDP(nouveauMDP);
-                return true;
-            }
-            return false;
+            if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
+            if (nouveauMDP == null) throw new ArgumentNullException("Le nouveau mot de passe est nul");
+            (UtilisateurActuel as UtilisateurPrive).ModifierMDP(nouveauMDP);
         }
 
-        public bool ModifierDescription(string nouvelleDescription)
+        public void ModifierDescription(string nouvelleDescription)
         {
-            if (UtilisateurActuel != null && nouvelleDescription != null)
-            {
-                UtilisateurActuel.Description = nouvelleDescription;
-                return true;
-            }
-            return false;
+            if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
+            if (nouvelleDescription == null) throw new ArgumentNullException("La nouvelle description est nulle");
+            UtilisateurActuel.Description = nouvelleDescription;
         }
 
-        public bool ModifierPhotoDeProfil(string nouvellePhotoDeProfil)
+        public void ModifierPhotoDeProfil(string nouvellePhotoDeProfil)
         {
-            if (UtilisateurActuel != null && nouvellePhotoDeProfil != null)
-            {
-                UtilisateurActuel.PhotoDeProfil = nouvellePhotoDeProfil;
-                return true;
-            }
-            return false;
+            if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
+            if (nouvellePhotoDeProfil == null) throw new ArgumentNullException("La nouvelle photo de profil est nulle");
+            UtilisateurActuel.PhotoDeProfil = nouvellePhotoDeProfil;
         }
     }
 }
