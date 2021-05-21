@@ -1,4 +1,5 @@
-﻿using BiblioClasse;
+﻿using AppWpf;
+using BiblioClasse;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -45,6 +46,11 @@ namespace PictYours
             LeManager.ManagerUtilisateur.UtilisateurSelectionne = e.AddedItems[0] as Utilisateur;
         }
 
-
+        private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
+        {
+            var login = new Login();
+            login.Show();
+            Close();
+        }
     }
 }

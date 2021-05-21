@@ -1,4 +1,5 @@
-﻿using BiblioClasse;
+﻿using AppWpf;
+using BiblioClasse;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,5 +40,9 @@ namespace PictYours.userControl.Profils
             
         }
 
+        private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

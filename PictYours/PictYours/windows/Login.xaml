@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:AppWpf"
+        xmlns:local="clr-namespace:AppWpf" 
+        xmlns:biblioclasse="clr-namespace:BiblioClasse;assembly=BiblioClasse" 
+        xmlns:local1="clr-namespace:PictYours.validationRules"
+        d:DataContext="{d:DesignInstance Type=biblioclasse:ManagerUtilisateur}"
         mc:Ignorable="d"
         Title="Connexion" Height="600" Width="500"
         ResizeMode="NoResize" Background="#FF424242"
@@ -34,7 +37,8 @@
             </Grid.RowDefinitions>
             <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Nom d'utilisateur" HorizontalAlignment="Center" Margin="0,0,0,5" />
-                <TextBox x:Name="pseudoBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="pseudoBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center">
+                </TextBox>
             </WrapPanel>
             <WrapPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Mot de passe" HorizontalAlignment="Center" Margin="0,0,0,5"/>
