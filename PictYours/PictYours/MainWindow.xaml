@@ -57,7 +57,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                            <Button>
+                            <Button x:Name="LikeButton">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Star" />
@@ -73,7 +73,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button>
+                        <Button x:Name="DeconnexionButton" Click="DeconnexionButton_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Logout"/>
