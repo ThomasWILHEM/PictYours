@@ -55,8 +55,8 @@ namespace BiblioClasse
 
         public void SeConnecter(Utilisateur utilisateur)
         {
-            if (UtilisateurActuel == null) return;
-
+            if (utilisateur == null) throw new ArgumentNullException("L'utilisateur passé en paramètre est nul");
+            if (UtilisateurActuel != null) throw new InvalidUserException("Un utilisateur est déja connecté");
             if (ListeUtilisateur.Contains(UtilisateurActuel))
             {
                 SeDeconnecter();
