@@ -60,5 +60,22 @@ namespace PictYours.userControl.Profils
                 photoAPoster.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             }
         }
+
+        private void ParcourirButton2_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.InitialDirectory = @"C:";
+            dialog.FileName = "Images";
+            dialog.DefaultExt = ".jpg | .png";
+
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dialog.FileName;
+                photoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+            }
+        }
+    
     }
 }
