@@ -52,5 +52,20 @@ namespace PictYours
             login.Show();
             Close();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LikeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ParametreButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Affiche une nouvelle fenetre
+        }
     }
 }
