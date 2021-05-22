@@ -33,7 +33,7 @@ namespace PictYours
             DataContext = this;
         }
 
-        //private void MenuButton_Click(object sender, RoutedEventArgs e)
+        //private void MenuButton_Click(object sender, RoutedEventArgs e) 
         //{
         //    if (MenuDéroulant.Visibility == Visibility.Collapsed)
         //        MenuDéroulant.Visibility = Visibility.Visible;
