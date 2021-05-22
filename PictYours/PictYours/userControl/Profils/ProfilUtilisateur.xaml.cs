@@ -44,5 +44,21 @@ namespace PictYours.userControl.Profils
         {
             
         }
+
+        private void ParcourirButton_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.InitialDirectory = @"C:";
+            dialog.FileName = "Images";
+            dialog.DefaultExt = ".jpg | .png";
+
+            bool? result = dialog.ShowDialog();
+
+            if (result == true)
+            {
+                string filename = dialog.FileName;
+                photoAPoster.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+            }
+        }
     }
 }
