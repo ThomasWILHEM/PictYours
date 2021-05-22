@@ -96,7 +96,7 @@ namespace BiblioClasse
         public void AjouterPhoto(Photo photo)
         {
             if (photo == null) throw new ArgumentNullException("La photo passé passé en paramètre est nul");
-            if (MesPhotos.Contains(photo)) throw new Exception($"La photo {photo.Identifiant} à déjà été postée");
+            if (MesPhotos.Contains(photo)) throw new InvalidPhotoException($"La photo {photo.Identifiant} à déjà été postée");
             mesPhotos.Add(photo);
         }
 
@@ -109,7 +109,7 @@ namespace BiblioClasse
         {
             if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nul");
             Photo photo = mesPhotos.Find(p => p.Identifiant == identifiant);
-            if (photo == null) throw new InvalidOperationException($"La photo associé à l'identifiant {identifiant} n'est pas présente dans la liste de photo de l'utilisateur {ToShortString()}");
+            if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} n'est pas présente dans la liste de photo de l'utilisateur {ToShortString()}");
             mesPhotos.Remove(photo);
         }
 
