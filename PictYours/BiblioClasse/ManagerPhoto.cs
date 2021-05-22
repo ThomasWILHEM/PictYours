@@ -33,17 +33,17 @@ namespace BiblioClasse
         }
 
         /// <summary>
-        /// Permet de poster une photo sur le profil de l'utilisateur
-        /// Ajoute la photo à MesPhotos de l'utilisateur
+        /// Permet de poster une photo sur le profil de l'Utilisateur
+        /// Ajoute la photo à la liste MesPhotos de l'Utilisateur
         /// Ajoute la photo à la liste correspondante de l'utilisateur dans PhotosUtilisateurs
         /// </summary>
-        /// <param name="utilisateur"></param>
-        /// <param name="photo"></param>
+        /// <param name="utilisateur">Utilisateur qui poste la photo</param>
+        /// <param name="photo">Photo à poster</param>
         public void PosterUnePhoto(Utilisateur utilisateur, Photo photo)
         {
-            if (utilisateur == null || photo == null) throw new ArgumentNullException("La photo et/ou l'utilisateur envoyé est/sont nuls");
-            if (!utilisateur.EstConnecte) throw new InvalidPhotoException($"L'utilisateur {utilisateur.ToShortString()} n'est pas connecté");
-            if (utilisateur.MesPhotos.Contains(photo)) throw new InvalidPhotoException("La photo à déjà été postée");
+            if (utilisateur == null || photo == null) throw new ArgumentNullException("La photo et/ou l'utilisateur envoyé est/sont nul(le.s)");
+            if (!utilisateur.EstConnecte) throw new InvalidUserException($"L'utilisateur {utilisateur.ToShortString()} n'est pas connecté");
+            if (utilisateur.MesPhotos.Contains(photo)) throw new InvalidPhotoException($"La photo {photo.Identifiant} à déjà été postée");
 
             if (PhotosParUtilisateurs.ContainsKey(utilisateur))
             {
