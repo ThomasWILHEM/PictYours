@@ -49,7 +49,7 @@
                                 <Setter Property="Margin" Value="0,0,5,0"/>
                             </Style>
                         </StackPanel.Resources>
-                            <Button>
+                        <Button x:Name="ProfilButton" Click="ProfilButton_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="AccountBox"/>
@@ -57,7 +57,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                            <Button x:Name="LikeButton">
+                        <Button x:Name="LikeButton" Click="LikeButton_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Star" />
@@ -65,7 +65,7 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                            <Button>
+                        <Button x:Name="ParametreButton" Click="ParametreButton_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Cog"/>
@@ -85,7 +85,7 @@
                 </materialDesign:PopupBox>
             </Grid>
         </materialDesign:Card>
-        
+
         <DockPanel>
             <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
                 <StackPanel>
