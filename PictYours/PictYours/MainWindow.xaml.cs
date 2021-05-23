@@ -53,11 +53,6 @@ namespace PictYours
             Close();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void LikeButton_Click(object sender, RoutedEventArgs e)
         {
 
@@ -66,6 +61,11 @@ namespace PictYours
         private void ParametreButton_Click(object sender, RoutedEventArgs e)
         {
             //Affiche une nouvelle fenetre
+        }
+
+        private void ProfilButton_Click(object sender, RoutedEventArgs e)
+        {
+            LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
         }
     }
 }

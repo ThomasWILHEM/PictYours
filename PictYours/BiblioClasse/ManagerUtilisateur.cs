@@ -57,12 +57,9 @@ namespace BiblioClasse
         {
             if (utilisateur == null) throw new ArgumentNullException("L'utilisateur passé en paramètre est nul");
             if (UtilisateurActuel != null) throw new InvalidUserException("Un utilisateur est déja connecté");
-            if (ListeUtilisateur.Contains(UtilisateurActuel))
-            {
-                SeDeconnecter();
-                UtilisateurActuel = utilisateur;
-                utilisateur.EstConnecte = true;
-            }
+            UtilisateurActuel = utilisateur;
+            UtilisateurSelectionne = utilisateur;
+            utilisateur.EstConnecte = true;
         }
 
         public void SeDeconnecter()
@@ -75,6 +72,7 @@ namespace BiblioClasse
         {
             if (utilisateur == null) throw new InvalidUserException("L'utilisateur passé en paramètre est nul");
             listeUtilisateur.Add(utilisateur);
+            SeConnecter(utilisateur);
         }
 
         public void SupprimerCompte()

@@ -26,14 +26,10 @@ namespace AppWpf
 
         public Manager LeManager => (App.Current as App).LeManager;
 
-        public Commercial LUtilisateur { get; set; }
 
         public CreationCompte()
         {
             InitializeComponent();
-            Vide.Visibility = Visibility.Visible;
-            var c = new Commercial("g", "g", "g", "g", "g", "g");
-            LUtilisateur = new Commercial(c.Nom, c.Pseudo, c.MotDePasse, c.PhotoDeProfil, c.SiteWeb, c.Description);
             DataContext = this;
         }
 
@@ -60,6 +56,8 @@ namespace AppWpf
 
         private void InscriptionButton_Click(object sender, RoutedEventArgs e)
         {
+            LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur("Marques", "Florent", "florent.marques", "mdp", "/img/app_icon.png", DescriptionBox.Text, DateTime.Now));
+            Debug.WriteLine("Création éffectué");
             MainWindow main = new();
             main.Show();
             Close();
