@@ -36,7 +36,8 @@ namespace AppWpf
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Vide.Visibility = Visibility.Collapsed;
-            if (e.AddedItems[0].ToString().Contains("Amateur")) {
+            if (e.AddedItems[0].ToString().Contains("Amateur"))
+            {
                 FormA.Visibility = Visibility.Visible;
                 FormC.Visibility = Visibility.Collapsed;
             }
@@ -56,11 +57,25 @@ namespace AppWpf
 
         private void InscriptionButton_Click(object sender, RoutedEventArgs e)
         {
-            LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur("Marques", "Florent", "florent.marques", "mdp", "/img/app_icon.png", DescriptionBox.Text, DateTime.Now));
-            Debug.WriteLine("Création éffectué");
-            MainWindow main = new();
-            main.Show();
-            Close();
+            if (PasswordBox.Password.Equals(PasswordBoxSame.Password) || photoProfil.ImageSource.ToString() != null)
+            {
+                if (ComboBoxType.SelectedIndex == 0)
+                {
+                    LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur(FormA.NomProfil.Text, FormA.PrenomProfil.Text, FormA.PseudoProfil.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), DescriptionBox.Text, FormA.DateDeNaissanceBox.DisplayDate));
+                }
+                else if (ComboBoxType.SelectedIndex == 1) 
+                {
+                    LeManager.ManagerUtilisateur.CreerUnCompte(new Commercial(FormC.NomBoxC.Text, FormC.PseudoBoxC.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), FormC.SiteBox.Text, DescriptionBox.Text));
+                }
+                Debug.WriteLine("Création éffectué");
+                MainWindow main = new();
+                main.Show();
+                Close();
+            }
+            else
+            {
+                Debug.WriteLine("Mauvais mot de passe");
+            }
         }
 
         private void parcourirButton_Click(object sender, RoutedEventArgs e)

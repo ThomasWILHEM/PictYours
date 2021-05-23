@@ -11,15 +11,31 @@ namespace PictYours.converters
 {
     public class Utilisateur2PrenomNom : IValueConverter
     {
+        public Manager LeManager => (App.Current as App).LeManager;
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is Amateur amateur)
+            if (value == null) return null;
+            if (value.Equals(LeManager.ManagerUtilisateur.UtilisateurActuel))
             {
-                return $"{amateur.Prenom} {amateur.Nom}";
+                if (value is Amateur amateur)
+                {
+                    return $"{amateur.Prenom} {amateur.Nom} (Moi)";
+                }
+                if (value is Commercial commercial)
+                {
+                    return $"{commercial.Nom} (Moi)";
+                }
             }
-            if (value is Commercial commercial)
+            else
             {
-                return $"{commercial.Nom}";
+                if (value is Amateur amateur)
+                {
+                    return $"{amateur.Prenom} {amateur.Nom}";
+                }
+                if (value is Commercial commercial)
+                {
+                    return $"{commercial.Nom}";
+                }
             }
             return null;
         }

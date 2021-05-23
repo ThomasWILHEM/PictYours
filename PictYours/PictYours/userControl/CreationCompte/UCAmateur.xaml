@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PictYours.userControl.CreationCompte"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.Resources>
             <Style TargetType="StackPanel">
-                <Setter Property="Margin" Value="10,0"/>
+                <Setter Property="Margin" Value="20,0"/>
             </Style>
             <Style TargetType="TextBox">
                 <Setter Property="Height" Value="25"/>
@@ -17,30 +18,30 @@
                 <Setter Property="BorderThickness" Value="2"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Foreground" Value="Black"/>
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="Nom"/>
-            <TextBox/>
+            <TextBox x:Name="NomProfil"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Prénom"/>
-            <TextBox/>
+            <TextBox x:Name="PrenomProfil"/>
         </StackPanel>
         <StackPanel Grid.Row="2">
-            <TextBlock Text="Nom d'utilisateur"/>
-            <TextBox/>
+            <TextBlock Text="Nom d'utilisateur" />
+            <TextBox x:Name="PseudoProfil" />
         </StackPanel>
         <StackPanel Grid.Row="3">
-            <TextBlock Text="Age"/>
-            <TextBox/>
+            <TextBlock Text="Date de naissance"/>
+            <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" HorizontalAlignment="Left" Width="140" Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
         </StackPanel>
     </Grid>
 </UserControl>

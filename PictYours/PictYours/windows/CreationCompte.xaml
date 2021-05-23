@@ -100,8 +100,8 @@
                     </Style>
                 </StackPanel.Resources>
                 <TextBlock Text="Mot de passe" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <PasswordBox/>
-                <PasswordBox/>
+                <PasswordBox x:Name="PasswordBox"/>
+                <PasswordBox x:Name="PasswordBoxSame"/>
             </StackPanel>
 
             <Button Grid.Row="4" x:Name="InscriptionButton" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"  Click="InscriptionButton_Click"/>

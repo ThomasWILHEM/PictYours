@@ -18,7 +18,7 @@
                     <Setter Property="BorderThickness" Value="2"/>
                     <Setter Property="HorizontalAlignment" Value="Left"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
-                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="Foreground" Value="Black"/>
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
@@ -28,15 +28,15 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="Nom"/>
-            <TextBox/>
+            <TextBox x:Name="NomBoxC"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
                 <TextBlock Text="Pseudo"/>
-                <TextBox/>
+                <TextBox x:Name="PseudoBoxC"/>
             </StackPanel>
             <StackPanel Grid.Row="2">
-                <TextBlock Text="SiteWeb"/>
-                <TextBox/>
+                <TextBlock Text="Site Web"/>
+                <TextBox x:Name="SiteBox"/>
             </StackPanel>
         </Grid>
    
