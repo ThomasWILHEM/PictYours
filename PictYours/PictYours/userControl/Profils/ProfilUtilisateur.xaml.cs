@@ -18,11 +18,14 @@ using System.Windows.Shapes;
 
 namespace PictYours.userControl.Profils
 {
+
     /// <summary>
     /// Logique d'interaction pour ProfilUtilisateur.xaml
     /// </summary>
     public partial class ProfilUtilisateur : UserControl
     {
+        public Manager LeManager => (App.Current as App).LeManager;
+
         public static readonly DependencyProperty UtilisateurProperty
             = DependencyProperty.Register(nameof(Utilisateur), typeof(Utilisateur), typeof(ProfilUtilisateur));
 
@@ -78,5 +81,19 @@ namespace PictYours.userControl.Profils
             }
         }
 
+        private void PosterButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(photoAPoster.ImageSource.ToString() !=null || DescPhoto.Text != null || LieuPhoto.Text != null)
+            {
+                LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(photoAPoster.ImageSource.ToString(),DescPhoto.Text,LieuPhoto.Text, LeManager.ManagerUtilisateur.UtilisateurActuel,DateTime.Now,ECategorie.Automobile));
+                DescPhoto.Clear();
+                LieuPhoto.Clear();
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

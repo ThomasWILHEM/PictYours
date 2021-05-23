@@ -61,7 +61,7 @@
                         </StackPanel.Resources>
                         <TextBox Text="Prénom" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
                         <TextBox Text="Nom"/>
-                        <TextBox Text="Site Web" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilCommercial}}"/>
+                        <TextBox Text="Site" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilCommercial}}"/>
                         <TextBox Text="Age" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
                     </StackPanel>
                     </Grid>
@@ -184,12 +184,46 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBox Grid.Row="0" VerticalAlignment="Center" Height="100" Width="250" Background="{StaticResource MaterialDesignDarkBackground}">
-                                </TextBox>
-                                <TextBox Grid.Row="1" VerticalAlignment="Center" Height="40" Padding="10" Background="{StaticResource MaterialDesignDarkBackground}">
-                                    Lieu de la photo
-                                </TextBox>
+                                <StackPanel Grid.Row="0">
+                                    <TextBlock Text="Description"/>
+                                    <TextBox x:Name="DescPhoto"  VerticalAlignment="Center" Height="100" Width="250" Background="{StaticResource MaterialDesignDarkBackground}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="1">
+                                <TextBlock Text="Lieu de la photo"/>
+                                <TextBox x:Name="LieuPhoto"  VerticalAlignment="Center" Height="40" Padding="10" Background="{StaticResource MaterialDesignDarkBackground}"/>
+                                </StackPanel>
+                                <ComboBox x:Name="CategorieBox" HorizontalAlignment="Center" Width="200" Grid.Row="2" Style="{StaticResource MaterialDesignFilledComboBox}" Height="30">
+                                    <ComboBox.Resources>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                        </Style>
+                                    </ComboBox.Resources>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Autre"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Animal"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Automobile"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Cuisine"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Mode"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Nature"/>
+                                    </ComboBoxItem>
+                                    <ComboBoxItem>
+                                        <TextBlock Text="Sport"/>
+                                    </ComboBoxItem>
+                                </ComboBox>
+
                             </Grid>
                             <Grid Grid.Column="0">
                                 <Grid.RowDefinitions>
@@ -221,7 +255,7 @@
                             <Button Grid.Column="0" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                 Annuler
                             </Button>
-                            <Button Grid.Column="1" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                            <Button x:Name="PosterButton" Click="PosterButton_Click" Grid.Column="1" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
                                 Poster la photo
                             </Button>
                         </Grid>
