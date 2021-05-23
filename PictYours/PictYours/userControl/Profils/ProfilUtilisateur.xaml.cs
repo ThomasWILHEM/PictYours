@@ -24,7 +24,7 @@ namespace PictYours.userControl.Profils
     public partial class ProfilUtilisateur : UserControl
     {
         public static readonly DependencyProperty UtilisateurProperty
-            =DependencyProperty.Register(nameof(Utilisateur),typeof(Utilisateur),typeof(ProfilUtilisateur));
+            = DependencyProperty.Register(nameof(Utilisateur), typeof(Utilisateur), typeof(ProfilUtilisateur));
 
 
 
@@ -37,12 +37,12 @@ namespace PictYours.userControl.Profils
         public ProfilUtilisateur()
         {
             InitializeComponent();
-            
+
         }
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
         }
 
         private void ParcourirButton_Click(object sender, RoutedEventArgs e)
@@ -66,6 +66,7 @@ namespace PictYours.userControl.Profils
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.InitialDirectory = @"C:";
             dialog.FileName = "Images";
+            //dialog.Filter = "*.jpg | *.png";
             dialog.DefaultExt = ".jpg | .png";
 
             bool? result = dialog.ShowDialog();
@@ -76,6 +77,6 @@ namespace PictYours.userControl.Profils
                 photoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             }
         }
-    
+
     }
 }
