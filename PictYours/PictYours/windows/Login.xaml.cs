@@ -48,9 +48,10 @@ namespace AppWpf
                 {
                     if (utilisateur.MotDePasse.Equals(mdpBox.Password))
                     {
-                        utilisateur.EstConnecte = true;
-                        LeManager.ManagerUtilisateur.UtilisateurActuel = utilisateur;
-                        LeManager.ManagerUtilisateur.UtilisateurSelectionne = utilisateur;
+                        //utilisateur.EstConnecte = true;
+                        //LeManager.ManagerUtilisateur.UtilisateurActuel = utilisateur;
+                        //LeManager.ManagerUtilisateur.UtilisateurSelectionne = utilisateur;
+                        LeManager.ManagerUtilisateur.SeConnecter(utilisateur);
                         var main = new MainWindow();
                         main.Show();
                         Close();

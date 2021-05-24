@@ -21,15 +21,6 @@ namespace PictYours
            
             ListeUtilisateur = LeManager.ManagerUtilisateur.ListeUtilisateur;
 
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/pp.jpg", "test", "test", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/user.png", "test156", "test123", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/estelle_rond.png", "test2", "test1532", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/vacances1.jpg", "test2", "test1532", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/vacances2.jpg", "test2", "test1532", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/vacances3.jpg", "test2", "test1532", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/vacances4.jpg", "test2", "test1532", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo("/img/vacances5.jpg", "test2", "test1532", LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Today, ECategorie.Animal));
-
             DataContext = this;
         }
 
@@ -51,6 +42,7 @@ namespace PictYours
             var login = new Login();
             login.Show();
             Close();
+            LeManager.ManagerUtilisateur.SeDeconnecter();
         }
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
