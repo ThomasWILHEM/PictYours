@@ -58,8 +58,8 @@ namespace BiblioClasse
         /// <summary>
         /// Liste des photos de l'utilisateur
         /// </summary>
-        public ReadOnlyCollection<Photo> MesPhotos { get; }
-        private List<Photo> mesPhotos = new List<Photo>();
+        private ObservableCollection<Photo> mesPhotos = new ();
+        public ReadOnlyObservableCollection<Photo> MesPhotos { get; }
 
         /// <summary>
         /// Constructeur d'un utilisateur
@@ -72,7 +72,7 @@ namespace BiblioClasse
             Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom)) : nom;
             Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo)) : pseudo;
             PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil)) : photoDeProfil;
-            MesPhotos = new ReadOnlyCollection<Photo>(mesPhotos);
+            MesPhotos = new ReadOnlyObservableCollection<Photo>(mesPhotos);
         }
 
         /// <summary>
@@ -105,13 +105,13 @@ namespace BiblioClasse
         /// de photos de l'utilisateur
         /// </summary>
         /// <param name="photo">Photo à supprimer</param>
-        public void SupprimerPhoto(string identifiant)
-        {
-            if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nul");
-            Photo photo = mesPhotos.Find(p => p.Identifiant == identifiant);
-            if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} n'est pas présente dans la liste de photo de l'utilisateur {ToShortString()}");
-            mesPhotos.Remove(photo);
-        }
+        //public void SupprimerPhoto(string identifiant)
+        //{
+        //    if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nul");
+        //    Photo photo = mesPhotos.Find(p => p.Identifiant == identifiant);
+        //    if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} n'est pas présente dans la liste de photo de l'utilisateur {ToShortString()}");
+        //    mesPhotos.Remove(photo);
+        //}
 
         /// <summary>
         /// Permet de voir si l'instance actuel est égale à l'objet en paramètre
