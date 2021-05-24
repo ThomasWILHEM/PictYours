@@ -64,7 +64,7 @@ namespace BiblioClasse
 
         public void SeDeconnecter()
         {
-            if (!UtilisateurActuel.EstConnecte) throw new InvalidUserException("L'utilisateur n'est pas connécté");
+            if (!UtilisateurActuel.EstConnecte) throw new InvalidUserException("L'utilisateur n'est pas connecté");
             UtilisateurActuel.EstConnecte = false;
         }
 
