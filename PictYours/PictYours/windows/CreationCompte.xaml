@@ -45,7 +45,7 @@
                     <materialDesign:PackIcon x:Name="IconPhoto" Kind="CameraPlusOutline" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100" Visibility="Visible"/>
                     <Ellipse Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
                         <Ellipse.Fill>
-                            <ImageBrush x:Name="photoProfil"/>
+                            <ImageBrush x:Name="photoProfil" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
                     <Button  x:Name="parcourirButton" Content="Parcourir" Grid.Row="1" HorizontalAlignment="Center" Margin="5" Click="parcourirButton_Click"/>

@@ -40,7 +40,7 @@
                         
                         <Ellipse Grid.Row="0" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Ellipse.Fill>
-                                <ImageBrush x:Name="photoAModifier"/>
+                                <ImageBrush x:Name="photoAModifier" Stretch="UniformToFill"/>
                             </Ellipse.Fill>
                         </Ellipse>
                         

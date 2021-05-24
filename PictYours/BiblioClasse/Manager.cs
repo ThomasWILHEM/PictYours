@@ -8,14 +8,20 @@ namespace BiblioClasse
 {
     public class Manager
     {
+
         public ManagerUtilisateur ManagerUtilisateur { get; private set; }
         public ManagerPhoto ManagerPhoto { get; private set; }
+       
 
-        public Manager()
+        public Manager(IPersistanceManager persistance)
         {
-            ManagerUtilisateur = new ManagerUtilisateur();
-            ManagerPhoto = new ManagerPhoto();
+            ManagerUtilisateur = new ManagerUtilisateur(persistance);
+            ManagerUtilisateur.ChargeDonnées();
+            ManagerPhoto = new ManagerPhoto(persistance);
+            ManagerPhoto.ChargeDonnées();
+
         }
-                
+          
+        
     }
 }

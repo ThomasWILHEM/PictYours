@@ -10,6 +10,9 @@ namespace BiblioClasse
 {
     public class ManagerUtilisateur : INotifyPropertyChanged
     {
+
+        public IPersistanceManager Persistance { get; private set; }
+
         /// <summary>
         /// Utilisateur actuellement connecté sur l'application
         /// </summary>
@@ -41,14 +44,15 @@ namespace BiblioClasse
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public ManagerUtilisateur()
+        public ManagerUtilisateur(IPersistanceManager persistance)
         {
-            Amateur a = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", "Gross kartofen", DateTime.Now);
-            Amateur a1 = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", "Je suis une plus grosse banane", DateTime.Now);
-            Amateur a2 = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", "Je suis une plus grosse banane", DateTime.Now);
-            Commercial c1 = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
+            //Amateur a = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", "Gross kartofen", DateTime.Now);
+            //Amateur a1 = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", "Je suis une plus grosse banane", DateTime.Now);
+            //Amateur a2 = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", "Je suis une plus grosse banane", DateTime.Now);
+            //Commercial c1 = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
-            listeUtilisateur = new List<Utilisateur> { a, a1, a2, c1 };
+            Persistance = persistance;
+            listeUtilisateur = new List<Utilisateur>();
             ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);
 
         }
@@ -66,6 +70,7 @@ namespace BiblioClasse
         {
             if (!UtilisateurActuel.EstConnecte) throw new InvalidUserException("L'utilisateur n'est pas connecté");
             UtilisateurActuel.EstConnecte = false;
+            UtilisateurActuel = null;
         }
 
         public void CreerUnCompte(Utilisateur utilisateur)
@@ -118,6 +123,20 @@ namespace BiblioClasse
             if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
             if (nouvellePhotoDeProfil == null) throw new ArgumentNullException("La nouvelle photo de profil est nulle");
             UtilisateurActuel.PhotoDeProfil = nouvellePhotoDeProfil;
+        }
+
+        public void ChargeDonnées()
+        {
+            var données = Persistance.ChargeDonnées();
+            foreach(var u in données.listeUtilisateurs)
+            {
+                listeUtilisateur.Add(u);
+            }
+        }
+
+        public void SauvegardeDonnées()
+        {
+            Persistance.SauvegardeDonnées(listeUtilisateur);
         }
     }
 }

@@ -11,6 +11,9 @@ namespace BiblioClasse
     /// </summary>
     public class ManagerPhoto
     {
+
+        public IPersistanceManager Persistance { get; private set; }
+
         //Dictionary<ECategorie, List<Photo>> dicoCategorie;
 
         /// <summary>
@@ -26,8 +29,9 @@ namespace BiblioClasse
         /// <summary>
         /// Constructeur du ManagerPhoto
         /// </summary>
-        public ManagerPhoto()
+        public ManagerPhoto(IPersistanceManager persistance)
         {
+            Persistance = persistance;
             PhotosParUtilisateurs = new Dictionary<Utilisateur, List<Photo>>();
             ListeUtilisateursParPhotosAimees = new Dictionary<Photo, List<Amateur>>();
         }
@@ -138,6 +142,25 @@ namespace BiblioClasse
                 amateur.NePlusAimerPhoto(photo.Identifiant);
                 //Afficher un Dialog
             }
+        }
+
+        public void ChargeDonnées()
+        {
+            var données = Persistance.ChargeDonnées();
+            foreach (KeyValuePair <Utilisateur,List<Photo>> u in données.dico)
+            {
+                u.Key.EstConnecte = true;
+                foreach(Photo photo in u.Value)
+                {
+                    PosterUnePhoto(u.Key, photo);
+                }
+                u.Key.EstConnecte = false;
+            }
+        }
+
+        public void SauvegardeDonnées()
+        {
+           
         }
     }
 }

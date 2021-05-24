@@ -1,4 +1,5 @@
 ﻿using BiblioClasse;
+using Stub;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,7 +15,7 @@ namespace PictYours
     /// </summary>
     public partial class App : Application
     {
-        public Manager LeManager { get; private set; } = new Manager();
+        public Manager LeManager { get; private set; } = new Manager(new Stub.Stub());
 
         public App()
         {
