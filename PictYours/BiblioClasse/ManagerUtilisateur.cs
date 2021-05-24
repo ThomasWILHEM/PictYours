@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -76,13 +77,31 @@ namespace BiblioClasse
         public void CreerUnCompte(Utilisateur utilisateur)
         {
             if (utilisateur == null) throw new InvalidUserException("L'utilisateur passé en paramètre est nul");
+            if (listeUtilisateur.Exists(u => u.Pseudo.Equals(utilisateur.Pseudo))) throw new InvalidUserException("Un utilisateur avec un pseudo identique existe déjà");
             listeUtilisateur.Add(utilisateur);
             SeConnecter(utilisateur);
         }
 
         public void SupprimerCompte()
         {
-            throw new NotImplementedException();
+            if (UtilisateurActuel == null) throw new InvalidUserException("Aucun utilisateur est connecté");
+            if (!listeUtilisateur.Remove(UtilisateurActuel))
+            {
+                Debug.WriteLine($"L'UtilisateurActuel {UtilisateurActuel.ToString()} n'est pas présent dans la liste d'utilisateurs");
+                throw new InvalidUserException($"L'UtilisateurActuel {UtilisateurActuel.ToString()} n'est pas présent dans la liste d'utilisateurs");
+            }
+                Debug.WriteLine($"L'UtilisateurActuel {UtilisateurActuel.ToString()} est bien supprimé");
+            UtilisateurActuel = null;
+        }
+
+        /// <summary>
+        /// Vérifie si le mot de passe passé en paramètre est celui de l'utilisateur actuel
+        /// </summary>
+        /// <returns></returns>
+        public bool VerifierMotDePasse(string motDePasse)
+        {
+            UtilisateurPrive utilisateurPrive = UtilisateurActuel as UtilisateurPrive;
+            return utilisateurPrive.MotDePasse.Equals(motDePasse);
         }
 
         public void ModifierNom(string nouveauNom)

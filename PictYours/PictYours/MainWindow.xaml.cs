@@ -50,14 +50,14 @@ namespace PictYours
 
         }
 
-        private void ParametreButton_Click(object sender, RoutedEventArgs e)
-        {
-            //Affiche une nouvelle fenetre
-        }
-
         private void ProfilButton_Click(object sender, RoutedEventArgs e)
         {
             LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
+        }
+
+        private void CloseDialogHostButton_Click(object sender, RoutedEventArgs e)
+        {
+            MesParametres.ReinitialiserParametres();
         }
     }
 }

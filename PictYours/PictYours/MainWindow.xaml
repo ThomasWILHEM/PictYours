@@ -3,28 +3,46 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
+        xmlns:local="clr-namespace:PictYours"
+        xmlns:converters="clr-namespace:PictYours.converters"
+        xmlns:UCProfils="clr-namespace:PictYours.userControl.Profils"
+        xmlns:UC="clr-namespace:PictYours.userControl"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+
         TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
-        FontFamily="{DynamicResource MaterialDesignFont}"
         Icon="/img/app_icon.png"
-        
-        xmlns:local="clr-namespace:PictYours"
-        xmlns:converters="clr-namespace:PictYours.converters"
-        xmlns:UCProfils="clr-namespace:PictYours.userControl.Profils"
-        mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Votre Profil" Height="800" Width="1200" MinWidth="960" MinHeight="750" Background="#FF303030">
+        Title="Votre Profil"
+        Height="800"
+        Width="1200"
+        MinWidth="960"
+        MinHeight="750"
+        Background="#FF303030">
+    
     <Window.Resources>
         <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
         <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
     </Window.Resources>
-
-    <DockPanel Margin="10">
+    
+    <materialDesign:DialogHost>
+        <materialDesign:DialogHost.DialogContent>
+            <Grid Margin="5">
+                <Button Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Panel.ZIndex="1"
+                        Click="CloseDialogHostButton_Click">
+                    <materialDesign:PackIcon Kind="Close" Margin="5"/>
+                </Button>
+                <UC:Parametres x:Name="MesParametres"/>
+            </Grid>
+        </materialDesign:DialogHost.DialogContent>
+        <DockPanel Margin="10">
         <materialDesign:Card DockPanel.Dock="Top" Padding="10">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -66,7 +84,8 @@
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button x:Name="ParametreButton" Click="ParametreButton_Click">
+                        <Button x:Name="ParametreButton"
+                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <materialDesign:PackIcon Kind="Cog"/>
@@ -154,4 +173,6 @@
             </Grid>
         </DockPanel>
     </DockPanel>
+    </materialDesign:DialogHost>
+    
 </Window>

@@ -105,6 +105,7 @@
             </StackPanel>
 
             <Button Grid.Row="4" x:Name="InscriptionButton" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"  Click="InscriptionButton_Click"/>
+            <materialDesign:Snackbar IsActive="False" x:Name="mySnackBar" MessageQueue="{materialDesign:MessageQueue}" Grid.Row="4"/>
         </Grid>
     </DockPanel>
 </Window>
