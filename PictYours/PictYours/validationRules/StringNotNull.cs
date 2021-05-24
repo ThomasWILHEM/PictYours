@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace PictYours.validationRules
@@ -12,11 +8,11 @@ namespace PictYours.validationRules
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (!String.IsNullOrEmpty(value.ToString()))
+            if (string.IsNullOrEmpty(value?.ToString()))
             {
-                return new ValidationResult(true, null);
+                return new ValidationResult(false, "Le champ doit être remplit");
             }
-            return new ValidationResult(false, "Le champs doit être remplit");
+            return new ValidationResult(true, null);
         }
     }
 }

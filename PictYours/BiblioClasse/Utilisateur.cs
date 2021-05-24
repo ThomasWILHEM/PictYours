@@ -69,9 +69,9 @@ namespace BiblioClasse
         /// <param name="photoDeProfil">Chemin de la photo de profil</param>
         public Utilisateur(string nom, string pseudo, string photoDeProfil)
         {
-            Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom)) : nom;
-            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo)) : pseudo;
-            PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil)) : photoDeProfil;
+            Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom),"Le nom d'un Utilisateur ne peut pas être nul") : nom;
+            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo),"Le pseudo d'un Utilisateur ne peut pas être nul") : pseudo;
+            PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil),"La photo de profil d'un Utilisateur ne peut pas être nulle") : photoDeProfil;
             MesPhotos = new ReadOnlyObservableCollection<Photo>(mesPhotos);
         }
 
@@ -95,9 +95,9 @@ namespace BiblioClasse
         /// <param name="photo">Photo à supprimer</param>
         public void AjouterPhoto(Photo photo)
         {
-            if (photo == null) throw new ArgumentNullException("La photo passé passé en paramètre est nul");
+            if (photo == null) throw new ArgumentNullException(nameof(photo),"La photo passé passé en paramètre est nul");
             if (MesPhotos.Contains(photo)) throw new InvalidPhotoException($"La photo {photo.Identifiant} à déjà été postée");
-            mesPhotos.Add(photo);
+            mesPhotos.Insert(0,photo);
         }
 
         /// <summary>
@@ -105,13 +105,13 @@ namespace BiblioClasse
         /// de photos de l'utilisateur
         /// </summary>
         /// <param name="photo">Photo à supprimer</param>
-        //public void SupprimerPhoto(string identifiant)
-        //{
-        //    if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nul");
-        //    Photo photo = mesPhotos.Find(p => p.Identifiant == identifiant);
-        //    if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} n'est pas présente dans la liste de photo de l'utilisateur {ToShortString()}");
-        //    mesPhotos.Remove(photo);
-        //}
+        public void SupprimerPhoto(string identifiant)
+        {
+            if (identifiant == null) throw new ArgumentNullException(nameof(identifiant), "L'identifiant passé en paramètre est nul");
+            Photo photo = mesPhotos.FirstOrDefault(p => p.Identifiant.Equals(identifiant));
+            if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} n'est pas présente dans la liste de photo de l'utilisateur {ToShortString()}");
+            mesPhotos.Remove(photo);
+        }
 
         /// <summary>
         /// Permet de voir si l'instance actuel est égale à l'objet en paramètre

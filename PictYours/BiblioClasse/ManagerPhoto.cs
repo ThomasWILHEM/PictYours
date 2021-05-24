@@ -51,7 +51,7 @@ namespace BiblioClasse
 
             if (PhotosParUtilisateurs.ContainsKey(utilisateur))
             {
-                PhotosParUtilisateurs.GetValueOrDefault(utilisateur)?.Add(photo);
+                PhotosParUtilisateurs.GetValueOrDefault(utilisateur)?.Insert(0,photo);
             }
             else
             {

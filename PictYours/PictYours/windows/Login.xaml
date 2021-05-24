@@ -36,15 +36,14 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       FocusManager.FocusedElement="{Binding ElementName=pseudoBox}">
                 <TextBlock Text="Nom d'utilisateur" HorizontalAlignment="Center" Margin="0,0,0,5" />
-                <TextBox x:Name="pseudoBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center">
-                </TextBox>
+                <TextBox x:Name="pseudoBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center"/>
             </WrapPanel>
             <WrapPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Mot de passe" HorizontalAlignment="Center" Margin="0,0,0,5"/>
                 <PasswordBox x:Name="mdpBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" VerticalContentAlignment="Center" FontSize="15"/>
-
             </WrapPanel>
         </Grid>
 

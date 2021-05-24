@@ -46,7 +46,7 @@ namespace BiblioClasse
         public Amateur(string nom, string prenom, string pseudo, string motDePasse, string photoDeProfil, DateTime dateDeNaissance)
             : base(nom, pseudo, motDePasse, photoDeProfil)
         {
-            Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom)) : prenom;
+            Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException("Le prénom d'un Amateur ne peut pas être nul",nameof(prenom)) : prenom;
             DateDeNaissance = dateDeNaissance;
             PhotosAimees = new ReadOnlyCollection<Photo>(photosAimees);
         }
@@ -64,7 +64,7 @@ namespace BiblioClasse
         public Amateur(string nom, string prenom, string pseudo, string motDePasse, string photoDeProfil, string description, DateTime dateDeNaissance)
             : base(nom, pseudo, motDePasse, photoDeProfil, description)
         {
-            Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom)) : prenom;
+            Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom), "Le prénom d'un Amateur ne peut pas être nul") : prenom;
             DateDeNaissance = dateDeNaissance;
             PhotosAimees = new ReadOnlyCollection<Photo>(photosAimees);
         }
@@ -75,7 +75,7 @@ namespace BiblioClasse
         /// <param name="photo">Photo à ajouter</param>
         public void AimerPhoto(Photo photo)
         {
-            if (photo == null) throw new ArgumentNullException("La photo passé en paramètre est nulle");
+            if (photo == null) throw new ArgumentNullException(nameof(photo),"La photo passé en paramètre est nulle");
             if (PhotosAimees.Contains(photo)) throw new InvalidPhotoException($"L'Amateur {ToShortString()} a déjà aimé la Photo {photo.Identifiant}");
             if (!photo.Proprietaire.MesPhotos.Contains(photo)) throw new InvalidPhotoException($"Le propiétaire de la photo n'a pas posté la photo {photo.Identifiant}");
             photosAimees.Add(photo);
@@ -88,7 +88,7 @@ namespace BiblioClasse
         /// <param name="photo">Photo à supprimer</param>
         public void NePlusAimerPhoto(string identifiant)
         {
-            if (identifiant == null) throw new ArgumentNullException("L'identifiant passé en paramètre est nulle");
+            if (identifiant == null) throw new ArgumentNullException(nameof(identifiant),"L'identifiant passé en paramètre est nulle");
 
             Photo photo = photosAimees.Find(p => p.Identifiant == identifiant);
             if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} passé en paramètre n'est pas aimé par l'Amateur{ToShortString()}");

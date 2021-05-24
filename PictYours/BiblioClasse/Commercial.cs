@@ -22,17 +22,19 @@ namespace BiblioClasse
             :base(nom,pseudo,motDePasse, photoDeProfil,description)
         {
             NombreDeVisites = nombreDeVisite;
-            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb));
+            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb),"Le site web ne peut pas être nul");
         }
 
         public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, string siteWeb,string description)
             :base(nom,pseudo,motDePasse,photoDeProfil,description)
         {
-            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb));
+            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb),"Le site web ne peut pas être nul");
         }
 
-        public void MettreEnAvantUnePhoto(Photo p)
+        public void MettreEnAvantUnePhoto(Photo photo)
         {
+            if (photo == null) throw new ArgumentNullException(nameof(photo), "La photo à mettre en avant est nulle");
+
             throw new NotImplementedException();
         }
 
