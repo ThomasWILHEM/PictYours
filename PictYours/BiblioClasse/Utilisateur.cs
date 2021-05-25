@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +12,7 @@ namespace BiblioClasse
     /// <summary>
     /// Définit les attributs communs d'un utilisateur
     /// </summary>
-    public abstract class Utilisateur : IEquatable<Utilisateur>
+    public abstract class Utilisateur : IEquatable<Utilisateur>,INotifyPropertyChanged
     {
         /// <summary>
         /// Nom de l'utilisateur
@@ -21,7 +23,10 @@ namespace BiblioClasse
             internal set
             {
                 if (value != null)
+                {
                     nom = value;
+                    OnPropertyChanged();
+                }
             }
         }
         private string nom;
@@ -48,17 +53,47 @@ namespace BiblioClasse
         /// <summary>
         /// Chemin de la photo de profil de l'utilisateur
         /// </summary>
-        public string PhotoDeProfil { get; internal set; }
+
+        public string PhotoDeProfil
+        {
+            get => photoDeProfil;
+            internal set
+            {
+                if (value != null && value != photoDeProfil)
+                {
+                    photoDeProfil = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string photoDeProfil;
 
         /// <summary>
         /// Description du profil de l'utilisateur
         /// </summary>
-        public string Description { get; internal set; }
+        public string Description
+        {
+            get => description;
+            internal set
+            {
+                if(value != null && value!= description)
+                {
+                    description = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string description;
 
         /// <summary>
         /// Liste des photos de l'utilisateur
         /// </summary>
         private ObservableCollection<Photo> mesPhotos = new ();
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         public ReadOnlyObservableCollection<Photo> MesPhotos { get; }
 
         /// <summary>

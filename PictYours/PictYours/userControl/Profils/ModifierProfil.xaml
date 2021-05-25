@@ -5,9 +5,10 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:PictYours.converters"
-             xmlns:local="clr-namespace:PictYours.userControl.Profils"
+             xmlns:local="clr-namespace:PictYours.userControl.Profils" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="800"
+             >
     <UserControl.Resources>
         <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
         <converters:Utilisateur2ModificationProfilAmateur x:Key="Utilisateur2ModificationProfilAmateur"/>
@@ -59,11 +60,11 @@
                 </StackPanel.Resources>
                 <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}" >
                     <TextBlock Text="Prénom"/>
-                    <TextBox x:Name="PrenomBox"/>
+                    <TextBox x:Name="PrenomBox" Text="{Binding Prenom}"/>
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Text="Nom"/>
-                    <TextBox x:Name="NomBox" />
+                    <TextBox x:Name="NomBox" Text="{Binding Nom}"/>
                 </StackPanel>
                 <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilCommercial}}">
                     <TextBlock Text="Site Web"/>
@@ -71,7 +72,7 @@
                 </StackPanel>
                 <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}">
                     <TextBlock Text="Date de Naissance"/>
-                    <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" Width="200" />
+                    <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" Width="200" SelectedDate="{Binding DateDeNaissance}" />
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -80,7 +81,8 @@
                 Description
             </GroupBox.Header>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <TextBox FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2" x:Name="DescBox"/>
+                <TextBox FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2" x:Name="DescBox"
+                         Text="{Binding Description}"/>
             </ScrollViewer>
         </GroupBox>
         <Button Grid.Row="3" Content="Enregistrer" Width="150" x:Name="EnregistrerButton" Click="EnregistrerButton_Click" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
