@@ -30,25 +30,7 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="Nom"/>
-            <TextBox x:Name="NomProfil">
-                <TextBox.Text>
-                    <Binding Path="MonNom" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <validation:StringNotNull ValidationStep="RawProposedValue"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-                <Validation.ErrorTemplate>
-                    <ControlTemplate>
-                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                        <!--<StackPanel>
-                            <Border BorderBrush="Red" BorderThickness="1">
-                                <AdornedElementPlaceholder/>
-                            </Border>
-                        </StackPanel>-->
-                    </ControlTemplate>
-                </Validation.ErrorTemplate>
-            </TextBox>
+            <TextBox x:Name="NomProfil"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Prénom"/>
@@ -60,7 +42,7 @@
         </StackPanel>
         <StackPanel Grid.Row="3">
             <TextBlock Text="Date de naissance"/>
-            <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" HorizontalAlignment="Left" Width="140" Style="{StaticResource MaterialDesignOutlinedDatePicker}"/>
+            <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" HorizontalAlignment="Left" Width="140"  Style="{StaticResource MaterialDesignFilledDatePicker}"/>
         </StackPanel>
     </Grid>
 </UserControl>

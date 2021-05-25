@@ -17,7 +17,7 @@
         TextOptions.TextRenderingMode="Auto"
         Icon="/img/app_icon.png"
         WindowStartupLocation="CenterScreen"
-        Title="Votre Profil"
+        Title="PictYours"
         Height="800"
         Width="1200"
         MinWidth="960"
@@ -121,13 +121,24 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBox materialDesign:HintAssist.Hint="Rechercher" VerticalContentAlignment="Center" Padding="5,0,0,0" Foreground="White" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                        <RadioButton Grid.Column="1">
+                        <TextBox materialDesign:HintAssist.Hint="Rechercher"
+                                 VerticalContentAlignment="Center"
+                                 Padding="5,0,0,0"
+                                 Foreground="White"
+                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                 SelectionChanged="RechercheTextBox_SelectionChanged"
+                                 x:Name="RechercheTextBox"/>
+                        <RadioButton Grid.Column="1"
+                                     IsChecked="True"
+                                     ToolTip="Rechercher avec le nom et le prénom"
+                                     x:Name="NomPrenomRadioButton">
                             <RadioButton.Content>
                                 <materialDesign:PackIcon Kind="AlphabetLatin"/>
                             </RadioButton.Content>
                         </RadioButton>
-                        <RadioButton Grid.Column="2">
+                        <RadioButton Grid.Column="2"
+                                     ToolTip="Rechercher avec le pseudo"
+                                     x:Name="PseudoRadioButton">
                             <RadioButton.Content>
                                 <materialDesign:PackIcon Kind="At"/>
                             </RadioButton.Content>
@@ -162,14 +173,13 @@
                                 </Grid>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
-
                     </ListBox>
                 </StackPanel>
             </materialDesign:Card>
 
 
             <Grid>
-                <UCProfils:ProfilUtilisateur Utilisateur="{Binding SelectedItem,ElementName=ListBoxUtilisateur}"/>
+                <UCProfils:ProfilUtilisateur Utilisateur="{Binding SelectedItem,ElementName=ListBoxUtilisateur}" x:Name="UCProfil"/>
             </Grid>
         </DockPanel>
     </DockPanel>
