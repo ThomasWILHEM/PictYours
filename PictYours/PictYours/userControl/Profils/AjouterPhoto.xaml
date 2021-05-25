@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="PictYours.userControl.Profils.AjouterPhoto"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:PictYours.converters"
+             xmlns:local="clr-namespace:PictYours.userControl.Profils"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
+        <converters:Utilisateur2ModificationProfilAmateur x:Key="Utilisateur2ModificationProfilAmateur"/>
+        <converters:Utilisateur2ModificationProfilCommercial x:Key="Utilisateur2ModificationProfilCommercial"/>
+    </UserControl.Resources>
+    <Grid Width="600" Height="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Background="{StaticResource MaterialDesignDarkBackground}" Width="600" Text="Poster une photo" TextAlignment="Center" Padding="15" FontSize="35"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Text="Description"/>
+                    <TextBox x:Name="DescPhoto"  VerticalAlignment="Center" Height="100" Width="250" Background="{StaticResource MaterialDesignDarkBackground}"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <TextBlock Text="Lieu de la photo"/>
+                    <TextBox x:Name="LieuPhoto"  VerticalAlignment="Center" Height="40" Padding="10" Background="{StaticResource MaterialDesignDarkBackground}"/>
+                </StackPanel>
+                <ComboBox x:Name="CategorieBox" HorizontalAlignment="Center" Width="200" Grid.Row="2" Style="{StaticResource MaterialDesignFilledComboBox}" Height="30">
+                    <ComboBox.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Style>
+                    </ComboBox.Resources>
+                    <ComboBoxItem>
+                        <TextBlock Text="Autre"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Animal"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Automobile"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Cuisine"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Mode"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Nature"/>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Text="Sport"/>
+                    </ComboBoxItem>
+                </ComboBox>
+
+            </Grid>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.2*"/>
+                </Grid.RowDefinitions>
+                <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100"/>
+
+                <Border Name="border" Grid.Row="0" BorderBrush="{StaticResource MaterialDesignDarkBackground}" Height="230" Width="230" BorderThickness="5" Margin="30" CornerRadius="30">
+                    <Border.Background>
+                        <ImageBrush x:Name="photoAPoster" Stretch="Fill"/>
+                    </Border.Background>
+                </Border>
+
+                <Button x:Name="ParcourirButton" Grid.Row="1" Width="200" Margin="0,0,0,30" Click="ParcourirButton_Click">
+                    <TextBlock TextAlignment="Center" FontSize="15">
+                                Choisissez une photo
+                    </TextBlock>
+                </Button>
+
+            </Grid>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                Annuler
+            </Button>
+            <Button x:Name="PosterButton" Click="PosterButton_Click" Grid.Column="1" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+                Poster la photo
+            </Button>
+        </Grid>
+    </Grid>
+</UserControl>

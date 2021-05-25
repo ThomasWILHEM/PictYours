@@ -40,60 +40,36 @@ namespace PictYours.userControl.Profils
         public ProfilUtilisateur()
         {
             InitializeComponent();
-
         }
 
-        private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
+        private void ModifButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void ParcourirButton_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.InitialDirectory = @"C:";
-            dialog.FileName = "Images";
-            dialog.DefaultExt = ".jpg | .png";
-
-            bool? result = dialog.ShowDialog();
-
-            if (result == true)
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
             {
-                string filename = dialog.FileName;
-                photoAPoster.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                UCModifProfil.PrenomBox.Text = amateur.Prenom;
+
+                UCModifProfil.DateDeNaissanceBox.SelectedDate = amateur.DateDeNaissance;
             }
-        }
-
-        private void ParcourirButton2_Click(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.InitialDirectory = @"C:";
-            dialog.FileName = "Images";
-            //dialog.Filter = "*.jpg | *.png";
-            dialog.DefaultExt = ".jpg | .png";
-
-            bool? result = dialog.ShowDialog();
-
-            if (result == true)
+            else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
             {
-                string filename = dialog.FileName;
-                photoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                UCModifProfil.SiteBox.Text = commercial.SiteWeb;
             }
+            UCModifProfil.NomBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
+            UCModifProfil.DescBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
+
         }
 
-        private void PosterButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(photoAPoster.ImageSource.ToString() !=null || DescPhoto.Text != null || LieuPhoto.Text != null)
-            {
-                LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(photoAPoster.ImageSource.ToString(),DescPhoto.Text,LieuPhoto.Text, LeManager.ManagerUtilisateur.UtilisateurActuel,DateTime.Now,ECategorie.Automobile));
-                DescPhoto.Clear();
-                LieuPhoto.Clear();
-            }
-        }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
+        private void PhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            //foreach (var photo in lemanager.managerutilisateur.utilisateurselectionne.mesphotos)
+            //{
+            //    if (photo.cheminphoto.equals(photochoisie.i))
+            //    {
+            //        lemanager.managerphoto.photoselectionnee = photo;
+            //    }
+            //}
         }
     }
 }
