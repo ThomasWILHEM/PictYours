@@ -16,7 +16,7 @@ namespace BiblioClasse
         /// <summary>
         /// Lien du site web du profil commercial
         /// </summary>
-        public string SiteWeb { get; private set; }
+        public string SiteWeb { get; internal set; }
 
         public Commercial(string nom,string pseudo,string motDePasse, string photoDeProfil, int nombreDeVisite, string siteWeb, string description)
             :base(nom,pseudo,motDePasse, photoDeProfil,description)

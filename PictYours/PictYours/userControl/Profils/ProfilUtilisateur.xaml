@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:local="clr-namespace:PictYours.userControl.Profils"
+             xmlns:UC="clr-namespace:PictYours.userControl.Profils"
              xmlns:converters="clr-namespace:PictYours.converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
@@ -18,63 +18,7 @@
 
     <materialDesign:DialogHost DataContext="{Binding ElementName=root}">
         <materialDesign:DialogHost.DialogContent>
-            <Grid Width="600" Height="600">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="2*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Background="{StaticResource MaterialDesignDarkBackground}" Width="600" Text="Modifier le compte" TextAlignment="Center" Padding="25" FontSize="30"/>
-                <Button Grid.Row="0" Content="Retour" HorizontalAlignment="Left" Margin="23,0" Width="100"  Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="4*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
-                        
-                        <Ellipse Grid.Row="0" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Ellipse.Fill>
-                                <ImageBrush x:Name="photoAModifier" Stretch="UniformToFill"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                        
-                        <Button Grid.Row="1" Width="200" Margin="0,0,0,30" Click="ParcourirButton2_Click">
-                            <TextBlock TextAlignment="Center" FontSize="15">
-                                Choisissez une photo
-                            </TextBlock>
-                        </Button>
-                    </Grid>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}"/>
-                                <Setter Property="Margin" Value="20"/>
-                                <Setter Property="Foreground" Value="White"/>
-                                <Setter Property="Height" Value="20"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <TextBox Text="Prénom" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
-                        <TextBox Text="Nom"/>
-                        <TextBox Text="Site" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilCommercial}}"/>
-                        <TextBox Text="Age" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
-                    </StackPanel>
-                    </Grid>
-                <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray" Padding="5">
-                    <GroupBox.Header>
-                        Description
-                    </GroupBox.Header>
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <TextBox FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2"/>
-                    </ScrollViewer>
-                </GroupBox>
-                <Button Grid.Row="3" Content="Enregistrer" Width="150"/>
-            </Grid>
+            <UC:ModifierProfil x:Name="UCModifProfil"/>
         </materialDesign:DialogHost.DialogContent>
 
 
@@ -103,13 +47,7 @@
                                 </Ellipse>
                                 <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
                             </StackPanel>
-
-
-
-                            <Button Content="Modifier le profil" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Foreground="White" HorizontalAlignment="Right" Width="150" Style="{StaticResource MaterialDesignRaisedButton}" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}"/>
-
-
-
+                            <Button Content="Modifier le profil" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Foreground="White" HorizontalAlignment="Right" Width="150" Style="{StaticResource MaterialDesignRaisedButton}" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" Name="ModifButton" Click="ModifButton_Click"/>
                         </DockPanel>
                     </Expander.Header>
                     <StackPanel Orientation="Vertical" Margin="20,10">
@@ -139,14 +77,14 @@
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
 
-                                <UniformGrid x:Name="mUniformGrid" Columns="3" VerticalAlignment="Top">
+                                <UniformGrid x:Name="UniformGrid" Columns="3" VerticalAlignment="Top" >
 
                                     <UniformGrid.Resources>
                                         <Style TargetType="Button">
                                             <Setter Property="Background" Value="Transparent"/>
                                             <Setter Property="BorderThickness" Value="0"/>
-                                            <Setter Property="Margin" Value="15"/>
-                                            <Setter Property="Padding" Value="5"/>
+                                            <Setter Property="Margin" Value="20"/>
+                                            <Setter Property="Height" Value="260"/>
                                         </Style>
 
                                     </UniformGrid.Resources>
@@ -156,8 +94,8 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button>
-                                    <Image Source="{Binding CheminPhoto}"/>
+                                <Button x:Name="PhotoButton" Click="PhotoButton_Click">
+                                    <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="UniformToFill"/>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -166,100 +104,9 @@
             </materialDesign:Card>
 
 
-            <materialDesign:DialogHost Grid.Row="1" BorderBrush="{DynamicResource MaterialDesignDivider}">
+            <materialDesign:DialogHost Grid.Row="1" BorderBrush="{DynamicResource MaterialDesignDivider}" x:Name="cs">
                 <materialDesign:DialogHost.DialogContent>
-                    <Grid Width="600" Height="500">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="0.7*"/>
-                            <RowDefinition Height="3*"/>
-                            <RowDefinition Height="0.5*" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Background="{StaticResource MaterialDesignDarkBackground}" Width="600" Text="Poster une photo" TextAlignment="Center" Padding="15" FontSize="35"/>
-                        <Grid Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Grid Grid.Column="1" HorizontalAlignment="Center">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <StackPanel Grid.Row="0">
-                                    <TextBlock Text="Description"/>
-                                    <TextBox x:Name="DescPhoto"  VerticalAlignment="Center" Height="100" Width="250" Background="{StaticResource MaterialDesignDarkBackground}"/>
-                                </StackPanel>
-                                <StackPanel Grid.Row="1">
-                                <TextBlock Text="Lieu de la photo"/>
-                                <TextBox x:Name="LieuPhoto"  VerticalAlignment="Center" Height="40" Padding="10" Background="{StaticResource MaterialDesignDarkBackground}"/>
-                                </StackPanel>
-                                <ComboBox x:Name="CategorieBox" HorizontalAlignment="Center" Width="200" Grid.Row="2" Style="{StaticResource MaterialDesignFilledComboBox}" Height="30">
-                                    <ComboBox.Resources>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                                            <Setter Property="Foreground" Value="White"/>
-                                        </Style>
-                                    </ComboBox.Resources>
-                                    <ComboBoxItem>
-                                        <TextBlock Text="Autre"/>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <TextBlock Text="Animal"/>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <TextBlock Text="Automobile"/>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <TextBlock Text="Cuisine"/>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <TextBlock Text="Mode"/>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <TextBlock Text="Nature"/>
-                                    </ComboBoxItem>
-                                    <ComboBoxItem>
-                                        <TextBlock Text="Sport"/>
-                                    </ComboBoxItem>
-                                </ComboBox>
-
-                            </Grid>
-                            <Grid Grid.Column="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="0.2*"/>
-                                </Grid.RowDefinitions>
-                                <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100"/>
-                                
-<Border Name="border" Grid.Row="0" BorderBrush="{StaticResource MaterialDesignDarkBackground}" Height="230" Width="230" BorderThickness="5" Margin="30" CornerRadius="30">
-                                    <Border.Background>
-                                        <ImageBrush x:Name="photoAPoster" Stretch="Fill"/>
-                                    </Border.Background>
-                                </Border>
-
-                                <Button x:Name="ParcourirButton" Grid.Row="1" Width="200" Margin="0,0,0,30" Click="ParcourirButton_Click">
-                                    <TextBlock TextAlignment="Center" FontSize="15">
-                                Choisissez une photo
-                                    </TextBlock>
-                                </Button>
-
-                            </Grid>
-
-                        </Grid>
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
-                                Annuler
-                            </Button>
-                            <Button x:Name="PosterButton" Click="PosterButton_Click" Grid.Column="1" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
-                                Poster la photo
-                            </Button>
-                        </Grid>
-                    </Grid>
+                    <UC:AjouterPhoto/>
                 </materialDesign:DialogHost.DialogContent>
 
                 <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"  Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,20,30,15" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
@@ -267,7 +114,7 @@
                 </Button>
 
             </materialDesign:DialogHost>
-    </Grid>
+        </Grid>
     </materialDesign:DialogHost>
 
 

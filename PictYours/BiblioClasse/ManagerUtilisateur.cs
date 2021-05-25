@@ -144,6 +144,14 @@ namespace BiblioClasse
             UtilisateurActuel.PhotoDeProfil = nouvellePhotoDeProfil;
         }
 
+        public void ModifierSiteWeb(string nouveauSiteWeb)
+        {
+            if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
+            if (nouveauSiteWeb == null) throw new ArgumentNullException("Le nouveau site est nul");
+            (UtilisateurActuel as Commercial).SiteWeb=nouveauSiteWeb;
+        }
+
+
         public void ChargeDonnées()
         {
             var données = Persistance.ChargeDonnées();
