@@ -13,9 +13,9 @@ namespace PictYours.converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is Commercial commercial)
+            if(value != null)
             {
-                return $"Site Web : {commercial.SiteWeb}";
+                return $"Site Web : {value}";
             }
             return null;
         }

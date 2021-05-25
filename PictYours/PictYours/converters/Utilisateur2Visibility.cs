@@ -13,7 +13,7 @@ namespace PictYours.converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is Commercial commercial)
+            if(value is Commercial)
             {
                 return "Visible";
             }

@@ -14,8 +14,11 @@ namespace BiblioClasse
             get => prenom;
             internal set
             {
-                if (value != null)
+                if (value != null && value!=prenom)
+                {
                     prenom = value;
+                    OnPropertyChanged();
+                }
             }
         }
         private string prenom;
@@ -23,7 +26,19 @@ namespace BiblioClasse
         /// <summary>
         /// Date de naissance de l'Amateur
         /// </summary>
-        public DateTime DateDeNaissance { get; internal set; }
+        public DateTime DateDeNaissance
+        {
+            get => dateDeNaissance;
+            set
+            {
+                if (value != dateDeNaissance)
+                {
+                    dateDeNaissance = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private DateTime dateDeNaissance;
 
         /// <summary>
         /// Liste des photos aimées de l'Amateur 

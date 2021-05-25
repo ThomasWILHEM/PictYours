@@ -44,18 +44,18 @@ namespace PictYours.userControl.Profils
 
         private void ModifButton_Click(object sender, RoutedEventArgs e)
         {
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
-            {
-                UCModifProfil.PrenomBox.Text = amateur.Prenom;
+            //if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
+            //{
+            //    UCModifProfil.PrenomBox.Text = amateur.Prenom;
 
-                UCModifProfil.DateDeNaissanceBox.SelectedDate = amateur.DateDeNaissance;
-            }
-            else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
-            {
-                UCModifProfil.SiteBox.Text = commercial.SiteWeb;
-            }
-            UCModifProfil.NomBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
-            UCModifProfil.DescBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
+            //    UCModifProfil.DateDeNaissanceBox.SelectedDate = amateur.DateDeNaissance;
+            //}
+            //else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
+            //{
+            //    UCModifProfil.SiteBox.Text = commercial.SiteWeb;
+            //}
+            //UCModifProfil.NomBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
+            //UCModifProfil.DescBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
 
         }
 

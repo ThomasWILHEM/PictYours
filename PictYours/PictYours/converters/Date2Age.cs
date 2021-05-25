@@ -13,11 +13,14 @@ namespace PictYours.converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is Amateur amateur)
-            {
-                return $", {DateTime.Now.Year - amateur.DateDeNaissance.Year} ans";
-            }
-            return null;
+            if (value == null) return null;
+            DateTime date = DateTime.Parse(value.ToString());
+            return $", {DateTime.Now.Year - date.Year} ans";
+            //if (value is Amateur amateur)
+            //{
+            //    return $", {DateTime.Now.Year - amateur.DateDeNaissance.Year} ans";
+            //}
+            //return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

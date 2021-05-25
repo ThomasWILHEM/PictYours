@@ -167,7 +167,11 @@
                                             <ColumnDefinition/>
                                             <ColumnDefinition/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" Text="{Binding Converter={StaticResource Utilisateur2PrenomNom}}"></TextBlock>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Nom}"/>
+                                                <TextBlock Text=" "/>
+                                                <TextBlock Text="{Binding Prenom}"/>
+                                            </StackPanel>
                                     </Grid>
                                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo,Converter={StaticResource Pseudo2Affichage}}" FontSize="10"></TextBlock>
                                 </Grid>
