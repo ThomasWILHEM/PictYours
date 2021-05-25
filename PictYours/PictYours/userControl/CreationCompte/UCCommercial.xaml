@@ -29,25 +29,7 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="Nom"/>
-            <TextBox x:Name="NomBoxC">
-                <TextBox.Text>
-                    <Binding Path="MonNom" UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <validation:StringNotNull ValidationStep="RawProposedValue"/>
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-                <Validation.ErrorTemplate>
-                    <ControlTemplate>
-                        <StackPanel>
-                            <Border BorderBrush="Red" BorderThickness="1">
-                                <AdornedElementPlaceholder/>
-                            </Border>
-                            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                        </StackPanel>
-                    </ControlTemplate>
-                </Validation.ErrorTemplate>
-            </TextBox>
+            <TextBox x:Name="NomBoxC"/>
         </StackPanel>
         <StackPanel Grid.Row="1">
                 <TextBlock Text="Pseudo"/>

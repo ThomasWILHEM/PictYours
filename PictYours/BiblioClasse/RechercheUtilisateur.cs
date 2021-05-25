@@ -26,14 +26,14 @@ namespace BiblioClasse
             {
                 if(utilisateur is Amateur amateur)
                 {
-                    if ($"{amateur.Nom}{amateur.Prenom}".Contains(pattern))
+                    if ($"{amateur.Nom}{amateur.Prenom}".ToLower().Contains(pattern?.ToLower()))
                     {
                         listeFiltre.Add(amateur);
                     }
                 }
                 if(utilisateur is Commercial commercial)
                 {
-                    if ($"{commercial.Nom}".Contains(pattern))
+                    if ($"{commercial.Nom}".ToLower().Contains(pattern?.ToLower()))
                     {
                         listeFiltre.Add(commercial);
                     }

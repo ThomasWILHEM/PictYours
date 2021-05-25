@@ -7,12 +7,9 @@ namespace PictYours.userControl.CreationCompte
     /// </summary>
     public partial class UCAmateur : UserControl
     {
-        public string MonNom { get; set; }
-
         public UCAmateur()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
     }

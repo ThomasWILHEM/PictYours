@@ -60,7 +60,7 @@ namespace AppWpf
             if (photoProfil.ImageSource?.ToString() == null)
             {
                 Debug.WriteLine("L'image est nulle");
-                mySnackBar.MessageQueue?.Enqueue("L'image est nulle",null,null,null,false,true,TimeSpan.FromSeconds(2));
+                mySnackBar.MessageQueue?.Enqueue("L'image est nulle", null, null, null, false, true, TimeSpan.FromSeconds(2));
                 return;
             }
             if (PasswordBox.Password.Equals(PasswordBoxSame.Password))
@@ -83,22 +83,22 @@ namespace AppWpf
                     }
                     else
                     {
-                        mySnackBar.MessageQueue?.Enqueue("Veuillez selectionner un type de profil",null,null,null,false,true,TimeSpan.FromSeconds(2));
+                        mySnackBar.MessageQueue?.Enqueue("Veuillez selectionner un type de profil", null, null, null, false, true, TimeSpan.FromSeconds(2));
                         Debug.WriteLine("Veuillez selectionner un type de profil");
                     }
-                    
+
                 }
                 catch (InvalidUserException userException)
                 {
                     //Problème dans CreerUnCompte
-                    
+                    mySnackBar.MessageQueue?.Enqueue(userException.Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
                     Debug.WriteLine(userException.Message);
                 }
                 catch (ArgumentNullException nullException)
                 {
                     //Certains paramètres sont nuls
-                    
-                    mySnackBar.MessageQueue?.Enqueue(nullException.Message, null,null,null,false,true,TimeSpan.FromSeconds(2));
+
+                    mySnackBar.MessageQueue?.Enqueue(nullException.Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
                     Debug.WriteLine(nullException.Message);
                 }
             }
@@ -110,7 +110,6 @@ namespace AppWpf
 
         private void parcourirButton_Click(object sender, RoutedEventArgs e)
         {
-            IconPhoto.Visibility = Visibility.Collapsed;
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.InitialDirectory = @"C:";
             dialog.FileName = "Images";
@@ -120,6 +119,7 @@ namespace AppWpf
 
             if (result == true)
             {
+                IconPhoto.Visibility = Visibility.Collapsed;
                 string filename = dialog.FileName;
                 photoProfil.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             }
