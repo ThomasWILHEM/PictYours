@@ -3,19 +3,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PictYours.userControl" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:PictYours.userControl"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root"
+             >
+    <Grid DataContext="{Binding ElementName=root}" Margin="0,5,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <materialDesign:Card Margin="0,0,0,2">
-            
+            <Image Source="{Binding LaPhoto.CheminPhoto}"/>
         </materialDesign:Card>
-        <Grid Background="{StaticResource MaterialDesignDarkBackground}" Grid.Row="1">
-            
-        </Grid>
+        <materialDesign:Card Grid.Row="1">
+            <Expander Background="{StaticResource MaterialDesignDarkBackground}"
+                  Foreground="White"
+                  Grid.Row="1"
+                  ExpandDirection="Down"
+                  Height="Auto"
+                      x:Name="ExpanderDetails">
+            <Expander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Détails" FontSize="25" VerticalAlignment="Center"/>
+                    <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
+                                Grid.Column="1"
+                                Margin="0,0,0,5"
+                            Click="LikeButton_Click">
+                        <materialDesign:PackIcon Kind="Star" HorizontalAlignment="Center"  Width="40" Height="40"/>
+                    </Button>
+                </Grid>
+            </Expander.Header>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Description"/>
+                        <TextBlock Text="{Binding LaPhoto.Description}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="{Binding LaPhoto.NbJaimes,Converter={StaticResource NbJaimes2Affichage}}" FontSize="20" HorizontalAlignment="Right" TextAlignment="Center" Margin="0,0,60,0"/>
+                </StackPanel>
+            </Grid>
+        </Expander>
+        </materialDesign:Card>
+        
     </Grid>
 </UserControl>

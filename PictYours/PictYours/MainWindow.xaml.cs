@@ -1,12 +1,6 @@
 ﻿using AppWpf;
 using BiblioClasse;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 
 namespace PictYours
 {
@@ -16,16 +10,30 @@ namespace PictYours
     public partial class MainWindow : Window
     {
         public Manager LeManager => (App.Current as App).LeManager;
-        
+
 
         public MainWindow()
         {
             InitializeComponent();
 
-            
+            LeManager.ManagerPhoto.PhotoSelectionneChanged += PhotoSelectionneChanged;
 
             DataContext = this;
         }
+
+        private void PhotoSelectionneChanged(object sender, ManagerPhoto.PhotoSelectionneChangedEventArgs e)
+        {
+            if (e.Photo != null)
+            {
+                PagePrincipale.Visibility = Visibility.Collapsed;
+                VisualiseurPhoto.Visibility = Visibility.Visible;
+                RetourButton.Visibility = Visibility.Visible;
+
+                VisualiseurPhoto.LaPhoto = e.Photo;
+            }
+        }
+
+
 
         //private void MenuButton_Click(object sender, RoutedEventArgs e) 
         //{
@@ -35,7 +43,7 @@ namespace PictYours
         //        MenuDéroulant.Visibility = Visibility.Collapsed;
         //}
 
-        
+
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
@@ -52,6 +60,7 @@ namespace PictYours
 
         private void ProfilButton_Click(object sender, RoutedEventArgs e)
         {
+            RetourPagePrincipale();
             LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
         }
 
@@ -60,6 +69,18 @@ namespace PictYours
             MesParametres.ReinitialiserParametres();
         }
 
-        
+        private void RetourButton_Click(object sender, RoutedEventArgs e)
+        {
+            RetourPagePrincipale();
+        }
+
+        private void RetourPagePrincipale()
+        {
+            PagePrincipale.Visibility = Visibility.Visible;
+            RetourButton.Visibility = Visibility.Collapsed;
+            VisualiseurPhoto.Visibility = Visibility.Collapsed;
+            VisualiseurPhoto.ExpanderDetails.IsExpanded = false;
+            LeManager.ManagerPhoto.PhotoSelectionne = null;
+        }
     }
 }

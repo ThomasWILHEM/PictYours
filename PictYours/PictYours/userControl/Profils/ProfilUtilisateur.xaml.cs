@@ -56,7 +56,7 @@ namespace PictYours.userControl.Profils
             //}
             //UCModifProfil.NomBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
             //UCModifProfil.DescBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
-            if(LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
             {
                 UCModifProfil.UCCommercial.Visibility = Visibility.Visible;
             }
@@ -68,9 +68,10 @@ namespace PictYours.userControl.Profils
 
         }
 
-        private void ListeBoxPhotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            LeManager.ManagerPhoto.PhotoSelectionne = e.AddedItems[0] as BiblioClasse.Photo;    
-        }
+        //private void ListeBoxPhotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    if (e.AddedItems.Count > 0)
+        //        LeManager.ManagerPhoto.PhotoSelectionne = e.AddedItems[0] as BiblioClasse.Photo;
+        //}
     }
 }
