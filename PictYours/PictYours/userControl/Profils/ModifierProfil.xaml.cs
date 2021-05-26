@@ -1,7 +1,9 @@
 ﻿using BiblioClasse;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -25,28 +27,128 @@ namespace PictYours.userControl.Profils
     {
         public Manager LeManager => (App.Current as App).LeManager;
 
+        public string Nom
+        {
+            get => nom;
+            set
+            {
+                if (value != null && value != nom)
+                {
+                    nom = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string nom;
+
+        public string Description
+        {
+            get => description;
+            set
+            {
+                if (value != null && value != description)
+                {
+                    description = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string description;
+
+        public string CheminPhoto
+        {
+            get => cheminPhoto;
+            set
+            {
+                if (value != null && value != cheminPhoto)
+                {
+                    cheminPhoto = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string cheminPhoto;
+
+        public string Prenom
+        {
+            get => prenom;
+            set
+            {
+                if (value != null && value != prenom)
+                {
+                    prenom = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string prenom;
+
+        public DateTime DateDeNaissance
+        {
+            get => dateDeNaissance;
+            set
+            {
+                if (value != dateDeNaissance)
+                {
+                    dateDeNaissance = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private DateTime dateDeNaissance;
+
+        public string SiteWeb
+        {
+            get => siteWeb;
+            set
+            {
+                if (value != null && value != siteWeb)
+                {
+                    siteWeb = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string siteWeb;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string parameterName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(parameterName));
+
         public ModifierProfil()
         {
             InitializeComponent();
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
             {
                 UCAmateur.NomBox.DataContext = this;
+                UCAmateur.PrenomBox.DataContext = this;
+                UCAmateur.DateDeNaissanceBox.DataContext = this;
             }
             else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
             {
                 UCCommercial.NomBox.DataContext = this;
-                UCCommercial.SiteBox.Text = commercial.SiteWeb;
+                UCCommercial.SiteBox.DataContext = this;
             }
             Nom = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
+            DescBox.DataContext = this;
+
+            InitialiserChamps();
+        }
+
+        private void InitialiserChamps()
+        {
             if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
             {
-                UCAmateur.PrenomBox.DataContext = this;
                 Prenom = amateur.Prenom;
-                UCAmateur.DateDeNaissanceBox.DataContext = this;
                 DateDeNaissance = amateur.DateDeNaissance;
             }
-            DescBox.DataContext = this;
+            else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
+            {
+                SiteWeb = commercial.SiteWeb;
+            }
+            Nom = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
             Description = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
+            CheminPhoto = LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil;
+            PhotoAModifier.ImageSource = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + CheminPhoto, UriKind.Absolute));
         }
 
         private void ParcourirPhotoAModifierButton_Click(object sender, RoutedEventArgs e)
@@ -62,20 +164,9 @@ namespace PictYours.userControl.Profils
             if (result == true)
             {
                 string filename = dialog.FileName;
-                photoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                PhotoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             }
         }
-
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-
-        public string SiteWeb { get; set; }
-        public string Description { get; set; }
-        public DateTime DateDeNaissance { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         private void EnregistrerButton_Click(object sender, RoutedEventArgs e)
         {
@@ -92,9 +183,13 @@ namespace PictYours.userControl.Profils
                 LeManager.ManagerUtilisateur.ModifierSiteWeb(UCCommercial.SiteBox.Text);
             }
             LeManager.ManagerUtilisateur.ModifierDescription(DescBox.Text);
-            LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(photoAModifier.ImageSource.ToString());
+            LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(PhotoAModifier.ImageSource.ToString());
         }
 
-
+        private void RetourButton_Click(object sender, RoutedEventArgs e)
+        {
+            InitialiserChamps();
+            DialogHost.CloseDialogCommand.Execute(null, null);
+        }
     }
 }

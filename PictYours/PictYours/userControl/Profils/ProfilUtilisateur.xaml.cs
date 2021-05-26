@@ -44,34 +44,32 @@ namespace PictYours.userControl.Profils
 
         private void ModifButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
-            //{
-            //    UCModifProfil.PrenomBox.Text = amateur.Prenom;
-
-            //    UCModifProfil.DateDeNaissanceBox.SelectedDate = amateur.DateDeNaissance;
-            //}
-            //else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
-            //{
-            //    UCModifProfil.SiteBox.Text = commercial.SiteWeb;
-            //}
-            //UCModifProfil.NomBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
-            //UCModifProfil.DescBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
-            {
-                UCModifProfil.UCCommercial.Visibility = Visibility.Visible;
-            }
-            else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
-            {
-                UCModifProfil.UCAmateur.Visibility = Visibility.Visible;
-            }
-
-
+            OnModifierProfilResqueted(LeManager.ManagerUtilisateur.UtilisateurActuel);
         }
 
-        //private void ListeBoxPhotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    if (e.AddedItems.Count > 0)
-        //        LeManager.ManagerPhoto.PhotoSelectionne = e.AddedItems[0] as BiblioClasse.Photo;
-        //}
+        //-------------------------
+        //Déclaration d'un évenement ModifierProfilRequested avec les EventArgs associés pour signaler lorsque le bouton modifier est cliqué
+        public class ModifierProfilResquetedEventArgs
+        {
+            public Utilisateur Utilisateur { get; private set; }
+            public ModifierProfilResquetedEventArgs(Utilisateur utilisateur) => Utilisateur = utilisateur;
+        }
+        public event EventHandler<ModifierProfilResquetedEventArgs> ModifierProfilResqueted;
+        public virtual void OnModifierProfilResqueted(Utilisateur utilisateur) => ModifierProfilResqueted?.Invoke(this, new ModifierProfilResquetedEventArgs(utilisateur));
+        public virtual void OnModifierProfilResqueted(ModifierProfilResquetedEventArgs args) => ModifierProfilResqueted?.Invoke(this, args);
+
+        //-------------------------
+        //Déclaration d'un évenement ModifierProfilRequested avec les EventArgs associés pour signaler lorsque le bouton modifier est cliqué
+        public class AjouterPhotoRequestedEventArgs
+        {
+        }
+
+        public event EventHandler<AjouterPhotoRequestedEventArgs> AjouterPhotoRequested;
+        public virtual void OnAjouterPhotoResqueted() => AjouterPhotoRequested?.Invoke(this, new AjouterPhotoRequestedEventArgs());
+
+        private void AjouterPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            OnAjouterPhotoResqueted();
+        }
     }
 }

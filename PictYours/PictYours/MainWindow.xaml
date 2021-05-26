@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PictYours"
         xmlns:converters="clr-namespace:PictYours.converters"
         xmlns:UC="clr-namespace:PictYours.userControl"
+        xmlns:UCProfils="clr-namespace:PictYours.userControl.Profils"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
 
@@ -25,13 +26,16 @@
 
 
 
-    <materialDesign:DialogHost>
+    <materialDesign:DialogHost x:Name="MainDialogHost">
         
         <materialDesign:DialogHost.DialogContent>
             <Grid Margin="5">
-                <UC:Parametres x:Name="MesParametres"/>
+                <UC:Parametres x:Name="MesParametres" Visibility="Collapsed"/>
+                <UCProfils:ModifierProfil x:Name="UCModifierProfil" Visibility="Collapsed"/>
+                <UCProfils:AjouterPhoto x:Name="UCAjouterPhoto" Visibility="Collapsed"/>
             </Grid>
         </materialDesign:DialogHost.DialogContent>
+        
         <Grid>
             <DockPanel Margin="10">
                 <materialDesign:Card DockPanel.Dock="Top" Padding="10">
@@ -110,16 +114,13 @@
                     <UC:PagePrincipale Visibility="Visible" x:Name="PagePrincipale"/>
                     <UC:Photo Visibility="Collapsed" x:Name="VisualiseurPhoto" />
                 </Grid>
-
-
             </DockPanel>
             
                 <materialDesign:Snackbar DockPanel.Dock="Bottom"
-                                     Focusable="False"
-                                     IsActive="False"
-                                     x:Name="MessageSnackBar"
-                                     Panel.ZIndex="1"
-                                     />
+                                         Focusable="False"
+                                         IsActive="False"
+                                         x:Name="MessageSnackBar"
+                                         Panel.ZIndex="1"/>
         </Grid>
     </materialDesign:DialogHost>
 

@@ -42,7 +42,6 @@
                                 <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
                             </StackPanel>
                             <Button Content="Modifier le profil"
-                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
                                     Foreground="White"
                                     HorizontalAlignment="Right"
                                     Width="150" Style="{StaticResource MaterialDesignRaisedButton}"
@@ -140,22 +139,15 @@
             </materialDesign:Card>
 
 
-            <materialDesign:DialogHost Grid.Row="1" BorderBrush="{DynamicResource MaterialDesignDivider}" x:Name="cs">
-                <materialDesign:DialogHost.DialogContent>
-                    <UC:AjouterPhoto/>
-                </materialDesign:DialogHost.DialogContent>
-
-                <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+            <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Right"
                         Margin="0,20,30,15"
-                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                        x:Name="AjouterPhotoButton">
-                    <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
-                </Button>
-
-            </materialDesign:DialogHost>
+                        x:Name="AjouterPhotoButton"
+                        Click="AjouterPhotoButton_Click">
+                <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
+            </Button>
         </Grid>
     </materialDesign:DialogHost>
 

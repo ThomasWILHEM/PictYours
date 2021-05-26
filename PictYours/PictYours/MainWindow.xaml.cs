@@ -3,6 +3,7 @@ using BiblioClasse;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Windows;
+using static PictYours.userControl.Profils.ProfilUtilisateur;
 
 namespace PictYours
 {
@@ -18,13 +19,52 @@ namespace PictYours
         {
             InitializeComponent();
 
-            LeManager.ManagerPhoto.PhotoSelectionneChanged += PhotoSelectionneChanged;
+            LeManager.ManagerPhoto.PhotoSelectionneChanged += OnPhotoSelectionneChanged;
+            PagePrincipale.UCProfil.ModifierProfilResqueted += OnModifierProfilRequested;
+            PagePrincipale.UCProfil.AjouterPhotoRequested += OnAjouterPhotoRequested;
             MessageSnackBar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
 
             DataContext = this;
         }
 
-        private void PhotoSelectionneChanged(object sender, ManagerPhoto.PhotoSelectionneChangedEventArgs e)
+        private void AllMainUCCollapsed()
+        {
+            PagePrincipale.Visibility = Visibility.Collapsed;
+            VisualiseurPhoto.Visibility = Visibility.Collapsed;
+            
+        }
+
+        private void AllDialogHostUCCollapsed()
+        {
+            MesParametres.Visibility = Visibility.Collapsed;
+            UCModifierProfil.Visibility = Visibility.Collapsed;
+            UCAjouterPhoto.Visibility = Visibility.Collapsed;
+        }
+
+        private void OnAjouterPhotoRequested(object sender, AjouterPhotoRequestedEventArgs e)
+        {
+            AllDialogHostUCCollapsed();
+            UCAjouterPhoto.Visibility = Visibility.Visible;
+            MainDialogHost.IsOpen = true;
+        }
+
+        private void OnModifierProfilRequested(object sender, ModifierProfilResquetedEventArgs e)
+        {
+            if (e.Utilisateur is Commercial)
+            {
+                UCModifierProfil.UCCommercial.Visibility = Visibility.Visible;
+            }
+            else if (e.Utilisateur is Amateur)
+            {
+                UCModifierProfil.UCAmateur.Visibility = Visibility.Visible;
+            }
+
+            AllDialogHostUCCollapsed();
+            UCModifierProfil.Visibility = Visibility.Visible;
+            MainDialogHost.IsOpen = true;
+        }
+
+        private void OnPhotoSelectionneChanged(object sender, ManagerPhoto.PhotoSelectionneChangedEventArgs e)
         {
             if (e.Photo != null)
             {
