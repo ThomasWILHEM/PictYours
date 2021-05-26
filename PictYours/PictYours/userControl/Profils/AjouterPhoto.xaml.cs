@@ -1,4 +1,5 @@
 ﻿using BiblioClasse;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +32,17 @@ namespace PictYours.userControl.Profils
 
         private void PosterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (photoAPoster.ImageSource.ToString() != null || DescPhoto.Text != null || LieuPhoto.Text != null)
-            {
-                LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(photoAPoster.ImageSource.ToString(), DescPhoto.Text, LieuPhoto.Text, LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Now, ECategorie.Automobile));
-                DescPhoto.Clear();
-                LieuPhoto.Clear();
-            }
+            if (photoAPoster.ImageSource == null) return;
+            if (string.IsNullOrEmpty(DescPhoto.Text)) return;
+            if (string.IsNullOrEmpty(LieuPhoto.Text)) return;
+            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(photoAPoster.ImageSource.ToString(), DescPhoto.Text, LieuPhoto.Text, LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Now, (ECategorie)CategorieBox.SelectedItem));
+            ReinitialiserChamps();
+            DialogHost.CloseDialogCommand.Execute(null,null);
+        }
+
+        private void AnnulerButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReinitialiserChamps();
         }
 
         private void ParcourirButton_Click(object sender, RoutedEventArgs e)
@@ -53,6 +59,14 @@ namespace PictYours.userControl.Profils
                 string filename = dialog.FileName;
                 photoAPoster.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             }
+        }
+
+        private void ReinitialiserChamps()
+        {
+            photoAPoster.ImageSource = null;
+            CategorieBox.SelectedIndex = 0;
+            DescPhoto.Clear();
+            LieuPhoto.Clear();
         }
     }
 }

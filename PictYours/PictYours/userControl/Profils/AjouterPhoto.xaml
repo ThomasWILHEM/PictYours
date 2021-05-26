@@ -6,6 +6,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:PictYours.converters"
              xmlns:local="clr-namespace:PictYours.userControl.Profils"
+             xmlns:biblioclasse="clr-namespace:BiblioClasse;assembly=BiblioClasse"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -26,47 +28,50 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1" HorizontalAlignment="Center">
+                <Grid.Resources>
+                    <ObjectDataProvider ObjectType="{x:Type system:Enum}"
+                                        MethodName="GetValues"
+                                        x:Key="ECategorieValues">
+                        <ObjectDataProvider.MethodParameters>
+                            <x:Type Type="biblioclasse:ECategorie"/>
+                        </ObjectDataProvider.MethodParameters>
+                    </ObjectDataProvider>
+                </Grid.Resources>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
+                <StackPanel Margin="0,30,0,0">
                     <TextBlock Text="Description"/>
                     <TextBox x:Name="DescPhoto"  VerticalAlignment="Center" Height="100" Width="250" Background="{StaticResource MaterialDesignDarkBackground}"/>
                 </StackPanel>
-                <StackPanel Grid.Row="1">
+                <StackPanel Grid.Row="1"
+                            Margin="0,30,0,0">
                     <TextBlock Text="Lieu de la photo"/>
                     <TextBox x:Name="LieuPhoto"  VerticalAlignment="Center" Height="40" Padding="10" Background="{StaticResource MaterialDesignDarkBackground}"/>
                 </StackPanel>
-                <ComboBox x:Name="CategorieBox" HorizontalAlignment="Center" Width="200" Grid.Row="2" Style="{StaticResource MaterialDesignFilledComboBox}" Height="30">
+                <ComboBox x:Name="CategorieBox"
+                          HorizontalAlignment="Center"
+                          Grid.Row="2"
+                          Width="200"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          ItemsSource="{Binding Source={StaticResource ECategorieValues}}"
+                          SelectedIndex="0"
+                          materialDesign:HintAssist.Hint="Catégorie"
+                          materialDesign:HintAssist.Foreground="White"
+                          materialDesign:HintAssist.Background="#ff424242">
                     <ComboBox.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
                             <Setter Property="Foreground" Value="White"/>
                         </Style>
                     </ComboBox.Resources>
-                    <ComboBoxItem>
-                        <TextBlock Text="Autre"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Animal"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Automobile"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Cuisine"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Mode"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Nature"/>
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        <TextBlock Text="Sport"/>
-                    </ComboBoxItem>
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
 
             </Grid>
@@ -79,14 +84,12 @@
 
                 <Border Name="border" Grid.Row="0" BorderBrush="{StaticResource MaterialDesignDarkBackground}" Height="230" Width="230" BorderThickness="5" Margin="30" CornerRadius="30">
                     <Border.Background>
-                        <ImageBrush x:Name="photoAPoster" Stretch="Fill"/>
+                        <ImageBrush x:Name="photoAPoster" Stretch="UniformToFill"/>
                     </Border.Background>
                 </Border>
 
                 <Button x:Name="ParcourirButton" Grid.Row="1" Width="200" Margin="0,0,0,30" Click="ParcourirButton_Click">
-                    <TextBlock TextAlignment="Center" FontSize="15">
-                                Choisissez une photo
-                    </TextBlock>
+                    <TextBlock TextAlignment="Center" FontSize="15" Text="Choisissez une photo"/>
                 </Button>
 
             </Grid>
@@ -97,12 +100,16 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
-                Annuler
-            </Button>
-            <Button x:Name="PosterButton" Click="PosterButton_Click" Grid.Column="1" Width="150" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
-                Poster la photo
-            </Button>
+            <Button Grid.Column="0"
+                    Width="150"
+                    Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                    Content="Annuler"
+                    Click="AnnulerButton_Click"/>
+            <Button x:Name="PosterButton"
+                    Click="PosterButton_Click"
+                    Grid.Column="1"
+                    Width="150"
+                    Content="Poster la photo"/>
         </Grid>
     </Grid>
 </UserControl>
