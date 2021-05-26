@@ -68,17 +68,9 @@ namespace PictYours.userControl.Profils
 
         }
 
-
-
-        private void PhotoButton_Click(object sender, RoutedEventArgs e)
+        private void ListeBoxPhotos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //foreach (var photo in lemanager.managerutilisateur.utilisateurselectionne.mesphotos)
-            //{
-            //    if (photo.cheminphoto.equals(photochoisie.i))
-            //    {
-            //        lemanager.managerphoto.photoselectionnee = photo;
-            //    }
-            //}
+            LeManager.ManagerPhoto.PhotoSelectionne = e.AddedItems[0] as BiblioClasse.Photo;    
         }
     }
 }
