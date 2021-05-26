@@ -7,9 +7,9 @@ namespace Stub
 {
     public class Stub : IPersistanceManager
     {
-        Amateur pierre = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", "Gross kartofen", DateTime.Now);
-        Amateur tulipe = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", "Je suis une plus grosse banane", DateTime.Now);
-        Amateur thomas = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", "Je suis une plus grosse banane", DateTime.Now);
+        Amateur pierre = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", "Description de Jean Pierre", DateTime.Now.AddYears(-20));
+        Amateur tulipe = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", "Description d'Estelle Tulipe", DateTime.Now.AddYears(-15));
+        Amateur thomas = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", "Description de Thomas Wilhem", DateTime.Now.AddYears(-18));
         Commercial mozilla = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
     public (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur,List<Photo>> dico) ChargeDonnées()
