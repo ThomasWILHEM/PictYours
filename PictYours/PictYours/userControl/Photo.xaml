@@ -24,41 +24,56 @@
                   ExpandDirection="Down"
                   Height="Auto"
                   x:Name="ExpanderDetails">
-            <Expander.Header>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Détails" FontSize="25" VerticalAlignment="Center"/>
-                    <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
+                <Expander.Header>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Détails" FontSize="25" VerticalAlignment="Center"/>
+                        <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
                                 Grid.Column="1"
                                 Margin="0,0,0,5"
                             Click="LikeButton_Click"
                             x:Name="LikeButton"
                             >
-                        <materialDesign:PackIcon Kind="StarOutline" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="JaimeIcon"/>
-                    </Button>
-                </Grid>
-            </Expander.Header>
-            <Grid Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <StackPanel>
-                        <TextBlock Text="Description"/>
-                        <TextBlock Text="{Binding LaPhoto.Description}" />
-                    </StackPanel>
-                </StackPanel>
+                            <materialDesign:PackIcon Kind="StarOutline" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="JaimeIcon"/>
+                        </Button>
+                    </Grid>
+                </Expander.Header>
+                <Grid Margin="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition  Width="2*"/>
+                            <ColumnDefinition  Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="10" Grid.Column="0">
+                            <TextBlock Text="Description" FontSize="20"/>
 
-                <StackPanel Grid.Column="1">
-                    <TextBlock Text="{Binding LaPhoto.NbJaimes,Converter={StaticResource NbJaimes2Affichage}}" FontSize="20" HorizontalAlignment="Right" TextAlignment="Center" Margin="0,0,60,0"/>
-                </StackPanel>
-            </Grid>
-        </Expander>
+                                <TextBlock Text="{Binding LaPhoto.Description}" TextWrapping="Wrap"/>
+
+                        </StackPanel>
+                        <StackPanel Margin="10" Grid.Column="1">
+                            <TextBlock Text="Lieu" FontSize="20"/>
+                            <TextBlock Text="{Binding LaPhoto.Lieu}"/>
+                        </StackPanel>
+                        <StackPanel Margin="10" Grid.Column="2">
+                            <TextBlock Text="Catégorie" FontSize="20"/>
+                            <TextBlock Text="{Binding LaPhoto.Categorie}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="{Binding LaPhoto.NbJaimes,Converter={StaticResource NbJaimes2Affichage}}" FontSize="20" HorizontalAlignment="Right" TextAlignment="Center" Margin="0,0,60,0"/>
+                    </StackPanel>
+                </Grid>
+            </Expander>
         </materialDesign:Card>
-        
+
     </Grid>
 </UserControl>
