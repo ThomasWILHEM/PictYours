@@ -2,6 +2,7 @@
 using BiblioClasse;
 using MaterialDesignThemes.Wpf;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -72,6 +73,12 @@ namespace PictYours.userControl
             {
                 Debug.WriteLine("Modifier: Ancien mot de passe incorrect");
             }
+            ReinitialiserParametres();
+        }
+
+        private void CloseDialogHostButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogHost.CloseDialogCommand.Execute(null, null);
             ReinitialiserParametres();
         }
     }

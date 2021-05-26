@@ -42,7 +42,7 @@
         </StackPanel>
         <StackPanel Grid.Row="3">
             <TextBlock Text="Date de naissance"/>
-            <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" HorizontalAlignment="Left" Width="140"  Style="{StaticResource MaterialDesignFilledDatePicker}"/>
+            <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" HorizontalAlignment="Left" Width="140" Style="{StaticResource MaterialDesignFilledDatePicker}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -8,6 +8,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Button VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+                Panel.ZIndex="1"
+                Click="CloseDialogHostButton_Click">
+            <materialDesign:PackIcon Kind="Close" Margin="5"/>
+        </Button>
         <TabControl FontSize="20"
                 Background="#252525"
                 Height="380"
