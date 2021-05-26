@@ -5,10 +5,10 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:PictYours.converters"
+             xmlns:UC="clr-namespace:PictYours.userControl.Profils.UCModifierProfils"
              xmlns:local="clr-namespace:PictYours.userControl.Profils" 
              mc:Ignorable="d" 
-             d:DesignHeight="800" d:DesignWidth="800"
-             >
+             d:DesignHeight="800" d:DesignWidth="800">
     <UserControl.Resources>
         <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
         <converters:Utilisateur2ModificationProfilAmateur x:Key="Utilisateur2ModificationProfilAmateur"/>
@@ -48,7 +48,7 @@
                 </Button>
             </Grid>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <StackPanel.Resources>
+                <!--<StackPanel.Resources>
                     <Style TargetType="TextBox">
                         <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}"/>
                         <Setter Property="Foreground" Value="White"/>
@@ -73,7 +73,9 @@
                 <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}">
                     <TextBlock Text="Date de Naissance"/>
                     <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" Width="200" SelectedDate="{Binding DateDeNaissance}" />
-                </StackPanel>
+                </StackPanel>-->
+                <UC:ModifierProfilAmateur x:Name="UCAmateur" Visibility="Collapsed"/>
+                <UC:ModifierProfilCommercial x:Name="UCCommercial" Visibility="Collapsed"/>
             </StackPanel>
         </Grid>
         <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray" Padding="5">

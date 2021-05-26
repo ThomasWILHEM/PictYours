@@ -56,6 +56,15 @@ namespace PictYours.userControl.Profils
             //}
             //UCModifProfil.NomBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
             //UCModifProfil.DescBox.Text = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
+            if(LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
+            {
+                UCModifProfil.UCCommercial.Visibility = Visibility.Visible;
+            }
+            else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
+            {
+                UCModifProfil.UCAmateur.Visibility = Visibility.Visible;
+            }
+
 
         }
 

@@ -28,13 +28,21 @@ namespace PictYours.userControl.Profils
         public ModifierProfil()
         {
             InitializeComponent();
-            NomBox.DataContext = this;
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
+            {
+                UCAmateur.NomBox.DataContext = this;
+            }
+            else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
+            {
+                UCCommercial.NomBox.DataContext = this;
+                UCCommercial.SiteBox.Text = commercial.SiteWeb;
+            }
             Nom = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
             if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
             {
-                PrenomBox.DataContext = this;
+                UCAmateur.PrenomBox.DataContext = this;
                 Prenom = amateur.Prenom;
-                DateDeNaissanceBox.DataContext = this;
+                UCAmateur.DateDeNaissanceBox.DataContext = this;
                 DateDeNaissance = amateur.DateDeNaissance;
             }
             DescBox.DataContext = this;
@@ -60,6 +68,8 @@ namespace PictYours.userControl.Profils
 
         public string Nom { get; set; }
         public string Prenom { get; set; }
+
+        public string SiteWeb { get; set; }
         public string Description { get; set; }
         public DateTime DateDeNaissance { get; set; }
 
@@ -71,15 +81,16 @@ namespace PictYours.userControl.Profils
         {
             if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
             {
-                LeManager.ManagerUtilisateur.ModifierPrenom(PrenomBox.Text);
+                LeManager.ManagerUtilisateur.ModifierPrenom(UCAmateur.PrenomBox.Text);
 
-                LeManager.ManagerUtilisateur.ModifierDateDeNaissance(DateDeNaissanceBox.DisplayDate);
+                LeManager.ManagerUtilisateur.ModifierDateDeNaissance(UCAmateur.DateDeNaissanceBox.DisplayDate);
+                LeManager.ManagerUtilisateur.ModifierNom(UCAmateur.NomBox.Text);
             }
             else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
             {
-                LeManager.ManagerUtilisateur.ModifierSiteWeb(SiteBox.Text);
+                LeManager.ManagerUtilisateur.ModifierNom(UCCommercial.NomBox.Text);
+                LeManager.ManagerUtilisateur.ModifierSiteWeb(UCCommercial.SiteBox.Text);
             }
-            LeManager.ManagerUtilisateur.ModifierNom(NomBox.Text);
             LeManager.ManagerUtilisateur.ModifierDescription(DescBox.Text);
             LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(photoAModifier.ImageSource.ToString());
         }

@@ -22,6 +22,12 @@
     <Compile Update="userControl\Profils\ProfilUtilisateur.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="userControl\Profils\UCModifierProfils\ModifierProfilAmateur.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="userControl\Profils\UCModifierProfils\ModifierProfilCommercial.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -40,6 +46,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="userControl\Profils\ProfilUtilisateur.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="userControl\Profils\UCModifierProfils\ModifierProfilAmateur.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="userControl\Profils\UCModifierProfils\ModifierProfilCommercial.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
