@@ -138,5 +138,6 @@ namespace BiblioClasse
         {
             return $"Identifiant:{Identifiant} posté le {DatePub.ToShortDateString()} à {Lieu} par {Proprietaire}";
         }
+
     }
 }

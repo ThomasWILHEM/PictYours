@@ -121,6 +121,7 @@ namespace BiblioClasse
             : this(nom, pseudo, photoDeProfil)
         {
             Description = description;
+            List<Photo> li = mesPhotos.ToList();
         }
 
         /// <summary>

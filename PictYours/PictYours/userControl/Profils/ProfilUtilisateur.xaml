@@ -119,6 +119,8 @@
                     </ItemsControl>-->
                     <ListBox x:Name="listeBoxPhotos"
                              ItemsSource="{Binding Utilisateur.MesPhotos}"
+                             SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne}"
+                             SelectionChanged="ListeBoxPhotos_SelectionChanged"
                              >
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>

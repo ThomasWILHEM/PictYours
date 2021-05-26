@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace BiblioClasse
     /// <summary>
     /// Le ManagerPhoto s'occupe de la gestion des interactions avec les photos
     /// </summary>
-    public class ManagerPhoto
+    public class ManagerPhoto : INotifyPropertyChanged
     {
 
         public IPersistanceManager Persistance { get; private set; }
@@ -20,6 +21,24 @@ namespace BiblioClasse
         /// Dictonnaire qui possède en clé un Utilisateur et en valeur la liste de ses photos
         /// </summary>
         public Dictionary<Utilisateur, List<Photo>> PhotosParUtilisateurs { get; private set; }
+
+        public Photo PhotoSelectionne
+        {
+            get => photoSelectionne;
+            set
+            {
+                if (photoSelectionne != value)
+                {
+                    photoSelectionne = value;
+                    OnPropertyChanged(nameof(photoSelectionne));
+                }
+            }
+        }
+        private Photo photoSelectionne;
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         /// <summary>
         /// Dictionnaire qui possède en clé une photo et en valeur la liste des personnes qui ont aimées cette photo
