@@ -48,7 +48,7 @@
                                 </Ellipse>
                                 <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
                             </StackPanel>
-                            <Button Content="Modifier le profil" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Foreground="White" HorizontalAlignment="Right" Width="150" Style="{StaticResource MaterialDesignRaisedButton}" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" Name="ModifButton" Click="ModifButton_Click"/>
+                            <Button Content="Modifier le profil" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Foreground="White" HorizontalAlignment="Right" Width="150" Style="{StaticResource MaterialDesignRaisedButton}" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" x:Name="ModifButton" Click="ModifButton_Click"/>
                         </DockPanel>
                     </Expander.Header>
                     <StackPanel Orientation="Vertical" Margin="20,10">
@@ -88,8 +88,9 @@
                                             <Setter Property="Background" Value="Transparent"/>
                                             <Setter Property="BorderThickness" Value="0"/>
                                             <Setter Property="Margin" Value="20"/>
-                                            <Setter Property="Height" Value="260"/>
+
                                         </Style>
+                                     
 
                                     </UniformGrid.Resources>
 
@@ -97,9 +98,9 @@
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate >                      
                                 <Button x:Name="PhotoButton" Click="PhotoButton_Click">
-                                    <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="UniformToFill"/>
+                                    <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform"/>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
@@ -113,7 +114,7 @@
                     <UC:AjouterPhoto/>
                 </materialDesign:DialogHost.DialogContent>
 
-                <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"  Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,20,30,15" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"  Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,20,30,15" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" x:Name="AjouterPhotoButton">
                     <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
                 </Button>
 
