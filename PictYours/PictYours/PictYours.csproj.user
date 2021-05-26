@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="userControl\PagePrincipale.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="userControl\Parametres.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="userControl\PagePrincipale.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="userControl\Parametres.xaml">

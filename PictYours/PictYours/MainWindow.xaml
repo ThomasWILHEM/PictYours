@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PictYours"
         xmlns:converters="clr-namespace:PictYours.converters"
-        xmlns:UCProfils="clr-namespace:PictYours.userControl.Profils"
         xmlns:UC="clr-namespace:PictYours.userControl"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
@@ -24,10 +23,7 @@
         MinHeight="750"
         Background="#FF303030">
     
-    <Window.Resources>
-        <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
-        <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
-    </Window.Resources>
+ 
     
     <materialDesign:DialogHost>
         <materialDesign:DialogHost.DialogContent>
@@ -107,85 +103,8 @@
         </materialDesign:Card>
 
         <DockPanel>
-            <materialDesign:Card DockPanel.Dock="Left" Margin="0,5,0,0" Width="250">
-                <StackPanel>
-                    <Grid Background="{StaticResource MaterialDesignDarkBackground}">
-                        <Grid.Resources>
-                            <Style TargetType="RadioButton" BasedOn="{StaticResource MaterialDesignChoiceChipRadioButton}">
-                                <Setter Property="Padding" Value="0"/>
-                                <Setter Property="GroupName" Value="ModeRecherche"/>
-                            </Style>
-                        </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox materialDesign:HintAssist.Hint="Rechercher"
-                                 VerticalContentAlignment="Center"
-                                 Padding="5,0,0,0"
-                                 Foreground="White"
-                                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                                 SelectionChanged="RechercheTextBox_SelectionChanged"
-                                 x:Name="RechercheTextBox"/>
-                        <RadioButton Grid.Column="1"
-                                     IsChecked="True"
-                                     ToolTip="Rechercher avec le nom et le prénom"
-                                     x:Name="NomPrenomRadioButton">
-                            <RadioButton.Content>
-                                <materialDesign:PackIcon Kind="AlphabetLatin"/>
-                            </RadioButton.Content>
-                        </RadioButton>
-                        <RadioButton Grid.Column="2"
-                                     ToolTip="Rechercher avec le pseudo"
-                                     x:Name="PseudoRadioButton">
-                            <RadioButton.Content>
-                                <materialDesign:PackIcon Kind="At"/>
-                            </RadioButton.Content>
-                        </RadioButton>
-                    </Grid>
-                    <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}" SelectionChanged="ListBoxUtilisateur_SelectionChanged"
-                         SelectedItem="{Binding LeManager.ManagerUtilisateur.UtilisateurSelectionne}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Ellipse Height="40" Width="40" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,10,0">
-                                        <Ellipse.Fill>
-                                            <ImageBrush  ImageSource="{Binding PhotoDeProfil}" ></ImageBrush>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <Grid Grid.Column="1" VerticalAlignment="Center">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Nom}"/>
-                                                <TextBlock Text=" "/>
-                                                <TextBlock Text="{Binding Prenom}"/>
-                                            </StackPanel>
-                                    </Grid>
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo,Converter={StaticResource Pseudo2Affichage}}" FontSize="10"></TextBlock>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>
-            </materialDesign:Card>
-
-
-            <Grid>
-                <UCProfils:ProfilUtilisateur Utilisateur="{Binding SelectedItem,ElementName=ListBoxUtilisateur}" x:Name="UCProfil"/>
-            </Grid>
-        </DockPanel>
+                <UC:PagePrincipale/>
+            </DockPanel>
     </DockPanel>
     </materialDesign:DialogHost>
     
