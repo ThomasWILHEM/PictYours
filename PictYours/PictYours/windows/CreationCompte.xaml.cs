@@ -1,4 +1,5 @@
 ﻿using BiblioClasse;
+using MaterialDesignThemes.Wpf;
 using PictYours;
 using PictYours.userControl.CreationCompte;
 using System;
@@ -30,6 +31,7 @@ namespace AppWpf
         public CreationCompte()
         {
             InitializeComponent();
+            MessageSnackbar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(2.5));
             DataContext = this;
         }
 
@@ -59,61 +61,101 @@ namespace AppWpf
         {
             if (photoProfil.ImageSource?.ToString() == null)
             {
+                AfficherDansSnackbar("Veuillez sélectionnez une photo");
                 Debug.WriteLine("L'image est nulle");
-                mySnackBar.MessageQueue?.Enqueue("L'image est nulle", null, null, null, false, true, TimeSpan.FromSeconds(2));
                 return;
             }
-            if (PasswordBox.Password.Equals(PasswordBoxSame.Password))
+            if (!PasswordBox.Password.Equals(PasswordBoxSame.Password))
             {
-                try
-                {
-                    if (ComboBoxType.SelectedIndex == 0)
-                    {
-                        LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur(FormA.NomProfil.Text, FormA.PrenomProfil.Text, FormA.PseudoProfil.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), DescriptionBox.Text, FormA.DateDeNaissanceBox.DisplayDate));
-                        Debug.WriteLine("Création éffectué");
-                        new MainWindow().Show();
-                        Close();
-                    }
-                    else if (ComboBoxType.SelectedIndex == 1)
-                    {
-                        LeManager.ManagerUtilisateur.CreerUnCompte(new Commercial(FormC.NomBoxC.Text, FormC.PseudoBoxC.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), FormC.SiteBox.Text, DescriptionBox.Text));
-                        Debug.WriteLine("Création éffectué");
-                        new MainWindow().Show();
-                        Close();
-                    }
-                    else
-                    {
-                        mySnackBar.MessageQueue?.Enqueue("Veuillez selectionner un type de profil", null, null, null, false, true, TimeSpan.FromSeconds(2));
-                        Debug.WriteLine("Veuillez selectionner un type de profil");
-                    }
-
-                }
-                catch (InvalidUserException userException)
-                {
-                    //Problème dans CreerUnCompte
-                    mySnackBar.MessageQueue?.Enqueue(userException.Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
-                    Debug.WriteLine(userException.Message);
-                }
-                catch (ArgumentNullException nullException)
-                {
-                    //Certains paramètres sont nuls
-
-                    mySnackBar.MessageQueue?.Enqueue(nullException.Message, null, null, null, false, true, TimeSpan.FromSeconds(2));
-                    Debug.WriteLine(nullException.Message);
-                }
-            }
-            else
-            {
+                AfficherDansSnackbar("Les mots de passe saisies sont différents");
                 Debug.WriteLine("Mauvais mot de passe");
+                return;
             }
+            try
+            {
+                if (ComboBoxType.SelectedIndex == 0)
+                {
+                    LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur(FormA.NomProfil.Text, FormA.PrenomProfil.Text, FormA.PseudoProfil.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), DescriptionBox.Text, FormA.DateDeNaissanceBox.DisplayDate));
+                    Debug.WriteLine("Création éffectué");
+                    new MainWindow().Show();
+                    Close();
+                }
+                else if (ComboBoxType.SelectedIndex == 1)
+                {
+                    LeManager.ManagerUtilisateur.CreerUnCompte(new Commercial(FormC.NomBoxC.Text, FormC.PseudoBoxC.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), FormC.SiteBox.Text, DescriptionBox.Text));
+                    Debug.WriteLine("Création éffectué");
+                    new MainWindow().Show();
+                    Close();
+                }
+                else
+                {
+                    AfficherDansSnackbar("Veuillez selectionner un type de profil");
+                    Debug.WriteLine("Veuillez selectionner un type de profil");
+                }
+
+            }
+            catch (InvalidUserException userException)
+            {
+                //Problème dans CreerUnCompte
+                AfficherDansSnackbar("Un utilisateur avec un pseudo identique existe déjà");
+
+                if (FormA.NomProfil.Text == string.Empty || FormC.NomBoxC.Text == string.Empty) AfficherDansSnackbar("Veuillez saisir votre nom");
+                if (FormA.NomProfil.Text == string.Empty || FormC.NomBoxC.Text == string.Empty) AfficherDansSnackbar("Veuillez saisir votre nom");
+                Debug.WriteLine(userException.Message);
+            }
+            catch (ArgumentNullException nullException)
+            {
+                //Certains paramètres sont nuls
+                Debug.WriteLine(nullException.Message);
+
+                if (FormA.NomProfil.Text == string.Empty && FormC.NomBoxC.Text == string.Empty)
+                {
+                    AfficherDansSnackbar("Veuillez saisir votre nom");
+                    return;
+                }
+                if (FormA.PseudoProfil.Text == string.Empty && FormC.PseudoBoxC.Text == string.Empty)
+                {
+                    AfficherDansSnackbar("Veuillez saisir un pseudo");
+                    return;
+                }
+                if (ComboBoxType.SelectedIndex == 0)
+                {
+                    if (FormA.PrenomProfil.Text == string.Empty)
+                    {
+                        AfficherDansSnackbar("Veuillez saisir votre prénom");
+                        return;
+                    }
+                    if (FormA.DateDeNaissanceBox.Text == string.Empty)
+                    {
+                        AfficherDansSnackbar("Veuillez saisir votre date de naissance");
+                        return;
+                    }
+                }
+                else
+                {
+                    if (FormC.SiteBox.Text == string.Empty)
+                    {
+                        AfficherDansSnackbar("Veuillez saisir votre site internet");
+                        return;
+                    }
+                }
+                if (PasswordBox.Password == string.Empty) AfficherDansSnackbar("Veuillez saisir un mot de passe");
+            }
+
+        }
+
+        private void AfficherDansSnackbar(string message)
+        {
+            MessageSnackbar.MessageQueue.Clear();
+            MessageSnackbar.MessageQueue.Enqueue(message, null, null, null, false, true);
         }
 
         private void parcourirButton_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.InitialDirectory = @"C:";
-            dialog.FileName = "Images";
+            dialog.InitialDirectory = @"C:\Users\Public\Pictures";
             dialog.DefaultExt = ".jpg | .png";
+            dialog.Filter = "All images files (*.jpg, *.png) | *.jpg; *.png ";
 
             bool? result = dialog.ShowDialog();
 

@@ -1,5 +1,7 @@
 ﻿using AppWpf;
 using BiblioClasse;
+using MaterialDesignThemes.Wpf;
+using System;
 using System.Windows;
 
 namespace PictYours
@@ -17,6 +19,7 @@ namespace PictYours
             InitializeComponent();
 
             LeManager.ManagerPhoto.PhotoSelectionneChanged += PhotoSelectionneChanged;
+            MessageSnackBar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
 
             DataContext = this;
         }
@@ -39,11 +42,11 @@ namespace PictYours
                 {
                     if (amateur.PhotosAimees.Contains(e.Photo))
                     {
-                        VisualiseurPhoto.JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Star;
+                        VisualiseurPhoto.JaimeIcon.Kind = PackIconKind.Star;
                     }
                     else
                     {
-                        VisualiseurPhoto.JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.StarOutline;
+                        VisualiseurPhoto.JaimeIcon.Kind = PackIconKind.StarOutline;
                     }
                 }
 
@@ -55,25 +58,12 @@ namespace PictYours
             }
         }
 
-
-
-        //private void MenuButton_Click(object sender, RoutedEventArgs e) 
-        //{
-        //    if (MenuDéroulant.Visibility == Visibility.Collapsed)
-        //        MenuDéroulant.Visibility = Visibility.Visible;
-        //    else
-        //        MenuDéroulant.Visibility = Visibility.Collapsed;
-        //}
-
-
-
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
-            RetourPagePrincipale();
+            LeManager.ManagerUtilisateur.SeDeconnecter();
             var login = new Login();
             login.Show();
             Close();
-            LeManager.ManagerUtilisateur.SeDeconnecter();
         }
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
@@ -85,11 +75,6 @@ namespace PictYours
         {
             RetourPagePrincipale();
             LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
-        }
-
-        private void CloseDialogHostButton_Click(object sender, RoutedEventArgs e)
-        {
-            MesParametres.ReinitialiserParametres();
         }
 
         private void RetourButton_Click(object sender, RoutedEventArgs e)
