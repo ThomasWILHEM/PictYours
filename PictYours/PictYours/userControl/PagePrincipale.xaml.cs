@@ -36,7 +36,7 @@ namespace PictYours.userControl
 
         public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; private set; }
 
-        
+
         private void RechercheTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             if (NomPrenomRadioButton.IsChecked == true)

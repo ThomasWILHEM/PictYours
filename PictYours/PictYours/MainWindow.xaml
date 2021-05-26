@@ -22,9 +22,9 @@
         MinWidth="960"
         MinHeight="750"
         Background="#FF303030">
-    
- 
-    
+
+
+
     <materialDesign:DialogHost>
         <materialDesign:DialogHost.DialogContent>
             <Grid Margin="5">
@@ -39,73 +39,82 @@
             </Grid>
         </materialDesign:DialogHost.DialogContent>
         <DockPanel Margin="10">
-        <materialDesign:Card DockPanel.Dock="Top" Padding="10">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0"  Foreground="White"/>
-                <materialDesign:PopupBox HorizontalAlignment="Right" PlacementMode="BottomAndAlignRightEdges" Margin="10,0,10,0">
-                    <materialDesign:PopupBox.ToggleContent>
-                        <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil}"/>
-                            </Ellipse.Fill>
-                        </Ellipse>
-                    </materialDesign:PopupBox.ToggleContent>
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                            <Style TargetType="materialDesign:PackIcon">
-                                <Setter Property="Margin" Value="0,0,5,0"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <Button x:Name="ProfilButton" Click="ProfilButton_Click">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="AccountBox"/>
-                                    <TextBlock Text="Profil"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="LikeButton" Click="LikeButton_Click">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Star" />
-                                    <TextBlock Text="Mes Likes"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="ParametreButton"
+            <materialDesign:Card DockPanel.Dock="Top" Padding="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Retour"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Margin="10,0,10,0"
+                            x:Name="RetourButton"
+                            Click="RetourButton_Click"
+                            Visibility="Collapsed"
+                            />
+                    <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0"  Foreground="White"/>
+                    <materialDesign:PopupBox HorizontalAlignment="Right" PlacementMode="BottomAndAlignRightEdges" Margin="10,0,10,0">
+                        <materialDesign:PopupBox.ToggleContent>
+                            <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                        </materialDesign:PopupBox.ToggleContent>
+                        <StackPanel>
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                                <Style TargetType="materialDesign:PackIcon">
+                                    <Setter Property="Margin" Value="0,0,5,0"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <Button x:Name="ProfilButton" Click="ProfilButton_Click">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="AccountBox"/>
+                                        <TextBlock Text="Profil"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button x:Name="LikeButton" Click="LikeButton_Click">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Star" />
+                                        <TextBlock Text="Mes Likes"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button x:Name="ParametreButton"
                                 Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Cog"/>
-                                    <TextBlock Text="Paramètres"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="DeconnexionButton" Click="DeconnexionButton_Click">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="Logout"/>
-                                    <TextBlock Text="Déconnexion"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
-                </materialDesign:PopupBox>
-            </Grid>
-        </materialDesign:Card>
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Cog"/>
+                                        <TextBlock Text="Paramètres"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                            <Button x:Name="DeconnexionButton" Click="DeconnexionButton_Click">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Logout"/>
+                                        <TextBlock Text="Déconnexion"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+                </Grid>
+            </materialDesign:Card>
 
-        <DockPanel>
-                <UC:PagePrincipale/>
-            </DockPanel>
-    </DockPanel>
+            <Grid x:Name="GrillePrincipale">
+                <UC:PagePrincipale Visibility="Visible" x:Name="PagePrincipale"/>
+                <UC:Photo Visibility="Collapsed" x:Name="VisualiseurPhoto" />
+            </Grid>
+        </DockPanel>
     </materialDesign:DialogHost>
-    
+
 </Window>

@@ -22,6 +22,8 @@ namespace BiblioClasse
         /// </summary>
         public Dictionary<Utilisateur, List<Photo>> PhotosParUtilisateurs { get; private set; }
 
+        //----------------
+
         public Photo PhotoSelectionne
         {
             get => photoSelectionne;
@@ -31,11 +33,27 @@ namespace BiblioClasse
                 {
                     photoSelectionne = value;
                     OnPropertyChanged(nameof(photoSelectionne));
+                    OnPhotoSelectionneChanged(value);
                 }
             }
         }
         private Photo photoSelectionne;
 
+        /// <summary>
+        /// Evenement pour détecter quand la photo sélectionnée est modifié
+        /// </summary>
+        public class PhotoSelectionneChangedEventArgs
+        {
+            public BiblioClasse.Photo Photo { get; private set; }
+            public PhotoSelectionneChangedEventArgs(BiblioClasse.Photo photo) => Photo = photo;
+        }
+
+        public event EventHandler<PhotoSelectionneChangedEventArgs> PhotoSelectionneChanged;
+
+        public virtual void OnPhotoSelectionneChanged(PhotoSelectionneChangedEventArgs args) => PhotoSelectionneChanged?.Invoke(this, args);
+        public virtual void OnPhotoSelectionneChanged(BiblioClasse.Photo photo) => PhotoSelectionneChanged?.Invoke(this, new PhotoSelectionneChangedEventArgs(photo));
+
+        //-----------------
 
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

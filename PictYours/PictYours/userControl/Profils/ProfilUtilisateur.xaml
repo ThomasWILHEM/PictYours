@@ -85,7 +85,6 @@
                             </TextBlock.Style>
                             -->
                         </TextBlock>
-
                     </StackPanel>
                 </Expander>
             </materialDesign:Card>
@@ -93,7 +92,7 @@
 
             <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="10,5,0,0">
 
-                    <!--<ItemsControl ItemsSource="{Binding Utilisateur.MesPhotos}"
+                <!--<ItemsControl ItemsSource="{Binding Utilisateur.MesPhotos}"
                                   x:Name="listePhotosItemsControl">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -117,27 +116,27 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>-->
-                    <ListBox x:Name="listeBoxPhotos"
+                <ListBox x:Name="listeBoxPhotos"
                              ItemsSource="{Binding Utilisateur.MesPhotos}"
                              SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne}"
-                             SelectionChanged="ListeBoxPhotos_SelectionChanged"
                              >
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel HorizontalAlignment="Center"/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
+                             <!--SelectionChanged="ListeBoxPhotos_SelectionChanged"-->
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
                             <Setter Property="Margin" Value="10"/>
                         </Style>
                     </ListBox.ItemContainerStyle>
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </materialDesign:Card>
 
 
