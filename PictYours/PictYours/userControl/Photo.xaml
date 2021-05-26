@@ -23,7 +23,7 @@
                   Grid.Row="1"
                   ExpandDirection="Down"
                   Height="Auto"
-                      x:Name="ExpanderDetails">
+                  x:Name="ExpanderDetails">
             <Expander.Header>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -34,8 +34,10 @@
                     <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
                                 Grid.Column="1"
                                 Margin="0,0,0,5"
-                            Click="LikeButton_Click">
-                        <materialDesign:PackIcon Kind="Star" HorizontalAlignment="Center"  Width="40" Height="40"/>
+                            Click="LikeButton_Click"
+                            x:Name="LikeButton"
+                            >
+                        <materialDesign:PackIcon Kind="StarOutline" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="JaimeIcon"/>
                     </Button>
                 </Grid>
             </Expander.Header>

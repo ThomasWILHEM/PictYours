@@ -30,6 +30,28 @@ namespace PictYours
                 RetourButton.Visibility = Visibility.Visible;
 
                 VisualiseurPhoto.LaPhoto = e.Photo;
+
+                if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
+                {
+                    VisualiseurPhoto.LikeButton.IsEnabled = false;
+                }
+                if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
+                {
+                    if (amateur.PhotosAimees.Contains(e.Photo))
+                    {
+                        VisualiseurPhoto.JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Star;
+                    }
+                    else
+                    {
+                        VisualiseurPhoto.JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.StarOutline;
+                    }
+                }
+
+                //if ((LeManager.ManagerUtilisateur.UtilisateurActuel as Amateur).MesPhotos.Contains(e.Photo))   |      
+                //{                                                                                              | Ne fonctionne pas
+                //     VisualiseurPhoto.JaimeIcon.IsEnabled = false;                                             |
+                //}                                                                                              |
+
             }
         }
 
@@ -47,6 +69,7 @@ namespace PictYours
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
+            RetourPagePrincipale();
             var login = new Login();
             login.Show();
             Close();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BiblioClasse;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,6 +23,9 @@ namespace PictYours.userControl
     /// </summary>
     public partial class Photo : UserControl, INotifyPropertyChanged
     {
+
+        Manager LeManager = (App.Current as App).LeManager;
+
         public static readonly DependencyProperty UtilisateurProperty
             = DependencyProperty.Register(nameof(BiblioClasse.Photo), typeof(BiblioClasse.Photo), typeof(Photo));
 
@@ -41,12 +45,23 @@ namespace PictYours.userControl
 
         public Photo()
         {
-            InitializeComponent();
+            InitializeComponent();  
         }
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            if ((LeManager.ManagerUtilisateur.UtilisateurActuel as Amateur).PhotosAimees.Contains(LaPhoto))
+            {
+                
+                LeManager.ManagerPhoto.NePlusAimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LaPhoto);
+                JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.StarOutline;
+            }
+            else
+            {    
+                LeManager.ManagerPhoto.AimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LaPhoto);
+                JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Star;
+            }
         }
     }
 }

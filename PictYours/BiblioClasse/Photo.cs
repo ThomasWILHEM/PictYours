@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 
 namespace BiblioClasse
 {
-    public class Photo : IEquatable<Photo>
+    public class Photo : IEquatable<Photo>, INotifyPropertyChanged
     {
         private static int prochainIdentifiant { get; set; } = 0;
 
@@ -39,7 +41,19 @@ namespace BiblioClasse
         /// <summary>
         /// Nombre de "Like" de la photo
         /// </summary>
-        public int NbJaimes { get; private set; }
+        public int NbJaimes
+        {
+            get => nbJaimes;
+            internal set
+            {
+                if (value != -1)
+                {
+                    nbJaimes = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private int nbJaimes;
 
         /// <summary>
         /// Identifiant de la photo utilisé pour la retrouver facilement
@@ -50,6 +64,10 @@ namespace BiblioClasse
         /// Categorie de la photo
         /// </summary>
         public ECategorie Categorie { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 
         /// <summary>
