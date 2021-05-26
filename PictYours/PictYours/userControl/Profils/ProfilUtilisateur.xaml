@@ -28,13 +28,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
-            <Grid.Resources>
-                <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
-                <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
-                <converters:Date2Age x:Key="Date2Age"/>
-                <converters:Site2SiteDesc x:Key="Site2SiteDesc"/>
-                <converters:Utilisateur2Visibility x:Key="Utilisateur2Visibility"/>
-            </Grid.Resources>
 
             <materialDesign:Card Margin="10,5,0,5">
                 <Expander HorizontalAlignment="Stretch">
@@ -48,7 +41,14 @@
                                 </Ellipse>
                                 <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
                             </StackPanel>
-                            <Button Content="Modifier le profil" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" Foreground="White" HorizontalAlignment="Right" Width="150" Style="{StaticResource MaterialDesignRaisedButton}" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" x:Name="ModifButton" Click="ModifButton_Click"/>
+                            <Button Content="Modifier le profil"
+                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                    Foreground="White"
+                                    HorizontalAlignment="Right"
+                                    Width="150" Style="{StaticResource MaterialDesignRaisedButton}"
+                                    Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}"
+                                    x:Name="ModifButton"
+                                    Click="ModifButton_Click"/>
                         </DockPanel>
                     </Expander.Header>
                     <StackPanel Orientation="Vertical" Margin="20,10">
@@ -63,11 +63,28 @@
                             <TextBlock TextWrapping="Wrap" Text=" " />
                             <TextBlock Text="{Binding Utilisateur.Prenom}"/>
                             <!--<Binding Path="{Utilisateur.(biblioclasse:Amateur.Prenom)}"/>-->
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Path=Utilisateur.(biblioclasse:Amateur.DateDeNaissance), Converter={StaticResource Date2Age}}" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.DateDeNaissance, Converter={StaticResource Date2Age}}"
+                                       Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
                         </StackPanel>
                         <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Description}"/>
 
-                        <TextBlock x:Name="SiteWeb" Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2Visibility}}" Text="{Binding Path=Utilisateur.(biblioclasse:Commercial.SiteWeb),Converter={StaticResource Site2SiteDesc}}"/>
+                        <TextBlock x:Name="SiteWeb"
+                                   Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2Visibility}}"
+                                   Text="{Binding Utilisateur.SiteWeb,Converter={StaticResource Site2SiteDesc}}"
+                                   >
+                            <!--
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value=""/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Utilisateur,Converter={StaticResource UtilisateurIsCommercial}}" Value="true">
+                                            <Setter Property="Text" Value="{Binding Utilisateur.SiteWeb,Converter={StaticResource Site2SiteDesc}}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            -->
+                        </TextBlock>
 
                     </StackPanel>
                 </Expander>
@@ -75,37 +92,50 @@
 
 
             <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="10,5,0,0">
-                <ScrollViewer>
 
-                    <ItemsControl ItemsSource="{Binding Utilisateur.MesPhotos}">
+                    <!--<ItemsControl ItemsSource="{Binding Utilisateur.MesPhotos}"
+                                  x:Name="listePhotosItemsControl">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-
                                 <UniformGrid x:Name="UniformGrid" Columns="3" VerticalAlignment="Top" >
-
                                     <UniformGrid.Resources>
                                         <Style TargetType="Button">
                                             <Setter Property="Background" Value="Transparent"/>
                                             <Setter Property="BorderThickness" Value="0"/>
                                             <Setter Property="Margin" Value="20"/>
-
                                         </Style>
-                                     
-
                                     </UniformGrid.Resources>
-
                                 </UniformGrid>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
+
                         <ItemsControl.ItemTemplate>
-                            <DataTemplate >                      
+                            <DataTemplate>
                                 <Button x:Name="PhotoButton" Click="PhotoButton_Click">
                                     <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform"/>
                                 </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
+                    </ItemsControl>-->
+                    <ListBox x:Name="listeBoxPhotos"
+                             ItemsSource="{Binding Utilisateur.MesPhotos}"
+                             >
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                            <Setter Property="Margin" Value="10"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
             </materialDesign:Card>
 
 
@@ -114,7 +144,13 @@
                     <UC:AjouterPhoto/>
                 </materialDesign:DialogHost.DialogContent>
 
-                <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"  Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,20,30,15" Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}" x:Name="AjouterPhotoButton">
+                <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                        Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Margin="0,20,30,15"
+                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                        x:Name="AjouterPhotoButton">
                     <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
                 </Button>
 
