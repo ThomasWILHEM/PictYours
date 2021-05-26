@@ -11,8 +11,15 @@
                 <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="LightBlue"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:Date2Age x:Key="Date2Age"/>
             <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
+            <converters:Site2SiteDesc x:Key="Site2SiteDesc"/>
+            <converters:Utilisateur2ModificationProfilAmateur x:Key="Utilisateur2ModificationProfilAmateur"/>
+            <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
+            <converters:Utilisateur2ModificationProfilCommercial x:Key="Utilisateur2ModificationProfilCommercial"/>
             <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
+            <converters:Utilisateur2Visibility x:Key="Utilisateur2Visibility"/>
+            <converters:UtilisateurIsCommercial x:Key="UtilisateurIsCommercial"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
