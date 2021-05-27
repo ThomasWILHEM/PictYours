@@ -88,7 +88,7 @@
                                     </Button.Content>
                                 </Button>
                                 <Button x:Name="ParametreButton"
-                                Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}">
+                                        Click="ParametreButton_Click">
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="Cog"/>
