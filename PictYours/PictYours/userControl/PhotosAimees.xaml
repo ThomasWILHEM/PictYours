@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="PictYours.userControl.PhotosAimees"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:PictYours.userControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <materialDesign:Card Margin="0,5,0,0" Background="{StaticResource MaterialDesignDarkBackground}">
+            <TextBlock Text="Photos aimées" FontSize="45" Margin="30,0" VerticalAlignment="Center"/>
+        </materialDesign:Card>
+        <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="0,2,0,0">
+
+            <ListBox x:Name="listeBoxPhotosAimees"
+                             ItemsSource="{Binding PhotosAimees}"
+                             SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne}"
+                             SelectionChanged="listeBoxPhotosAimees_SelectionChanged">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image x:Name="PhotoAimeeChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </materialDesign:Card>
+    </Grid>
+</UserControl>

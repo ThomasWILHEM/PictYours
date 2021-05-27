@@ -18,6 +18,11 @@ namespace PictYours
         public MainWindow()
         {
             InitializeComponent();
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
+            {
+                LikeButton.Visibility = Visibility.Collapsed;
+            }
+            else LikeButton.Visibility = Visibility.Visible;
 
             LeManager.ManagerPhoto.SelectedPhotoChanged += OnPhotoSelectionneChanged;
             PagePrincipale.UCProfil.ModifierProfilResqueted += OnModifierProfilRequested;
@@ -31,7 +36,7 @@ namespace PictYours
         {
             PagePrincipale.Visibility = Visibility.Collapsed;
             VisualiseurPhoto.Visibility = Visibility.Collapsed;
-            
+            PagePhotoAimées.Visibility = Visibility.Collapsed;
         }
 
         private void AllDialogHostUCCollapsed()
@@ -68,7 +73,7 @@ namespace PictYours
         {
             if (e.Photo != null)
             {
-                PagePrincipale.Visibility = Visibility.Collapsed;
+                AllMainUCCollapsed();
                 VisualiseurPhoto.Visibility = Visibility.Visible;
                 RetourButton.Visibility = Visibility.Visible;
 
@@ -122,11 +127,14 @@ namespace PictYours
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            AllMainUCCollapsed();
+            RetourButton.Visibility = Visibility.Visible;
+            PagePhotoAimées.Visibility = Visibility.Visible;
         }
 
         private void ProfilButton_Click(object sender, RoutedEventArgs e)
         {
+            AllMainUCCollapsed();
             RetourPagePrincipale();
             LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
         }
@@ -138,6 +146,7 @@ namespace PictYours
 
         private void RetourPagePrincipale()
         {
+            AllMainUCCollapsed();
             PagePrincipale.Visibility = Visibility.Visible;
             RetourButton.Visibility = Visibility.Collapsed;
             VisualiseurPhoto.Visibility = Visibility.Collapsed;
@@ -156,5 +165,6 @@ namespace PictYours
             MesParametres.Visibility = Visibility.Visible;
             DialogHost.OpenDialogCommand.Execute(null, null);
         }
+
     }
 }

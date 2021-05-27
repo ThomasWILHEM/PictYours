@@ -113,6 +113,7 @@
                 <Grid x:Name="GrillePrincipale">
                     <UC:PagePrincipale Visibility="Visible" x:Name="PagePrincipale"/>
                     <UC:Photo Visibility="Collapsed" x:Name="VisualiseurPhoto" SupprimerPhotoRequested="VisualiseurPhoto_SupprimerPhotoRequested" />
+                    <UC:PhotosAimees x:Name="PagePhotoAimées" Visibility="Collapsed"/>
                 </Grid>
             </DockPanel>
             

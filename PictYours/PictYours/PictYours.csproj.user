@@ -16,6 +16,9 @@
     <Compile Update="userControl\Photo.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="userControl\PhotosAimees.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="userControl\Profils\AjouterPhoto.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +46,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="userControl\Photo.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="userControl\PhotosAimees.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="userControl\Profils\AjouterPhoto.xaml">

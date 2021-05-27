@@ -3,6 +3,7 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,7 @@ namespace PictYours.userControl.Profils
                 Debug.WriteLine("Le lieu de la photo est nul");
                 return;
             }
+            Debug.WriteLine(new FileInfo(photoAPoster.ImageSource.ToString()).Name);
             LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(photoAPoster.ImageSource.ToString(), DescPhoto.Text, LieuPhoto.Text, LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Now, (ECategorie)CategorieBox.SelectedItem));
             ReinitialiserChamps();
             DialogHost.CloseDialogCommand.Execute(null,null);
