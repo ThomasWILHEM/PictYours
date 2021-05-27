@@ -10,64 +10,52 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
-    <UserControl.Resources>
-        <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
-        <converters:Utilisateur2ModificationProfilAmateur x:Key="Utilisateur2ModificationProfilAmateur"/>
-        <converters:Utilisateur2ModificationProfilCommercial x:Key="Utilisateur2ModificationProfilCommercial"/>
-    </UserControl.Resources>
+    <Grid DataContext="{Binding ElementName=root}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
 
-
-    <materialDesign:DialogHost DataContext="{Binding ElementName=root}">
-        <materialDesign:DialogHost.DialogContent>
-            <UC:ModifierProfil x:Name="UCModifProfil"/>
-        </materialDesign:DialogHost.DialogContent>
-
-
-        <Grid DataContext="{Binding ElementName=root}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="5*"/>
-            </Grid.RowDefinitions>
-
-            <materialDesign:Card Margin="10,5,0,5">
-                <Expander HorizontalAlignment="Stretch">
-                    <Expander.Header>
-                        <DockPanel>
-                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                                <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Utilisateur.PhotoDeProfil}"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
-                            </StackPanel>
-                            <Button Content="Modifier le profil"
+        <materialDesign:Card Margin="10,5,0,5">
+            <Expander HorizontalAlignment="Stretch">
+                <Expander.Header>
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                            <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Utilisateur.PhotoDeProfil}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
+                        </StackPanel>
+                        <Button Content="Modifier le profil"
                                     Foreground="White"
                                     HorizontalAlignment="Right"
                                     Width="150" Style="{StaticResource MaterialDesignRaisedButton}"
                                     Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}"
                                     x:Name="ModifButton"
                                     Click="ModifButton_Click"/>
-                        </DockPanel>
-                    </Expander.Header>
-                    <StackPanel Orientation="Vertical" Margin="20,10">
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="15"/>
-                                <Setter Property="Margin" Value="0,5"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Nom}" />
-                            <TextBlock TextWrapping="Wrap" Text=" " />
-                            <TextBlock Text="{Binding Utilisateur.Prenom}"/>
-                            <!--<Binding Path="{Utilisateur.(biblioclasse:Amateur.Prenom)}"/>-->
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.DateDeNaissance, Converter={StaticResource Date2Age}}"
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Orientation="Vertical" Margin="20,10">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="15"/>
+                            <Setter Property="Margin" Value="0,5"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Nom}" />
+                        <TextBlock TextWrapping="Wrap" Text=" " />
+                        <TextBlock Text="{Binding Utilisateur.Prenom}"/>
+                        <!--<Binding Path="{Utilisateur.(biblioclasse:Amateur.Prenom)}"/>-->
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.DateDeNaissance, Converter={StaticResource Date2Age}}"
                                        Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
-                        </StackPanel>
-                        <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Description}"/>
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Description}"/>
 
-                        <TextBlock x:Name="SiteWeb"
+                    <TextBlock x:Name="SiteWeb"
                                    Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2Visibility}}"
                                    Text="{Binding Utilisateur.SiteWeb,Converter={StaticResource Site2SiteDesc}}"
                                    >
@@ -83,75 +71,47 @@
                                 </Style>
                             </TextBlock.Style>
                             -->
-                        </TextBlock>
-                    </StackPanel>
-                </Expander>
-            </materialDesign:Card>
+                    </TextBlock>
+                </StackPanel>
+            </Expander>
+        </materialDesign:Card>
 
 
-            <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="10,5,0,0">
+        <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="10,5,0,0">
 
-                <!--<ItemsControl ItemsSource="{Binding Utilisateur.MesPhotos}"
-                                  x:Name="listePhotosItemsControl">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid x:Name="UniformGrid" Columns="3" VerticalAlignment="Top" >
-                                    <UniformGrid.Resources>
-                                        <Style TargetType="Button">
-                                            <Setter Property="Background" Value="Transparent"/>
-                                            <Setter Property="BorderThickness" Value="0"/>
-                                            <Setter Property="Margin" Value="20"/>
-                                        </Style>
-                                    </UniformGrid.Resources>
-                                </UniformGrid>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Button x:Name="PhotoButton" Click="PhotoButton_Click">
-                                    <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform"/>
-                                </Button>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>-->
-                <ListBox x:Name="listeBoxPhotos"
+            <ListBox x:Name="listeBoxPhotos"
                              ItemsSource="{Binding Utilisateur.MesPhotos}"
                              SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne}"
                              >
-                             <!--SelectionChanged="ListeBoxPhotos_SelectionChanged"-->
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel HorizontalAlignment="Center"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-                            <Setter Property="Margin" Value="10"/>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </materialDesign:Card>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                        <Setter Property="Margin" Value="10"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </materialDesign:Card>
 
 
-            <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+        <Button Grid.Row="1" Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                         Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilButton}}"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Right"
                         Margin="0,20,30,15"
                         x:Name="AjouterPhotoButton"
                         Click="AjouterPhotoButton_Click">
-                <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
-            </Button>
-        </Grid>
-    </materialDesign:DialogHost>
-
-
-
+            <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
+        </Button>
+        
+    </Grid>
 </UserControl>
 
