@@ -33,7 +33,7 @@ namespace BiblioClasse
                 {
                     photoSelectionne = value;
                     OnPropertyChanged(nameof(photoSelectionne));
-                    OnPhotoSelectionneChanged(value);
+                    OnSelectedPhotoChanged(value);
                 }
             }
         }
@@ -42,16 +42,16 @@ namespace BiblioClasse
         /// <summary>
         /// Evenement pour détecter quand la photo sélectionnée est modifié
         /// </summary>
-        public class PhotoSelectionneChangedEventArgs
+        public class SelectedPhotoChangedEventArgs
         {
             public BiblioClasse.Photo Photo { get; private set; }
-            public PhotoSelectionneChangedEventArgs(BiblioClasse.Photo photo) => Photo = photo;
+            public SelectedPhotoChangedEventArgs(BiblioClasse.Photo photo) => Photo = photo;
         }
 
-        public event EventHandler<PhotoSelectionneChangedEventArgs> PhotoSelectionneChanged;
+        public event EventHandler<SelectedPhotoChangedEventArgs> SelectedPhotoChanged;
 
-        public virtual void OnPhotoSelectionneChanged(PhotoSelectionneChangedEventArgs args) => PhotoSelectionneChanged?.Invoke(this, args);
-        public virtual void OnPhotoSelectionneChanged(BiblioClasse.Photo photo) => PhotoSelectionneChanged?.Invoke(this, new PhotoSelectionneChangedEventArgs(photo));
+        public virtual void OnSelectedPhotoChanged(SelectedPhotoChangedEventArgs args) => SelectedPhotoChanged?.Invoke(this, args);
+        public virtual void OnSelectedPhotoChanged(BiblioClasse.Photo photo) => SelectedPhotoChanged?.Invoke(this, new SelectedPhotoChangedEventArgs(photo));
 
         //-----------------
 
@@ -181,7 +181,7 @@ namespace BiblioClasse
             }
         }
 
-        public void ChargeDonnées()
+        public void ChargeDonnees()
         {
             var données = Persistance.ChargeDonnées();
             foreach (KeyValuePair <Utilisateur,List<Photo>> u in données.dico)
@@ -195,7 +195,7 @@ namespace BiblioClasse
             }
         }
 
-        public void SauvegardeDonnées()
+        public void SauvegardeDonnees()
         {
            
         }

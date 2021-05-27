@@ -19,7 +19,7 @@ namespace PictYours
         {
             InitializeComponent();
 
-            LeManager.ManagerPhoto.PhotoSelectionneChanged += OnPhotoSelectionneChanged;
+            LeManager.ManagerPhoto.SelectedPhotoChanged += OnPhotoSelectionneChanged;
             PagePrincipale.UCProfil.ModifierProfilResqueted += OnModifierProfilRequested;
             PagePrincipale.UCProfil.AjouterPhotoRequested += OnAjouterPhotoRequested;
             MessageSnackBar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
@@ -64,7 +64,7 @@ namespace PictYours
             MainDialogHost.IsOpen = true;
         }
 
-        private void OnPhotoSelectionneChanged(object sender, ManagerPhoto.PhotoSelectionneChangedEventArgs e)
+        private void OnPhotoSelectionneChanged(object sender, ManagerPhoto.SelectedPhotoChangedEventArgs e)
         {
             if (e.Photo != null)
             {

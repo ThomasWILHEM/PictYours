@@ -18,7 +18,7 @@ namespace BiblioClasse
             ManagerUtilisateur = new ManagerUtilisateur(persistance);
             ManagerUtilisateur.ChargeDonnées();
             ManagerPhoto = new ManagerPhoto(persistance);
-            ManagerPhoto.ChargeDonnées();
+            ManagerPhoto.ChargeDonnees();
 
         }
           
