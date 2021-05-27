@@ -82,7 +82,11 @@
                 </Grid.RowDefinitions>
                 <materialDesign:PackIcon Kind="PlusBox" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100"/>
 
-                <Border Name="border" Grid.Row="0" BorderBrush="{StaticResource MaterialDesignDarkBackground}" Height="230" Width="230" BorderThickness="5" Margin="30" CornerRadius="30">
+                <Border Grid.Row="0"
+                        BorderBrush="{StaticResource MaterialDesignDarkBackground}"
+                        Height="230" Width="230" BorderThickness="5"
+                        Margin="30"
+                        CornerRadius="30">
                     <Border.Background>
                         <ImageBrush x:Name="photoAPoster" Stretch="UniformToFill"/>
                     </Border.Background>
