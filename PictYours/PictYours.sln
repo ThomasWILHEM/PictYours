@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_RechercheUtilisateur",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_ManagerPhoto", "Test_ManagerPhoto\Test_ManagerPhoto.csproj", "{1D7D70C1-7A66-4087-9258-321819519634}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stub", "Stub\Stub.csproj", "{0E2081A7-4619-4DAC-8BBB-66793AD42622}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stub", "Stub\Stub.csproj", "{0E2081A7-4619-4DAC-8BBB-66793AD42622}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PictYours.Setup", "PictYours.Setup\PictYours.Setup.vdproj", "{EA588BD4-468B-459D-AFF7-CB40EED6793F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,8 @@ Global
 		{0E2081A7-4619-4DAC-8BBB-66793AD42622}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E2081A7-4619-4DAC-8BBB-66793AD42622}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E2081A7-4619-4DAC-8BBB-66793AD42622}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA588BD4-468B-459D-AFF7-CB40EED6793F}.Debug|Any CPU.ActiveCfg = Debug
+		{EA588BD4-468B-459D-AFF7-CB40EED6793F}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
