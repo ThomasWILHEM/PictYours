@@ -1,5 +1,6 @@
 ﻿using System;
 using BiblioClasse;
+using Stub;
 
 namespace Test_ManagerPhoto
 {
@@ -10,7 +11,7 @@ namespace Test_ManagerPhoto
             Test_ManagerPhoto();
         }
 
-        static ManagerPhoto managerPhoto = new ManagerPhoto();
+        static ManagerPhoto managerPhoto = new ManagerPhoto(new Stub.Stub());
 
         static Utilisateur utilisateur = new Amateur(
             "MARQUES","Florent","florent.marques"
