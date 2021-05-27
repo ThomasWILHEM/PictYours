@@ -20,6 +20,7 @@
             <converters:Utilisateur2ModificationProfilCommercial x:Key="Utilisateur2ModificationProfilCommercial"/>
             <converters:Utilisateur2PrenomNom x:Key="Utilisateur2PrenomNom"/>
             <converters:Utilisateur2Visibility x:Key="Utilisateur2Visibility"/>
+            <converters:Date2Affichage x:Key="Date2Affichage"/>
             <converters:UtilisateurIsCommercial x:Key="UtilisateurIsCommercial"/>
         </ResourceDictionary>
     </Application.Resources>

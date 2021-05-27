@@ -57,20 +57,23 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition  Width="2*"/>
-                            <ColumnDefinition  Width="1*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition  Width="1.5*"/>
+                            <ColumnDefinition  Width="1.5*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="10" Grid.Column="0">
                             <TextBlock Text="Description" FontSize="20"/>
-
-                                <TextBlock Text="{Binding LaPhoto.Description}" TextWrapping="Wrap"/>
-
+                            <TextBlock Text="{Binding LaPhoto.Description}" TextWrapping="Wrap"/>
                         </StackPanel>
                         <StackPanel Margin="10" Grid.Column="1">
+                            <TextBlock Text="Date de publication" FontSize="20"/>
+                            <TextBlock Text="{Binding LaPhoto.DatePub,Converter={StaticResource Date2Affichage}}"/>
+                        </StackPanel>
+                        <StackPanel Margin="10" Grid.Column="2">
                             <TextBlock Text="Lieu" FontSize="20"/>
                             <TextBlock Text="{Binding LaPhoto.Lieu}"/>
                         </StackPanel>
-                        <StackPanel Margin="10" Grid.Column="2">
+                        <StackPanel Margin="10" Grid.Column="3">
                             <TextBlock Text="Catégorie" FontSize="20"/>
                             <TextBlock Text="{Binding LaPhoto.Categorie}"/>
                         </StackPanel>

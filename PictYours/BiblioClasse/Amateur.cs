@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BiblioClasse
 {
@@ -43,12 +44,12 @@ namespace BiblioClasse
         /// <summary>
         /// Liste des photos aimées de l'Amateur 
         /// </summary>
-        private List<Photo> photosAimees = new List<Photo>();
+        private ObservableCollection<Photo> photosAimees = new ObservableCollection<Photo>();
         /// <summary>
         /// ReadOnlyCollection de photos aimées de l'Amateur
         /// </summary>
-        public ReadOnlyCollection<Photo> PhotosAimees { get; }
-
+        public ReadOnlyObservableCollection<Photo> PhotosAimees { get; }
+        
         /// <summary>
         /// Constructeur d'un utilisateur Amateur
         /// </summary>
@@ -63,7 +64,7 @@ namespace BiblioClasse
         {
             Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException("Le prénom d'un Amateur ne peut pas être nul",nameof(prenom)) : prenom;
             DateDeNaissance = dateDeNaissance;
-            PhotosAimees = new ReadOnlyCollection<Photo>(photosAimees);
+            PhotosAimees = new ReadOnlyObservableCollection<Photo>(photosAimees);
         }
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace BiblioClasse
         {
             Prenom = string.IsNullOrWhiteSpace(prenom) ? throw new ArgumentNullException(nameof(prenom), "Le prénom d'un Amateur ne peut pas être nul") : prenom;
             DateDeNaissance = dateDeNaissance;
-            PhotosAimees = new ReadOnlyCollection<Photo>(photosAimees);
+            PhotosAimees = new ReadOnlyObservableCollection<Photo>(photosAimees);
         }
 
         /// <summary>
@@ -105,7 +106,7 @@ namespace BiblioClasse
         {
             if (identifiant == null) throw new ArgumentNullException(nameof(identifiant),"L'identifiant passé en paramètre est nulle");
 
-            Photo photo = photosAimees.Find(p => p.Identifiant == identifiant);
+            Photo photo = photosAimees.FirstOrDefault(p => p.Identifiant == identifiant);
             if (photo == null) throw new InvalidPhotoException($"La photo associé à l'identifiant {identifiant} passé en paramètre n'est pas aimé par l'Amateur{ToShortString()}");
             photosAimees.Remove(photo);
             photo.DiminuerJaimes();

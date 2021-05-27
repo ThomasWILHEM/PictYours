@@ -7,37 +7,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="img\icons_128\**" />
+	  <Compile Remove="img\icons_64\**" />
+	  <EmbeddedResource Remove="img\icons_128\**" />
+	  <EmbeddedResource Remove="img\icons_64\**" />
+	  <None Remove="img\icons_128\**" />
+	  <None Remove="img\icons_64\**" />
+	  <Page Remove="img\icons_128\**" />
+	  <Page Remove="img\icons_64\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Remove="img\app_icon.png" />
 		<None Remove="img\estelle_rond.png" />
-		<None Remove="img\icons_128\add_128.png" />
-		<None Remove="img\icons_128\camera_128.png" />
-		<None Remove="img\icons_128\delete_128.png" />
-		<None Remove="img\icons_128\down-arrow_128.png" />
-		<None Remove="img\icons_128\edit_128.png" />
-		<None Remove="img\icons_128\folder_128.png" />
-		<None Remove="img\icons_128\folder_outlined_128.png" />
-		<None Remove="img\icons_128\post_128.png" />
-		<None Remove="img\icons_128\sign-in_128.png" />
-		<None Remove="img\icons_128\sign-out_128.png" />
-		<None Remove="img\icons_128\star_128.png" />
-		<None Remove="img\icons_128\star_outlined_128.png" />
-		<None Remove="img\icons_128\up-arrow_128.png" />
-		<None Remove="img\icons_128\user_128.png" />
-		<None Remove="img\icons_64\add_64.png" />
-		<None Remove="img\icons_64\camera_64.png" />
-		<None Remove="img\icons_64\delete_64.png" />
-		<None Remove="img\icons_64\down-arrow_64.png" />
-		<None Remove="img\icons_64\edit_64.png" />
-		<None Remove="img\icons_64\floppy-disk_64.png" />
-		<None Remove="img\icons_64\folder_64.png" />
-		<None Remove="img\icons_64\folder_outlined_64.png" />
-		<None Remove="img\icons_64\post_64.png" />
-		<None Remove="img\icons_64\sign-in_64.png" />
-		<None Remove="img\icons_64\sign-out_64.png" />
-		<None Remove="img\icons_64\star_64.png" />
-		<None Remove="img\icons_64\star_outlined_64.png" />
-		<None Remove="img\icons_64\up-arrow_64.png" />
-		<None Remove="img\icons_64\user_64.png" />
 		<None Remove="img\image.jpg" />
 		<None Remove="img\montagne.jpg" />
 		<None Remove="img\mozilla.png" />
@@ -52,93 +34,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="img\icons_128\add_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\camera_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\delete_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\down-arrow_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\edit_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\folder_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\folder_outlined_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\post_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\sign-in_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\sign-out_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\star_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\star_outlined_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\up-arrow_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_128\user_128.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\add_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\camera_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\delete_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\down-arrow_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\edit_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\floppy-disk_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\folder_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\folder_outlined_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\post_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\sign-in_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\sign-out_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\star_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\star_outlined_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\up-arrow_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-		<Content Include="img\icons_64\user_64.png">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
 		<Content Include="img\image.jpg">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>

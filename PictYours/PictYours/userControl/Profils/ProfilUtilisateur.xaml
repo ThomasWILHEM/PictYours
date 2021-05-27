@@ -59,18 +59,7 @@
                                    Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2Visibility}}"
                                    Text="{Binding Utilisateur.SiteWeb,Converter={StaticResource Site2SiteDesc}}"
                                    >
-                            <!--
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Text" Value=""/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding Utilisateur,Converter={StaticResource UtilisateurIsCommercial}}" Value="true">
-                                            <Setter Property="Text" Value="{Binding Utilisateur.SiteWeb,Converter={StaticResource Site2SiteDesc}}"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                            -->
+                           
                     </TextBlock>
                 </StackPanel>
             </Expander>
