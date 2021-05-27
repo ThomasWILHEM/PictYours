@@ -100,6 +100,7 @@ namespace PictYours
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
+            RetourPagePrincipale();
             LeManager.ManagerUtilisateur.SeDeconnecter();
             var login = new Login();
             login.Show();
@@ -129,6 +130,13 @@ namespace PictYours
             VisualiseurPhoto.Visibility = Visibility.Collapsed;
             VisualiseurPhoto.ExpanderDetails.IsExpanded = false;
             LeManager.ManagerPhoto.PhotoSelectionne = null;
+        }
+
+        private void ParametreButton_Click(object sender, RoutedEventArgs e)
+        {
+            AllDialogHostUCCollapsed();
+            MesParametres.Visibility = Visibility.Visible;
+            DialogHost.OpenDialogCommand.Execute(null, null);
         }
     }
 }

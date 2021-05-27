@@ -117,19 +117,7 @@ namespace PictYours.userControl.Profils
         public ModifierProfil()
         {
             InitializeComponent();
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
-            {
-                UCAmateur.NomBox.DataContext = this;
-                UCAmateur.PrenomBox.DataContext = this;
-                UCAmateur.DateDeNaissanceBox.DataContext = this;
-            }
-            else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
-            {
-                UCCommercial.NomBox.DataContext = this;
-                UCCommercial.SiteBox.DataContext = this;
-            }
-            Nom = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
-            DescBox.DataContext = this;
+            DataContext = this;
 
             InitialiserChamps();
         }
@@ -172,18 +160,18 @@ namespace PictYours.userControl.Profils
         {
             if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
             {
-                LeManager.ManagerUtilisateur.ModifierPrenom(UCAmateur.PrenomBox.Text);
+                LeManager.ManagerUtilisateur.ModifierPrenom(Prenom);
 
-                LeManager.ManagerUtilisateur.ModifierDateDeNaissance(UCAmateur.DateDeNaissanceBox.DisplayDate);
-                LeManager.ManagerUtilisateur.ModifierNom(UCAmateur.NomBox.Text);
+                LeManager.ManagerUtilisateur.ModifierDateDeNaissance(DateDeNaissance);
+                LeManager.ManagerUtilisateur.ModifierNom(Nom);
             }
             else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
             {
-                LeManager.ManagerUtilisateur.ModifierNom(UCCommercial.NomBox.Text);
-                LeManager.ManagerUtilisateur.ModifierSiteWeb(UCCommercial.SiteBox.Text);
+                LeManager.ManagerUtilisateur.ModifierNom(Nom);
+                LeManager.ManagerUtilisateur.ModifierSiteWeb(SiteWeb);
             }
-            LeManager.ManagerUtilisateur.ModifierDescription(DescBox.Text);
-            LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(PhotoAModifier.ImageSource.ToString());
+            LeManager.ManagerUtilisateur.ModifierDescription(Description);
+            LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(CheminPhoto);
         }
 
         private void RetourButton_Click(object sender, RoutedEventArgs e)
