@@ -133,7 +133,7 @@ namespace BiblioClasse
             ListeUtilisateursParPhotosAimees.Remove(photo);
 
             //Supprime dans MesPhotos de l'utilisateur
-            //utilisateur.SupprimerPhoto(photo.Identifiant);
+            utilisateur.SupprimerPhoto(photo.Identifiant);
 
             //Afficher un Dialog en fonction du resultat
         }

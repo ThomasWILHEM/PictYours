@@ -29,10 +29,18 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Détails" FontSize="25" VerticalAlignment="Center"/>
                         <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
                                 Grid.Column="1"
+                                Margin="0,0,30,5"
+                            Click="SupprimerPhotoButton_Click"
+                            x:Name="SupprimerPhotoButton">
+                            <materialDesign:PackIcon Kind="TrashCan" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="SupprimerIcon"/>
+                        </Button>
+                        <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
+                                Grid.Column="2"
                                 Margin="0,0,0,5"
                             Click="LikeButton_Click"
                             x:Name="LikeButton"
