@@ -76,8 +76,13 @@ namespace PictYours
 
                 if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
                 {
-                    VisualiseurPhoto.LikeButton.IsEnabled = false;
+                    VisualiseurPhoto.LikeButton.Visibility = Visibility.Collapsed;
+                } 
+                else
+                {
+                    VisualiseurPhoto.LikeButton.Visibility = Visibility.Visible;
                 }
+                
                 if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
                 {
                     if (amateur.PhotosAimees.Contains(e.Photo))
@@ -88,6 +93,14 @@ namespace PictYours
                     {
                         VisualiseurPhoto.JaimeIcon.Kind = PackIconKind.StarOutline;
                     }
+                }
+
+                if (!LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo))
+                {
+                    VisualiseurPhoto.SupprimerPhotoButton.Visibility = Visibility.Collapsed;
+                } else
+                {
+                    VisualiseurPhoto.SupprimerPhotoButton.Visibility = Visibility.Visible;
                 }
 
                 //if ((LeManager.ManagerUtilisateur.UtilisateurActuel as Amateur).MesPhotos.Contains(e.Photo))   |      
@@ -130,6 +143,11 @@ namespace PictYours
             VisualiseurPhoto.Visibility = Visibility.Collapsed;
             VisualiseurPhoto.ExpanderDetails.IsExpanded = false;
             LeManager.ManagerPhoto.PhotoSelectionne = null;
+        }
+
+        private void VisualiseurPhoto_SupprimerPhotoRequested(object sender, userControl.Photo.SupprimerPhotoRequestedEventArgs e)
+        {
+            RetourPagePrincipale();
         }
 
         private void ParametreButton_Click(object sender, RoutedEventArgs e)

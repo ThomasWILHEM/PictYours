@@ -45,7 +45,7 @@ namespace PictYours.userControl
 
         public Photo()
         {
-            InitializeComponent();  
+            InitializeComponent();
         }
 
         private void LikeButton_Click(object sender, RoutedEventArgs e)
@@ -53,14 +53,31 @@ namespace PictYours.userControl
 
             if ((LeManager.ManagerUtilisateur.UtilisateurActuel as Amateur).PhotosAimees.Contains(LaPhoto))
             {
-                
+
                 LeManager.ManagerPhoto.NePlusAimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LaPhoto);
                 JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.StarOutline;
             }
             else
-            {    
+            {
                 LeManager.ManagerPhoto.AimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LaPhoto);
                 JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Star;
+            }
+        }
+
+
+        public class SupprimerPhotoRequestedEventArgs
+        {
+        }
+
+        public event EventHandler<SupprimerPhotoRequestedEventArgs> SupprimerPhotoRequested;
+        public virtual void OnSupprimerPhotoResqueted() => SupprimerPhotoRequested?.Invoke(this, new SupprimerPhotoRequestedEventArgs());
+
+        private void SupprimerPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(LaPhoto))
+            {
+                LeManager.ManagerPhoto.SupprimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LaPhoto);
+                OnSupprimerPhotoResqueted();
             }
         }
     }
