@@ -142,6 +142,7 @@ namespace PictYours
         private void RetourButton_Click(object sender, RoutedEventArgs e)
         {
             RetourPagePrincipale();
+            PagePhotoAimées.listeBoxPhotosAimees.SelectedItem = null;
         }
 
         private void RetourPagePrincipale()
