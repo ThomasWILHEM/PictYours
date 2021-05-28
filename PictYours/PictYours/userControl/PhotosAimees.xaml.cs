@@ -36,7 +36,7 @@ namespace PictYours.userControl
 
         private void listeBoxPhotosAimees_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.RemovedItems.Count > 0)
+            if (e.AddedItems.Count == 0)
             {
                 LeManager.ManagerPhoto.PhotoSelectionne = null;
                 return;
