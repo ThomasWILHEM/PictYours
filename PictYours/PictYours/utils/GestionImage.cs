@@ -13,7 +13,10 @@ namespace PictYours.utils
         {
             ImagesPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\images\photos");
             ProfilPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\images\profils");
-            IconesPath = Path.Combine(Directory.GetCurrentDirectory(), @"img");
+            IconesPath = Path.Combine(Directory.GetCurrentDirectory(), @"icons");
+            if (!Directory.Exists(ImagesPath)) Directory.CreateDirectory(ImagesPath);
+            if (!Directory.Exists(ProfilPath)) Directory.CreateDirectory(ProfilPath);
+            if (!Directory.Exists(IconesPath)) Directory.CreateDirectory(IconesPath);
         }
 
         public enum TypeEnregistrement
@@ -52,6 +55,10 @@ namespace PictYours.utils
         /// <returns></returns>
         public static string EnregistrerImage(string fullImagePath, string name, TypeEnregistrement typeEnregistrement, bool nomAvecExtension)
         {
+            if (typeEnregistrement.Equals(TypeEnregistrement.Images) && !Directory.Exists(ImagesPath)) Directory.CreateDirectory(ImagesPath);
+            if (typeEnregistrement.Equals(TypeEnregistrement.Profil) && !Directory.Exists(ProfilPath)) Directory.CreateDirectory(ProfilPath);
+            if (typeEnregistrement.Equals(TypeEnregistrement.Icones) && !Directory.Exists(IconesPath)) Directory.CreateDirectory(IconesPath);
+
             if (string.IsNullOrWhiteSpace(fullImagePath)) return null;
             if (string.IsNullOrWhiteSpace(name)) return null;
             FileInfo fi = new FileInfo(fullImagePath);

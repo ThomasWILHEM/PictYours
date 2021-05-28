@@ -31,6 +31,10 @@ namespace BiblioClasse
                 {
                     utilisateurSelectionne = value;
                     OnPropertyChanged(nameof(UtilisateurSelectionne));
+                    if(value is Commercial commercial)
+                    {
+                        commercial.NombreDeVisites++;
+                    }
                 }
             }
         }

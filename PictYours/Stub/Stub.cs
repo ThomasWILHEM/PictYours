@@ -7,10 +7,10 @@ namespace Stub
 {
     public class Stub : IPersistanceManager
     {
-        Amateur pierre = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", "Description de Jean Pierre", DateTime.Now.AddYears(-20));
-        Amateur tulipe = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", "Description d'Estelle Tulipe", DateTime.Now.AddYears(-15));
-        Amateur thomas = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", "Description de Thomas Wilhem", DateTime.Now.AddYears(-18));
-        Commercial mozilla = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
+        Amateur pierre = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "user.png", "Description de Jean Pierre", DateTime.Now.AddYears(-20));
+        Amateur tulipe = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "estelle_rond.png", "Description d'Estelle Tulipe", DateTime.Now.AddYears(-15));
+        Amateur thomas = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "pp.jpg", "Description de Thomas Wilhem", DateTime.Now.AddYears(-18));
+        Commercial mozilla = new Commercial("Mozilla", "mozilla", "mdp", "mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
     public (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur,List<Photo>> dico) ChargeDonnées()
         {
@@ -19,7 +19,7 @@ namespace Stub
 
         public void SauvegardeDonnées(List<Utilisateur> listeUtilisateur)
         {
-            Debug.WriteLine("Sauvegarde demmandée");
+            Debug.WriteLine("Sauvegarde demandée");
         }
 
         private List<Utilisateur> ChargeUtilisateur()

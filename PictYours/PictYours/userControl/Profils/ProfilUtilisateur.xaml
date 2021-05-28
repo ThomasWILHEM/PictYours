@@ -11,14 +11,15 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
     <Grid DataContext="{Binding ElementName=root}">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
         <materialDesign:Card Margin="10,5,0,5">
-            <Expander HorizontalAlignment="Stretch">
+            <Expander HorizontalAlignment="Stretch"
+                      x:Name="ExpanderProfil">
                 <Expander.Header>
                     <DockPanel>
                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
@@ -38,30 +39,48 @@
                                     Click="ModifButton_Click"/>
                     </DockPanel>
                 </Expander.Header>
-                <StackPanel Orientation="Vertical" Margin="20,10">
-                    <StackPanel.Resources>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="FontSize" Value="15"/>
-                            <Setter Property="Margin" Value="0,5"/>
-                        </Style>
-                    </StackPanel.Resources>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Nom}" />
-                        <TextBlock TextWrapping="Wrap" Text=" " />
-                        <TextBlock Text="{Binding Utilisateur.Prenom}"/>
-                        <!--<Binding Path="{Utilisateur.(biblioclasse:Amateur.Prenom)}"/>-->
-                        <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.DateDeNaissance, Converter={StaticResource Date2Age}}"
-                                       Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}"/>
-                    </StackPanel>
-                    <TextBlock TextWrapping="Wrap" Text="{Binding Utilisateur.Description}"/>
-
-                    <TextBlock x:Name="SiteWeb"
-                                   Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2Visibility}}"
-                                   Text="{Binding Utilisateur.SiteWeb,Converter={StaticResource Site2SiteDesc}}"
-                                   >
-                           
-                    </TextBlock>
-                </StackPanel>
+                <Expander.Resources>
+                    <DataTemplate DataType="{x:Type biblioclasse:Amateur}">
+                        <StackPanel Margin="20,10">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="Margin" Value="0,5"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Nom}" />
+                                <TextBlock TextWrapping="Wrap" Text=" " />
+                                <TextBlock Text="{Binding Prenom}"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding DateDeNaissance, Converter={StaticResource Date2Age}}"/>
+                            </StackPanel>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type biblioclasse:Commercial}">
+                        <Grid Margin="20,10">
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="Margin" Value="0,5"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Nom}" />
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
+                            <TextBlock x:Name="SiteWeb" Text="{Binding SiteWeb,Converter={StaticResource Site2SiteDesc}}"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding NombreDeVisites,Converter={StaticResource NombreVisites2Affichage}}"
+                                       HorizontalAlignment="Right"
+                                       Grid.Column="1"/>
+                        </Grid>
+                    </DataTemplate>
+                </Expander.Resources>
+                <ContentControl Content="{Binding Utilisateur}"/>
             </Expander>
         </materialDesign:Card>
 
@@ -84,7 +103,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Images}" Stretch="Uniform" Width="260" Height="260"/>
+                        <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Images}" Stretch="UniformToFill" Width="260" Height="260"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -100,7 +119,7 @@
                         Click="AjouterPhotoButton_Click">
             <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
         </Button>
-        
+
     </Grid>
 </UserControl>
 

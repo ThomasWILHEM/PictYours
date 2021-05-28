@@ -66,9 +66,7 @@
                         </ComboBox>
                         <Border BorderBrush="#393332" BorderThickness="2" Grid.Row="1" Margin="65,10" Visibility="Visible" x:Name="Vide" CornerRadius="10">
                             <StackPanel>
-                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextWrapping="Wrap" TextAlignment="Center">
-                                    Veuillez choisir un type de compte
-                                </TextBlock>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextWrapping="Wrap" TextAlignment="Center" Text="Veuillez choisir un type de compte"/>
                                 <materialDesign:PackIcon Kind="CursorPointer" Width="100" Height="100" HorizontalAlignment="Center" Foreground="#252222"/>
                             </StackPanel>
                         </Border>
@@ -84,7 +82,7 @@
                     Description
                 </GroupBox.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <TextBox x:Name="DescriptionBox" FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2"/>
+                    <TextBox x:Name="DescriptionBox" MaxLength="750" FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2"/>
                 </ScrollViewer>
             </GroupBox>
 

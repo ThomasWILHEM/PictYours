@@ -6,12 +6,24 @@ using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
-    public class Commercial : UtilisateurPrive,IEquatable<Commercial>
+    public class Commercial : UtilisateurPrive, IEquatable<Commercial>
     {
         /// <summary>
         /// Nombre de visites sur le profil du compte commercial
         /// </summary>
-        public int NombreDeVisites { get; private set; }
+        public int NombreDeVisites
+        {
+            get => nombreDeVisites;
+            set
+            {
+                if(value != nombreDeVisites)
+                {
+                    nombreDeVisites = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private int nombreDeVisites;
 
         /// <summary>
         /// Lien du site web du profil commercial
@@ -21,7 +33,7 @@ namespace BiblioClasse
             get => siteWeb;
             internal set
             {
-                if(value != null && value != siteWeb)
+                if (value != null && value != siteWeb)
                 {
                     siteWeb = value;
                     OnPropertyChanged();
@@ -30,17 +42,17 @@ namespace BiblioClasse
         }
         private string siteWeb;
 
-        public Commercial(string nom,string pseudo,string motDePasse, string photoDeProfil, int nombreDeVisite, string siteWeb, string description)
-            :base(nom,pseudo,motDePasse, photoDeProfil,description)
+        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, int nombreDeVisite, string siteWeb, string description)
+            : base(nom, pseudo, motDePasse, photoDeProfil, description)
         {
             NombreDeVisites = nombreDeVisite;
-            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb),"Le site web ne peut pas être nul");
+            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb), "Le site web ne peut pas être nul");
         }
 
-        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, string siteWeb,string description)
-            :base(nom,pseudo,motDePasse,photoDeProfil,description)
+        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, string siteWeb, string description)
+            : base(nom, pseudo, motDePasse, photoDeProfil, description)
         {
-            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb),"Le site web ne peut pas être nul");
+            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb), "Le site web ne peut pas être nul");
         }
 
         public void MettreEnAvantUnePhoto(Photo photo)

@@ -27,14 +27,10 @@ namespace PictYours.userControl
         public PhotosAimees()
         {
             InitializeComponent();
-            //if(LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
-            //{
-                DataContext = LeManager.ManagerUtilisateur.UtilisateurActuel;
-            
-
+            DataContext = LeManager.ManagerUtilisateur.UtilisateurActuel as Amateur;
         }
 
-        private void listeBoxPhotosAimees_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListeBoxPhotosAimees_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0)
             {

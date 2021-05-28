@@ -88,7 +88,7 @@ namespace BiblioClasse
 
             if (PhotosParUtilisateurs.ContainsKey(utilisateur))
             {
-                PhotosParUtilisateurs.GetValueOrDefault(utilisateur)?.Insert(0,photo);
+                PhotosParUtilisateurs.GetValueOrDefault(utilisateur)?.Insert(0, photo);
             }
             else
             {
@@ -121,7 +121,7 @@ namespace BiblioClasse
             if (ListeUtilisateursParPhotosAimees.TryGetValue(photo, out List<Amateur> utilisateursPhotoAimees))
             {
                 //On supprime toutes les occurences de la photo dans la liste des photos aimées des autres utilisateurs
-                foreach(var u in utilisateursPhotoAimees)
+                foreach (var u in utilisateursPhotoAimees)
                 {
                     u.NePlusAimerPhoto(photo.Identifiant);
                 }
@@ -150,7 +150,7 @@ namespace BiblioClasse
             if (!amateur.EstConnecte) throw new InvalidUserException($"L'Amateur {amateur.ToShortString()} n'est pas connecté");
             if (amateur.PhotosAimees.Contains(photo)) throw new InvalidPhotoException($"L'Amateur {amateur.ToShortString()} a déjà aimé la photo {photo.Identifiant}");
             if (!photo.Proprietaire.MesPhotos.Contains(photo)) throw new InvalidPhotoException($"Le propiétaire de la photo n'a pas posté la photo {photo.Identifiant}");
-                
+
             if (ListeUtilisateursParPhotosAimees.ContainsKey(photo))
             {
                 ListeUtilisateursParPhotosAimees.GetValueOrDefault(photo)?.Add(amateur);
@@ -184,10 +184,10 @@ namespace BiblioClasse
         public void ChargeDonnees()
         {
             var données = Persistance.ChargeDonnées();
-            foreach (KeyValuePair <Utilisateur,List<Photo>> u in données.dico)
+            foreach (KeyValuePair<Utilisateur, List<Photo>> u in données.dico)
             {
                 u.Key.EstConnecte = true;
-                foreach(Photo photo in u.Value)
+                foreach (Photo photo in u.Value)
                 {
                     PosterUnePhoto(u.Key, photo);
                 }
@@ -197,7 +197,7 @@ namespace BiblioClasse
 
         public void SauvegardeDonnees()
         {
-           
+
         }
     }
 }
