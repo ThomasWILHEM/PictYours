@@ -26,7 +26,7 @@
                     <Setter Property="Margin" Value="20"/>
                 </Style>
             </StackPanel.Resources>
-            <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}" >
+            <StackPanel>
                 <TextBlock Text="Prénom"/>
                 <TextBox x:Name="PrenomBox" Text="{Binding Prenom}"/>
             </StackPanel>
@@ -34,7 +34,7 @@
                 <TextBlock Text="Nom"/>
                 <TextBox x:Name="NomBox" Text="{Binding Nom}"/>
             </StackPanel>
-            <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}">
+            <StackPanel>
                 <TextBlock Text="Date de Naissance"/>
                 <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" Width="200" SelectedDate="{Binding DateDeNaissance}" />
             </StackPanel>

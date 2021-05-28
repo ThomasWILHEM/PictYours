@@ -1,8 +1,10 @@
 ﻿using BiblioClasse;
 using MaterialDesignThemes.Wpf;
+using PictYours.utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -136,24 +138,29 @@ namespace PictYours.userControl.Profils
             Nom = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
             Description = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
             CheminPhoto = LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil;
-            PhotoAModifier.ImageSource = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + CheminPhoto, UriKind.Absolute));
+            PhotoAModifier.ImageSource = new BitmapImage(new Uri(GestionImage.ProfilPath+ "\\" + CheminPhoto, UriKind.Relative));
         }
 
         private void ParcourirPhotoAModifierButton_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.InitialDirectory = @"C:";
-            dialog.FileName = "Images";
-            //dialog.Filter = "*.jpg | *.png";
-            dialog.DefaultExt = ".jpg | .png";
+            //Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            //dialog.InitialDirectory = @"C:";
+            //dialog.FileName = "Images";
+            ////dialog.Filter = "*.jpg | *.png";
+            //dialog.DefaultExt = ".jpg | .png";
 
-            bool? result = dialog.ShowDialog();
+            //bool? result = dialog.ShowDialog();
 
-            if (result == true)
-            {
-                string filename = dialog.FileName;
-                PhotoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
-            }
+            //if (result == true)
+            //{
+            //    string filename = dialog.FileName;
+            //    PhotoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+            //}
+
+            string filename = GestionImage.ChooseImage();
+            if (filename == null) return;
+            PhotoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
+            CheminPhoto = filename;
         }
 
         private void EnregistrerButton_Click(object sender, RoutedEventArgs e)
@@ -171,7 +178,16 @@ namespace PictYours.userControl.Profils
                 LeManager.ManagerUtilisateur.ModifierSiteWeb(SiteWeb);
             }
             LeManager.ManagerUtilisateur.ModifierDescription(Description);
-            LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(CheminPhoto);
+
+            string cheminFinal = GestionImage.EnregistrerImage(
+                CheminPhoto,
+                LeManager.ManagerUtilisateur.UtilisateurActuel.Pseudo,
+                GestionImage.TypeEnregistrement.Profil,
+                false
+                );
+            FileInfo fi = new(cheminFinal);
+            Debug.WriteLine(fi.Name);
+            LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(fi.Name);
         }
 
         private void RetourButton_Click(object sender, RoutedEventArgs e)

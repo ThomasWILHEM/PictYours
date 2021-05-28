@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <materialDesign:Card Margin="0,0,0,2">
-            <Image Source="{Binding LaPhoto.CheminPhoto}"/>
+            <Image Source="{Binding LaPhoto.CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Images}"/>
         </materialDesign:Card>
         <materialDesign:Card Grid.Row="1">
             <Expander Background="{StaticResource MaterialDesignDarkBackground}"

@@ -15,6 +15,7 @@
             <converters:NbJaimes2Affichage x:Key="NbJaimes2Affichage"/>
             <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
             <converters:Site2SiteDesc x:Key="Site2SiteDesc"/>
+            <converters:String2Image x:Key="String2Image"/>
             <converters:Utilisateur2ModificationProfilAmateur x:Key="Utilisateur2ModificationProfilAmateur"/>
             <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
             <converters:Utilisateur2ModificationProfilCommercial x:Key="Utilisateur2ModificationProfilCommercial"/>

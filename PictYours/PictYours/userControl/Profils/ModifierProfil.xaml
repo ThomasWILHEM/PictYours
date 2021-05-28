@@ -9,12 +9,6 @@
              xmlns:local="clr-namespace:PictYours.userControl.Profils" 
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800">
-    <UserControl.Resources>
-        <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
-        <converters:Utilisateur2ModificationProfilAmateur x:Key="Utilisateur2ModificationProfilAmateur"/>
-        <converters:Utilisateur2ModificationProfilCommercial x:Key="Utilisateur2ModificationProfilCommercial"/>
-    </UserControl.Resources>
-
     <Grid Width="600" Height="600">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -37,7 +31,7 @@
 
                 <Ellipse Grid.Row="0" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Ellipse.Fill>
-                        <ImageBrush x:Name="PhotoAModifier" Stretch="UniformToFill"/>
+                        <ImageBrush x:Name="PhotoAModifier" Stretch="UniformToFill" ImageSource="{Binding CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
                     </Ellipse.Fill>
                 </Ellipse>
 

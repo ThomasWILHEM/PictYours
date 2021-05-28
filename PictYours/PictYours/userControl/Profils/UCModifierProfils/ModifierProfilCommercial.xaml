@@ -24,7 +24,7 @@
                 <TextBlock Text="Nom"/>
                 <TextBox x:Name="NomBox" Text="{Binding Nom}"/>
             </StackPanel>
-            <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilCommercial}}">
+            <StackPanel>
                 <TextBlock Text="Site Web"/>
                 <TextBox x:Name="SiteBox" Text="{Binding SiteWeb}"/>
             </StackPanel>
