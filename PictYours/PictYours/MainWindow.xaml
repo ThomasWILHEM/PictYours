@@ -58,7 +58,7 @@
                             <materialDesign:PopupBox.ToggleContent>
                                 <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil}"/>
+                                        <ImageBrush ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </materialDesign:PopupBox.ToggleContent>

@@ -2,9 +2,11 @@
 using MaterialDesignThemes.Wpf;
 using PictYours;
 using PictYours.userControl.CreationCompte;
+using PictYours.utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +29,8 @@ namespace AppWpf
 
         public Manager LeManager => (App.Current as App).LeManager;
 
+        private string filePhotoProfil;
+        private string filePhotoProfilName;
 
         public CreationCompte()
         {
@@ -59,7 +63,7 @@ namespace AppWpf
 
         private void InscriptionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (photoProfil.ImageSource?.ToString() == null)
+            if (filePhotoProfil == null)
             {
                 AfficherDansSnackbar("Veuillez sélectionnez une photo");
                 Debug.WriteLine("L'image est nulle");
@@ -75,24 +79,27 @@ namespace AppWpf
             {
                 if (ComboBoxType.SelectedIndex == 0)
                 {
-                    LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur(FormA.NomProfil.Text, FormA.PrenomProfil.Text, FormA.PseudoProfil.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), DescriptionBox.Text, FormA.DateDeNaissanceBox.DisplayDate));
-                    Debug.WriteLine("Création éffectué");
-                    new MainWindow().Show();
-                    Close();
+                    FileInfo fi = new(filePhotoProfil);
+                    filePhotoProfilName = $"{FormA.PseudoProfil.Text}{fi.Extension}";
+                    LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur(FormA.NomProfil.Text, FormA.PrenomProfil.Text, FormA.PseudoProfil.Text, PasswordBox.Password, filePhotoProfilName, DescriptionBox.Text, FormA.DateDeNaissanceBox.DisplayDate));
                 }
                 else if (ComboBoxType.SelectedIndex == 1)
                 {
-                    LeManager.ManagerUtilisateur.CreerUnCompte(new Commercial(FormC.NomBoxC.Text, FormC.PseudoBoxC.Text, PasswordBox.Password, photoProfil.ImageSource.ToString(), FormC.SiteBox.Text, DescriptionBox.Text));
-                    Debug.WriteLine("Création éffectué");
-                    new MainWindow().Show();
-                    Close();
+                    FileInfo fi = new(filePhotoProfil);
+                    filePhotoProfilName = $"{FormC.PseudoBoxC.Text}{fi.Extension}";
+                    LeManager.ManagerUtilisateur.CreerUnCompte(new Commercial(FormC.NomBoxC.Text, FormC.PseudoBoxC.Text, PasswordBox.Password, filePhotoProfilName, FormC.SiteBox.Text, DescriptionBox.Text));
+
                 }
                 else
                 {
                     AfficherDansSnackbar("Veuillez selectionner un type de profil");
                     Debug.WriteLine("Veuillez selectionner un type de profil");
+                    return;
                 }
-
+                GestionImage.EnregistrerImage(filePhotoProfil, filePhotoProfilName, GestionImage.TypeEnregistrement.Profil, true);
+                Debug.WriteLine("Création éffectué");
+                new MainWindow().Show();
+                Close();
             }
             catch (InvalidUserException userException)
             {
@@ -150,21 +157,13 @@ namespace AppWpf
             MessageSnackbar.MessageQueue.Enqueue(message, null, null, null, false, true);
         }
 
+
         private void parcourirButton_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.InitialDirectory = @"C:\Users\Public\Pictures";
-            dialog.DefaultExt = ".jpg | .png";
-            dialog.Filter = "All images files (*.jpg, *.png) | *.jpg; *.png ";
-
-            bool? result = dialog.ShowDialog();
-
-            if (result == true)
-            {
-                IconPhoto.Visibility = Visibility.Collapsed;
-                string filename = dialog.FileName;
-                photoProfil.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
-            }
+            filePhotoProfil = GestionImage.ChooseImage();
+            if (filePhotoProfil == null) return;
+            IconPhoto.Visibility = Visibility.Collapsed;
+            photoProfil.ImageSource = new BitmapImage(new Uri(filePhotoProfil, UriKind.Absolute));
         }
 
     }

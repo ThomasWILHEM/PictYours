@@ -1,5 +1,6 @@
 ﻿using BiblioClasse;
 using MaterialDesignThemes.Wpf;
+using PictYours.utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -59,10 +60,19 @@ namespace PictYours.userControl.Profils
                 Debug.WriteLine("Le lieu de la photo est nul");
                 return;
             }
-            Debug.WriteLine(new FileInfo(photoAPoster.ImageSource.ToString()).Name);
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(photoAPoster.ImageSource.ToString(), DescPhoto.Text, LieuPhoto.Text, LeManager.ManagerUtilisateur.UtilisateurActuel, DateTime.Now, (ECategorie)CategorieBox.SelectedItem));
+            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(
+                new FileInfo(filename).Extension,
+                DescPhoto.Text,
+                LieuPhoto.Text,
+                LeManager.ManagerUtilisateur.UtilisateurActuel,
+                (ECategorie)CategorieBox.SelectedItem)
+                );
+            //Récupere la photo posté
+            BiblioClasse.Photo photo = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.First();
+            //Enregistre dans le répertoire des images avec son identifiant
+            GestionImage.EnregistrerImage(filename, photo.CheminPhoto, GestionImage.TypeEnregistrement.Images,true);
             ReinitialiserChamps();
-            DialogHost.CloseDialogCommand.Execute(null,null);
+            DialogHost.CloseDialogCommand.Execute(null, null);
         }
 
         private void AnnulerButton_Click(object sender, RoutedEventArgs e)
@@ -71,18 +81,13 @@ namespace PictYours.userControl.Profils
             DialogHost.CloseDialogCommand.Execute(null, null);
         }
 
+        private string filename;
+
         private void ParcourirButton_Click(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.InitialDirectory = @"C:";
-            dialog.FileName = "Images";
-            dialog.DefaultExt = ".jpg | .png";
-
-            bool? result = dialog.ShowDialog();
-
-            if (result == true)
+            filename = GestionImage.ChooseImage();
+            if (filename != null)
             {
-                string filename = dialog.FileName;
                 photoAPoster.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             }
         }

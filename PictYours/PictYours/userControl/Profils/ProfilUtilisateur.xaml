@@ -24,7 +24,7 @@
                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                             <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding Utilisateur.PhotoDeProfil}"/>
+                                    <ImageBrush ImageSource="{Binding Utilisateur.PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
@@ -84,7 +84,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
+                        <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Images}" Stretch="Uniform" Width="260" Height="260"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

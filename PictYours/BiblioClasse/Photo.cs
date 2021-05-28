@@ -11,7 +11,7 @@ namespace BiblioClasse
 {
     public class Photo : IEquatable<Photo>, INotifyPropertyChanged
     {
-        private static int prochainIdentifiant { get; set; } = 0;
+        public static int prochainIdentifiant { get; private set; } = 0;
 
         /// <summary>
         /// Chemin de la photo
@@ -73,39 +73,52 @@ namespace BiblioClasse
         /// <summary>
         /// Constructeur d'une photo
         /// </summary>
-        /// <param name="cheminPhoto"></param>
-        /// <param name="description"></param>
-        /// <param name="lieu"></param>
-        /// <param name="proprietaire"></param>
-        /// <param name="datepub"></param>
-        /// <param name="nbJaimes"></param>
-        /// <param name="identifiant"></param>
-        public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datePub, int nbJaimes, string identifiant,ECategorie categorie)
-                        : this(cheminPhoto, description, lieu, proprietaire, datePub, categorie)
-        {
-            NbJaimes = nbJaimes;
-            Identifiant = string.IsNullOrWhiteSpace(identifiant) ? throw new ArgumentNullException(nameof(identifiant)) : identifiant;
-        }
-
-        /// <summary>
-        /// Constructeur d'une photo sans identifiant en paramètre
-        /// </summary>
-        /// <param name="cheminPhoto"></param>
-        /// <param name="description"></param>
-        /// <param name="lieu"></param>
-        /// <param name="proprietaire"></param>
-        /// <param name="datePub"></param>
-        /// <param name="categorie"></param>
+        /// <param name="cheminPhoto">Chemin vers la photo</param>
+        /// <param name="description">Description de la photo</param>
+        /// <param name="lieu">Lieu de la photo</param>
+        /// <param name="proprietaire">Propriétaire de la photo</param>
+        /// <param name="datePub">Date de publication de la photo</param>
+        /// <param name="categorie">Catégorie de la photo</param>
         public Photo(string cheminPhoto, string description, string lieu, Utilisateur proprietaire, DateTime datePub, ECategorie categorie)
         {
             CheminPhoto = string.IsNullOrWhiteSpace(cheminPhoto) ? throw new ArgumentNullException(nameof(cheminPhoto)) : cheminPhoto;
             Description = description;
             Lieu = string.IsNullOrWhiteSpace(lieu) ? throw new ArgumentNullException(nameof(lieu)) : lieu;
-            Proprietaire = proprietaire == null  ? throw new ArgumentNullException(nameof(proprietaire)) : proprietaire;
+            Proprietaire = proprietaire == null ? throw new ArgumentNullException(nameof(proprietaire)) : proprietaire;
             DatePub = datePub;
             Categorie = categorie;
             prochainIdentifiant++;
             Identifiant = $"p{prochainIdentifiant}";
+        }
+
+        /// <summary>
+        /// Constructeur d'une photo
+        /// </summary>
+        /// <param name="cheminPhoto">Chemin vers la photo</param>
+        /// <param name="description">Description de la photo</param>
+        /// <param name="lieu">Lieu de la photo</param>
+        /// <param name="proprietaire">Propriétaire de la photo</param>
+        /// <param name="datePub">Date de publication de la photo</param>
+        /// <param name="categorie">Catégorie de la photo</param>
+        public Photo(string extension, string description, string lieu, Utilisateur proprietaire, ECategorie categorie)
+        {
+            Description = description;
+            Lieu = string.IsNullOrWhiteSpace(lieu) ? throw new ArgumentNullException(nameof(lieu)) : lieu;
+            Proprietaire = proprietaire == null ? throw new ArgumentNullException(nameof(proprietaire)) : proprietaire;
+            DatePub = DateTime.Now;
+            Categorie = categorie;
+            prochainIdentifiant++;
+            Identifiant = $"p{prochainIdentifiant}";
+
+            if (string.IsNullOrWhiteSpace(extension))
+            {
+                throw new ArgumentNullException(nameof(extension));
+            }
+            else
+            {
+
+                CheminPhoto = $"{Identifiant}{extension}";
+            }
         }
 
         /// <summary>
