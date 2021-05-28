@@ -6,8 +6,9 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:PictYours.userControl"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" d:DesignWidth="800"
+             x:Name="root">
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
@@ -17,10 +18,11 @@
         </materialDesign:Card>
         <materialDesign:Card Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" Margin="0,2,0,0">
 
-            <ListBox x:Name="listeBoxPhotosAimees"
+            <ListBox x:Name="ListeBoxPhotosAimees"
                              ItemsSource="{Binding PhotosAimees}"
-                             SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne}"
-                             SelectionChanged="listeBoxPhotosAimees_SelectionChanged">
+                             
+                             SelectionChanged="ListeBoxPhotosAimees_SelectionChanged">
+                <!--SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne,ElementName=root}"-->
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"/>
@@ -33,7 +35,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Image x:Name="PhotoAimeeChoisie" Source="{Binding CheminPhoto}" Stretch="Uniform" Width="260" Height="260"/>
+                        <Image x:Name="PhotoAimeeChoisie" Source="{Binding CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Images}" Stretch="Uniform" Width="260" Height="260"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

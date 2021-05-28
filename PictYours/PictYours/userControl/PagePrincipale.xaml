@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:PictYours.userControl"
              xmlns:UCProfils="clr-namespace:PictYours.userControl.Profils"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:biblioclasse="clr-namespace:BiblioClasse;assembly=BiblioClasse"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
@@ -49,8 +50,8 @@
                 </Grid>
                 <ListBox x:Name="ListBoxUtilisateur" ItemsSource="{Binding ListeUtilisateur}" SelectionChanged="ListBoxUtilisateur_SelectionChanged"
                          SelectedItem="{Binding LeManager.ManagerUtilisateur.UtilisateurSelectionne}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
+                    <ListBox.Resources>
+                        <DataTemplate DataType="{x:Type biblioclasse:Amateur}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -79,7 +80,34 @@
                                 <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo,Converter={StaticResource Pseudo2Affichage}}" FontSize="10"></TextBlock>
                             </Grid>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type biblioclasse:Commercial}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Ellipse Height="40" Width="40" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,10,0">
+                                    <Ellipse.Fill>
+                                        <ImageBrush  ImageSource="{Binding PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Grid Grid.Column="1" VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Nom}"/>
+                                    </StackPanel>
+                                </Grid>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Pseudo,Converter={StaticResource Pseudo2Affichage}}" FontSize="10"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.Resources>
                 </ListBox>
             </StackPanel>
         </materialDesign:Card>

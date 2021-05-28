@@ -15,7 +15,7 @@ namespace BiblioClasse
 
         public static List<Utilisateur> RechercheParPseudo(List<Utilisateur> liste,string pattern)
         {
-            return liste.Where(utilisateur => utilisateur.Pseudo.Contains(pattern)).ToList();
+            return liste.Where(utilisateur => utilisateur.Pseudo.ToLower().Contains(pattern?.ToLower())).ToList();
         }
 
         public static List<Utilisateur> RechercheParNomEtPrenom(List<Utilisateur> liste, string pattern)

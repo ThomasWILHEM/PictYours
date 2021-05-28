@@ -138,7 +138,7 @@ namespace PictYours.userControl.Profils
             Nom = LeManager.ManagerUtilisateur.UtilisateurActuel.Nom;
             Description = LeManager.ManagerUtilisateur.UtilisateurActuel.Description;
             CheminPhoto = LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil;
-            PhotoAModifier.ImageSource = new BitmapImage(new Uri(GestionImage.ProfilPath+ "\\" + CheminPhoto, UriKind.Relative));
+            PhotoAModifier.ImageSource = new BitmapImage(new Uri(GestionImage.ProfilPath + "\\" + CheminPhoto, UriKind.Relative));
         }
 
         private void ParcourirPhotoAModifierButton_Click(object sender, RoutedEventArgs e)
@@ -179,15 +179,18 @@ namespace PictYours.userControl.Profils
             }
             LeManager.ManagerUtilisateur.ModifierDescription(Description);
 
-            string cheminFinal = GestionImage.EnregistrerImage(
-                CheminPhoto,
-                LeManager.ManagerUtilisateur.UtilisateurActuel.Pseudo,
-                GestionImage.TypeEnregistrement.Profil,
-                false
-                );
-            FileInfo fi = new(cheminFinal);
-            Debug.WriteLine(fi.Name);
-            LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(fi.Name);
+            if (CheminPhoto != LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil)
+            {
+                string cheminFinal = GestionImage.EnregistrerImage(
+                                CheminPhoto,
+                                LeManager.ManagerUtilisateur.UtilisateurActuel.Pseudo,
+                                GestionImage.TypeEnregistrement.Profil,
+                                false
+                                );
+                FileInfo fi = new(cheminFinal);
+                Debug.WriteLine(fi.Name);
+                LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(fi.Name);
+            }
         }
 
         private void RetourButton_Click(object sender, RoutedEventArgs e)

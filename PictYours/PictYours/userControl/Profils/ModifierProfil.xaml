@@ -35,39 +35,9 @@
                     </Ellipse.Fill>
                 </Ellipse>
 
-                <Button Grid.Row="1" Width="200" Margin="0,0,0,30" Click="ParcourirPhotoAModifierButton_Click" >
-                    <TextBlock TextAlignment="Center" FontSize="15">
-                                Choisissez une photo
-                    </TextBlock>
-                </Button>
+                <Button Grid.Row="1" Width="200" Margin="0,0,0,30" Click="ParcourirPhotoAModifierButton_Click" Content="Choisissez une photo"/>
             </Grid>
             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                <!--<StackPanel.Resources>
-                    <Style TargetType="TextBox">
-                        <Setter Property="Background" Value="{StaticResource MaterialDesignDarkBackground}"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="Height" Value="20"/>
-                    </Style>
-                    <Style TargetType="StackPanel">
-                        <Setter Property="Margin" Value="20"/>
-                    </Style>
-                </StackPanel.Resources>
-                <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}" >
-                    <TextBlock Text="Prénom"/>
-                    <TextBox x:Name="PrenomBox" Text="{Binding Prenom}"/>
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock Text="Nom"/>
-                    <TextBox x:Name="NomBox" Text="{Binding Nom}"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilCommercial}}">
-                    <TextBlock Text="Site Web"/>
-                    <TextBox x:Name="SiteBox"/>
-                </StackPanel>
-                <StackPanel Visibility="{Binding Utilisateur, Converter={StaticResource Utilisateur2ModificationProfilAmateur}}">
-                    <TextBlock Text="Date de Naissance"/>
-                    <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" Width="200" SelectedDate="{Binding DateDeNaissance}" />
-                </StackPanel>-->
                 <UC:ModifierProfilAmateur x:Name="UCAmateur" Visibility="Collapsed"/>
                 <UC:ModifierProfilCommercial x:Name="UCCommercial" Visibility="Collapsed"/>
             </StackPanel>
@@ -78,7 +48,8 @@
             </GroupBox.Header>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <TextBox FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2" x:Name="DescBox"
-                         Text="{Binding Description}"/>
+                         Text="{Binding Description}"
+                         MaxLength="750"/>
             </ScrollViewer>
         </GroupBox>
         <Button Grid.Row="3" Content="Enregistrer" Width="150" x:Name="EnregistrerButton" Click="EnregistrerButton_Click" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"/>

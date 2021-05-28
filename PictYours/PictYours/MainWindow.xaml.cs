@@ -36,7 +36,7 @@ namespace PictYours
         {
             PagePrincipale.Visibility = Visibility.Collapsed;
             VisualiseurPhoto.Visibility = Visibility.Collapsed;
-            PagePhotoAimées.Visibility = Visibility.Collapsed;
+            PagePhotoAimees.Visibility = Visibility.Collapsed;
         }
 
         private void AllDialogHostUCCollapsed()
@@ -107,12 +107,6 @@ namespace PictYours
                 {
                     VisualiseurPhoto.SupprimerPhotoButton.Visibility = Visibility.Visible;
                 }
-
-                //if ((LeManager.ManagerUtilisateur.UtilisateurActuel as Amateur).MesPhotos.Contains(e.Photo))   |      
-                //{                                                                                              | Ne fonctionne pas
-                //     VisualiseurPhoto.JaimeIcon.IsEnabled = false;                                             |
-                //}                                                                                              |
-
             }
         }
 
@@ -129,7 +123,9 @@ namespace PictYours
         {
             AllMainUCCollapsed();
             RetourButton.Visibility = Visibility.Visible;
-            PagePhotoAimées.Visibility = Visibility.Visible;
+            PagePhotoAimees.Visibility = Visibility.Visible;
+            LeManager.ManagerPhoto.PhotoSelectionne = null;
+            PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
         }
 
         private void ProfilButton_Click(object sender, RoutedEventArgs e)
@@ -142,7 +138,7 @@ namespace PictYours
         private void RetourButton_Click(object sender, RoutedEventArgs e)
         {
             RetourPagePrincipale();
-            PagePhotoAimées.listeBoxPhotosAimees.SelectedItem = null;
+            PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
         }
 
         private void RetourPagePrincipale()

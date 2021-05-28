@@ -110,10 +110,10 @@
                 </materialDesign:Card>
 
 
-                <Grid x:Name="GrillePrincipale">
+                <Grid>
                     <UC:PagePrincipale Visibility="Visible" x:Name="PagePrincipale"/>
                     <UC:Photo Visibility="Collapsed" x:Name="VisualiseurPhoto" SupprimerPhotoRequested="VisualiseurPhoto_SupprimerPhotoRequested" />
-                    <UC:PhotosAimees x:Name="PagePhotoAimées" Visibility="Collapsed"/>
+                    <UC:PhotosAimees x:Name="PagePhotoAimees" Visibility="Collapsed"/>
                 </Grid>
             </DockPanel>
             

@@ -79,6 +79,7 @@ namespace PictYours.userControl
             {
                 LeManager.ManagerUtilisateur.UtilisateurSelectionne = e.AddedItems[0] as Utilisateur;
             }
+            UCProfil.ExpanderProfil.IsExpanded = false;
         }
     }
 }
