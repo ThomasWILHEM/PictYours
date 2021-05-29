@@ -89,7 +89,7 @@ namespace BiblioClasse
         /// <summary>
         /// Liste des photos de l'utilisateur
         /// </summary>
-        private ObservableCollection<Photo> mesPhotos = new ();
+        protected ObservableCollection<Photo> mesPhotos = new ();
         public ReadOnlyObservableCollection<Photo> MesPhotos { get; }
 
         /// <summary>

@@ -18,11 +18,7 @@ namespace PictYours
         public MainWindow()
         {
             InitializeComponent();
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
-            {
-                LikeButton.Visibility = Visibility.Collapsed;
-            }
-            else LikeButton.Visibility = Visibility.Visible;
+            MesLikeButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial ? Visibility.Collapsed : Visibility.Visible;
 
             LeManager.ManagerPhoto.SelectedPhotoChanged += OnPhotoSelectionneChanged;
             PagePrincipale.UCProfil.ModifierProfilResqueted += OnModifierProfilRequested;
@@ -71,62 +67,41 @@ namespace PictYours
 
         private void OnPhotoSelectionneChanged(object sender, ManagerPhoto.SelectedPhotoChangedEventArgs e)
         {
-            if (e.Photo != null)
+            if (e.Photo == null) return;
+            AllMainUCCollapsed();
+            VisualiseurPhoto.Visibility = Visibility.Visible;
+            RetourButton.Visibility = Visibility.Visible;
+
+            VisualiseurPhoto.LaPhoto = e.Photo;
+
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
             {
-                AllMainUCCollapsed();
-                VisualiseurPhoto.Visibility = Visibility.Visible;
-                RetourButton.Visibility = Visibility.Visible;
-
-                VisualiseurPhoto.LaPhoto = e.Photo;
-
-                if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
-                {
-                    VisualiseurPhoto.LikeButton.Visibility = Visibility.Collapsed;
-                    VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Collapsed;
-                    if (LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo))
-                    {
-                        VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Visible;
-                    }
-                }
-                else
-                {
-                    VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Collapsed;
-                    VisualiseurPhoto.LikeButton.Visibility = Visibility.Visible;
-                }
-
-                if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
-                {
-                    if (amateur.PhotosAimees.Contains(e.Photo))
-                    {
-                        VisualiseurPhoto.JaimeIcon.Kind = PackIconKind.Star;
-                    }
-                    else
-                    {
-                        VisualiseurPhoto.JaimeIcon.Kind = PackIconKind.StarOutline;
-                    }
-                }
-
-                if (!LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo))
-                {
-                    VisualiseurPhoto.SupprimerPhotoButton.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    VisualiseurPhoto.SupprimerPhotoButton.Visibility = Visibility.Visible;
-                }
+                VisualiseurPhoto.LikeButton.Visibility = Visibility.Collapsed;
+                VisualiseurPhoto.MettreEnAvantButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo) ? Visibility.Visible : Visibility.Collapsed;
             }
+            else
+            {
+                VisualiseurPhoto.LikeButton.Visibility = Visibility.Visible;
+                VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Collapsed;
+            }
+
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
+            {
+                VisualiseurPhoto.JaimeIcon.Kind = amateur.PhotosAimees.Contains(e.Photo) ? PackIconKind.Star : PackIconKind.StarOutline;
+            }
+
+            VisualiseurPhoto.SupprimerPhotoButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
             RetourPagePrincipale();
             LeManager.ManagerUtilisateur.SeDeconnecter();
-            var login = new Login();
-            login.Show();
+            new Login().Show();
             Close();
         }
 
-        private void LikeButton_Click(object sender, RoutedEventArgs e)
+        private void MesLikeButton_Click(object sender, RoutedEventArgs e)
         {
             AllMainUCCollapsed();
             RetourButton.Visibility = Visibility.Visible;

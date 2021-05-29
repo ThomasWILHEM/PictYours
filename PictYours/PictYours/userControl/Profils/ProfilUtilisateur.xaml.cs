@@ -56,7 +56,6 @@ namespace PictYours.userControl.Profils
         }
         public event EventHandler<ModifierProfilResquetedEventArgs> ModifierProfilResqueted;
         public virtual void OnModifierProfilResqueted(Utilisateur utilisateur) => ModifierProfilResqueted?.Invoke(this, new ModifierProfilResquetedEventArgs(utilisateur));
-        public virtual void OnModifierProfilResqueted(ModifierProfilResquetedEventArgs args) => ModifierProfilResqueted?.Invoke(this, args);
 
         //-------------------------
         //Déclaration d'un évenement ModifierProfilRequested avec les EventArgs associés pour signaler lorsque le bouton modifier est cliqué

@@ -12,7 +12,7 @@ namespace BiblioClasse
             get => nombreDeVisites;
             set
             {
-                if(value != nombreDeVisites)
+                if (value != nombreDeVisites)
                 {
                     nombreDeVisites = value;
                     OnPropertyChanged();
@@ -54,9 +54,9 @@ namespace BiblioClasse
         public void MettreEnAvantUnePhoto(Photo photo)
         {
             if (photo == null) throw new ArgumentNullException(nameof(photo), "La photo à mettre en avant est nulle");
-            if (!MesPhotos.Contains(photo)) throw new InvalidPhotoException("La photo n'existe pas dans la liste des photos de l'utilisateur.");
-            SupprimerPhoto(photo.Identifiant);
-            AjouterPhoto(photo);
+            int index = MesPhotos.IndexOf(photo);
+            if (index == -1) throw new InvalidPhotoException("La photo n'existe pas dans la liste des photos de l'utilisateur.");
+            mesPhotos.Move(index, 0);
         }
 
         public bool Equals(Commercial other)
