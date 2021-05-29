@@ -82,12 +82,18 @@ namespace PictYours
                 if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
                 {
                     VisualiseurPhoto.LikeButton.Visibility = Visibility.Collapsed;
-                } 
+                    VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Collapsed;
+                    if (LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo))
+                    {
+                        VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Visible;
+                    }
+                }
                 else
                 {
+                    VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Collapsed;
                     VisualiseurPhoto.LikeButton.Visibility = Visibility.Visible;
                 }
-                
+
                 if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
                 {
                     if (amateur.PhotosAimees.Contains(e.Photo))
@@ -103,7 +109,8 @@ namespace PictYours
                 if (!LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo))
                 {
                     VisualiseurPhoto.SupprimerPhotoButton.Visibility = Visibility.Collapsed;
-                } else
+                }
+                else
                 {
                     VisualiseurPhoto.SupprimerPhotoButton.Visibility = Visibility.Visible;
                 }

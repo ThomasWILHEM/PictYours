@@ -54,8 +54,9 @@ namespace BiblioClasse
         public void MettreEnAvantUnePhoto(Photo photo)
         {
             if (photo == null) throw new ArgumentNullException(nameof(photo), "La photo à mettre en avant est nulle");
-
-            throw new NotImplementedException();
+            if (!MesPhotos.Contains(photo)) throw new InvalidPhotoException("La photo n'existe pas dans la liste des photos de l'utilisateur.");
+            SupprimerPhoto(photo.Identifiant);
+            AjouterPhoto(photo);
         }
 
         public bool Equals(Commercial other)

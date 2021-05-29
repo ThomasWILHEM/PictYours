@@ -132,6 +132,8 @@ namespace BiblioClasse
             mesPhotos.Insert(0,photo);
         }
 
+    
+
         /// <summary>
         /// Supprime une photo passee en paramètre de la liste
         /// de photos de l'utilisateur

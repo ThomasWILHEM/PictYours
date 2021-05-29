@@ -47,6 +47,15 @@
                             >
                             <materialDesign:PackIcon Kind="StarOutline" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="JaimeIcon"/>
                         </Button>
+                        <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
+                                Grid.Column="2"
+                                Margin="0,0,0,5"
+                            Click="MettreEnAvantButton_Click"
+                            x:Name="MettreEnAvantButton"
+                            Visibility="Collapsed"
+                            >
+                            <materialDesign:PackIcon Kind="ArrowUpBoldBox" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="MettreEnAvantIcon"/>
+                        </Button>
                     </Grid>
                 </Expander.Header>
                 <Grid Margin="10">
