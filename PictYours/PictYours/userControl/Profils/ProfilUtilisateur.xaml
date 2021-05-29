@@ -72,7 +72,7 @@
                             <StackPanel Orientation="Vertical">
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Nom}" />
                             <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
-                            <TextBlock x:Name="SiteWeb" Text="{Binding SiteWeb,Converter={StaticResource Site2SiteDesc}}"/>
+                            <TextBlock x:Name="SiteWeb" Text="{Binding SiteWeb,Converter={StaticResource Site2Affichage}}"/>
                             </StackPanel>
                             <TextBlock Text="{Binding NombreDeVisites,Converter={StaticResource NombreVisites2Affichage}}"
                                        HorizontalAlignment="Right"

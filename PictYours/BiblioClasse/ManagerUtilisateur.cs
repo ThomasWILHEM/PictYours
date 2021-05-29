@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
@@ -111,15 +108,13 @@ namespace BiblioClasse
         public void ModifierNom(string nouveauNom)
         {
             if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
-            if (nouveauNom == null) throw new ArgumentNullException("Le nouveau nom est nul");
-            UtilisateurActuel.Nom = nouveauNom;
+            UtilisateurActuel.Nom = nouveauNom ?? throw new ArgumentNullException(nameof(nouveauNom), "Le nouveau nom est nul");
         }
 
         public void ModifierPrenom(string nouveauPrenom)
         {
             if (UtilisateurActuel is not Amateur amateur) throw new InvalidUserException("L'utilisateur actuel n'est pas un amteur, on ne peut pas modifier le prénom");
-            if (nouveauPrenom == null) throw new ArgumentNullException("Le nouveau prénom est nul");
-            amateur.Prenom = nouveauPrenom;
+            amateur.Prenom = nouveauPrenom ?? throw new ArgumentNullException(nameof(nouveauPrenom), "Le nouveau prénom est nul");
         }
 
         public void ModifierDateDeNaissance(DateTime nouvelleDateDeNaissance)
@@ -130,29 +125,27 @@ namespace BiblioClasse
         public void ModifierMDP(string nouveauMDP)
         {
             if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
-            if (nouveauMDP == null) throw new ArgumentNullException("Le nouveau mot de passe est nul");
+            if (nouveauMDP == null) throw new ArgumentNullException(nameof(nouveauMDP), "Le nouveau mot de passe est nul");
             (UtilisateurActuel as UtilisateurPrive).ModifierMDP(nouveauMDP);
         }
 
         public void ModifierDescription(string nouvelleDescription)
         {
             if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
-            if (nouvelleDescription == null) throw new ArgumentNullException("La nouvelle description est nulle");
-            UtilisateurActuel.Description = nouvelleDescription;
+            UtilisateurActuel.Description = nouvelleDescription ?? throw new ArgumentNullException(nameof(nouvelleDescription),"La nouvelle description est nulle");
         }
 
         public void ModifierPhotoDeProfil(string nouvellePhotoDeProfil)
         {
             if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
-            if (nouvellePhotoDeProfil == null) throw new ArgumentNullException("La nouvelle photo de profil est nulle");
-            UtilisateurActuel.PhotoDeProfil = nouvellePhotoDeProfil;
+            UtilisateurActuel.PhotoDeProfil = nouvellePhotoDeProfil ?? throw new ArgumentNullException(nameof(nouvellePhotoDeProfil), "La nouvelle photo de profil est nulle");
         }
 
         public void ModifierSiteWeb(string nouveauSiteWeb)
         {
             if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
-            if (nouveauSiteWeb == null) throw new ArgumentNullException("Le nouveau site est nul");
-            (UtilisateurActuel as Commercial).SiteWeb=nouveauSiteWeb;
+            if (UtilisateurActuel is not Commercial commercial) throw new InvalidUserException("L'utilisateur actuel n'est pas un commercial donc ne possède pas de site web");
+            commercial.SiteWeb = nouveauSiteWeb ?? throw new ArgumentNullException(nameof(nouveauSiteWeb), "Le nouveau site est nul");
         }
 
 

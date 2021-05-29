@@ -22,7 +22,7 @@ namespace PictYours.converters
             switch (typeChemin)
             {
                 case "Profil":
-                    imagePath = Path.Combine(GestionImage.ProfilPath,imageName);
+                    imagePath = Path.Combine(GestionImage.ProfilsPath,imageName);
                     break;
                 case "Images":
                     imagePath = Path.Combine(GestionImage.ImagesPath,imageName);

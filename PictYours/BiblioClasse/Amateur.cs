@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -30,7 +29,7 @@ namespace BiblioClasse
         public DateTime DateDeNaissance
         {
             get => dateDeNaissance;
-            set
+            internal set
             {
                 if (value != dateDeNaissance)
                 {

@@ -4,8 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
@@ -85,15 +83,13 @@ namespace BiblioClasse
         }
         private string description;
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         /// <summary>
         /// Liste des photos de l'utilisateur
         /// </summary>
         private ObservableCollection<Photo> mesPhotos = new ();
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         public ReadOnlyObservableCollection<Photo> MesPhotos { get; }
 
         /// <summary>

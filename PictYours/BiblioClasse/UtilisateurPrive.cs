@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
     public abstract class UtilisateurPrive : Utilisateur
     {
+        /// <summary>
+        /// Mot de passe de l'utilisateur
+        /// </summary>
+        public string MotDePasse { get; private set; }
+
         public UtilisateurPrive(string nom, string pseudo, string motDePasse, string photoDeProfil)
             :base(nom, pseudo, photoDeProfil)
         {
@@ -19,11 +20,6 @@ namespace BiblioClasse
         {
             MotDePasse = string.IsNullOrWhiteSpace(motDePasse) ? throw new ArgumentNullException(nameof(motDePasse), "Le mot de passe ne peut pas être nul") : motDePasse;
         }
-
-        /// <summary>
-        /// Mot de passe de l'utilisateur
-        /// </summary>
-        public string MotDePasse { get; private set; }
 
         internal void ModifierMDP(string nouveauMDP)
         {
