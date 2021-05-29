@@ -18,19 +18,18 @@ namespace PictYours.userControl
 
         Manager LeManager = (App.Current as App).LeManager;
 
-        public static readonly DependencyProperty UtilisateurProperty
+        public static readonly DependencyProperty PhotoProperty
             = DependencyProperty.Register(nameof(BiblioClasse.Photo), typeof(BiblioClasse.Photo), typeof(Photo));
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         private void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
         public BiblioClasse.Photo LaPhoto
         {
-            get => GetValue(UtilisateurProperty) as BiblioClasse.Photo;
+            get => GetValue(PhotoProperty) as BiblioClasse.Photo;
             set
             {
-                SetValue(UtilisateurProperty, value);
+                SetValue(PhotoProperty, value);
                 OnPropertyChanged();
             }
         }
@@ -76,7 +75,8 @@ namespace PictYours.userControl
 
         private void MettreEnAvantButton_Click(object sender, RoutedEventArgs e)
         {
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial
+                && LeManager.ManagerPhoto.PhotoSelectionne != null)
             {
                 commercial.MettreEnAvantUnePhoto(LeManager.ManagerPhoto.PhotoSelectionne);
             }

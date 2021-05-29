@@ -79,7 +79,7 @@
                                         </StackPanel>
                                     </Button.Content>
                                 </Button>
-                                <Button x:Name="LikeButton" Click="LikeButton_Click">
+                                <Button x:Name="MesLikeButton" Click="MesLikeButton_Click">
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Kind="Star" />
