@@ -72,5 +72,14 @@ namespace PictYours.userControl
                 OnSupprimerPhotoResqueted();
             }
         }
+
+
+        private void MettreEnAvantButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial commercial)
+            {
+                commercial.MettreEnAvantUnePhoto(LeManager.ManagerPhoto.PhotoSelectionne);
+            }
+        }
     }
 }
