@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace BiblioClasse
 {
     public class Photo : IEquatable<Photo>, INotifyPropertyChanged
     {
-        public static int prochainIdentifiant { get; private set; } = 0;
+        public static int prochainIdentifiant { get; private set; }
 
         /// <summary>
         /// Chemin de la photo
@@ -66,7 +61,6 @@ namespace BiblioClasse
         public ECategorie Categorie { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 

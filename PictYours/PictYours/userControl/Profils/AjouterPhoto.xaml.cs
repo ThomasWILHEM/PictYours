@@ -85,7 +85,7 @@ namespace PictYours.userControl.Profils
 
         private void ParcourirButton_Click(object sender, RoutedEventArgs e)
         {
-            filename = GestionImage.ChooseImage();
+            filename = GestionImage.ChoisirImage();
             if (filename != null)
             {
                 photoAPoster.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));

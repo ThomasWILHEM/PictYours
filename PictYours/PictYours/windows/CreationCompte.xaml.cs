@@ -96,7 +96,7 @@ namespace AppWpf
                     Debug.WriteLine("Veuillez selectionner un type de profil");
                     return;
                 }
-                GestionImage.EnregistrerImage(filePhotoProfil, filePhotoProfilName, GestionImage.TypeEnregistrement.Profil, true);
+                GestionImage.EnregistrerImage(filePhotoProfil, filePhotoProfilName, GestionImage.TypeEnregistrement.Profils, true);
                 Debug.WriteLine("Création éffectué");
                 new MainWindow().Show();
                 Close();
@@ -160,7 +160,7 @@ namespace AppWpf
 
         private void parcourirButton_Click(object sender, RoutedEventArgs e)
         {
-            filePhotoProfil = GestionImage.ChooseImage();
+            filePhotoProfil = GestionImage.ChoisirImage();
             if (filePhotoProfil == null) return;
             IconPhoto.Visibility = Visibility.Collapsed;
             photoProfil.ImageSource = new BitmapImage(new Uri(filePhotoProfil, UriKind.Absolute));

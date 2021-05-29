@@ -6,27 +6,27 @@ namespace PictYours.utils
     public static class GestionImage
     {
         public static string ImagesPath;
-        public static string ProfilPath;
+        public static string ProfilsPath;
         public static string IconesPath;
 
         static GestionImage()
         {
             ImagesPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\images\photos");
-            ProfilPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\images\profils");
+            ProfilsPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\images\profils");
             IconesPath = Path.Combine(Directory.GetCurrentDirectory(), @"icons");
             if (!Directory.Exists(ImagesPath)) Directory.CreateDirectory(ImagesPath);
-            if (!Directory.Exists(ProfilPath)) Directory.CreateDirectory(ProfilPath);
+            if (!Directory.Exists(ProfilsPath)) Directory.CreateDirectory(ProfilsPath);
             if (!Directory.Exists(IconesPath)) Directory.CreateDirectory(IconesPath);
         }
 
         public enum TypeEnregistrement
         {
             Images,
-            Profil,
+            Profils,
             Icones
         }
 
-        public static string ChooseImage()
+        public static string ChoisirImage()
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.InitialDirectory = @"C:\Users\Public\Pictures";
@@ -56,7 +56,7 @@ namespace PictYours.utils
         public static string EnregistrerImage(string fullImagePath, string name, TypeEnregistrement typeEnregistrement, bool nomAvecExtension)
         {
             if (typeEnregistrement.Equals(TypeEnregistrement.Images) && !Directory.Exists(ImagesPath)) Directory.CreateDirectory(ImagesPath);
-            if (typeEnregistrement.Equals(TypeEnregistrement.Profil) && !Directory.Exists(ProfilPath)) Directory.CreateDirectory(ProfilPath);
+            if (typeEnregistrement.Equals(TypeEnregistrement.Profils) && !Directory.Exists(ProfilsPath)) Directory.CreateDirectory(ProfilsPath);
             if (typeEnregistrement.Equals(TypeEnregistrement.Icones) && !Directory.Exists(IconesPath)) Directory.CreateDirectory(IconesPath);
 
             if (string.IsNullOrWhiteSpace(fullImagePath)) return null;
@@ -73,8 +73,8 @@ namespace PictYours.utils
                     cheminFinal = VerifierChemin(Path.Combine(ImagesPath, name));
                     File.Copy(fullImagePath, cheminFinal);
                     break;
-                case TypeEnregistrement.Profil:
-                    cheminFinal = VerifierChemin(Path.Combine(ProfilPath, name));
+                case TypeEnregistrement.Profils:
+                    cheminFinal = VerifierChemin(Path.Combine(ProfilsPath, name));
                     File.Copy(fullImagePath, cheminFinal);
                     break;
                 case TypeEnregistrement.Icones:

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BiblioClasse
 {
@@ -49,8 +46,6 @@ namespace BiblioClasse
         }
 
         public event EventHandler<SelectedPhotoChangedEventArgs> SelectedPhotoChanged;
-
-        public virtual void OnSelectedPhotoChanged(SelectedPhotoChangedEventArgs args) => SelectedPhotoChanged?.Invoke(this, args);
         public virtual void OnSelectedPhotoChanged(BiblioClasse.Photo photo) => SelectedPhotoChanged?.Invoke(this, new SelectedPhotoChangedEventArgs(photo));
 
         //-----------------
