@@ -12,7 +12,7 @@ namespace BiblioClasse
             get => nombreDeVisites;
             set
             {
-                if (value != nombreDeVisites)
+                if (value != nombreDeVisites && value > 0)
                 {
                     nombreDeVisites = value;
                     OnPropertyChanged();

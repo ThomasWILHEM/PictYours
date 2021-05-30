@@ -15,14 +15,14 @@ namespace Test_ManagerPhoto
 
         static Utilisateur utilisateur = new Amateur(
             "MARQUES","Florent","florent.marques"
-            ,"mdp","/img/photo.png",DateTime.Now);
+            ,"mdp","photo.png",DateTime.Now);
 
         static Photo photo1 = new Photo(
-            "/img/maPhoto.png","La photo","Clermont-Ferrand",
+            "maPhoto.png","La photo","Clermont-Ferrand",
             utilisateur,DateTime.Today,ECategorie.Nature);
 
         static Photo photo2 = new Photo(
-            "/img/voiture.png","Ma voiture","Cournon",
+            "voiture.png","Ma voiture","Cournon",
             utilisateur,DateTime.Today.AddDays(1),ECategorie.Automobile);
 
         static void AffichePhotos()
