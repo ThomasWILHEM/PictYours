@@ -1,20 +1,10 @@
-﻿using MaterialDesignThemes.Wpf;
-using PictYours;
+﻿using PictYours;
 using BiblioClasse;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
+using System;
 
 namespace AppWpf
 {
@@ -29,6 +19,7 @@ namespace AppWpf
         {
             InitializeComponent();
             listeUtilisateur = new List<Utilisateur>(LeManager.ManagerUtilisateur.ListeUtilisateur);
+            MessageSnackbar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(2.5));
         }
 
         private void CreateAccount(object sender, RoutedEventArgs e)
@@ -37,6 +28,12 @@ namespace AppWpf
             var createAccount = new CreationCompte();
             createAccount.Show();
             Close();
+        }
+
+        private void AfficherDansSnackbar(string message)
+        {
+            MessageSnackbar.MessageQueue.Clear();
+            MessageSnackbar.MessageQueue.Enqueue(message, null, null, null, false, true);
         }
 
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
@@ -48,29 +45,27 @@ namespace AppWpf
                 {
                     if (utilisateur.MotDePasse.Equals(mdpBox.Password))
                     {
-                        //utilisateur.EstConnecte = true;
-                        //LeManager.ManagerUtilisateur.UtilisateurActuel = utilisateur;
-                        //LeManager.ManagerUtilisateur.UtilisateurSelectionne = utilisateur;
+                        Debug.WriteLine("Connexion réussie");
                         LeManager.ManagerUtilisateur.SeConnecter(utilisateur);
-                        var main = new MainWindow();
-                        main.Show();
+                        new MainWindow().Show();
                         Close();
                     }
                     else
                     {
+                        AfficherDansSnackbar("Mot de passe incorrect");
                         Debug.WriteLine("Mot de passe incorrect");
-                        //Affiche un message
                     }
                 }
                 else
                 {
+                    AfficherDansSnackbar("Identifiant incorrect");
                     Debug.WriteLine("Identifiant incorrect");
                 }
             }
             else
             {
+                AfficherDansSnackbar("Veuillez saisir vos informations");
                 Debug.WriteLine("Saisir les informations");
-                //Dire de saisir des infos
             }
         }
     }

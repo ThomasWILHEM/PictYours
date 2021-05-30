@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:AppWpf" 
         xmlns:biblioclasse="clr-namespace:BiblioClasse;assembly=BiblioClasse" 
         xmlns:local1="clr-namespace:PictYours.validationRules"
@@ -39,11 +40,13 @@
             <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"
                        FocusManager.FocusedElement="{Binding ElementName=pseudoBox}">
                 <TextBlock Text="Nom d'utilisateur" HorizontalAlignment="Center" Margin="0,0,0,5" />
-                <TextBox x:Name="pseudoBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center"/>
+                <TextBox x:Name="pseudoBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" FontSize="15" VerticalContentAlignment="Center"
+                         ToolTip="Votre nom d'utilisateur(pseudo)" ToolTipService.VerticalOffset="-10" ToolTipService.InitialShowDelay="2000"/>
             </WrapPanel>
             <WrapPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock Text="Mot de passe" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-                <PasswordBox x:Name="mdpBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" VerticalContentAlignment="Center" FontSize="15"/>
+                <PasswordBox x:Name="mdpBox" Width="200" BorderThickness="3" BorderBrush="Black" Height="40" VerticalContentAlignment="Center" FontSize="15"
+                             ToolTip="Votre mot de passe" ToolTipService.VerticalOffset="-10" ToolTipService.InitialShowDelay="2000"/>
             </WrapPanel>
         </Grid>
 
@@ -54,10 +57,10 @@
                     <Setter Property="VerticalAlignment" Value="Center"/>
                 </Style>
             </WrapPanel.Resources>
-
             <Button x:Name="ConnectButton" Content="Se connecter" Click="ConnectButton_Click" Margin="0,0,0,30" Width="180" VerticalContentAlignment="Center" Padding="0" FontSize="20" Style="{StaticResource MaterialDesignRaisedButton}"/>
             <Button Click="CreateAccount" Content="Créer un compte" Grid.Row="1" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignOutlinedButton}"/>
-            
         </WrapPanel>
+
+        <materialDesign:Snackbar IsActive="False" x:Name="MessageSnackbar" Grid.Row="2"/>
     </Grid>
 </Window>

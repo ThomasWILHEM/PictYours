@@ -28,7 +28,7 @@ namespace BiblioClasse
                 {
                     utilisateurSelectionne = value;
                     OnPropertyChanged(nameof(UtilisateurSelectionne));
-                    if(value is Commercial commercial)
+                    if (value is Commercial commercial)
                     {
                         commercial.NombreDeVisites++;
                     }
@@ -88,10 +88,10 @@ namespace BiblioClasse
             if (UtilisateurActuel == null) throw new InvalidUserException("Aucun utilisateur est connecté");
             if (!listeUtilisateur.Remove(UtilisateurActuel))
             {
-                Debug.WriteLine($"L'UtilisateurActuel {UtilisateurActuel.ToString()} n'est pas présent dans la liste d'utilisateurs");
-                throw new InvalidUserException($"L'UtilisateurActuel {UtilisateurActuel.ToString()} n'est pas présent dans la liste d'utilisateurs");
+                Debug.WriteLine($"L'UtilisateurActuel {UtilisateurActuel} n'est pas présent dans la liste d'utilisateurs");
+                throw new InvalidUserException($"L'UtilisateurActuel {UtilisateurActuel} n'est pas présent dans la liste d'utilisateurs");
             }
-                Debug.WriteLine($"L'UtilisateurActuel {UtilisateurActuel.ToString()} est bien supprimé");
+            Debug.WriteLine($"L'UtilisateurActuel {UtilisateurActuel} est bien supprimé");
             UtilisateurActuel = null;
         }
 
@@ -132,7 +132,7 @@ namespace BiblioClasse
         public void ModifierDescription(string nouvelleDescription)
         {
             if (UtilisateurActuel == null) throw new InvalidUserException("L'utilisateur actuel est nul");
-            UtilisateurActuel.Description = nouvelleDescription ?? throw new ArgumentNullException(nameof(nouvelleDescription),"La nouvelle description est nulle");
+            UtilisateurActuel.Description = nouvelleDescription ?? throw new ArgumentNullException(nameof(nouvelleDescription), "La nouvelle description est nulle");
         }
 
         public void ModifierPhotoDeProfil(string nouvellePhotoDeProfil)
@@ -152,7 +152,7 @@ namespace BiblioClasse
         public void ChargeDonnées()
         {
             var données = Persistance.ChargeDonnées();
-            foreach(var u in données.listeUtilisateurs)
+            foreach (var u in données.listeUtilisateurs)
             {
                 listeUtilisateur.Add(u);
             }
