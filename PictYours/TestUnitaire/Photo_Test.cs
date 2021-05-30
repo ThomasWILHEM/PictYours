@@ -11,8 +11,8 @@ namespace TestUnitaire
         [Fact]
         public void Test_CheminPhoto()
         {
-            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
-            Assert.Equal("/img/pates.png", photo.CheminPhoto);
+            Photo photo = new Photo("pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Assert.Equal("pates.png", photo.CheminPhoto);
         }
 
         [Fact]
@@ -24,40 +24,40 @@ namespace TestUnitaire
         [Fact]
         public void Test_Description()
         {
-            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Photo photo = new Photo("pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
             Assert.Equal("Description de la photo", photo.Description);
         }
 
         [Fact]
         public void Test_Lieu()
         {
-            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Photo photo = new Photo("pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
             Assert.Equal("Clermont-Ferrand", photo.Lieu);
         }
 
         [Fact]
         public void Test_Avec_Lieu_Null()
         {
-            Assert.Throws<ArgumentNullException>(() => new Photo("/img/pates.png", "Description de la photo", null, utilisateur, DateTime.Now, ECategorie.Cuisine));
+            Assert.Throws<ArgumentNullException>(() => new Photo("pates.png", "Description de la photo", null, utilisateur, DateTime.Now, ECategorie.Cuisine));
         }
 
         [Fact]
         public void Test_Proprietaire()
         {
-            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Photo photo = new Photo("pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
             Assert.Equal(utilisateur, photo.Proprietaire);
         }
 
         [Fact]
         public void Test_Avec_Proprietaire_Null()
         {
-            Assert.Throws<ArgumentNullException>(() => new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", null, DateTime.Now, ECategorie.Cuisine));
+            Assert.Throws<ArgumentNullException>(() => new Photo("pates.png", "Description de la photo", "Clermont-Ferrand", null, DateTime.Now, ECategorie.Cuisine));
         }
 
         [Fact]
         public void Test_Categorie()
         {
-            Photo photo = new Photo("/img/pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
+            Photo photo = new Photo("pates.png", "Description de la photo", "Clermont-Ferrand", utilisateur, DateTime.Now, ECategorie.Cuisine);
             Assert.Equal(ECategorie.Cuisine, photo.Categorie);
         }
 
