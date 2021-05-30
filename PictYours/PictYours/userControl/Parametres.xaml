@@ -97,12 +97,12 @@
                                 IsEnabled="{Binding IsChecked,ElementName=ConfirmationCheckBox}"
                                 Foreground="White"
                                 Click="SupprimerCompteButton_Click"
-                                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
                         />
                     </StackPanel>
                 </StackPanel>
             </TabItem>
         </TabControl>
+        <materialDesign:Snackbar IsActive="False" x:Name="MessageSnackbar" />
     </Grid>
 
 </UserControl>
