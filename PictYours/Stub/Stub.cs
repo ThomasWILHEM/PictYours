@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 
 namespace Stub
 {
@@ -12,7 +13,37 @@ namespace Stub
         Amateur thomas = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "pp.jpg", "Description de Thomas Wilhem", DateTime.Now.AddYears(-18));
         Commercial mozilla = new Commercial("Mozilla", "mozilla", "mdp", "mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
-    public (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur,List<Photo>> dico) ChargeDonnées()
+        private string imagesStub = "images_stub";
+        private string imagesPictYours = "../images";
+
+        public Stub()
+        {
+            if (!Directory.Exists(imagesPictYours)) Directory.CreateDirectory(imagesPictYours);
+            if (!Directory.Exists($"{imagesPictYours}/profils")) Directory.CreateDirectory($"{imagesPictYours}/profils");
+            if (!Directory.Exists($"{imagesPictYours}/photos")) Directory.CreateDirectory($"{imagesPictYours}/photos");
+
+            foreach (var sourceFile in Directory.GetFiles($"{imagesStub}/profils"))
+            {
+                FileInfo fi = new(sourceFile);
+                string destFile = $"{imagesPictYours}/profils/{fi.Name}";
+                if (!File.Exists(destFile))
+                {
+                    File.Copy(sourceFile, destFile, true);
+                }
+            }
+
+            foreach (var sourceFile in Directory.GetFiles($"{imagesStub}/photos"))
+            {
+                FileInfo fi = new(sourceFile);
+                string destFile = $"{imagesPictYours}/photos/{fi.Name}";
+                if (!File.Exists(destFile))
+                {
+                    File.Copy(sourceFile, destFile, true);
+                }
+            }
+        }
+
+        public (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur, List<Photo>> dico) ChargeDonnées()
         {
             return (ChargeUtilisateur(), ChargePhoto());
         }
@@ -24,29 +55,30 @@ namespace Stub
 
         private List<Utilisateur> ChargeUtilisateur()
         {
-            return new List<Utilisateur> { pierre, tulipe, thomas, mozilla };             
+            return new List<Utilisateur> { pierre, tulipe, thomas, mozilla };
         }
 
-        private Dictionary<Utilisateur, List<Photo>> ChargePhoto() {
+        private Dictionary<Utilisateur, List<Photo>> ChargePhoto()
+        {
             Dictionary<Utilisateur, List<Photo>> Dico = new Dictionary<Utilisateur, List<Photo>>();
-            Dico.Add(pierre, new List<Photo> { 
-                new Photo("/img/pp.jpg", "test", "test", pierre, DateTime.Today, ECategorie.Animal), 
-                new Photo("/img/estelle_rond.png", "test2", "test1532", pierre, DateTime.Today, ECategorie.Animal) 
+            Dico.Add(pierre, new List<Photo> {
+                new Photo("pp.jpg", "test", "test", pierre, DateTime.Today, ECategorie.Animal),
+                new Photo("vacances6.jpg", "test2", "test1532", pierre, DateTime.Today, ECategorie.Animal)
             });
 
-            Dico.Add(tulipe, new List<Photo> { 
-                new Photo("/img/vacances1.jpg", "test2", "test1532", tulipe, DateTime.Today, ECategorie.Animal), 
-                new Photo("/img/vacances2.jpg", "test2", "test1532", tulipe, DateTime.Today, ECategorie.Animal), 
-                new Photo("/img/vacances3.jpg", "test2", "test1532", tulipe, DateTime.Today, ECategorie.Animal)
-            }) ;
+            Dico.Add(tulipe, new List<Photo> {
+                new Photo("vacances1.jpg", "test2", "test1532", tulipe, DateTime.Today, ECategorie.Animal),
+                new Photo("vacances2.jpg", "test2", "test1532", tulipe, DateTime.Today, ECategorie.Animal),
+                new Photo("vacances3.jpg", "test2", "test1532", tulipe, DateTime.Today, ECategorie.Animal)
+            });
 
-            Dico.Add(thomas, new List<Photo> { new Photo("/img/pp.jpg", "test", "test", thomas, DateTime.Today, ECategorie.Animal) });
+            Dico.Add(thomas, new List<Photo> { new Photo("montagne.jpg", "test", "test", thomas, DateTime.Today, ECategorie.Animal) });
 
-            Dico.Add(mozilla, new List<Photo> { 
-                new Photo("/img/vacances4.jpg", "test2", "test1532", mozilla, DateTime.Today, ECategorie.Animal),
-                new Photo("/img/vacances5.jpg", "test2", "test1532", mozilla, DateTime.Today, ECategorie.Animal), 
-                new Photo("/img/user.png", "test156", "test123", mozilla, DateTime.Today, ECategorie.Animal), 
-                new Photo("/img/estelle_rond.png", "test2", "test1532", mozilla, DateTime.Today, ECategorie.Animal) 
+            Dico.Add(mozilla, new List<Photo> {
+                new Photo("vacances4.jpg", "test2", "test1532", mozilla, DateTime.Today, ECategorie.Animal),
+                new Photo("vacances5.jpg", "test2", "test1532", mozilla, DateTime.Today, ECategorie.Animal),
+                new Photo("user.png", "test156", "test123", mozilla, DateTime.Today, ECategorie.Animal),
+                new Photo("estelle_rond.png", "test2", "test1532", mozilla, DateTime.Today, ECategorie.Animal)
             });
             return Dico;
         }
