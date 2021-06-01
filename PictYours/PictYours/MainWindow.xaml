@@ -10,7 +10,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
 
-        Icon="/img/app_icon.png"
+        Icon="/icons/app_icon.png"
         WindowStartupLocation="CenterScreen"
         Title="PictYours"
         Height="800"

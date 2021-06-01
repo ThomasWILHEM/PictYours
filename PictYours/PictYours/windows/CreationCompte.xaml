@@ -10,7 +10,7 @@
         Title="Création d'un compte" Height="700" Width="700"
         ResizeMode="NoResize"
         Background="#FF424242"
-        Icon="/img/app_icon.png"
+        Icon="/icons/app_icon.png"
         WindowStartupLocation="CenterScreen">
     <DockPanel>
         <DockPanel.Resources>
