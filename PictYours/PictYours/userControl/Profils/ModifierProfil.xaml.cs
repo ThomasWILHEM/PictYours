@@ -133,7 +133,7 @@ namespace PictYours.userControl.Profils
         /// </summary>
         /// <param name="propertyName">Nom de la propriété changée</param>
         private void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-       
+
 
         /// <summary>
         /// Constructeur du UserControl ModifierProfil
@@ -182,25 +182,36 @@ namespace PictYours.userControl.Profils
         /// <returns>Renvoie vrai si tous les champs sont corrects sinon faux</returns>
         private bool VerifierChamps()
         {
+            if (string.IsNullOrWhiteSpace(CheminPhoto))
+            {
+                AfficherDansSnackbar("Le photo ne peut pas être vide");
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(Nom))
             {
                 AfficherDansSnackbar("Le nom ne peut pas être vide");
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(Prenom))
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
             {
-                AfficherDansSnackbar("Le prénom ne peut pas être vide");
-                return false;
+                if (string.IsNullOrWhiteSpace(Prenom))
+                {
+                    AfficherDansSnackbar("Le prénom ne peut pas être vide");
+                    return false;
+                }
+                if (DateDeNaissance == null)
+                {
+                    AfficherDansSnackbar("La date ne peut pas être vide");
+                    return false;
+                }
             }
-            if(DateDeNaissance == null)
+            if(LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
             {
-                AfficherDansSnackbar("La date ne peut pas être vide");
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(CheminPhoto))
-            {
-                AfficherDansSnackbar("Le photo ne peut pas être vide");
-                return false;
+                if (string.IsNullOrWhiteSpace(SiteWeb))
+                {
+                    AfficherDansSnackbar("le site web ne peut pas être vide");
+                    return false;
+                }
             }
             return true;
         }
