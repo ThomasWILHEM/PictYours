@@ -83,6 +83,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\DataContractPersistance\DataContractPersistance.csproj" />
 	  <ProjectReference Include="..\Stub\Stub.csproj" />
 	</ItemGroup>
 </Project>

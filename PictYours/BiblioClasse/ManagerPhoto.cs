@@ -9,11 +9,6 @@ namespace BiblioClasse
     /// </summary>
     public class ManagerPhoto : INotifyPropertyChanged
     {
-
-        public IPersistanceManager Persistance { get; private set; }
-
-        //Dictionary<ECategorie, List<Photo>> dicoCategorie;
-
         /// <summary>
         /// Dictonnaire qui possède en clé un Utilisateur et en valeur la liste de ses photos
         /// </summary>
@@ -41,12 +36,12 @@ namespace BiblioClasse
         /// </summary>
         public class SelectedPhotoChangedEventArgs
         {
-            public BiblioClasse.Photo Photo { get; private set; }
-            public SelectedPhotoChangedEventArgs(BiblioClasse.Photo photo) => Photo = photo;
+            public Photo Photo { get; private set; }
+            public SelectedPhotoChangedEventArgs(Photo photo) => Photo = photo;
         }
 
         public event EventHandler<SelectedPhotoChangedEventArgs> SelectedPhotoChanged;
-        public virtual void OnSelectedPhotoChanged(BiblioClasse.Photo photo) => SelectedPhotoChanged?.Invoke(this, new SelectedPhotoChangedEventArgs(photo));
+        public virtual void OnSelectedPhotoChanged(Photo photo) => SelectedPhotoChanged?.Invoke(this, new SelectedPhotoChangedEventArgs(photo));
 
         //-----------------
 
@@ -61,11 +56,10 @@ namespace BiblioClasse
         /// <summary>
         /// Constructeur du ManagerPhoto
         /// </summary>
-        public ManagerPhoto(IPersistanceManager persistance)
+        public ManagerPhoto()
         {
-            Persistance = persistance;
-            PhotosParUtilisateurs = new Dictionary<Utilisateur, List<Photo>>();
-            ListeUtilisateursParPhotosAimees = new Dictionary<Photo, List<Amateur>>();
+            PhotosParUtilisateurs = new();
+            ListeUtilisateursParPhotosAimees = new();
         }
 
         /// <summary>
@@ -90,7 +84,6 @@ namespace BiblioClasse
                 PhotosParUtilisateurs.Add(utilisateur, new List<Photo> { photo });
             }
             utilisateur.AjouterPhoto(photo);
-            //Afficher un Dialog en fonction du resultat
         }
 
 
@@ -120,17 +113,11 @@ namespace BiblioClasse
                 {
                     u.NePlusAimerPhoto(photo.Identifiant);
                 }
-                //for (int i = 0; i < utilisateursPhotoAimees.Count; i++)
-                //{
-                //    utilisateursPhotoAimees[i].NePlusAimerPhoto(photo.Identifiant);
-                //}
             }
             ListeUtilisateursParPhotosAimees.Remove(photo);
 
             //Supprime dans MesPhotos de l'utilisateur
             utilisateur.SupprimerPhoto(photo.Identifiant);
-
-            //Afficher un Dialog en fonction du resultat
         }
 
         /// <summary>
@@ -155,7 +142,6 @@ namespace BiblioClasse
                 ListeUtilisateursParPhotosAimees.Add(photo, new List<Amateur> { amateur });
             }
             amateur.AimerPhoto(photo);
-            //Afficher un Dialog
         }
 
         /// <summary>
@@ -172,27 +158,28 @@ namespace BiblioClasse
                 listeAmateur.Remove(amateur);
                 if (listeAmateur.Count == 0) ListeUtilisateursParPhotosAimees.Remove(photo); //Supprime dans le dictionnaire si plus aucun j'aimes sur la photo
                 amateur.NePlusAimerPhoto(photo.Identifiant);
-                //Afficher un Dialog
             }
         }
 
-        public void ChargeDonnees()
+        public void ChargeDonnees(Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees)
         {
-            var données = Persistance.ChargeDonnées();
-            foreach (KeyValuePair<Utilisateur, List<Photo>> u in données.dico)
+            //Ajoute les photos dans le dictionnaire PhotosParUtilisateurs et ajoute la photo dans la liste de photos de l'Utilisateur
+            foreach (var entry in photosParUtilisateurs)
             {
-                u.Key.EstConnecte = true;
-                foreach (Photo photo in u.Value)
-                {
-                    PosterUnePhoto(u.Key, photo);
-                }
-                u.Key.EstConnecte = false;
+                PhotosParUtilisateurs.Add(entry.Key, entry.Value);
+            }
+
+            //Ajoute les photos aimées dans le dictionnaire ListeUtilisateursParPhotosAimees et ajoute la photo aimée dans la liste de photos de l'Amateur
+            foreach (var entry in listeUtilisateursParPhotosAimees)
+            {
+
+                ListeUtilisateursParPhotosAimees.Add(entry.Key, entry.Value);
             }
         }
 
-        public void SauvegardeDonnees()
+        public (Dictionary<Utilisateur, List<Photo>> PhotosParUtilisateurs, Dictionary<Photo, List<Amateur>> ListeUtilisateursParPhotosAimees) SauvegardeDonnees()
         {
-
+            return (PhotosParUtilisateurs, ListeUtilisateursParPhotosAimees);
         }
     }
 }

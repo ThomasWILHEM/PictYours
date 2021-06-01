@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace BiblioClasse
 {
+    [DataContract,KnownType(typeof(Amateur)), KnownType(typeof(Commercial))]
     public abstract class UtilisateurPrive : Utilisateur
     {
         /// <summary>
         /// Mot de passe de l'utilisateur
         /// </summary>
+        [DataMember]
         public string MotDePasse { get; private set; }
 
         public UtilisateurPrive(string nom, string pseudo, string motDePasse, string photoDeProfil)

@@ -1,4 +1,5 @@
 ﻿using BiblioClasse;
+using DataContractPersistance;
 using System.Windows;
 
 namespace PictYours
@@ -8,11 +9,11 @@ namespace PictYours
     /// </summary>
     public partial class App : Application
     {
-        public Manager LeManager { get; private set; } = new Manager(new Stub.Stub());
+        public Manager LeManager { get; private set; } = new Manager(new DataContractPers());
 
         public App()
         {
-           
+            LeManager.ChargeDonnees();
         }
     }
 }
