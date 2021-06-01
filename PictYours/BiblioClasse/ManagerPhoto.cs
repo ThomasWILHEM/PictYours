@@ -40,13 +40,28 @@ namespace BiblioClasse
             public SelectedPhotoChangedEventArgs(Photo photo) => Photo = photo;
         }
 
+        /// <summary>
+        /// Evenement pour notifier à la vue qu'une propriété à changer
+        /// </summary>
         public event EventHandler<SelectedPhotoChangedEventArgs> SelectedPhotoChanged;
+        /// <summary>
+        /// Méthode associé à PropertyChanged
+        /// </summary>
+        /// <param name="photo">Nom de la propriété changée</param>
         public virtual void OnSelectedPhotoChanged(Photo photo) => SelectedPhotoChanged?.Invoke(this, new SelectedPhotoChangedEventArgs(photo));
 
         //-----------------
 
+        /// <summary>
+        /// Evenement pour notifier à la vue qu'une propriété à changer
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Méthode associé à PropertyChanged
+        /// </summary>
+        /// <param name="propertyName">Nom de la propriété changée</param>
         void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
 
         /// <summary>
         /// Dictionnaire qui possède en clé une photo et en valeur la liste des personnes qui ont aimées cette photo
@@ -161,6 +176,11 @@ namespace BiblioClasse
             }
         }
 
+        /// <summary>
+        /// Charge les données dans les deux dictionnaires
+        /// </summary>
+        /// <param name="photosParUtilisateurs"> Dictonnaire qui possède en clé un Utilisateur et en valeur la liste de ses photos</param>
+        /// <param name="listeUtilisateursParPhotosAimees">Dictionnaire qui possède en clé une photo et en valeur la liste des personnes qui ont aimées cette photo</param>
         public void ChargeDonnees(Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees)
         {
             //Ajoute les photos dans le dictionnaire PhotosParUtilisateurs et ajoute la photo dans la liste de photos de l'Utilisateur
@@ -177,6 +197,10 @@ namespace BiblioClasse
             }
         }
 
+        /// <summary>
+        /// Sauvegarde les deux dictionnaires
+        /// </summary>
+        /// <returns>Retourne les dictionnaires PhotosParUtilisateurs et ListeUtilisateursParPhotosAimees</returns>
         public (Dictionary<Utilisateur, List<Photo>> PhotosParUtilisateurs, Dictionary<Photo, List<Amateur>> ListeUtilisateursParPhotosAimees) SauvegardeDonnees()
         {
             return (PhotosParUtilisateurs, ListeUtilisateursParPhotosAimees);

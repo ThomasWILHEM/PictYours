@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -107,26 +106,15 @@ namespace BiblioClasse
         /// <param name="nom">Nom de l'utilisateur</param>
         /// <param name="pseudo">Pseudo de l'utilisateur</param>
         /// <param name="photoDeProfil">Chemin de la photo de profil</param>
-        public Utilisateur(string nom, string pseudo, string photoDeProfil)
+        /// <param name="description">Description de l'utilisateur (optionnelle)</param>
+        public Utilisateur(string nom, string pseudo, string photoDeProfil, string description = "")
         {
             Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom), "Le nom d'un Utilisateur ne peut pas être nul") : nom;
             Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo), "Le pseudo d'un Utilisateur ne peut pas être nul") : pseudo;
             PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil), "La photo de profil d'un Utilisateur ne peut pas être nulle") : photoDeProfil;
             MesPhotos = new ReadOnlyObservableCollection<Photo>(mesPhotos);
-        }
-
-        /// <summary>
-        /// Constructeur d'un utilisateur avec une description
-        /// </summary>
-        /// <param name="nom">Nom de l'utilisateur</param>
-        /// <param name="pseudo">Pseudo de l'utilisateur</param>
-        /// <param name="photoDeProfil">Chemin de la photo de profil</param>
-        /// <param name="description">Description de l'utilisateur</param>
-        public Utilisateur(string nom, string pseudo, string photoDeProfil, string description)
-            : this(nom, pseudo, photoDeProfil)
-        {
             Description = description;
-            List<Photo> li = mesPhotos.ToList();
+            
         }
 
         /// <summary>

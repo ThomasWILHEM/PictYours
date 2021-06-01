@@ -113,8 +113,10 @@ namespace PictYours.userControl.Profils
         }
         private string siteWeb;
 
+       
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string parameterName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(parameterName));
+       
 
         public ModifierProfil()
         {

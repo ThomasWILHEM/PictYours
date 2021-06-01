@@ -7,7 +7,10 @@ namespace BiblioClasse
         public ManagerUtilisateur ManagerUtilisateur { get; private set; }
         public ManagerPhoto ManagerPhoto { get; private set; }
        
-
+        /// <summary>
+        /// Constructeur du Manager
+        /// </summary>
+        /// <param name="persistance">Persistance</param>
         public Manager(IPersistanceManager persistance)
         {
             Persistance = persistance;
@@ -15,6 +18,9 @@ namespace BiblioClasse
             ManagerPhoto = new ManagerPhoto();
         }
 
+        /// <summary>
+        /// Charge les données dans les manageurs
+        /// </summary>
         public void ChargeDonnees()
         {
             var donnees = Persistance.ChargeDonnees();
@@ -23,6 +29,9 @@ namespace BiblioClasse
             Photo.prochainIdentifiant = donnees.prochainIdentifiant;
         }
 
+        /// <summary>
+        /// Sauvegarde les donnés des manageurs
+        /// </summary>
         public void SauvegardeDonnees()
         {
             var donneesManagerUtilisateur = ManagerUtilisateur.SauvegardeDonnees();

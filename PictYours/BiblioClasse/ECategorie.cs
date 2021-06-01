@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace BiblioClasse
 {
+    /// <summary>
+    /// Enumération des catégories possible pour une photo
+    /// </summary>
     public enum ECategorie
     {
         Autre,

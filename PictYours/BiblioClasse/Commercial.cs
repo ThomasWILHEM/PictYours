@@ -42,19 +42,27 @@ namespace BiblioClasse
         }
         private string siteWeb;
 
-        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, int nombreDeVisite, string siteWeb, string description)
+        /// <summary>
+        /// Constructeur d'un Commercial
+        /// </summary>
+        /// <param name="nom">Nom du commercial</param>
+        /// <param name="pseudo">Pseudo du commercial</param>
+        /// <param name="motDePasse">Mot de passe du commercial</param>
+        /// <param name="photoDeProfil">Photo de profil du commercial</param>
+        /// <param name="siteWeb">Site web du commercial</param>
+        /// <param name="description">Description du commecial</param>
+        /// <param name="nombreDeVisite">Nombre de visite sur le profil du commercial</param>
+        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, string siteWeb, string description, int nombreDeVisite = 0)
             : base(nom, pseudo, motDePasse, photoDeProfil, description)
         {
             NombreDeVisites = nombreDeVisite;
             SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb), "Le site web ne peut pas être nul");
         }
 
-        public Commercial(string nom, string pseudo, string motDePasse, string photoDeProfil, string siteWeb, string description)
-            : base(nom, pseudo, motDePasse, photoDeProfil, description)
-        {
-            SiteWeb = siteWeb ?? throw new ArgumentNullException(nameof(siteWeb), "Le site web ne peut pas être nul");
-        }
-
+        /// <summary>
+        /// Cette méthode permet de mettre en avant une photo et de la mettre en tête de la liste des photos du commercial
+        /// </summary>
+        /// <param name="photo">Photo à mettre en avant</param>
         public void MettreEnAvantUnePhoto(Photo photo)
         {
             if (photo == null) throw new ArgumentNullException(nameof(photo), "La photo à mettre en avant est nulle");
@@ -63,11 +71,24 @@ namespace BiblioClasse
             mesPhotos.Move(index, 0);
         }
 
+
+        /// <summary>
+        /// Permet de voir si l'instance actuel est égale à l'objet en paramètre
+        /// selon les attributs choisis
+        /// </summary>
+        /// <param name="other">Objet à comparer</param>
+        /// <returns>Renvoie vrai si égale, si non faux</returns>
         public bool Equals(Commercial other)
         {
             return base.Equals(other);
         }
 
+        /// <summary>
+        /// Methode virtuelle de Equals
+        /// Permet de voir si l'instance actuel est égale à l'objet en paramètre
+        /// </summary>
+        /// <param name="obj">Objet à comparer</param>
+        /// <returns>Renvoie vrai si égale, si non faux</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(obj, null)) return false;
@@ -76,11 +97,19 @@ namespace BiblioClasse
             return Equals((obj as Commercial));
         }
 
+        /// <summary>
+        /// Permet d'obtenir le HashCode de l'objet actuelle
+        /// </summary>
+        /// <returns>Retourne le HashCode de l'objet associé</returns>
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
 
+        /// <summary>
+        /// Permet d'obtenir une chaine de caractère qui représente l'objet
+        /// </summary>
+        /// <returns>Renvoie la chaine de caractère d'un Amateur</returns>
         public override string ToString()
         {
             return $"{base.ToString()} Nombres de visites:{NombreDeVisites} SiteWeb:{SiteWeb}";
