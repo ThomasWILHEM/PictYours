@@ -10,11 +10,6 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
 
-        TextElement.Foreground="{DynamicResource MaterialDesignDarkForeground}"
-        TextElement.FontWeight="Regular"
-        TextElement.FontSize="13"
-        TextOptions.TextFormattingMode="Ideal" 
-        TextOptions.TextRenderingMode="Auto"
         Icon="/img/app_icon.png"
         WindowStartupLocation="CenterScreen"
         Title="PictYours"
@@ -54,12 +49,12 @@
                             Click="RetourButton_Click"
                             Visibility="Collapsed"
                             />
-                        <TextBlock Text="PictYours" Style="{DynamicResource MaterialDesignHeadline6TextBlock}" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="40" FontStyle="Italic" FontWeight="Bold" Margin="0,6,0,0"  Foreground="White"/>
+                        <TextBlock Text="PictYours" Style="{StaticResource TitreTextBlock}"/>
                         <materialDesign:PopupBox HorizontalAlignment="Right" PlacementMode="BottomAndAlignRightEdges" Margin="10,0,10,0">
                             <materialDesign:PopupBox.ToggleContent>
                                 <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="{Binding LeManager.ManagerUtilisateur.UtilisateurActuel.PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </materialDesign:PopupBox.ToggleContent>
@@ -113,7 +108,7 @@
 
                 <Grid>
                     <UC:PagePrincipale Visibility="Visible" x:Name="PagePrincipale"/>
-                    <UC:Photo Visibility="Collapsed" x:Name="VisualiseurPhoto" SupprimerPhotoRequested="VisualiseurPhoto_SupprimerPhotoRequested" />
+                    <UC:Photo Visibility="Collapsed" x:Name="VisualiseurPhoto"/>
                     <UC:PhotosAimees x:Name="PagePhotoAimees" Visibility="Collapsed"/>
                 </Grid>
             </DockPanel>

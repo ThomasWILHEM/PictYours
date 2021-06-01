@@ -1,8 +1,10 @@
 ﻿using AppWpf;
 using BiblioClasse;
 using MaterialDesignThemes.Wpf;
+using PictYours.userControl;
 using System;
 using System.Windows;
+using static PictYours.userControl.Photo;
 using static PictYours.userControl.Profils.ProfilUtilisateur;
 
 namespace PictYours
@@ -12,9 +14,14 @@ namespace PictYours
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Manager de l'application
+        /// </summary>
         public Manager LeManager => (App.Current as App).LeManager;
 
-
+        /// <summary>
+        /// Constructeur de MainWindow
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -23,11 +30,15 @@ namespace PictYours
             LeManager.ManagerPhoto.SelectedPhotoChanged += OnPhotoSelectionneChanged;
             PagePrincipale.UCProfil.ModifierProfilResqueted += OnModifierProfilRequested;
             PagePrincipale.UCProfil.AjouterPhotoRequested += OnAjouterPhotoRequested;
+            VisualiseurPhoto.SupprimerPhotoRequested += OnSupprimerPhotoRequested;
             MessageSnackBar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
 
             DataContext = this;
         }
-
+        
+        /// <summary>
+        /// Change la visibilité en "Collapsed" de tous les UserControls présents dans la MainWindow
+        /// </summary>
         private void AllMainUCCollapsed()
         {
             PagePrincipale.Visibility = Visibility.Collapsed;
@@ -35,6 +46,9 @@ namespace PictYours
             PagePhotoAimees.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Change la visibilité en "Collapsed" de tous les UserControls présents dans le DialogHost
+        /// </summary>
         private void AllDialogHostUCCollapsed()
         {
             MesParametres.Visibility = Visibility.Collapsed;
@@ -42,6 +56,24 @@ namespace PictYours
             UCAjouterPhoto.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Retourne à la page principale
+        /// </summary>
+        private void RetourPagePrincipale()
+        {
+            AllMainUCCollapsed();
+            PagePrincipale.Visibility = Visibility.Visible;
+            RetourButton.Visibility = Visibility.Collapsed;
+            VisualiseurPhoto.Visibility = Visibility.Collapsed;
+            VisualiseurPhoto.ExpanderDetails.IsExpanded = false;
+            LeManager.ManagerPhoto.PhotoSelectionne = null;
+        }
+
+        /// <summary>
+        /// Méthode d'évenement appelé lorsqu'une requête d'ajout de photo a été lancée
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void OnAjouterPhotoRequested(object sender, AjouterPhotoRequestedEventArgs e)
         {
             AllDialogHostUCCollapsed();
@@ -49,6 +81,21 @@ namespace PictYours
             MainDialogHost.IsOpen = true;
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelé lorsqu'une requête de suppression de photo a été lancée
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
+        private void OnSupprimerPhotoRequested(object sender, SupprimerPhotoRequestedEventArgs e)
+        {
+            RetourPagePrincipale();
+        }
+
+        /// <summary>
+        /// Méthode d'évenement appelé lorsqu'une requête de modification de profil a été lancée
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void OnModifierProfilRequested(object sender, ModifierProfilResquetedEventArgs e)
         {
             if (e.Utilisateur is Commercial)
@@ -65,6 +112,11 @@ namespace PictYours
             MainDialogHost.IsOpen = true;
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelé lorsque la photo sélectionnée à changer
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void OnPhotoSelectionneChanged(object sender, ManagerPhoto.SelectedPhotoChangedEventArgs e)
         {
             if (e.Photo == null) return;
@@ -93,14 +145,23 @@ namespace PictYours
             VisualiseurPhoto.SupprimerPhotoButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo) ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Méthode d'évenement appelé lors du clic sur le bouton Profil
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
+        private void ProfilButton_Click(object sender, RoutedEventArgs e)
         {
+            AllMainUCCollapsed();
             RetourPagePrincipale();
-            LeManager.ManagerUtilisateur.SeDeconnecter();
-            new Login().Show();
-            Close();
+            LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelé lors du clic sur le bouton Mes Likes
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void MesLikeButton_Click(object sender, RoutedEventArgs e)
         {
             AllMainUCCollapsed();
@@ -110,34 +171,11 @@ namespace PictYours
             PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
         }
 
-        private void ProfilButton_Click(object sender, RoutedEventArgs e)
-        {
-            AllMainUCCollapsed();
-            RetourPagePrincipale();
-            LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
-        }
-
-        private void RetourButton_Click(object sender, RoutedEventArgs e)
-        {
-            RetourPagePrincipale();
-            PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
-        }
-
-        private void RetourPagePrincipale()
-        {
-            AllMainUCCollapsed();
-            PagePrincipale.Visibility = Visibility.Visible;
-            RetourButton.Visibility = Visibility.Collapsed;
-            VisualiseurPhoto.Visibility = Visibility.Collapsed;
-            VisualiseurPhoto.ExpanderDetails.IsExpanded = false;
-            LeManager.ManagerPhoto.PhotoSelectionne = null;
-        }
-
-        private void VisualiseurPhoto_SupprimerPhotoRequested(object sender, userControl.Photo.SupprimerPhotoRequestedEventArgs e)
-        {
-            RetourPagePrincipale();
-        }
-
+        /// <summary>
+        /// Méthode d'évenement appelé lors du clic sur le bouton Paramètres
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void ParametreButton_Click(object sender, RoutedEventArgs e)
         {
             AllDialogHostUCCollapsed();
@@ -145,6 +183,35 @@ namespace PictYours
             DialogHost.OpenDialogCommand.Execute(null, null);
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelé lors du clic sur le bouton Déconnexion
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
+        private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
+        {
+            RetourPagePrincipale();
+            LeManager.ManagerUtilisateur.SeDeconnecter();
+            new Login().Show();
+            Close();
+        }
+
+        /// <summary>
+        /// Méthode d'évenement appelé lors du clic sur le bouton Retour
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
+        private void RetourButton_Click(object sender, RoutedEventArgs e)
+        {
+            RetourPagePrincipale();
+            PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
+        }
+
+        /// <summary>
+        /// Méthode d'évenement appelé lors de la fermeture de la fenêtre
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void Window_Closed(object sender, EventArgs e)
         {
             LeManager.SauvegardeDonnees();

@@ -63,7 +63,7 @@
                                 </Grid.RowDefinitions>
                                 <Ellipse Height="40" Width="40" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,10,0">
                                     <Ellipse.Fill>
-                                        <ImageBrush  ImageSource="{Binding PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="{Binding PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <Grid Grid.Column="1" VerticalAlignment="Center">
@@ -92,7 +92,7 @@
                                 </Grid.RowDefinitions>
                                 <Ellipse Height="40" Width="40" Grid.Column="0" Grid.RowSpan="2" Margin="0,0,10,0">
                                     <Ellipse.Fill>
-                                        <ImageBrush  ImageSource="{Binding PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
+                                        <ImageBrush Stretch="UniformToFill" ImageSource="{Binding PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                                 <Grid Grid.Column="1" VerticalAlignment="Center">

@@ -25,7 +25,7 @@
                         <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                             <Ellipse Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <Ellipse.Fill>
-                                    <ImageBrush ImageSource="{Binding Utilisateur.PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
+                                    <ImageBrush Stretch="UniformToFill" ImageSource="{Binding Utilisateur.PhotoDeProfil,Converter={StaticResource String2Image},ConverterParameter=Profil}"/>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <TextBlock Text="{Binding Utilisateur.Pseudo,Converter={StaticResource Pseudo2Affichage}}" Foreground="White" VerticalAlignment="Center" FontSize="24" Margin="5"/>
@@ -43,10 +43,7 @@
                     <DataTemplate DataType="{x:Type biblioclasse:Amateur}">
                         <StackPanel Margin="20,10">
                             <StackPanel.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="15"/>
-                                    <Setter Property="Margin" Value="0,5"/>
-                                </Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource DescriptionExpander}"/>
                             </StackPanel.Resources>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock TextWrapping="Wrap" Text="{Binding Nom}" />
@@ -60,10 +57,7 @@
                     <DataTemplate DataType="{x:Type biblioclasse:Commercial}">
                         <Grid Margin="20,10">
                             <Grid.Resources>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="FontSize" Value="15"/>
-                                    <Setter Property="Margin" Value="0,5"/>
-                                </Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource DescriptionExpander}"/>
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>

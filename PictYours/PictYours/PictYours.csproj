@@ -84,6 +84,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\DataContractPersistance\DataContractPersistance.csproj" />
+	  <ProjectReference Include="..\PictYours.Ressources\PictYours.Ressources.csproj" />
 	  <ProjectReference Include="..\Stub\Stub.csproj" />
 	</ItemGroup>
 </Project>
