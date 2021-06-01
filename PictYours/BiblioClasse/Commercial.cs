@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace BiblioClasse
 {
+    [DataContract]
     public class Commercial : UtilisateurPrive, IEquatable<Commercial>
     {
         /// <summary>
         /// Nombre de visites sur le profil du compte commercial
         /// </summary>
+        [DataMember(Order = 1)]
         public int NombreDeVisites
         {
             get => nombreDeVisites;
@@ -24,6 +27,7 @@ namespace BiblioClasse
         /// <summary>
         /// Lien du site web du profil commercial
         /// </summary>
+        [DataMember(Order = 0)]
         public string SiteWeb
         {
             get => siteWeb;

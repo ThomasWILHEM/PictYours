@@ -8,7 +8,7 @@ namespace BiblioClasse
 {
     public interface IPersistanceManager
     {
-        (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur, List<Photo>> dico) ChargeDonnées();
-        void SauvegardeDonnées(List<Utilisateur> listeUtilisateur);
+        (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant) ChargeDonnees();
+        void SauvegardeDonnees(List<Utilisateur> listeUtilisateur, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant);
     }
 }

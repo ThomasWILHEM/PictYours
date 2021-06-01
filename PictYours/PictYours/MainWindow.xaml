@@ -22,7 +22,8 @@
         Width="1200"
         MinWidth="960"
         MinHeight="750"
-        Background="#FF303030">
+        Background="#FF303030"
+        Closed="Window_Closed">
 
 
 

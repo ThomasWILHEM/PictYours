@@ -8,9 +8,6 @@ namespace BiblioClasse
 {
     public class ManagerUtilisateur : INotifyPropertyChanged
     {
-
-        public IPersistanceManager Persistance { get; private set; }
-
         /// <summary>
         /// Utilisateur actuellement connecté sur l'application
         /// </summary>
@@ -46,17 +43,10 @@ namespace BiblioClasse
         public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        public ManagerUtilisateur(IPersistanceManager persistance)
+        public ManagerUtilisateur()
         {
-            //Amateur a = new Amateur("Pierre", "Jean", "pierre.jean", "mdp", "/img/user.png", "Gross kartofen", DateTime.Now);
-            //Amateur a1 = new Amateur("Tulipe", "Estelle", "estelletulipe", "mdp", "/img/estelle_rond.png", "Je suis une plus grosse banane", DateTime.Now);
-            //Amateur a2 = new Amateur("Wilhem", "Thomas", "Atrium", "mdp", "/img/pp.jpg", "Je suis une plus grosse banane", DateTime.Now);
-            //Commercial c1 = new Commercial("Mozilla", "mozilla", "mdp", "/img/mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
-
-            Persistance = persistance;
             listeUtilisateur = new List<Utilisateur>();
             ListeUtilisateur = new ReadOnlyCollection<Utilisateur>(listeUtilisateur);
-
         }
 
         public void SeConnecter(Utilisateur utilisateur)
@@ -93,6 +83,16 @@ namespace BiblioClasse
             }
             Debug.WriteLine($"L'UtilisateurActuel {UtilisateurActuel} est bien supprimé");
             UtilisateurActuel = null;
+        }
+
+        /// <summary>
+        /// Verifie si le pseudo passé en paramètre n'est pas déjà présent dans la liste d'utilisateur
+        /// </summary>
+        /// <param name="pseudo">pseudo à vérifier</param>
+        /// <returns>Renvoie vrai si le pseudo existe sinon faux</returns>
+        public bool VerifierPseudo(string pseudo)
+        {
+            return listeUtilisateur.Exists(u => u.Pseudo == pseudo);
         }
 
         /// <summary>
@@ -148,19 +148,18 @@ namespace BiblioClasse
             commercial.SiteWeb = nouveauSiteWeb ?? throw new ArgumentNullException(nameof(nouveauSiteWeb), "Le nouveau site est nul");
         }
 
-
-        public void ChargeDonnées()
+        public void ChargeDonnees(List<Utilisateur> utilisateurs)
         {
-            var données = Persistance.ChargeDonnées();
-            foreach (var u in données.listeUtilisateurs)
+            if (utilisateurs == null) return;
+            foreach (var utilisateur in utilisateurs)
             {
-                listeUtilisateur.Add(u);
+                listeUtilisateur.Add(utilisateur);
             }
         }
 
-        public void SauvegardeDonnées()
+        public List<Utilisateur> SauvegardeDonnees()
         {
-            Persistance.SauvegardeDonnées(listeUtilisateur);
+            return new List<Utilisateur>(listeUtilisateur);
         }
     }
 }

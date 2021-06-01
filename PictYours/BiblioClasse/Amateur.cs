@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.Serialization;
 
 namespace BiblioClasse
 {
+    [DataContract]
     public class Amateur : UtilisateurPrive, IEquatable<Amateur>
     {
         /// <summary>
         /// Prenom de l'Amateur
         /// </summary>
+        [DataMember(Order = 0)]
         public string Prenom
         {
             get => prenom;
@@ -26,6 +29,7 @@ namespace BiblioClasse
         /// <summary>
         /// Date de naissance de l'Amateur
         /// </summary>
+        [DataMember(Order = 1)]
         public DateTime DateDeNaissance
         {
             get => dateDeNaissance;
@@ -43,11 +47,15 @@ namespace BiblioClasse
         /// <summary>
         /// Liste des photos aimées de l'Amateur 
         /// </summary>
-        private ObservableCollection<Photo> photosAimees = new ObservableCollection<Photo>();
+        [DataMember(Order = 2)]
+        private ObservableCollection<Photo> photosAimees = new();
         /// <summary>
         /// ReadOnlyCollection de photos aimées de l'Amateur
         /// </summary>
-        public ReadOnlyObservableCollection<Photo> PhotosAimees { get; }
+        public ReadOnlyObservableCollection<Photo> PhotosAimees { get; private set; }
+
+        [OnDeserialized]
+        private void InitReadOnlyObservableCollection(StreamingContext sc = new()) => PhotosAimees = new(photosAimees);
         
         /// <summary>
         /// Constructeur d'un utilisateur Amateur

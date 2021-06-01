@@ -145,5 +145,9 @@ namespace PictYours
             DialogHost.OpenDialogCommand.Execute(null, null);
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            LeManager.SauvegardeDonnees();
+        }
     }
 }

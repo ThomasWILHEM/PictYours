@@ -1,41 +1,49 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 namespace BiblioClasse
 {
+    [DataContract]
     public class Photo : IEquatable<Photo>, INotifyPropertyChanged
     {
-        public static int prochainIdentifiant { get; private set; }
+        public static int prochainIdentifiant { get; internal set; }
 
         /// <summary>
         /// Chemin de la photo
         /// </summary>
+        [DataMember]
         public string CheminPhoto { get; private set; }
 
         /// <summary>
         /// Description de la photo
         /// </summary>
+        [DataMember]
         public string Description { get; private set; }
 
         /// <summary>
         /// Lieu où la photo à été prise
         /// </summary>
+        [DataMember]
         public string Lieu { get; private set; }
 
         /// <summary>
         /// Utilisateur ayant posté la photo
         /// </summary>
+        [DataMember]
         public Utilisateur Proprietaire { get; private set; }
 
         /// <summary>
         /// Date de publication
         /// </summary>
+        [DataMember]
         public DateTime DatePub { get; private set; }
 
         /// <summary>
         /// Nombre de "Like" de la photo
         /// </summary>
+        [DataMember]
         public int NbJaimes
         {
             get => nbJaimes;
@@ -53,11 +61,13 @@ namespace BiblioClasse
         /// <summary>
         /// Identifiant de la photo utilisé pour la retrouver facilement
         /// </summary>
+        [DataMember]
         public string Identifiant { get; private set; }
 
         /// <summary>
         /// Categorie de la photo
         /// </summary>
+        [DataMember]
         public ECategorie Categorie { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;

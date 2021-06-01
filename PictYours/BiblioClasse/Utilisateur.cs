@@ -4,17 +4,20 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 
 namespace BiblioClasse
 {
     /// <summary>
     /// Définit les attributs communs d'un utilisateur
     /// </summary>
-    public abstract class Utilisateur : IEquatable<Utilisateur>,INotifyPropertyChanged
+    [DataContract, KnownType(typeof(UtilisateurPrive))]
+    public abstract class Utilisateur : IEquatable<Utilisateur>, INotifyPropertyChanged
     {
         /// <summary>
         /// Nom de l'utilisateur
         /// </summary>
+        [DataMember(Order = 1)]
         public string Nom
         {
             get => nom;
@@ -32,6 +35,7 @@ namespace BiblioClasse
         /// <summary>
         /// Pseudo de l'utilisateur
         /// </summary>
+        [DataMember(Order = 0)]
         public string Pseudo
         {
             get => pseudo;
@@ -51,7 +55,7 @@ namespace BiblioClasse
         /// <summary>
         /// Chemin de la photo de profil de l'utilisateur
         /// </summary>
-
+        [DataMember(Order = 2)]
         public string PhotoDeProfil
         {
             get => photoDeProfil;
@@ -69,12 +73,13 @@ namespace BiblioClasse
         /// <summary>
         /// Description du profil de l'utilisateur
         /// </summary>
+        [DataMember(Order = 3, EmitDefaultValue = false)]
         public string Description
         {
             get => description;
             internal set
             {
-                if(value != null && value!= description)
+                if (value != null && value != description)
                 {
                     description = value;
                     OnPropertyChanged();
@@ -89,8 +94,12 @@ namespace BiblioClasse
         /// <summary>
         /// Liste des photos de l'utilisateur
         /// </summary>
-        protected ObservableCollection<Photo> mesPhotos = new ();
-        public ReadOnlyObservableCollection<Photo> MesPhotos { get; }
+        [DataMember(Order = 4)]
+        protected ObservableCollection<Photo> mesPhotos = new();
+        public ReadOnlyObservableCollection<Photo> MesPhotos { get; private set; }
+
+        [OnDeserialized]
+        private void InitReadOnlyObservableCollection(StreamingContext sc = new()) => MesPhotos = new ReadOnlyObservableCollection<Photo>(mesPhotos);
 
         /// <summary>
         /// Constructeur d'un utilisateur
@@ -100,9 +109,9 @@ namespace BiblioClasse
         /// <param name="photoDeProfil">Chemin de la photo de profil</param>
         public Utilisateur(string nom, string pseudo, string photoDeProfil)
         {
-            Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom),"Le nom d'un Utilisateur ne peut pas être nul") : nom;
-            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo),"Le pseudo d'un Utilisateur ne peut pas être nul") : pseudo;
-            PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil),"La photo de profil d'un Utilisateur ne peut pas être nulle") : photoDeProfil;
+            Nom = string.IsNullOrWhiteSpace(nom) ? throw new ArgumentNullException(nameof(nom), "Le nom d'un Utilisateur ne peut pas être nul") : nom;
+            Pseudo = string.IsNullOrWhiteSpace(pseudo) ? throw new ArgumentNullException(nameof(pseudo), "Le pseudo d'un Utilisateur ne peut pas être nul") : pseudo;
+            PhotoDeProfil = string.IsNullOrWhiteSpace(photoDeProfil) ? throw new ArgumentNullException(nameof(photoDeProfil), "La photo de profil d'un Utilisateur ne peut pas être nulle") : photoDeProfil;
             MesPhotos = new ReadOnlyObservableCollection<Photo>(mesPhotos);
         }
 
@@ -127,12 +136,12 @@ namespace BiblioClasse
         /// <param name="photo">Photo à supprimer</param>
         public void AjouterPhoto(Photo photo)
         {
-            if (photo == null) throw new ArgumentNullException(nameof(photo),"La photo passé passé en paramètre est nul");
+            if (photo == null) throw new ArgumentNullException(nameof(photo), "La photo passé passé en paramètre est nul");
             if (MesPhotos.Contains(photo)) throw new InvalidPhotoException($"La photo {photo.Identifiant} à déjà été postée");
-            mesPhotos.Insert(0,photo);
+            mesPhotos.Insert(0, photo);
         }
 
-    
+
 
         /// <summary>
         /// Supprime une photo passee en paramètre de la liste
