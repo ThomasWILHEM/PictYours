@@ -7,12 +7,12 @@ namespace PictYours.userControl.CreationCompte
     /// </summary>
     public partial class UCCommercial : UserControl
     {
-        public string MonNom { get; set; }
-
+        /// <summary>
+        /// Constructeur d'un UCCommercial
+        /// </summary>
         public UCCommercial()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }

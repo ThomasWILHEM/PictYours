@@ -57,7 +57,7 @@ namespace PictYours.userControl.Profils
         }
 
         /// <summary>
-        /// Méthode d'évenement appelé lorsque le bouton PosterUnePhoto a été cliqué
+        /// Méthode d'évenement appelée lorsque le bouton PosterUnePhoto a été cliqué
         /// </summary>
         /// <param name="sender">sender de l'évenement</param>
         /// <param name="e">RoutedEventArgs</param>
@@ -97,7 +97,7 @@ namespace PictYours.userControl.Profils
         }
 
         /// <summary>
-        /// Méthode d'évenement appelé lorsque le bouton Annuler a été cliqué
+        /// Méthode d'évenement appelée lorsque le bouton Annuler a été cliqué
         /// </summary>
         /// <param name="sender">sender de l'évenement</param>
         /// <param name="e">RoutedEventArgs</param>
@@ -108,7 +108,7 @@ namespace PictYours.userControl.Profils
         }
 
         /// <summary>
-        /// Méthode d'évenement appelé lorsque le bouton Parcourir a été cliqué
+        /// Méthode d'évenement appelée lorsque le bouton Parcourir a été cliqué
         /// </summary>
         /// <param name="sender">sender de l'évenement</param>
         /// <param name="e">RoutedEventArgs</param>
