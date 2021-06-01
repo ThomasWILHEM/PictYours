@@ -27,8 +27,14 @@ namespace PictYours.userControl.Profils
     /// </summary>
     public partial class ModifierProfil : UserControl, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Manager de l'application
+        /// </summary>
         public Manager LeManager => (App.Current as App).LeManager;
 
+        /// <summary>
+        /// Propriété temporaire du nom avant la sauvegarde
+        /// </summary>
         public string Nom
         {
             get => nom;
@@ -43,6 +49,9 @@ namespace PictYours.userControl.Profils
         }
         private string nom;
 
+        /// <summary>
+        /// Propriété temporaire de la description avant la sauvegarde
+        /// </summary>
         public string Description
         {
             get => description;
@@ -57,6 +66,9 @@ namespace PictYours.userControl.Profils
         }
         private string description;
 
+        /// <summary>
+        /// Propriété temporaire pour l'emplacement de la photo avant la sauvegarde
+        /// </summary>
         public string CheminPhoto
         {
             get => cheminPhoto;
@@ -71,6 +83,9 @@ namespace PictYours.userControl.Profils
         }
         private string cheminPhoto;
 
+        /// <summary>
+        /// Propriété temporaire du prénom avant la sauvegarde
+        /// </summary>
         public string Prenom
         {
             get => prenom;
@@ -85,7 +100,10 @@ namespace PictYours.userControl.Profils
         }
         private string prenom;
 
-        public DateTime DateDeNaissance
+        /// <summary>
+        /// Propriété temporaire pour la date de naissance avant la sauvegarde
+        /// </summary>
+        public DateTime? DateDeNaissance
         {
             get => dateDeNaissance;
             set
@@ -97,8 +115,11 @@ namespace PictYours.userControl.Profils
                 }
             }
         }
-        private DateTime dateDeNaissance;
+        private DateTime? dateDeNaissance;
 
+        /// <summary>
+        /// Propriété temporaire pour le site web avant la sauvegarde
+        /// </summary>
         public string SiteWeb
         {
             get => siteWeb;
@@ -113,19 +134,31 @@ namespace PictYours.userControl.Profils
         }
         private string siteWeb;
 
-       
+        /// <summary>
+        /// Evenement pour notifier à la vue qu'une propriété à changer
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string parameterName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(parameterName));
+        /// <summary>
+        /// Méthode associé à PropertyChanged
+        /// </summary>
+        /// <param name="propertyName">Nom de la propriété changée</param>
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
        
 
+        /// <summary>
+        /// Constructeur du UserControl ModifierProfil
+        /// </summary>
         public ModifierProfil()
         {
             InitializeComponent();
             DataContext = this;
-
+            MessageSnackbar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(2));
             InitialiserChamps();
         }
 
+        /// <summary>
+        /// Méthode qui permet d'initialiser tous les champs du formulaire de modification
+        /// </summary>
         private void InitialiserChamps()
         {
             if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
@@ -143,35 +176,72 @@ namespace PictYours.userControl.Profils
             PhotoAModifier.ImageSource = new BitmapImage(new Uri(GestionImage.ProfilsPath + "\\" + CheminPhoto, UriKind.Relative));
         }
 
+        /// <summary>
+        /// Permet d'afficher le message en paramètre dans la Snackbar de ModifierProfil
+        /// </summary>
+        /// <param name="message">Message à afficher</param>
+        private void AfficherDansSnackbar(string message)
+        {
+            MessageSnackbar.MessageQueue.Clear();
+            MessageSnackbar.MessageQueue.Enqueue(message, null, null, null, false, true);
+        }
+
+        /// <summary>
+        /// Vérifie les champs lors de la modification du profil
+        /// </summary>
+        /// <returns>Renvoie vrai si tous les champs sont corrects sinon faux</returns>
+        private bool VerifierChamps()
+        {
+            if (string.IsNullOrWhiteSpace(Nom))
+            {
+                AfficherDansSnackbar("Le nom ne peut pas être vide");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(Prenom))
+            {
+                AfficherDansSnackbar("Le prénom ne peut pas être vide");
+                return false;
+            }
+            if(DateDeNaissance == null)
+            {
+                AfficherDansSnackbar("La date ne peut pas être vide");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(CheminPhoto))
+            {
+                AfficherDansSnackbar("Le photo ne peut pas être vide");
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Permet de choisir une nouvelle photo pour le profil
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void ParcourirPhotoAModifierButton_Click(object sender, RoutedEventArgs e)
         {
-            //Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
-            //dialog.InitialDirectory = @"C:";
-            //dialog.FileName = "Images";
-            ////dialog.Filter = "*.jpg | *.png";
-            //dialog.DefaultExt = ".jpg | .png";
-
-            //bool? result = dialog.ShowDialog();
-
-            //if (result == true)
-            //{
-            //    string filename = dialog.FileName;
-            //    PhotoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
-            //}
-
             string filename = GestionImage.ChoisirImage();
             if (filename == null) return;
             PhotoAModifier.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             CheminPhoto = filename;
         }
 
+        /// <summary>
+        /// Méthode qui permet d'enregistrer les nouvelles informations si elles sont valides
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventArgs</param>
         private void EnregistrerButton_Click(object sender, RoutedEventArgs e)
         {
+            if (!VerifierChamps()) return;
+
             if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur)
             {
                 LeManager.ManagerUtilisateur.ModifierPrenom(Prenom);
 
-                LeManager.ManagerUtilisateur.ModifierDateDeNaissance(DateDeNaissance);
+                LeManager.ManagerUtilisateur.ModifierDateDeNaissance(DateDeNaissance.Value);
                 LeManager.ManagerUtilisateur.ModifierNom(Nom);
             }
             else if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
@@ -193,8 +263,14 @@ namespace PictYours.userControl.Profils
                 Debug.WriteLine(fi.Name);
                 LeManager.ManagerUtilisateur.ModifierPhotoDeProfil(fi.Name);
             }
+            DialogHost.CloseDialogCommand.Execute(null, null);
         }
 
+        /// <summary>
+        /// Méthode qui est déclenché lors du clique sur le bouton "Retour"
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void RetourButton_Click(object sender, RoutedEventArgs e)
         {
             InitialiserChamps();

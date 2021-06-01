@@ -2,21 +2,12 @@
 using MaterialDesignThemes.Wpf;
 using PictYours.utils;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PictYours.userControl.Profils
 {
@@ -25,21 +16,51 @@ namespace PictYours.userControl.Profils
     /// </summary>
     public partial class AjouterPhoto : UserControl
     {
-
+        /// <summary>
+        /// Manager de l'application
+        /// </summary>
         public Manager LeManager => (App.Current as App).LeManager;
+        
+        /// <summary>
+        /// Nom du fichier de la photo à ajouter
+        /// </summary>
+        private string filename;
 
+        /// <summary>
+        /// Constructeur du UserControl AjouterPhoto
+        /// </summary>
         public AjouterPhoto()
         {
             InitializeComponent();
-            MessageSnackbar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(2.5));
+            MessageSnackbar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(2));
         }
 
+        /// <summary>
+        /// Affiche le message passé en paramètre dans la Snackbar
+        /// </summary>
+        /// <param name="message">Message à afficher</param>
         private void AfficherDansSnackbar(string message)
         {
             MessageSnackbar.MessageQueue.Clear();
             MessageSnackbar.MessageQueue.Enqueue(message, null, null, null, false, true);
         }
 
+        /// <summary>
+        /// Réinitialise les champs du UserControl
+        /// </summary>
+        private void ReinitialiserChamps()
+        {
+            photoAPoster.ImageSource = null;
+            CategorieBox.SelectedIndex = 0;
+            DescPhoto.Clear();
+            LieuPhoto.Clear();
+        }
+
+        /// <summary>
+        /// Méthode d'évenement appelé lorsque le bouton PosterUnePhoto a été cliqué
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventArgs</param>
         private void PosterButton_Click(object sender, RoutedEventArgs e)
         {
             if (photoAPoster.ImageSource == null)
@@ -75,14 +96,22 @@ namespace PictYours.userControl.Profils
             DialogHost.CloseDialogCommand.Execute(null, null);
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelé lorsque le bouton Annuler a été cliqué
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventArgs</param>
         private void AnnulerButton_Click(object sender, RoutedEventArgs e)
         {
             ReinitialiserChamps();
             DialogHost.CloseDialogCommand.Execute(null, null);
         }
 
-        private string filename;
-
+        /// <summary>
+        /// Méthode d'évenement appelé lorsque le bouton Parcourir a été cliqué
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventArgs</param>
         private void ParcourirButton_Click(object sender, RoutedEventArgs e)
         {
             filename = GestionImage.ChoisirImage();
@@ -90,14 +119,6 @@ namespace PictYours.userControl.Profils
             {
                 photoAPoster.ImageSource = new BitmapImage(new Uri(filename, UriKind.Absolute));
             }
-        }
-
-        private void ReinitialiserChamps()
-        {
-            photoAPoster.ImageSource = null;
-            CategorieBox.SelectedIndex = 0;
-            DescPhoto.Clear();
-            LieuPhoto.Clear();
         }
     }
 }

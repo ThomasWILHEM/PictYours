@@ -10,6 +10,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="LightBlue"/>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="/PictYours.Ressources;Component/Ressources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:Date2Affichage x:Key="Date2Affichage"/>
             <converters:Date2Age x:Key="Date2Age"/>
