@@ -10,7 +10,7 @@
         mc:Ignorable="d"
         Title="Connexion" Height="600" Width="500"
         ResizeMode="NoResize" Background="#FF424242"
-        Icon="/img/app_icon.png"
+        Icon="/icons/app_icon.png"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.Resources>
