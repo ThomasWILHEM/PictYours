@@ -3,10 +3,8 @@ using BiblioClasse;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace PictYours.userControl
 {
@@ -15,14 +13,25 @@ namespace PictYours.userControl
     /// </summary>
     public partial class Parametres : UserControl
     {
+        /// <summary>
+        /// Manager de l'application
+        /// </summary>
         Manager LeManager = (App.Current as App).LeManager;
 
+        /// <summary>
+        /// Constructeur de la page des parametres
+        /// </summary>
         public Parametres()
         {
             InitializeComponent();
             MessageSnackbar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(2.5));
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelée lors du clic sur le bouton pour supprimer le compte
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void SupprimerCompteButton_Click(object sender, RoutedEventArgs e)
         {
             bool resultat = LeManager.ManagerUtilisateur.VerifierMotDePasse(MotDePasseBox.Password);
@@ -48,6 +57,9 @@ namespace PictYours.userControl
             }
         }
 
+        /// <summary>
+        /// Réinitialise les paramètres qui sont dans les textBox
+        /// </summary>
         internal void ReinitialiserParametres()
         {
             MotDePasseBox.Clear();
@@ -58,12 +70,21 @@ namespace PictYours.userControl
             tabControl.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Affiche un message dans la snackbar
+        /// </summary>
+        /// <param name="message">Message à afficher dans la Snackbar</param>
         private void AfficherDansSnackbar(string message)
         {
             MessageSnackbar.MessageQueue.Clear();
             MessageSnackbar.MessageQueue.Enqueue(message, null,null,null,false,true);
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelée lors du clic sur le bouton pour modifier le compte
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void ModifierButton_Click(object sender, RoutedEventArgs e)
         {
             bool resultat = LeManager.ManagerUtilisateur.VerifierMotDePasse(AncienMDPBox.Password);
@@ -97,6 +118,11 @@ namespace PictYours.userControl
             }
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelée lors du clic sur le bouton pour fermer un dialogHost
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void CloseDialogHostButton_Click(object sender, RoutedEventArgs e)
         {
             DialogHost.CloseDialogCommand.Execute(null, null);

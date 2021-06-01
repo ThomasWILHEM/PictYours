@@ -10,6 +10,9 @@ using System.Windows.Data;
 
 namespace PictYours.converters
 {
+    /// <summary>
+    /// Convertit le nom de l'image en un chemin relatif en fonction du paramètre utilisé
+    /// </summary>
     public class String2Image : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

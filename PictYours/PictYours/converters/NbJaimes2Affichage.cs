@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace PictYours.converters
 {
+    /// <summary>
+    /// Convertit un nombre de J'aime pour qu'il apparaisse dans le format "{nb} j'aime(s)"
+    /// </summary>
     public class NbJaimes2Affichage : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -108,7 +108,7 @@
 
                 <Grid>
                     <UC:PagePrincipale Visibility="Visible" x:Name="PagePrincipale"/>
-                    <UC:Photo Visibility="Collapsed" x:Name="VisualiseurPhoto"/>
+                    <UC:VisualisateurPhoto Visibility="Collapsed" x:Name="VisualiseurPhoto"/>
                     <UC:PhotosAimees x:Name="PagePhotoAimees" Visibility="Collapsed"/>
                 </Grid>
             </DockPanel>

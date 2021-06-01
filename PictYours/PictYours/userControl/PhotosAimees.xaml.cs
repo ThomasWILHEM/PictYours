@@ -1,18 +1,5 @@
 ﻿using BiblioClasse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PictYours.userControl
 {
@@ -21,15 +8,25 @@ namespace PictYours.userControl
     /// </summary>
     public partial class PhotosAimees : UserControl
     {
-
+        /// <summary>
+        /// Manager de l'application
+        /// </summary>
         Manager LeManager = (App.Current as App).LeManager;
 
+        /// <summary>
+        /// Constructeur de la page PhotoAimees
+        /// </summary>
         public PhotosAimees()
         {
             InitializeComponent();
             DataContext = LeManager.ManagerUtilisateur.UtilisateurActuel as Amateur;
         }
 
+        /// <summary>
+        /// Evenement lié au changement de sélection d'élement dans la ListBox "ListeBoxPhotosAimees"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ListeBoxPhotosAimees_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0)
@@ -37,7 +34,7 @@ namespace PictYours.userControl
                 LeManager.ManagerPhoto.PhotoSelectionne = null;
                 return;
             }
-            LeManager.ManagerPhoto.PhotoSelectionne = e.AddedItems[0] as BiblioClasse.Photo;
+            LeManager.ManagerPhoto.PhotoSelectionne = e.AddedItems[0] as Photo;
         }
     }
 }

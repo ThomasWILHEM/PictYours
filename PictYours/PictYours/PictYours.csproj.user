@@ -13,7 +13,7 @@
     <Compile Update="userControl\Parametres.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="userControl\Photo.xaml.cs">
+    <Compile Update="userControl\VisualisateurPhoto.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="userControl\PhotosAimees.xaml.cs">
@@ -45,7 +45,7 @@
     <Page Update="userControl\Parametres.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="userControl\Photo.xaml">
+    <Page Update="userControl\VisualisateurPhoto.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="userControl\PhotosAimees.xaml">

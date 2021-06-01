@@ -4,7 +4,7 @@ using MaterialDesignThemes.Wpf;
 using PictYours.userControl;
 using System;
 using System.Windows;
-using static PictYours.userControl.Photo;
+using static PictYours.userControl.VisualisateurPhoto;
 using static PictYours.userControl.Profils.ProfilUtilisateur;
 
 namespace PictYours
