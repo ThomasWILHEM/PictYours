@@ -16,12 +16,24 @@ namespace AppWpf
     /// </summary>
     public partial class CreationCompte : Window
     {
-
+        /// <summary>
+        /// Manager de l'application
+        /// </summary>
         public Manager LeManager => (App.Current as App).LeManager;
-
-        private string filePhotoProfil;
+        
+        /// <summary>
+        /// Chemin absolu vers la photo source
+        /// </summary>
+        private string filePhotoProfilPath;
+        
+        /// <summary>
+        /// Nom de la photo source
+        /// </summary>
         private string filePhotoProfilName;
-
+        
+        /// <summary>
+        /// Constructeur de la page CreationCompte
+        /// </summary>
         public CreationCompte()
         {
             InitializeComponent();
@@ -29,6 +41,11 @@ namespace AppWpf
             DataContext = this;
         }
 
+        /// <summary>
+        /// Gère les visibilités des UserControls en fonction de l'élément sélectionné dans la comboBox
+        /// </summary>
+        /// <param name="sender">Sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Vide.Visibility = Visibility.Collapsed;
@@ -45,6 +62,11 @@ namespace AppWpf
             }
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelée lors du clic sur le bouton pour retourner en arrière 
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void RetourButton_Click(object sender, RoutedEventArgs e)
         {
             Login login = new();
@@ -52,6 +74,11 @@ namespace AppWpf
             Close();
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelée lors du clic sur le bouton créer son compte/S'inscrire
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void InscriptionButton_Click(object sender, RoutedEventArgs e)
         {
             if (!VerifierPhotoDeProfil()) return;
@@ -65,16 +92,16 @@ namespace AppWpf
 
             if (ComboBoxType.SelectedIndex == 0)
             {
-                FileInfo fi = new(filePhotoProfil);
+                FileInfo fi = new(filePhotoProfilPath);
                 filePhotoProfilName = $"{FormA.PseudoProfil.Text}{fi.Extension}";
-                GestionImage.EnregistrerImage(filePhotoProfil, filePhotoProfilName, GestionImage.TypeEnregistrement.Profils, true);
+                GestionImage.EnregistrerImage(filePhotoProfilPath, filePhotoProfilName, GestionImage.TypeEnregistrement.Profils, true);
                 LeManager.ManagerUtilisateur.CreerUnCompte(new Amateur(FormA.NomProfil.Text, FormA.PrenomProfil.Text, FormA.PseudoProfil.Text, PasswordBox.Password, filePhotoProfilName, DescriptionBox.Text, FormA.DateDeNaissanceBox.DisplayDate));
             }
             else if (ComboBoxType.SelectedIndex == 1)
             {
-                FileInfo fi = new(filePhotoProfil);
+                FileInfo fi = new(filePhotoProfilPath);
                 filePhotoProfilName = $"{FormC.PseudoBoxC.Text}{fi.Extension}";
-                GestionImage.EnregistrerImage(filePhotoProfil, filePhotoProfilName, GestionImage.TypeEnregistrement.Profils, true);
+                GestionImage.EnregistrerImage(filePhotoProfilPath, filePhotoProfilName, GestionImage.TypeEnregistrement.Profils, true);
                 LeManager.ManagerUtilisateur.CreerUnCompte(new Commercial(FormC.NomBoxC.Text, FormC.PseudoBoxC.Text, PasswordBox.Password, filePhotoProfilName, FormC.SiteBox.Text, DescriptionBox.Text));
 
             }
@@ -83,19 +110,27 @@ namespace AppWpf
             Close();
         }
 
+        /// <summary>
+        /// Affiche un message dans la snackbar
+        /// </summary>
+        /// <param name="message">Message à afficher dans la Snackbar</param>
         private void AfficherDansSnackbar(string message)
         {
             MessageSnackbar.MessageQueue.Clear();
             MessageSnackbar.MessageQueue.Enqueue(message, null, null, null, false, true);
         }
 
-
+        /// <summary>
+        /// Méthode d'évenement appelée lors du clic sur le bouton choisir sa photo de profil via l'explorateur de fichier
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventAgrs</param>
         private void parcourirButton_Click(object sender, RoutedEventArgs e)
         {
-            filePhotoProfil = GestionImage.ChoisirImage();
-            if (filePhotoProfil == null) return;
+            filePhotoProfilPath = GestionImage.ChoisirImage();
+            if (filePhotoProfilPath == null) return;
             IconPhoto.Visibility = Visibility.Collapsed;
-            photoProfil.ImageSource = new BitmapImage(new Uri(filePhotoProfil, UriKind.Absolute));
+            photoProfil.ImageSource = new BitmapImage(new Uri(filePhotoProfilPath, UriKind.Absolute));
         }
 
         /// <summary>
@@ -173,7 +208,7 @@ namespace AppWpf
         /// <returns>Renvoie vrai si la photo est valide sinon faux</returns>
         private bool VerifierPhotoDeProfil()
         {
-            if (string.IsNullOrWhiteSpace(filePhotoProfil))
+            if (string.IsNullOrWhiteSpace(filePhotoProfilPath))
             {
                 AfficherDansSnackbar("Veuillez sélectionnez une photo");
                 Debug.WriteLine("L'image est nulle");

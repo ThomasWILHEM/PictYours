@@ -9,6 +9,9 @@ using System.Windows.Data;
 
 namespace PictYours.converters
 {
+    /// <summary>
+    /// Convertit un site web pour qu'il apparaisse dans le format "Site web : {site}"
+    /// </summary>
     public class Site2Affichage : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

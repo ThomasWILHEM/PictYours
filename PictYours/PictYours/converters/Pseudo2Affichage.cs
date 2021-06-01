@@ -8,6 +8,9 @@ using System.Windows.Data;
 
 namespace PictYours.converters
 {
+    /// <summary>
+    /// Fait en sorte de rajouter un "@" devant le pseudo
+    /// </summary>
     public class Pseudo2Affichage : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -9,6 +9,9 @@ using System.Windows.Data;
 
 namespace PictYours.converters
 {
+    /// <summary>
+    /// Permet de gérer la visibilité du bouton pour modifier le profil en fonction de l'utilisateur actuel
+    /// </summary>
     public class Utilisateur2ModificationProfilButton : IValueConverter
     {
         public Manager LeManager => (App.Current as App).LeManager;

@@ -9,6 +9,9 @@ using System.Windows.Data;
 
 namespace PictYours.converters
 {
+    /// <summary>
+    /// Récupère une date de naissance, calcule l'age de la personne et affiche l'age dans le format "{Age} ans"
+    /// </summary>
     public class Date2Age : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -16,11 +19,6 @@ namespace PictYours.converters
             if (value == null) return null;
             DateTime date = DateTime.Parse(value.ToString());
             return $", {DateTime.Now.Year - date.Year} ans";
-            //if (value is Amateur amateur)
-            //{
-            //    return $", {DateTime.Now.Year - amateur.DateDeNaissance.Year} ans";
-            //}
-            //return null;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
