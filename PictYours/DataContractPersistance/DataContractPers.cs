@@ -1,5 +1,4 @@
 ﻿using BiblioClasse;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
@@ -9,13 +8,34 @@ namespace DataContractPersistance
 {
     public class DataContractPers : IPersistanceManager
     {
-        public string PersName = "persistance.xml";
-        public string PersPath = Path.Combine(Directory.GetCurrentDirectory(), "..//XML");
+        /// <summary>
+        /// Nom du fichier ou sont stockés les informations
+        /// </summary>
+        public string PersName { get; set; } = "persistance.xml";
+        
+        /// <summary>
+        /// Chemin pour accéder au fichier
+        /// </summary>
+        public string PersPath => Path.Combine(Directory.GetCurrentDirectory(), RelativePath);
+
+        /// <summary>
+        /// Fichier contenant les données de l'application
+        /// </summary>
         public string PersFile => Path.Combine(PersPath, PersName);
 
-        private DataContractSerializer Serializer { get; set; } = new DataContractSerializer(typeof(DataToPersist), new DataContractSerializerSettings() { PreserveObjectReferences = true });
+        /// <summary>
+        /// Chemin relatif du fichier de persistance (Endroit où il est stocké)
+        /// </summary>
+        public string RelativePath { get; set; } = "..//XML";
 
-        public (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant) ChargeDonnees()
+        protected XmlObjectSerializer Serializer { get; set; } = new DataContractSerializer(typeof(DataToPersist), new DataContractSerializerSettings() { PreserveObjectReferences = true });
+
+
+        /// <summary>
+        /// Méthode permettant de charger les données depuis un fichier
+        /// </summary>
+        /// <returns>Cette méthode retourne la liste des utilisateurs, les deux dictionnaires (photosParUtilisateurs et listeUtilisateursParPhotosAimees) et le prochain identifiant de photo</returns>
+        public virtual (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant) ChargeDonnees()
         {
             if (!File.Exists(PersFile)) throw new FileNotFoundException($"Le fichier de chargement des données: {PersFile} n'existe pas");
 
@@ -29,7 +49,14 @@ namespace DataContractPersistance
             return (data.ListeUtilisateurs, data.PhotosParUtilisateurs, data.ListeUtilisateursParPhotosAimees, data.ProchainIdentifiant);
         }
 
-        public void SauvegardeDonnees(List<Utilisateur> listeUtilisateur, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant)
+        /// <summary>
+        /// Méthode permettant de sauvegarder les données dans un fichier XML
+        /// </summary>
+        /// <param name="listeUtilisateur">Liste de tous les utilisateurs de l'application</param>
+        /// <param name="photosParUtilisateurs">Dictonnaire qui possède en clé un Utilisateur et en valeur la liste de ses photos</param>
+        /// <param name="listeUtilisateursParPhotosAimees">Dictionnaire qui possède en clé une photo et en valeur la liste des personnes qui ont aimées cette photo</param>
+        /// <param name="prochainIdentifiant">Prochain identifiant de photo</param>
+        public virtual void SauvegardeDonnees(List<Utilisateur> listeUtilisateur, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant)
         {
             if (!Directory.Exists(PersPath)) Directory.CreateDirectory(PersPath);
 

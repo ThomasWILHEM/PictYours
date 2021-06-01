@@ -8,6 +8,9 @@ namespace BiblioClasse
     [DataContract]
     public class Photo : IEquatable<Photo>, INotifyPropertyChanged
     {
+        /// <summary>
+        /// Prochain identifiant de photo
+        /// </summary>
         public static int prochainIdentifiant { get; internal set; }
 
         /// <summary>
@@ -70,7 +73,15 @@ namespace BiblioClasse
         [DataMember]
         public ECategorie Categorie { get; private set; }
 
+
+        /// <summary>
+        /// Evenement pour notifier à la vue qu'une propriété à changer
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Méthode associé à PropertyChanged
+        /// </summary>
+        /// <param name="propertyName">Nom de la propriété changée</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
 
@@ -169,6 +180,10 @@ namespace BiblioClasse
             return Identifiant.GetHashCode();
         }
 
+        /// <summary>
+        /// Permet d'obtenir une chaine de caractère qui représente l'objet
+        /// </summary>
+        /// <returns>Renvoie la chaine de caractère d'une Photo</returns>
         public override string ToString()
         {
             return $"Identifiant:{Identifiant} posté le {DatePub.ToShortDateString()} à {Lieu} par {Proprietaire}";

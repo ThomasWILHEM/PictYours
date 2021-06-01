@@ -4,11 +4,12 @@ namespace BiblioClasse
 {
     public class InvalidPhotoException : Exception
     {
-        public InvalidPhotoException(string message) : base(message)
-        {
-        }
 
-        public InvalidPhotoException(string message, Exception innerException) : base(message, innerException)
+        /// <summary>
+        /// Classe d'exception liée aux erreurs d'une photo
+        /// </summary>
+        /// <param name="message">Message d'erreur</param>
+        public InvalidPhotoException(string message) : base(message)
         {
         }
     }

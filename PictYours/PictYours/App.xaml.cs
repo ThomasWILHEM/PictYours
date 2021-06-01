@@ -14,6 +14,7 @@ namespace PictYours
         public App()
         {
             LeManager.ChargeDonnees();
+
         }
     }
 }

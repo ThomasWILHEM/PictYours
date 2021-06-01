@@ -36,6 +36,7 @@ namespace AppWpf
             {
                 FormA.Visibility = Visibility.Visible;
                 FormC.Visibility = Visibility.Collapsed;
+                
             }
             else if (e.AddedItems[0].ToString().Contains("Commercial"))
             {
