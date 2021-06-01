@@ -11,19 +11,19 @@ namespace Test_ManagerPhoto
             Test_ManagerPhoto();
         }
 
-        static ManagerPhoto managerPhoto = new ManagerPhoto(new Stub.Stub());
+        static ManagerPhoto managerPhoto = new ManagerPhoto();
 
         static Utilisateur utilisateur = new Amateur(
-            "MARQUES","Florent","florent.marques"
-            ,"mdp","photo.png",DateTime.Now);
+            "MARQUES", "Florent", "florent.marques"
+            , "mdp", "photo.png", DateTime.Now);
 
         static Photo photo1 = new Photo(
-            "maPhoto.png","La photo","Clermont-Ferrand",
-            utilisateur,DateTime.Today,ECategorie.Nature);
+            "maPhoto.png", "La photo", "Clermont-Ferrand",
+            utilisateur, DateTime.Today, ECategorie.Nature);
 
         static Photo photo2 = new Photo(
-            "voiture.png","Ma voiture","Cournon",
-            utilisateur,DateTime.Today.AddDays(1),ECategorie.Automobile);
+            "voiture.png", "Ma voiture", "Cournon",
+            utilisateur, DateTime.Today.AddDays(1), ECategorie.Automobile);
 
         static void AffichePhotos()
         {
@@ -55,7 +55,7 @@ namespace Test_ManagerPhoto
 
         static void Test_ManagerPhoto()
         {
-            utilisateur.EstConnecte=true;
+            utilisateur.EstConnecte = true;
             try
             {
                 //Ajout de la première photo
@@ -104,7 +104,7 @@ namespace Test_ManagerPhoto
                 AffichePhotos();
                 AffichePhotosAimees();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }

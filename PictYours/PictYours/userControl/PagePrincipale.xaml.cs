@@ -1,22 +1,10 @@
 ﻿using BiblioClasse;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PictYours.userControl
 {
@@ -25,6 +13,19 @@ namespace PictYours.userControl
     /// </summary>
     public partial class PagePrincipale : UserControl 
     {
+        /// <summary>
+        /// Manager de l'application
+        /// </summary>
+        public Manager LeManager => (App.Current as App).LeManager;
+
+        /// <summary>
+        /// Liste d'Utilisateurs
+        /// </summary>
+        public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; private set; }
+
+        /// <summary>
+        /// Constructeur de PagePrincipale
+        /// </summary>
         public PagePrincipale()
         {
             InitializeComponent();
@@ -32,11 +33,11 @@ namespace PictYours.userControl
             ListeUtilisateur = LeManager.ManagerUtilisateur.ListeUtilisateur;
         }
 
-        public Manager LeManager => (App.Current as App).LeManager;
-
-        public ReadOnlyCollection<Utilisateur> ListeUtilisateur { get; private set; }
-
-
+        /// <summary>
+        /// Méthode d'évenement appelée lorsque le mot recherché change
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">RoutedEventArgs</param>
         private void RechercheTextBox_SelectionChanged(object sender, RoutedEventArgs e)
         {
             if (NomPrenomRadioButton.IsChecked == true)
@@ -69,6 +70,11 @@ namespace PictYours.userControl
             }
         }
 
+        /// <summary>
+        /// Méthode d'évenement appelée lorsque l'élément sélectionné de la ListBox change
+        /// </summary>
+        /// <param name="sender">sender de l'évenement</param>
+        /// <param name="e">SelectionChangedEventArgs</param>
         private void ListBoxUtilisateur_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count == 0)
