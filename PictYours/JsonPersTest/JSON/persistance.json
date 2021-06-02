@@ -1,0 +1,267 @@
+{
+  "$id": "1",
+  "ListeUtilisateurs": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "MotDePasse": "mdp",
+        "Prenom": "Jean",
+        "Pseudo": "pierre.jean",
+        "DateDeNaissance": "2001-06-02T13:07:05.0859836+02:00",
+        "Nom": "Pierre",
+        "photosAimees": {
+          "$id": "4",
+          "$values": []
+        },
+        "PhotoDeProfil": "user.png",
+        "Description": "Description de Jean Pierre",
+        "mesPhotos": {
+          "$id": "5",
+          "$values": [
+            {
+              "$id": "6",
+              "CheminPhoto": "pp.jpg",
+              "Description": "test",
+              "Lieu": "test",
+              "Proprietaire": {
+                "$ref": "3"
+              },
+              "DatePub": "2020-12-02T00:00:00+01:00",
+              "NbJaimes": 0,
+              "Identifiant": "p1",
+              "Categorie": 2
+            },
+            {
+              "$id": "7",
+              "CheminPhoto": "vacances6.jpg",
+              "Description": "test2",
+              "Lieu": "test1532",
+              "Proprietaire": {
+                "$ref": "3"
+              },
+              "DatePub": "2021-05-28T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p2",
+              "Categorie": 1
+            }
+          ]
+        }
+      },
+      {
+        "$id": "8",
+        "MotDePasse": "mdp",
+        "Prenom": "Estelle",
+        "Pseudo": "estelletulipe",
+        "DateDeNaissance": "2006-06-02T13:07:05.1040742+02:00",
+        "Nom": "Tulipe",
+        "photosAimees": {
+          "$id": "9",
+          "$values": []
+        },
+        "PhotoDeProfil": "estelle_rond.png",
+        "Description": "Description d'Estelle Tulipe",
+        "mesPhotos": {
+          "$id": "10",
+          "$values": [
+            {
+              "$id": "11",
+              "CheminPhoto": "vacances1.jpg",
+              "Description": "test2",
+              "Lieu": "test1532",
+              "Proprietaire": {
+                "$ref": "8"
+              },
+              "DatePub": "2020-06-02T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p3",
+              "Categorie": 6
+            },
+            {
+              "$id": "12",
+              "CheminPhoto": "vacances2.jpg",
+              "Description": "test2",
+              "Lieu": "test1532",
+              "Proprietaire": {
+                "$ref": "8"
+              },
+              "DatePub": "2021-06-02T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p4",
+              "Categorie": 3
+            },
+            {
+              "$id": "13",
+              "CheminPhoto": "vacances3.jpg",
+              "Description": "test2",
+              "Lieu": "test1532",
+              "Proprietaire": {
+                "$ref": "8"
+              },
+              "DatePub": "2021-03-02T00:00:00+01:00",
+              "NbJaimes": 0,
+              "Identifiant": "p5",
+              "Categorie": 4
+            }
+          ]
+        }
+      },
+      {
+        "$id": "14",
+        "MotDePasse": "mdp",
+        "Prenom": "Thomas",
+        "Pseudo": "Atrium",
+        "DateDeNaissance": "2003-06-02T13:07:05.1041031+02:00",
+        "Nom": "Wilhem",
+        "photosAimees": {
+          "$id": "15",
+          "$values": []
+        },
+        "PhotoDeProfil": "pp.jpg",
+        "Description": "Description de Thomas Wilhem",
+        "mesPhotos": {
+          "$id": "16",
+          "$values": [
+            {
+              "$id": "17",
+              "CheminPhoto": "montagne.jpg",
+              "Description": "test",
+              "Lieu": "test",
+              "Proprietaire": {
+                "$ref": "14"
+              },
+              "DatePub": "2021-06-02T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p6",
+              "Categorie": 1
+            }
+          ]
+        }
+      },
+      {
+        "$id": "18",
+        "MotDePasse": "mdp",
+        "SiteWeb": "mozilla.fr",
+        "Pseudo": "mozilla",
+        "NombreDeVisites": 0,
+        "Nom": "Mozilla",
+        "PhotoDeProfil": "mozilla.png",
+        "Description": "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.",
+        "mesPhotos": {
+          "$id": "19",
+          "$values": [
+            {
+              "$id": "20",
+              "CheminPhoto": "vacances4.jpg",
+              "Description": "test2",
+              "Lieu": "test1532",
+              "Proprietaire": {
+                "$ref": "18"
+              },
+              "DatePub": "2021-05-02T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p7",
+              "Categorie": 1
+            },
+            {
+              "$id": "21",
+              "CheminPhoto": "vacances5.jpg",
+              "Description": "test2",
+              "Lieu": "test1532",
+              "Proprietaire": {
+                "$ref": "18"
+              },
+              "DatePub": "2021-05-19T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p8",
+              "Categorie": 2
+            },
+            {
+              "$id": "22",
+              "CheminPhoto": "user.png",
+              "Description": "test156",
+              "Lieu": "test123",
+              "Proprietaire": {
+                "$ref": "18"
+              },
+              "DatePub": "2021-06-02T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p9",
+              "Categorie": 6
+            },
+            {
+              "$id": "23",
+              "CheminPhoto": "estelle_rond.png",
+              "Description": "test2",
+              "Lieu": "test1532",
+              "Proprietaire": {
+                "$ref": "18"
+              },
+              "DatePub": "2021-06-02T00:00:00+02:00",
+              "NbJaimes": 0,
+              "Identifiant": "p10",
+              "Categorie": 5
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "PhotosParUtilisateurs": {
+    "$id": "24",
+    "Pierre Jean(pierre.jean,02/06/2001)": {
+      "$id": "25",
+      "$values": [
+        {
+          "$ref": "6"
+        },
+        {
+          "$ref": "7"
+        }
+      ]
+    },
+    "Tulipe Estelle(estelletulipe,02/06/2006)": {
+      "$id": "26",
+      "$values": [
+        {
+          "$ref": "11"
+        },
+        {
+          "$ref": "12"
+        },
+        {
+          "$ref": "13"
+        }
+      ]
+    },
+    "Wilhem Thomas(Atrium,02/06/2003)": {
+      "$id": "27",
+      "$values": [
+        {
+          "$ref": "17"
+        }
+      ]
+    },
+    "Mozilla(mozilla) Description:Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif. Nombres de visites:0 SiteWeb:mozilla.fr": {
+      "$id": "28",
+      "$values": [
+        {
+          "$ref": "20"
+        },
+        {
+          "$ref": "21"
+        },
+        {
+          "$ref": "22"
+        },
+        {
+          "$ref": "23"
+        }
+      ]
+    }
+  },
+  "ListeUtilisateursParPhotosAimees": {
+    "$id": "29"
+  },
+  "ProchainIdentifiant": 10
+}
