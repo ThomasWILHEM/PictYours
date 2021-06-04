@@ -1,6 +1,6 @@
 ﻿using BiblioClasse;
 using Newtonsoft.Json;
-using System;
+using Newtonsoft.Json.Serialization;
 using System.Collections.Generic;
 using System.IO;
 
@@ -8,7 +8,7 @@ namespace JsonPersistance
 {
     public class JsonPers : IPersistanceManager
     {
-        public static string filePath = "../../../JSON";
+        public static string filePath = "../JSON";
         public static string fileName = "persistance.json";
         public static string PersFile { get; private set; } = Path.Combine(filePath, fileName);
 
@@ -19,7 +19,16 @@ namespace JsonPersistance
 
         public (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant) ChargeDonnees()
         {
-            return (null, null, null, 0);
+            var json = File.ReadAllText(PersFile);
+
+            var data = JsonConvert.DeserializeObject<DataToPersist>(json, new JsonSerializerSettings()
+            {
+                PreserveReferencesHandling = PreserveReferencesHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
+                Formatting = Formatting.Indented,
+                ContractResolver = new DictionaryAsArrayResolver()
+            });
+            return (data.ListeUtilisateurs, data.PhotosParUtilisateurs, data.ListeUtilisateursParPhotosAimees, data.ProchainIdentifiant);
         }
 
         public void SauvegardeDonnees(List<Utilisateur> listeUtilisateur, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant)
@@ -30,16 +39,15 @@ namespace JsonPersistance
             data.ListeUtilisateursParPhotosAimees = listeUtilisateursParPhotosAimees;
             data.ProchainIdentifiant = prochainIdentifiant;
 
-            JsonSerializer serializer = new();
-            serializer.PreserveReferencesHandling = PreserveReferencesHandling.All;
-            serializer.Formatting = Formatting.Indented;
-            using(StreamWriter s = new(PersFile))
-                using(JsonWriter writer = new JsonTextWriter(s))
+            DefaultContractResolver contractResolver = new DictionaryAsArrayResolver();
+            var json = JsonConvert.SerializeObject(data, new JsonSerializerSettings()
             {
-                serializer.Serialize(writer, data);
-            }
-            //var json = JsonConvert.SerializeObject(data);
-            //File.WriteAllText(PersFile, json);
+                PreserveReferencesHandling = PreserveReferencesHandling.All,
+                TypeNameHandling = TypeNameHandling.All,
+                Formatting = Formatting.Indented,
+                ContractResolver = contractResolver
+            });
+            File.WriteAllText(PersFile, json);
         }
     }
 }

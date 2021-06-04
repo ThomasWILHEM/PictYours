@@ -13,6 +13,11 @@ namespace BiblioClasse
         public string MotDePasse { get; private set; }
 
 
+        public UtilisateurPrive()
+        {
+             
+        }
+
         public UtilisateurPrive(string nom, string pseudo, string motDePasse, string photoDeProfil, string description = "")
             : base(nom, pseudo, photoDeProfil, description)
         {

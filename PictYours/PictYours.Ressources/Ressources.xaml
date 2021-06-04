@@ -23,5 +23,28 @@
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Margin" Value="0,5"/>
     </Style>
+
+    <Style TargetType="{x:Type PasswordBox}" x:Key="PasswordBoxParametres">
+        <Setter Property="BorderBrush" Value="AliceBlue"/>
+        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="PasswordChar" Value="*"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Width" Value="250"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TabItemHeader">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
+
+    <Style TargetType="{x:Type ToolTip}" x:Key="ToolTipEffect" BasedOn="{StaticResource MaterialDesignToolTip}">
+        <Setter Property="ToolTipService.InitialShowDelay" Value="1700"/>
+        <Setter Property="ToolTipService.VerticalOffset" Value="-10"/>
+    </Style>
+    
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextBlockToolTipStyle">
+        <Setter Property="Foreground" Value="Black"/>
+    </Style>
     
 </ResourceDictionary>

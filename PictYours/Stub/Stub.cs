@@ -14,18 +14,18 @@ namespace Stub
         Commercial mozilla = new Commercial("Mozilla", "mozilla", "mdp", "mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
         private string imagesStub = "images_stub";
-        private string imagesPictYours = "../images";
+        private string destImages = "../images";
 
         public Stub()
         {
-            if (!Directory.Exists(imagesPictYours)) Directory.CreateDirectory(imagesPictYours);
-            if (!Directory.Exists($"{imagesPictYours}/profils")) Directory.CreateDirectory($"{imagesPictYours}/profils");
-            if (!Directory.Exists($"{imagesPictYours}/photos")) Directory.CreateDirectory($"{imagesPictYours}/photos");
+            if (!Directory.Exists(destImages)) Directory.CreateDirectory(destImages);
+            if (!Directory.Exists($"{destImages}/profils")) Directory.CreateDirectory($"{destImages}/profils");
+            if (!Directory.Exists($"{destImages}/photos")) Directory.CreateDirectory($"{destImages}/photos");
 
             foreach (var sourceFile in Directory.GetFiles($"{imagesStub}/profils"))
             {
                 FileInfo fi = new(sourceFile);
-                string destFile = $"{imagesPictYours}/profils/{fi.Name}";
+                string destFile = $"{destImages}/profils/{fi.Name}";
                 if (!File.Exists(destFile))
                 {
                     File.Copy(sourceFile, destFile, true);
@@ -35,7 +35,7 @@ namespace Stub
             foreach (var sourceFile in Directory.GetFiles($"{imagesStub}/photos"))
             {
                 FileInfo fi = new(sourceFile);
-                string destFile = $"{imagesPictYours}/photos/{fi.Name}";
+                string destFile = $"{destImages}/photos/{fi.Name}";
                 if (!File.Exists(destFile))
                 {
                     File.Copy(sourceFile, destFile, true);

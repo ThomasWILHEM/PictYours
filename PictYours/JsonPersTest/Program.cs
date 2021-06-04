@@ -48,11 +48,14 @@ namespace JsonPersTest
             listeUtilisateursParPhotosAimees = data.listeUtilisateursParPhotosAimees;
             prochainIdentifiant = data.prochainIdentifiant;
 
-            foreach(var u in listeUtilisateurs)
+            foreach (var entry in photosParUtilisateurs)
             {
-                Console.WriteLine(u);
+                Console.WriteLine(entry.Key);
+                foreach (var p in entry.Value)
+                {
+                    Console.WriteLine(p);
+                }
             }
-
         }
     }
 }

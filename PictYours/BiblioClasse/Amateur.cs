@@ -56,7 +56,12 @@ namespace BiblioClasse
 
         [OnDeserialized]
         private void InitReadOnlyObservableCollection(StreamingContext sc = new()) => PhotosAimees = new(photosAimees);
-        
+
+        public Amateur()
+        {
+
+        }
+
         /// <summary>
         /// Constructeur d'un utilisateur Amateur
         /// </summary>

@@ -89,7 +89,7 @@ namespace PictYours.userControl.Profils
                 (ECategorie)CategorieBox.SelectedItem)
                 );
             //Récupere la photo posté
-            BiblioClasse.Photo photo = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.First();
+            Photo photo = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.First();
             //Enregistre dans le répertoire des images avec son identifiant
             GestionImage.EnregistrerImage(filename, photo.CheminPhoto, GestionImage.TypeEnregistrement.Images,true);
             ReinitialiserChamps();
