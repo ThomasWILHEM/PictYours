@@ -1,5 +1,6 @@
 ﻿using BiblioClasse;
 using DataContractPersistance;
+using JsonPersistance;
 using System.Windows;
 
 namespace PictYours
@@ -9,7 +10,7 @@ namespace PictYours
     /// </summary>
     public partial class App : Application
     {
-        public Manager LeManager { get; private set; } = new Manager(new DataContractPers());
+        public Manager LeManager { get; private set; } = new Manager(new JsonPers());
 
         public App()
         {

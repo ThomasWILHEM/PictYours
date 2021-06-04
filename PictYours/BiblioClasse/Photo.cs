@@ -84,6 +84,10 @@ namespace BiblioClasse
         /// <param name="propertyName">Nom de la propriété changée</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+        public Photo()
+        {
+
+        }
 
         /// <summary>
         /// Constructeur d'une photo

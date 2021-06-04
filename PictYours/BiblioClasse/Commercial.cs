@@ -42,6 +42,11 @@ namespace BiblioClasse
         }
         private string siteWeb;
 
+        public Commercial()
+        {
+
+        }
+
         /// <summary>
         /// Constructeur d'un Commercial
         /// </summary>

@@ -29,19 +29,43 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock Text="Nom"/>
-            <TextBox x:Name="NomProfil"/>
+            <TextBox x:Name="NomProfil">
+                <TextBox.ToolTip>
+                    <ToolTip Style="{StaticResource ToolTipEffect}">
+                        <TextBlock Text="Entrez votre nom" Style="{StaticResource TextBlockToolTipStyle}"/>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="1">
             <TextBlock Text="Prénom"/>
-            <TextBox x:Name="PrenomProfil"/>
+            <TextBox x:Name="PrenomProfil">
+                <TextBox.ToolTip>
+                    <ToolTip Style="{StaticResource ToolTipEffect}">
+                        <TextBlock Text="Entrez votre prénom" Style="{StaticResource TextBlockToolTipStyle}"/>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="2">
             <TextBlock Text="Nom d'utilisateur" />
-            <TextBox x:Name="PseudoProfil" />
+            <TextBox x:Name="PseudoProfil">
+                <TextBox.ToolTip>
+                    <ToolTip Style="{StaticResource ToolTipEffect}">
+                        <TextBlock Text="Entrez votre pseudo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                    </ToolTip>
+                </TextBox.ToolTip>
+            </TextBox>
         </StackPanel>
         <StackPanel Grid.Row="3">
             <TextBlock Text="Date de naissance"/>
-            <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" HorizontalAlignment="Left" Width="140" Style="{StaticResource MaterialDesignFilledDatePicker}"/>
+            <DatePicker x:Name="DateDeNaissanceBox" Foreground="White" HorizontalAlignment="Left" Width="200" Style="{StaticResource MaterialDesignFilledDatePicker}">
+                <DatePicker.ToolTip>
+                    <ToolTip Style="{StaticResource ToolTipEffect}">
+                        <TextBlock Text="Saisissez votre date de naissance" Style="{StaticResource TextBlockToolTipStyle}"/>
+                    </ToolTip>
+                </DatePicker.ToolTip>
+            </DatePicker>
         </StackPanel>
     </Grid>
 </UserControl>

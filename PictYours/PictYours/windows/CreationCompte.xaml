@@ -48,7 +48,13 @@
                             <ImageBrush x:Name="photoProfil" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
                     </Ellipse>
-                    <Button  x:Name="parcourirButton" Content="Parcourir" Grid.Row="1" HorizontalAlignment="Center" Margin="5" Click="parcourirButton_Click"/>
+                    <Button  x:Name="parcourirButton" Content="Parcourir" Grid.Row="1" HorizontalAlignment="Center" Margin="5" Click="parcourirButton_Click">
+                        <Button.ToolTip>
+                            <ToolTip Style="{StaticResource ToolTipEffect}">
+                                <TextBlock Text="Choisir une photo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
                 </Grid>
                 <Grid Grid.Column="1">
                     <Grid >
@@ -76,11 +82,13 @@
                     </Grid>
                 </Grid>
             </Grid>
-            
-            <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray" Padding="5">
-                <GroupBox.Header>
-                    Description
-                </GroupBox.Header>
+
+            <GroupBox Grid.Row="2" Margin="30,10,30,0" FontSize="16" FontWeight="Bold" Background="LightGray" Padding="5" Header="Description">
+                <GroupBox.ToolTip>
+                    <ToolTip Style="{StaticResource ToolTipEffect}" ToolTipService.VerticalOffset="-100">
+                        <TextBlock Text="Présentez vous" Style="{StaticResource TextBlockToolTipStyle}"/>
+                    </ToolTip>
+                </GroupBox.ToolTip>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <TextBox x:Name="DescriptionBox" MaxLength="750" FontSize="12" FontWeight="Normal" TextWrapping="Wrap" Style="{x:Null}" BorderBrush="LightBlue" BorderThickness="2"/>
                 </ScrollViewer>
@@ -98,8 +106,20 @@
                     </Style>
                 </StackPanel.Resources>
                 <TextBlock Text="Mot de passe" FontSize="14" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <PasswordBox x:Name="PasswordBox"/>
-                <PasswordBox x:Name="PasswordBoxSame"/>
+                <PasswordBox x:Name="PasswordBox">
+                    <PasswordBox.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipEffect}">
+                            <TextBlock Text="Saisissez un mot de passe" Style="{StaticResource TextBlockToolTipStyle}"/>
+                        </ToolTip>
+                    </PasswordBox.ToolTip>
+                </PasswordBox>
+                <PasswordBox x:Name="PasswordBoxSame">
+                    <PasswordBox.ToolTip>
+                        <ToolTip Style="{StaticResource ToolTipEffect}">
+                            <TextBlock Text="Saissisez de nouveau le mot de passe" Style="{StaticResource TextBlockToolTipStyle}"/>
+                        </ToolTip>
+                    </PasswordBox.ToolTip>
+                </PasswordBox>
             </StackPanel>
 
             <Button Grid.Row="4" x:Name="InscriptionButton" Content="S'inscrire" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"  Click="InscriptionButton_Click"/>

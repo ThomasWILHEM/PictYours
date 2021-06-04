@@ -1,46 +1,53 @@
 {
   "$id": "1",
+  "$type": "JsonPersistance.DataToPersist, JsonPersistance",
   "ListeUtilisateurs": {
     "$id": "2",
+    "$type": "System.Collections.Generic.List`1[[BiblioClasse.Utilisateur, BiblioClasse]], System.Private.CoreLib",
     "$values": [
       {
         "$id": "3",
+        "$type": "BiblioClasse.Amateur, BiblioClasse",
         "MotDePasse": "mdp",
         "Prenom": "Jean",
         "Pseudo": "pierre.jean",
-        "DateDeNaissance": "2001-06-02T13:07:05.0859836+02:00",
+        "DateDeNaissance": "2001-06-04T16:48:29.097732+02:00",
         "Nom": "Pierre",
         "photosAimees": {
           "$id": "4",
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[BiblioClasse.Photo, BiblioClasse]], System.ObjectModel",
           "$values": []
         },
         "PhotoDeProfil": "user.png",
         "Description": "Description de Jean Pierre",
         "mesPhotos": {
           "$id": "5",
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[BiblioClasse.Photo, BiblioClasse]], System.ObjectModel",
           "$values": [
             {
               "$id": "6",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "pp.jpg",
               "Description": "test",
               "Lieu": "test",
               "Proprietaire": {
                 "$ref": "3"
               },
-              "DatePub": "2020-12-02T00:00:00+01:00",
+              "DatePub": "2020-12-04T00:00:00+01:00",
               "NbJaimes": 0,
               "Identifiant": "p1",
               "Categorie": 2
             },
             {
               "$id": "7",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "vacances6.jpg",
               "Description": "test2",
               "Lieu": "test1532",
               "Proprietaire": {
                 "$ref": "3"
               },
-              "DatePub": "2021-05-28T00:00:00+02:00",
+              "DatePub": "2021-05-30T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p2",
               "Categorie": 1
@@ -50,55 +57,61 @@
       },
       {
         "$id": "8",
+        "$type": "BiblioClasse.Amateur, BiblioClasse",
         "MotDePasse": "mdp",
         "Prenom": "Estelle",
         "Pseudo": "estelletulipe",
-        "DateDeNaissance": "2006-06-02T13:07:05.1040742+02:00",
+        "DateDeNaissance": "2006-06-04T16:48:29.1166135+02:00",
         "Nom": "Tulipe",
         "photosAimees": {
           "$id": "9",
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[BiblioClasse.Photo, BiblioClasse]], System.ObjectModel",
           "$values": []
         },
         "PhotoDeProfil": "estelle_rond.png",
         "Description": "Description d'Estelle Tulipe",
         "mesPhotos": {
           "$id": "10",
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[BiblioClasse.Photo, BiblioClasse]], System.ObjectModel",
           "$values": [
             {
               "$id": "11",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "vacances1.jpg",
               "Description": "test2",
               "Lieu": "test1532",
               "Proprietaire": {
                 "$ref": "8"
               },
-              "DatePub": "2020-06-02T00:00:00+02:00",
+              "DatePub": "2020-06-04T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p3",
               "Categorie": 6
             },
             {
               "$id": "12",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "vacances2.jpg",
               "Description": "test2",
               "Lieu": "test1532",
               "Proprietaire": {
                 "$ref": "8"
               },
-              "DatePub": "2021-06-02T00:00:00+02:00",
+              "DatePub": "2021-06-04T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p4",
               "Categorie": 3
             },
             {
               "$id": "13",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "vacances3.jpg",
               "Description": "test2",
               "Lieu": "test1532",
               "Proprietaire": {
                 "$ref": "8"
               },
-              "DatePub": "2021-03-02T00:00:00+01:00",
+              "DatePub": "2021-03-04T00:00:00+01:00",
               "NbJaimes": 0,
               "Identifiant": "p5",
               "Categorie": 4
@@ -108,29 +121,33 @@
       },
       {
         "$id": "14",
+        "$type": "BiblioClasse.Amateur, BiblioClasse",
         "MotDePasse": "mdp",
         "Prenom": "Thomas",
         "Pseudo": "Atrium",
-        "DateDeNaissance": "2003-06-02T13:07:05.1041031+02:00",
+        "DateDeNaissance": "2003-06-04T16:48:29.116641+02:00",
         "Nom": "Wilhem",
         "photosAimees": {
           "$id": "15",
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[BiblioClasse.Photo, BiblioClasse]], System.ObjectModel",
           "$values": []
         },
         "PhotoDeProfil": "pp.jpg",
         "Description": "Description de Thomas Wilhem",
         "mesPhotos": {
           "$id": "16",
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[BiblioClasse.Photo, BiblioClasse]], System.ObjectModel",
           "$values": [
             {
               "$id": "17",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "montagne.jpg",
               "Description": "test",
               "Lieu": "test",
               "Proprietaire": {
                 "$ref": "14"
               },
-              "DatePub": "2021-06-02T00:00:00+02:00",
+              "DatePub": "2021-06-04T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p6",
               "Categorie": 1
@@ -140,6 +157,7 @@
       },
       {
         "$id": "18",
+        "$type": "BiblioClasse.Commercial, BiblioClasse",
         "MotDePasse": "mdp",
         "SiteWeb": "mozilla.fr",
         "Pseudo": "mozilla",
@@ -149,55 +167,60 @@
         "Description": "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.",
         "mesPhotos": {
           "$id": "19",
+          "$type": "System.Collections.ObjectModel.ObservableCollection`1[[BiblioClasse.Photo, BiblioClasse]], System.ObjectModel",
           "$values": [
             {
               "$id": "20",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "vacances4.jpg",
               "Description": "test2",
               "Lieu": "test1532",
               "Proprietaire": {
                 "$ref": "18"
               },
-              "DatePub": "2021-05-02T00:00:00+02:00",
+              "DatePub": "2021-05-04T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p7",
               "Categorie": 1
             },
             {
               "$id": "21",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "vacances5.jpg",
               "Description": "test2",
               "Lieu": "test1532",
               "Proprietaire": {
                 "$ref": "18"
               },
-              "DatePub": "2021-05-19T00:00:00+02:00",
+              "DatePub": "2021-05-21T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p8",
               "Categorie": 2
             },
             {
               "$id": "22",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "user.png",
               "Description": "test156",
               "Lieu": "test123",
               "Proprietaire": {
                 "$ref": "18"
               },
-              "DatePub": "2021-06-02T00:00:00+02:00",
+              "DatePub": "2021-06-04T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p9",
               "Categorie": 6
             },
             {
               "$id": "23",
+              "$type": "BiblioClasse.Photo, BiblioClasse",
               "CheminPhoto": "estelle_rond.png",
               "Description": "test2",
               "Lieu": "test1532",
               "Proprietaire": {
                 "$ref": "18"
               },
-              "DatePub": "2021-06-02T00:00:00+02:00",
+              "DatePub": "2021-06-04T00:00:00+02:00",
               "NbJaimes": 0,
               "Identifiant": "p10",
               "Categorie": 5
@@ -209,59 +232,88 @@
   },
   "PhotosParUtilisateurs": {
     "$id": "24",
-    "Pierre Jean(pierre.jean,02/06/2001)": {
-      "$id": "25",
-      "$values": [
-        {
-          "$ref": "6"
+    "$type": "System.Collections.Generic.Dictionary`2[[BiblioClasse.Utilisateur, BiblioClasse],[System.Collections.Generic.List`1[[BiblioClasse.Photo, BiblioClasse]], System.Private.CoreLib]], System.Private.CoreLib",
+    "$values": [
+      {
+        "Key": {
+          "$ref": "3"
         },
-        {
-          "$ref": "7"
+        "Value": {
+          "$id": "25",
+          "$type": "System.Collections.Generic.List`1[[BiblioClasse.Photo, BiblioClasse]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$ref": "6"
+            },
+            {
+              "$ref": "7"
+            }
+          ]
         }
-      ]
-    },
-    "Tulipe Estelle(estelletulipe,02/06/2006)": {
-      "$id": "26",
-      "$values": [
-        {
-          "$ref": "11"
+      },
+      {
+        "Key": {
+          "$ref": "8"
         },
-        {
-          "$ref": "12"
-        },
-        {
-          "$ref": "13"
+        "Value": {
+          "$id": "26",
+          "$type": "System.Collections.Generic.List`1[[BiblioClasse.Photo, BiblioClasse]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$ref": "11"
+            },
+            {
+              "$ref": "12"
+            },
+            {
+              "$ref": "13"
+            }
+          ]
         }
-      ]
-    },
-    "Wilhem Thomas(Atrium,02/06/2003)": {
-      "$id": "27",
-      "$values": [
-        {
-          "$ref": "17"
+      },
+      {
+        "Key": {
+          "$ref": "14"
+        },
+        "Value": {
+          "$id": "27",
+          "$type": "System.Collections.Generic.List`1[[BiblioClasse.Photo, BiblioClasse]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$ref": "17"
+            }
+          ]
         }
-      ]
-    },
-    "Mozilla(mozilla) Description:Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif. Nombres de visites:0 SiteWeb:mozilla.fr": {
-      "$id": "28",
-      "$values": [
-        {
-          "$ref": "20"
+      },
+      {
+        "Key": {
+          "$ref": "18"
         },
-        {
-          "$ref": "21"
-        },
-        {
-          "$ref": "22"
-        },
-        {
-          "$ref": "23"
+        "Value": {
+          "$id": "28",
+          "$type": "System.Collections.Generic.List`1[[BiblioClasse.Photo, BiblioClasse]], System.Private.CoreLib",
+          "$values": [
+            {
+              "$ref": "20"
+            },
+            {
+              "$ref": "21"
+            },
+            {
+              "$ref": "22"
+            },
+            {
+              "$ref": "23"
+            }
+          ]
         }
-      ]
-    }
+      }
+    ]
   },
   "ListeUtilisateursParPhotosAimees": {
-    "$id": "29"
+    "$id": "29",
+    "$type": "System.Collections.Generic.Dictionary`2[[BiblioClasse.Photo, BiblioClasse],[System.Collections.Generic.List`1[[BiblioClasse.Amateur, BiblioClasse]], System.Private.CoreLib]], System.Private.CoreLib",
+    "$values": []
   },
   "ProchainIdentifiant": 10
 }
