@@ -26,8 +26,8 @@ namespace PictYours.utils
         /// </summary>
         static GestionImage()
         {
-            ImagesPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\images\photos");
-            ProfilsPath = Path.Combine(Directory.GetCurrentDirectory(), @"..\images\profils");
+            ImagesPath = Path.Combine(Directory.GetCurrentDirectory(), @"images\photos");
+            ProfilsPath = Path.Combine(Directory.GetCurrentDirectory(), @"images\profils");
             IconesPath = Path.Combine(Directory.GetCurrentDirectory(), @"icons");
             if (!Directory.Exists(ImagesPath)) Directory.CreateDirectory(ImagesPath);
             if (!Directory.Exists(ProfilsPath)) Directory.CreateDirectory(ProfilsPath);

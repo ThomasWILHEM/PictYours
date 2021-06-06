@@ -39,7 +39,7 @@ namespace JsonPersTest
             listeUtilisateursParPhotosAimees = data.listeUtilisateursParPhotosAimees;
             prochainIdentifiant = data.prochainIdentifiant;
 
-            Manager.Persistance = new JsonPers();
+            Manager.Persistance = new JsonPers("../../../JSON");
             Manager.SauvegardeDonnees(listeUtilisateurs, photosParUtilisateurs, listeUtilisateursParPhotosAimees, prochainIdentifiant);
 
             data = Manager.ChargeDonnees();
