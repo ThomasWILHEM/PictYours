@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.IO;
 
-namespace PictYours.utils
+namespace PictYours.Ressources.utils
 {
     /// <summary>
     /// Classe de gestion des images

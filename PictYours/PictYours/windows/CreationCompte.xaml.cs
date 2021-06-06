@@ -1,7 +1,7 @@
 ﻿using BiblioClasse;
 using MaterialDesignThemes.Wpf;
 using PictYours;
-using PictYours.utils;
+using PictYours.Ressources.utils;
 using System;
 using System.Diagnostics;
 using System.IO;

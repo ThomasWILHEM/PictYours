@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace PictYours.converters
+namespace PictYours.Ressources.converters
 {
     /// <summary>
     /// Convertit un nombre de visite pour qu'il apparaisse dans le format "Nombre de visites : {nb}"
