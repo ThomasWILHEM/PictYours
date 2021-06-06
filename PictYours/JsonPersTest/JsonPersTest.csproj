@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Stub\Stub.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="JSON\" />
-  </ItemGroup>
-
 </Project>

@@ -14,33 +14,12 @@ namespace Stub
         Commercial mozilla = new Commercial("Mozilla", "mozilla", "mdp", "mozilla.png", "mozilla.fr", "Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.");
 
         private string imagesStub = "images_stub";
-        private string destImages = "../images";
+        private string destImages = "images";
 
         public Stub()
         {
-            if (!Directory.Exists(destImages)) Directory.CreateDirectory(destImages);
-            if (!Directory.Exists($"{destImages}/profils")) Directory.CreateDirectory($"{destImages}/profils");
-            if (!Directory.Exists($"{destImages}/photos")) Directory.CreateDirectory($"{destImages}/photos");
-
-            foreach (var sourceFile in Directory.GetFiles($"{imagesStub}/profils"))
-            {
-                FileInfo fi = new(sourceFile);
-                string destFile = $"{destImages}/profils/{fi.Name}";
-                if (!File.Exists(destFile))
-                {
-                    File.Copy(sourceFile, destFile, true);
-                }
-            }
-
-            foreach (var sourceFile in Directory.GetFiles($"{imagesStub}/photos"))
-            {
-                FileInfo fi = new(sourceFile);
-                string destFile = $"{destImages}/photos/{fi.Name}";
-                if (!File.Exists(destFile))
-                {
-                    File.Copy(sourceFile, destFile, true);
-                }
-            }
+            if(Directory.Exists(destImages)) Directory.Delete(destImages,true);
+            Directory.Move(imagesStub, destImages);
         }
 
         public (List<Utilisateur> listeUtilisateurs, Dictionary<Utilisateur, List<Photo>> photosParUtilisateurs, Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees, int prochainIdentifiant) ChargeDonnees()
