@@ -4,8 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:UC="clr-namespace:PictYours.userControl.Profils"
-             xmlns:converters="clr-namespace:PictYours.converters"
              xmlns:biblioclasse="clr-namespace:BiblioClasse;assembly=BiblioClasse"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
@@ -40,18 +38,21 @@
                     </DockPanel>
                 </Expander.Header>
                 <Expander.Resources>
-                    <DataTemplate DataType="{x:Type biblioclasse:Amateur}">
+                    <DataTemplate DataType="{x:Type biblioclasse:Amateur}" x:Name="dataTemplate">
                         <StackPanel Margin="20,10">
                             <StackPanel.Resources>
                                 <Style TargetType="TextBlock" BasedOn="{StaticResource DescriptionExpander}"/>
                             </StackPanel.Resources>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock TextWrapping="Wrap" Text="{Binding Nom}" />
-                                <TextBlock TextWrapping="Wrap" Text=" " />
-                                <TextBlock Text="{Binding Prenom}"/>
-                                <TextBlock TextWrapping="Wrap" Text="{Binding DateDeNaissance, Converter={StaticResource Date2Age}}"/>
-                            </StackPanel>
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource NomPrenomAge2Affichage}">
+                                        <Binding Path="Nom"/>
+                                        <Binding Path="Prenom"/>
+                                        <Binding Path="DateDeNaissance" Converter="{StaticResource Date2Age}"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Visibility="{Binding Description,Converter={StaticResource StringIsEmptyVisibilityConverter}}"/>
                         </StackPanel>
                     </DataTemplate>
                     <DataTemplate DataType="{x:Type biblioclasse:Commercial}">
@@ -64,8 +65,8 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical">
-                                <TextBlock TextWrapping="Wrap" Text="{Binding Nom}" />
-                            <TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Nom}"/>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding Description}" Visibility="{Binding Description,Converter={StaticResource StringIsEmptyVisibilityConverter}}"/>
                             <TextBlock x:Name="SiteWeb" Text="{Binding SiteWeb,Converter={StaticResource Site2Affichage}}"/>
                             </StackPanel>
                             <TextBlock Text="{Binding NombreDeVisites,Converter={StaticResource NombreVisites2Affichage}}"
@@ -84,23 +85,8 @@
             <ListBox x:Name="listeBoxPhotos"
                              ItemsSource="{Binding Utilisateur.MesPhotos}"
                              SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne}"
-                             >
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-                        <Setter Property="Margin" Value="10"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Image x:Name="PhotoChoisie" Source="{Binding CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Images}" Stretch="UniformToFill" Width="260" Height="260"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                             Style="{StaticResource ListBoxStylePhotos}"/>
+
         </materialDesign:Card>
 
 

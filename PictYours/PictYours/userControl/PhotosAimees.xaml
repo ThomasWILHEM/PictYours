@@ -20,24 +20,9 @@
 
             <ListBox x:Name="ListeBoxPhotosAimees"
                              ItemsSource="{Binding PhotosAimees}"
-                             SelectionChanged="ListeBoxPhotosAimees_SelectionChanged">
-                <!--SelectedItem="{Binding LeManager.ManagerPhoto.PhotoSelectionne,ElementName=root}"-->
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel HorizontalAlignment="Center"/>
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource MaterialDesignListBoxItem}">
-                        <Setter Property="Margin" Value="10"/>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Image x:Name="PhotoAimeeChoisie" Source="{Binding CheminPhoto,Converter={StaticResource String2Image},ConverterParameter=Images}" Stretch="Uniform" Width="260" Height="260"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                             SelectionChanged="ListeBoxPhotosAimees_SelectionChanged"
+                     Style="{StaticResource ListBoxStylePhotos}"/>
+
         </materialDesign:Card>
     </Grid>
 </UserControl>

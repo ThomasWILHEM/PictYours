@@ -12,13 +12,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="/PictYours.Ressources;Component/Ressources.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <converters:Date2Affichage x:Key="Date2Affichage"/>
-            <converters:Date2Age x:Key="Date2Age"/>
-            <converters:NbJaimes2Affichage x:Key="NbJaimes2Affichage"/>
-            <converters:NombreVisites2Affichage x:Key="NombreVisites2Affichage"/>
-            <converters:Pseudo2Affichage x:Key="Pseudo2Affichage"/>
-            <converters:Site2Affichage x:Key="Site2Affichage"/>
-            <converters:String2Image x:Key="String2Image"/>
             <converters:Utilisateur2ModificationProfilButton x:Key="Utilisateur2ModificationProfilButton"/>
         </ResourceDictionary>
     </Application.Resources>

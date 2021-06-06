@@ -1,16 +1,15 @@
 ﻿using BiblioClasse;
-using JsonPersistance;
-using Stub;
+using DataContractPersistance;
 using System;
 using System.Collections.Generic;
 
-namespace JsonPersTest
+namespace DataContractPersTest
 {
-    class JsonPersTest
+    class TestXML
     {
         public IPersistanceManager Persistance { get; private set; }
 
-        public JsonPersTest(IPersistanceManager persistance)
+        public TestXML(IPersistanceManager persistance)
         {
             Persistance = persistance;
         }
@@ -32,14 +31,14 @@ namespace JsonPersTest
             Dictionary<Photo, List<Amateur>> listeUtilisateursParPhotosAimees;
             int prochainIdentifiant;
 
-            var Manager = new JsonPersTest(new Stub.Stub());
+            var Manager = new TestXML(new Stub.Stub());
             var data = Manager.ChargeDonnees();
             listeUtilisateurs = data.listeUtilisateurs;
             photosParUtilisateurs = data.photosParUtilisateurs;
             listeUtilisateursParPhotosAimees = data.listeUtilisateursParPhotosAimees;
             prochainIdentifiant = data.prochainIdentifiant;
 
-            Manager.Persistance = new JsonPers("../../../JSON");
+            Manager.Persistance = new DataContractPers("../../../XML");
             Manager.SauvegardeDonnees(listeUtilisateurs, photosParUtilisateurs, listeUtilisateursParPhotosAimees, prochainIdentifiant);
 
             data = Manager.ChargeDonnees();

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace PictYours.converters
+namespace PictYours.Ressources.converters
 {
     /// <summary>
     /// Fait en sorte de rajouter un "@" devant le pseudo

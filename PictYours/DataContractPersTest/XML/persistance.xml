@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataToPersist xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/DataContractPersistance">
+  <ListeUtilisateurs xmlns:d2p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Id="2" z:Size="4">
+    <d2p1:Utilisateur z:Id="3" i:type="d2p1:Amateur">
+      <d2p1:Pseudo z:Id="4">pierre.jean</d2p1:Pseudo>
+      <d2p1:Nom z:Id="5">Pierre</d2p1:Nom>
+      <d2p1:PhotoDeProfil z:Id="6">user.png</d2p1:PhotoDeProfil>
+      <d2p1:Description z:Id="7">Description de Jean Pierre</d2p1:Description>
+      <d2p1:mesPhotos z:Id="8" z:Size="2">
+        <d2p1:Photo z:Id="9">
+          <d2p1:Categorie>Automobile</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="10">pp.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2020-12-06T00:00:00+01:00</d2p1:DatePub>
+          <d2p1:Description z:Id="11">test</d2p1:Description>
+          <d2p1:Identifiant z:Id="12">p1</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="11" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="3" i:nil="true" />
+        </d2p1:Photo>
+        <d2p1:Photo z:Id="13">
+          <d2p1:Categorie>Animal</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="14">vacances6.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2021-06-01T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Id="15">test2</d2p1:Description>
+          <d2p1:Identifiant z:Id="16">p2</d2p1:Identifiant>
+          <d2p1:Lieu z:Id="17">test1532</d2p1:Lieu>
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="3" i:nil="true" />
+        </d2p1:Photo>
+      </d2p1:mesPhotos>
+      <d2p1:MotDePasse z:Id="18">mdp</d2p1:MotDePasse>
+      <d2p1:Prenom z:Id="19">Jean</d2p1:Prenom>
+      <d2p1:DateDeNaissance>2001-06-06T12:44:00.0609664+02:00</d2p1:DateDeNaissance>
+      <d2p1:photosAimees z:Id="20" z:Size="0" />
+    </d2p1:Utilisateur>
+    <d2p1:Utilisateur z:Id="21" i:type="d2p1:Amateur">
+      <d2p1:Pseudo z:Id="22">estelletulipe</d2p1:Pseudo>
+      <d2p1:Nom z:Id="23">Tulipe</d2p1:Nom>
+      <d2p1:PhotoDeProfil z:Id="24">estelle_rond.png</d2p1:PhotoDeProfil>
+      <d2p1:Description z:Id="25">Description d'Estelle Tulipe</d2p1:Description>
+      <d2p1:mesPhotos z:Id="26" z:Size="3">
+        <d2p1:Photo z:Id="27">
+          <d2p1:Categorie>Sport</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="28">vacances1.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2020-06-06T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Ref="15" i:nil="true" />
+          <d2p1:Identifiant z:Id="29">p3</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="17" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="21" i:nil="true" />
+        </d2p1:Photo>
+        <d2p1:Photo z:Id="30">
+          <d2p1:Categorie>Cuisine</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="31">vacances2.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2021-06-06T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Ref="15" i:nil="true" />
+          <d2p1:Identifiant z:Id="32">p4</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="17" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="21" i:nil="true" />
+        </d2p1:Photo>
+        <d2p1:Photo z:Id="33">
+          <d2p1:Categorie>Mode</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="34">vacances3.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2021-03-06T00:00:00+01:00</d2p1:DatePub>
+          <d2p1:Description z:Ref="15" i:nil="true" />
+          <d2p1:Identifiant z:Id="35">p5</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="17" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="21" i:nil="true" />
+        </d2p1:Photo>
+      </d2p1:mesPhotos>
+      <d2p1:MotDePasse z:Ref="18" i:nil="true" />
+      <d2p1:Prenom z:Id="36">Estelle</d2p1:Prenom>
+      <d2p1:DateDeNaissance>2006-06-06T12:44:00.0882037+02:00</d2p1:DateDeNaissance>
+      <d2p1:photosAimees z:Id="37" z:Size="0" />
+    </d2p1:Utilisateur>
+    <d2p1:Utilisateur z:Id="38" i:type="d2p1:Amateur">
+      <d2p1:Pseudo z:Id="39">Atrium</d2p1:Pseudo>
+      <d2p1:Nom z:Id="40">Wilhem</d2p1:Nom>
+      <d2p1:PhotoDeProfil z:Ref="10" i:nil="true" />
+      <d2p1:Description z:Id="41">Description de Thomas Wilhem</d2p1:Description>
+      <d2p1:mesPhotos z:Id="42" z:Size="1">
+        <d2p1:Photo z:Id="43">
+          <d2p1:Categorie>Animal</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="44">montagne.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2021-06-06T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Ref="11" i:nil="true" />
+          <d2p1:Identifiant z:Id="45">p6</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="11" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="38" i:nil="true" />
+        </d2p1:Photo>
+      </d2p1:mesPhotos>
+      <d2p1:MotDePasse z:Ref="18" i:nil="true" />
+      <d2p1:Prenom z:Id="46">Thomas</d2p1:Prenom>
+      <d2p1:DateDeNaissance>2003-06-06T12:44:00.0882231+02:00</d2p1:DateDeNaissance>
+      <d2p1:photosAimees z:Id="47" z:Size="0" />
+    </d2p1:Utilisateur>
+    <d2p1:Utilisateur z:Id="48" i:type="d2p1:Commercial">
+      <d2p1:Pseudo z:Id="49">mozilla</d2p1:Pseudo>
+      <d2p1:Nom z:Id="50">Mozilla</d2p1:Nom>
+      <d2p1:PhotoDeProfil z:Id="51">mozilla.png</d2p1:PhotoDeProfil>
+      <d2p1:Description z:Id="52">Firefox - le navigateur indépendant soutenu par une organisation à but non lucratif.</d2p1:Description>
+      <d2p1:mesPhotos z:Id="53" z:Size="4">
+        <d2p1:Photo z:Id="54">
+          <d2p1:Categorie>Animal</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="55">vacances4.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2021-05-06T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Ref="15" i:nil="true" />
+          <d2p1:Identifiant z:Id="56">p7</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="17" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="48" i:nil="true" />
+        </d2p1:Photo>
+        <d2p1:Photo z:Id="57">
+          <d2p1:Categorie>Automobile</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Id="58">vacances5.jpg</d2p1:CheminPhoto>
+          <d2p1:DatePub>2021-05-23T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Ref="15" i:nil="true" />
+          <d2p1:Identifiant z:Id="59">p8</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="17" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="48" i:nil="true" />
+        </d2p1:Photo>
+        <d2p1:Photo z:Id="60">
+          <d2p1:Categorie>Sport</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Ref="6" i:nil="true" />
+          <d2p1:DatePub>2021-06-06T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Id="61">test156</d2p1:Description>
+          <d2p1:Identifiant z:Id="62">p9</d2p1:Identifiant>
+          <d2p1:Lieu z:Id="63">test123</d2p1:Lieu>
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="48" i:nil="true" />
+        </d2p1:Photo>
+        <d2p1:Photo z:Id="64">
+          <d2p1:Categorie>Nature</d2p1:Categorie>
+          <d2p1:CheminPhoto z:Ref="24" i:nil="true" />
+          <d2p1:DatePub>2021-06-06T00:00:00+02:00</d2p1:DatePub>
+          <d2p1:Description z:Ref="15" i:nil="true" />
+          <d2p1:Identifiant z:Id="65">p10</d2p1:Identifiant>
+          <d2p1:Lieu z:Ref="17" i:nil="true" />
+          <d2p1:NbJaimes>0</d2p1:NbJaimes>
+          <d2p1:Proprietaire z:Ref="48" i:nil="true" />
+        </d2p1:Photo>
+      </d2p1:mesPhotos>
+      <d2p1:MotDePasse z:Ref="18" i:nil="true" />
+      <d2p1:SiteWeb z:Id="66">mozilla.fr</d2p1:SiteWeb>
+      <d2p1:NombreDeVisites>0</d2p1:NombreDeVisites>
+    </d2p1:Utilisateur>
+  </ListeUtilisateurs>
+  <PhotosParUtilisateurs xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="67" z:Size="4">
+    <d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+      <d2p1:Key xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Ref="3" i:nil="true" />
+      <d2p1:Value xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Id="68" z:Size="2">
+        <d4p1:Photo z:Ref="9" i:nil="true" />
+        <d4p1:Photo z:Ref="13" i:nil="true" />
+      </d2p1:Value>
+    </d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+    <d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+      <d2p1:Key xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Ref="21" i:nil="true" />
+      <d2p1:Value xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Id="69" z:Size="3">
+        <d4p1:Photo z:Ref="27" i:nil="true" />
+        <d4p1:Photo z:Ref="30" i:nil="true" />
+        <d4p1:Photo z:Ref="33" i:nil="true" />
+      </d2p1:Value>
+    </d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+    <d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+      <d2p1:Key xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Ref="38" i:nil="true" />
+      <d2p1:Value xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Id="70" z:Size="1">
+        <d4p1:Photo z:Ref="43" i:nil="true" />
+      </d2p1:Value>
+    </d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+    <d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+      <d2p1:Key xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Ref="48" i:nil="true" />
+      <d2p1:Value xmlns:d4p1="http://schemas.datacontract.org/2004/07/BiblioClasse" z:Id="71" z:Size="4">
+        <d4p1:Photo z:Ref="54" i:nil="true" />
+        <d4p1:Photo z:Ref="57" i:nil="true" />
+        <d4p1:Photo z:Ref="60" i:nil="true" />
+        <d4p1:Photo z:Ref="64" i:nil="true" />
+      </d2p1:Value>
+    </d2p1:KeyValueOfUtilisateurArrayOfPhotoeGA0ObAJ>
+  </PhotosParUtilisateurs>
+  <ListeUtilisateursParPhotosAimees xmlns:d2p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" z:Id="72" z:Size="0" />
+  <ProchainIdentifiant>10</ProchainIdentifiant>
+</DataToPersist>

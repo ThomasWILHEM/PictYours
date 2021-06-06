@@ -1,13 +1,8 @@
-﻿using BiblioClasse;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace PictYours.converters
+namespace PictYours.Ressources.converters
 {
     /// <summary>
     /// Convertit un site web pour qu'il apparaisse dans le format "Site web : {site}"
