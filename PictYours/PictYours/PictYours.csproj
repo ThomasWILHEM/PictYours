@@ -35,8 +35,9 @@
 	  <Resource Include="app.ico">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </Resource>
-	  <Resource Include="icons\app_icon.png">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="icons\" />
 	</ItemGroup>
 </Project>

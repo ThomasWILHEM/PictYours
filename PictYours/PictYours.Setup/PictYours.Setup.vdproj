@@ -15,12 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_03029A76FF7347D59B0DDB54FF5DA369"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_50EB3AFA9E904C2FA50ED7E0F7292A6A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -129,7 +123,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:..\\PictYours\\bin\\setup\\PictYours_Installer.msi"
+        "OutputFilename" = "8:..\\..\\Setup\\PictYours_Installer.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -161,7 +155,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:..\\PictYours\\bin\\setup\\PictYours_Installer.msi"
+        "OutputFilename" = "8:..\\..\\Setup\\PictYours_Installer.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -233,26 +227,6 @@
         }
         "File"
         {
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03029A76FF7347D59B0DDB54FF5DA369"
-            {
-            "SourcePath" = "8:..\\PictYours\\icons\\app_icon.png"
-            "TargetName" = "8:app_icon.png"
-            "Tag" = "8:"
-            "Folder" = "8:_F0D0EC676F6C4D2288692BA5255699F0"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_50EB3AFA9E904C2FA50ED7E0F7292A6A"
             {
             "SourcePath" = "8:..\\JsonPersTest\\bin\\Debug\\net5.0\\images\\photos\\pp.jpg"
@@ -685,7 +659,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PictYours"
         "ProductCode" = "8:{E360EE10-E894-472B-AAA7-4E098124F72B}"
-        "PackageCode" = "8:{6486E316-F7E2-472F-BB3F-C60906C09883}"
+        "PackageCode" = "8:{F6EB1C72-3056-4604-9DF0-0E9DE06967E8}"
         "UpgradeCode" = "8:{65BFC7E9-E73B-40E2-9C26-C3F436B7BFF0}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -1234,7 +1208,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_74BA205519D04253B7C0D44E5EB4FBF5"
             {
-            "SourcePath" = "8:..\\PictYours\\obj\\Release\\net5.0-windows\\apphost.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_0C624D8E863A4C1FAD399E365A890334"
