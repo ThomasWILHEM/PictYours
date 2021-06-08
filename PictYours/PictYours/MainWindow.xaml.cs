@@ -62,6 +62,7 @@ namespace PictYours
         private void RetourPagePrincipale()
         {
             AllMainUCCollapsed();
+            PagePrincipale.UCProfil.ExpanderProfil.IsExpanded = false;
             PagePrincipale.Visibility = Visibility.Visible;
             RetourButton.Visibility = Visibility.Collapsed;
             VisualiseurPhoto.Visibility = Visibility.Collapsed;
@@ -154,6 +155,7 @@ namespace PictYours
         {
             AllMainUCCollapsed();
             RetourPagePrincipale();
+            PagePrincipale.RechercheTextBox.Clear();
             LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
         }
 
