@@ -33,15 +33,23 @@
                                  x:Name="RechercheTextBox"/>
                     <RadioButton Grid.Column="1"
                                      IsChecked="True"
-                                     ToolTip="Rechercher avec le nom et le prénom"
                                      x:Name="NomPrenomRadioButton">
+                        <RadioButton.ToolTip>
+                            <ToolTip Style="{StaticResource ToolTipEffect}">
+                                <TextBlock Text="Rechercher avec le nom et le prénom" Style="{StaticResource TextBlockToolTipStyle}"/>
+                            </ToolTip>
+                        </RadioButton.ToolTip>
                         <RadioButton.Content>
                             <materialDesign:PackIcon Kind="AlphabetLatin"/>
                         </RadioButton.Content>
                     </RadioButton>
                     <RadioButton Grid.Column="2"
-                                     ToolTip="Rechercher avec le pseudo"
                                      x:Name="PseudoRadioButton">
+                        <RadioButton.ToolTip>
+                            <ToolTip Style="{StaticResource ToolTipEffect}">
+                                <TextBlock Text="Rechercher avec le pseudo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                            </ToolTip>
+                        </RadioButton.ToolTip>
                         <RadioButton.Content>
                             <materialDesign:PackIcon Kind="At"/>
                         </RadioButton.Content>

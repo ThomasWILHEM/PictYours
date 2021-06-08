@@ -10,7 +10,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
 
-        Icon="/icons/app_icon.png"
+        Icon="/app.ico"
         WindowStartupLocation="CenterScreen"
         Title="PictYours"
         Height="800"
@@ -58,6 +58,11 @@
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </materialDesign:PopupBox.ToggleContent>
+                            <materialDesign:PopupBox.ToolTip>
+                                <ToolTip Style="{StaticResource ToolTipEffect}">
+                                    <TextBlock Text="Moi" Style="{StaticResource TextBlockToolTipStyle}"/>
+                                </ToolTip>
+                            </materialDesign:PopupBox.ToolTip>
                             <StackPanel>
                                 <StackPanel.Resources>
                                     <Style TargetType="TextBlock">

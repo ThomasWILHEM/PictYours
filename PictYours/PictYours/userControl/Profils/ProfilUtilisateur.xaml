@@ -97,6 +97,11 @@
                         Margin="0,20,30,15"
                         x:Name="AjouterPhotoButton"
                         Click="AjouterPhotoButton_Click">
+            <Button.ToolTip>
+                <ToolTip Style="{StaticResource ToolTipEffect}" Placement="Top" HorizontalOffset="-42" VerticalOffset="-5">
+                    <TextBlock Text="Ajouter une photo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                </ToolTip>
+            </Button.ToolTip>
             <materialDesign:PackIcon Kind="Plus" Width="30" Height="30"/>
         </Button>
 
