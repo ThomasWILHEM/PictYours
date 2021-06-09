@@ -37,6 +37,11 @@
                                 Margin="0,0,30,5"
                             Click="SupprimerPhotoButton_Click"
                             x:Name="SupprimerPhotoButton">
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource ToolTipEffect}">
+                                    <TextBlock Text="Supprimer la photo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                                </ToolTip>
+                            </Button.ToolTip>
                             <materialDesign:PackIcon Kind="TrashCan" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="SupprimerIcon"/>
                         </Button>
                         <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
@@ -45,6 +50,11 @@
                             Click="LikeButton_Click"
                             x:Name="LikeButton"
                             >
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource ToolTipEffect}">
+                                    <TextBlock Text="Aimer la photo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                                </ToolTip>
+                            </Button.ToolTip>
                             <materialDesign:PackIcon Kind="StarOutline" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="JaimeIcon"/>
                         </Button>
                         <Button Style="{x:Null}" Background="Transparent" BorderThickness="0" Foreground="White"
@@ -54,6 +64,11 @@
                             x:Name="MettreEnAvantButton"
                             Visibility="Collapsed"
                             >
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource ToolTipEffect}">
+                                    <TextBlock Text="Mettre en avant la photo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                                </ToolTip>
+                            </Button.ToolTip>
                             <materialDesign:PackIcon Kind="ArrowUpBoldBox" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="MettreEnAvantIcon"/>
                         </Button>
                     </Grid>

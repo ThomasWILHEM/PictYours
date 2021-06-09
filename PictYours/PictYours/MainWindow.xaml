@@ -25,7 +25,7 @@
     <materialDesign:DialogHost x:Name="MainDialogHost">
         
         <materialDesign:DialogHost.DialogContent>
-            <Grid Margin="5">
+            <Grid Margin="5" x:Name="ConteneurUCDialog">
                 <UC:Parametres x:Name="MesParametres" Visibility="Collapsed"/>
                 <UCProfils:ModifierProfil x:Name="UCModifierProfil" Visibility="Collapsed"/>
                 <UCProfils:AjouterPhoto x:Name="UCAjouterPhoto" Visibility="Collapsed"/>
@@ -111,7 +111,7 @@
                 </materialDesign:Card>
 
 
-                <Grid>
+                <Grid x:Name="ConteneurMainUC">
                     <UC:PagePrincipale Visibility="Visible" x:Name="PagePrincipale"/>
                     <UC:VisualisateurPhoto Visibility="Collapsed" x:Name="VisualiseurPhoto"/>
                     <UC:PhotosAimees x:Name="PagePhotoAimees" Visibility="Collapsed"/>

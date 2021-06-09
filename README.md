@@ -29,7 +29,7 @@ Cette application est destinée à tout le monde, que vous soyez un simple amate
 		>Un commercial peut, s'il le souhaite, **mettre en avant une de ses photos**. La photo se retrouvera alors en tête de liste sur le profil du commercial. 
  
 ## Comment lancer l'application
-Vous pouvez dès à présent télécharger l'installeur de l'application en cliquant [ici](./Setup/PictYours_Installer.msi). 
+Vous pouvez dès à présent télécharger l'installeur de l'application en cliquant [ici](https://github.com/ThomasWILHEM/PictYours/releases). 
 - ### Installation 
 	> Il suffit de **double-cliquer sur l'executable** pour lancer l'installation.
 	> <Br/> Suivre les étapes de l'installation et VOILA !, PictYours est installé.
