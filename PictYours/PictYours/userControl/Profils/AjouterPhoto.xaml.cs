@@ -81,7 +81,7 @@ namespace PictYours.userControl.Profils
                 Debug.WriteLine("Le lieu de la photo est nul");
                 return;
             }
-            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new BiblioClasse.Photo(
+            LeManager.ManagerPhoto.PosterUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, new Photo(
                 new FileInfo(filename).Extension,
                 DescPhoto.Text,
                 LieuPhoto.Text,

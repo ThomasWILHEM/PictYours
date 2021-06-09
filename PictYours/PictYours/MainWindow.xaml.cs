@@ -6,6 +6,7 @@ using System;
 using System.Windows;
 using static PictYours.userControl.VisualisateurPhoto;
 using static PictYours.userControl.Profils.ProfilUtilisateur;
+using System.Windows.Controls;
 
 namespace PictYours
 {
@@ -18,6 +19,15 @@ namespace PictYours
         /// Manager de l'application
         /// </summary>
         public Manager LeManager => (App.Current as App).LeManager;
+
+        /// <summary>
+        /// Précédent UserControl principal
+        /// </summary>
+        private UserControl PreviousMainUC { get; set; }
+        /// <summary>
+        /// UserControl principal actuel
+        /// </summary>
+        private UserControl ActualMainUC { get; set; }
 
         /// <summary>
         /// Constructeur de MainWindow
@@ -33,9 +43,10 @@ namespace PictYours
             VisualiseurPhoto.SupprimerPhotoRequested += OnSupprimerPhotoRequested;
             MessageSnackBar.MessageQueue = new SnackbarMessageQueue(TimeSpan.FromSeconds(3));
 
+            ActualMainUC = PagePrincipale;
             DataContext = this;
         }
-        
+
         /// <summary>
         /// Change la visibilité en "Collapsed" de tous les UserControls présents dans la MainWindow
         /// </summary>
@@ -57,17 +68,72 @@ namespace PictYours
         }
 
         /// <summary>
-        /// Retourne à la page principale
+        /// Méthode qui permet de naviguer vers le UserControl passé en paramètre
         /// </summary>
-        private void RetourPagePrincipale()
+        /// <param name="userControl">UserControl de destination</param>
+        private void AllerA(UserControl userControl)
         {
             AllMainUCCollapsed();
+            if (userControl == PagePrincipale) AllerPagePrincipale();
+            else if (userControl == PagePhotoAimees) AllerPagePhotosAimees();
+            else if (userControl == VisualiseurPhoto) AllerVisualiseurPhoto(LeManager.ManagerPhoto.PhotoSelectionne);
+            else throw new ArgumentException("Le UserControl passé en paramètre ne peut pas être atteint");
+            PreviousMainUC = ActualMainUC;
+            ActualMainUC = userControl;
+        }
+
+        /// <summary>
+        /// Méthode qui permet d'aller à la page principale
+        /// </summary>
+        private void AllerPagePrincipale()
+        {
             PagePrincipale.UCProfil.ExpanderProfil.IsExpanded = false;
-            PagePrincipale.Visibility = Visibility.Visible;
+            PagePrincipale.RechercheTextBox.Clear();
             RetourButton.Visibility = Visibility.Collapsed;
-            VisualiseurPhoto.Visibility = Visibility.Collapsed;
+            LeManager.ManagerPhoto.PhotoSelectionne = null;
+            PagePrincipale.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Méthode qui permet d'aller à la page de photos aimées
+        /// </summary>
+        private void AllerPagePhotosAimees()
+        {
+            RetourButton.Visibility = Visibility.Visible;
             VisualiseurPhoto.ExpanderDetails.IsExpanded = false;
             LeManager.ManagerPhoto.PhotoSelectionne = null;
+            PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
+            PagePhotoAimees.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// Méthode qui permet d'aller au visualiseur de photo et d'afficher la photo passé en paramètre
+        /// </summary>
+        /// <param name="photo">Photo à afficher</param>
+        private void AllerVisualiseurPhoto(Photo photo)
+        {
+            RetourButton.Visibility = Visibility.Visible;
+            VisualiseurPhoto.ExpanderDetails.IsExpanded = false;
+            VisualiseurPhoto.LaPhoto = photo;
+
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
+            {
+                VisualiseurPhoto.LikeButton.Visibility = Visibility.Collapsed;
+                VisualiseurPhoto.MettreEnAvantButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(photo) ? Visibility.Visible : Visibility.Collapsed;
+            }
+            else
+            {
+                VisualiseurPhoto.LikeButton.Visibility = Visibility.Visible;
+                VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Collapsed;
+            }
+
+            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
+            {
+                VisualiseurPhoto.JaimeIcon.Kind = amateur.PhotosAimees.Contains(photo) ? PackIconKind.Star : PackIconKind.StarOutline;
+            }
+
+            VisualiseurPhoto.SupprimerPhotoButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(photo) ? Visibility.Visible : Visibility.Collapsed;
+            VisualiseurPhoto.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -89,7 +155,7 @@ namespace PictYours
         /// <param name="e">RoutedEventAgrs</param>
         private void OnSupprimerPhotoRequested(object sender, SupprimerPhotoRequestedEventArgs e)
         {
-            RetourPagePrincipale();
+            AllerA(PagePrincipale);
         }
 
         /// <summary>
@@ -121,29 +187,7 @@ namespace PictYours
         private void OnPhotoSelectionneChanged(object sender, ManagerPhoto.SelectedPhotoChangedEventArgs e)
         {
             if (e.Photo == null) return;
-            AllMainUCCollapsed();
-            VisualiseurPhoto.Visibility = Visibility.Visible;
-            RetourButton.Visibility = Visibility.Visible;
-
-            VisualiseurPhoto.LaPhoto = e.Photo;
-
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Commercial)
-            {
-                VisualiseurPhoto.LikeButton.Visibility = Visibility.Collapsed;
-                VisualiseurPhoto.MettreEnAvantButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo) ? Visibility.Visible : Visibility.Collapsed;
-            }
-            else
-            {
-                VisualiseurPhoto.LikeButton.Visibility = Visibility.Visible;
-                VisualiseurPhoto.MettreEnAvantButton.Visibility = Visibility.Collapsed;
-            }
-
-            if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
-            {
-                VisualiseurPhoto.JaimeIcon.Kind = amateur.PhotosAimees.Contains(e.Photo) ? PackIconKind.Star : PackIconKind.StarOutline;
-            }
-
-            VisualiseurPhoto.SupprimerPhotoButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(e.Photo) ? Visibility.Visible : Visibility.Collapsed;
+            AllerA(VisualiseurPhoto);
         }
 
         /// <summary>
@@ -153,9 +197,7 @@ namespace PictYours
         /// <param name="e">RoutedEventAgrs</param>
         private void ProfilButton_Click(object sender, RoutedEventArgs e)
         {
-            AllMainUCCollapsed();
-            RetourPagePrincipale();
-            PagePrincipale.RechercheTextBox.Clear();
+            AllerA(PagePrincipale);
             LeManager.ManagerUtilisateur.UtilisateurSelectionne = LeManager.ManagerUtilisateur.UtilisateurActuel;
         }
 
@@ -166,11 +208,7 @@ namespace PictYours
         /// <param name="e">RoutedEventAgrs</param>
         private void MesLikeButton_Click(object sender, RoutedEventArgs e)
         {
-            AllMainUCCollapsed();
-            RetourButton.Visibility = Visibility.Visible;
-            PagePhotoAimees.Visibility = Visibility.Visible;
-            LeManager.ManagerPhoto.PhotoSelectionne = null;
-            PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
+            AllerA(PagePhotoAimees);
         }
 
         /// <summary>
@@ -192,7 +230,7 @@ namespace PictYours
         /// <param name="e">RoutedEventAgrs</param>
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
-            RetourPagePrincipale();
+            AllerPagePrincipale();
             LeManager.ManagerUtilisateur.SeDeconnecter();
             new Login().Show();
             Close();
@@ -205,8 +243,12 @@ namespace PictYours
         /// <param name="e">RoutedEventAgrs</param>
         private void RetourButton_Click(object sender, RoutedEventArgs e)
         {
-            RetourPagePrincipale();
-            PagePhotoAimees.ListeBoxPhotosAimees.SelectedItem = null;
+            if (PreviousMainUC == VisualiseurPhoto && ActualMainUC == PagePhotoAimees)
+            {
+                AllerA(PagePrincipale);
+                return;
+            }
+            AllerA(PreviousMainUC);
         }
 
         /// <summary>
