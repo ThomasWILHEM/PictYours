@@ -3,11 +3,67 @@
 
 ## Description du projet
 
-PictYours est une application type réseau social. Elle permet de poster des photos et d'aimer les photos des autres utilisateurs.
-Cette application est destinée à tout le monde, que vous soyez un simple amateur de photo ou bien un commercial cherchant à augmenter sa visibilité.
+ >PictYours est une application type réseau social. Elle permet de poster des photos et d'intéragir avec les différentes photos. Cette application est destinée à tout le monde, que vous soyez un simple amateur de photo ou bien un commercial cherchant à augmenter sa visibilité.
 
 ## Elements importants dans le code
 
+- ### Accessibilité
+	>De nombreuses aides (ToolTip) sont présentes dans l'application, ce qui permet à l'utilisateur lorsqu'il survole certains boutons ou champs spéciaux d'afficher un message pour l'aider à s'orienter dans l'application.
+	```c#
+	<RadioButton Grid.Column="2" x:Name="PseudoRadioButton">
+		<RadioButton.ToolTip>
+			<ToolTip Style="{StaticResource ToolTipEffect}">
+				<TextBlock Text="Rechercher avec le pseudo"
+				Style="{StaticResource TextBlockToolTipStyle}"/>
+			</ToolTip>
+		</RadioButton.ToolTip>
+		...
+	</RadioButton>
+	```
+
+- ### DataTemplate avec DataType dans le fichier PagePrincipale.xaml
+	>Pour afficher un utilisateur dans la liste à gauche, nous utilisons un DataTemplate spécifique en fonction de l'utilisateur à afficher. Cela est possible grâce au DataType sur le Datatemplate.
+	```c#
+	<DataTemplate DataType="{x:Type biblioclasse:Amateur}">
+		...
+	</DataTemplate>
+    <DataTemplate DataType="{x:Type biblioclasse:Commercial}">
+    	...
+    </DataTemplate>
+	```
+
+- ### Polymorphisme sur le ToString() des classes
+	- #### ToString() dans Utilisateur.cs
+	```c#
+		public override string ToString()
+        {
+            return $"{Nom}({Pseudo}) Description:{Description}";
+        }
+	```
+	- #### ToString() dans Amateur.cs (qui hérite indirectement de Utilisateur)
+	```c#
+		public override string ToString()
+		{
+			return $"{Nom} {Prenom}({Pseudo},{DateDeNaissance.ToShortDateString()})";
+		} 
+	```
+
+- ### Evénements personnalisés
+	> Création d'un événement, avec la classe d'argument associé, qui permet de détecter lorsque la propriété PhotoSelectionne change.
+	```c#
+		public class SelectedPhotoChangedEventArgs
+        {
+            public Photo Photo { get; private set; }
+            public SelectedPhotoChangedEventArgs(Photo photo) => Photo = photo;
+        }
+
+        public event EventHandler<SelectedPhotoChangedEventArgs> SelectedPhotoChanged;
+
+        public virtual void OnSelectedPhotoChanged(Photo photo)
+		{
+			SelectedPhotoChanged?.Invoke(this, new SelectedPhotoChangedEventArgs(photo));
+		}
+	```
 
 ## Ajouts personnels
 
@@ -29,7 +85,13 @@ Cette application est destinée à tout le monde, que vous soyez un simple amate
 		>Un commercial peut, s'il le souhaite, **mettre en avant une de ses photos**. La photo se retrouvera alors en tête de liste sur le profil du commercial. 
  
 ## Comment lancer l'application
-Vous pouvez dès à présent télécharger l'installeur de l'application en cliquant [ici](https://github.com/ThomasWILHEM/PictYours/releases). 
+Vous pouvez dès à présent **télécharger** l'installeur de l'application en cliquant **[ici](https://github.com/ThomasWILHEM/PictYours/releases)**. 
+
+- ### Prérequis
+	- [Microsoft Windows 10 x86 ou x64](https://www.microsoft.com/fr-fr/software-download/windows10)
+	- [Microsoft .NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0)
+	- Droits d'administrateurs pendant l'installation
+
 - ### Installation 
 	> Il suffit de **double-cliquer sur l'executable** pour lancer l'installation.
 	> <Br/> Suivre les étapes de l'installation et VOILA !, PictYours est installé.
@@ -42,12 +104,16 @@ Une fois cela effectué, vous êtes libre d'explorer PictYours.
 
 ## Description du fonctionnement de l'application
 
-Dans PictYours, vous pouvez naviguer sur votre profil, poster des photos, mais aussi aller explorer les profils des autres utilisateurs. <br/>
+>Dans PictYours, vous pouvez naviguer sur votre profil, poster des photos, mais aussi aller explorer les profils des autres utilisateurs. <br/>
 Si vous êtes un **amateur** et que l'une des photos vous plait, vous pouvez aimer cette photo.
 <br/>
 Si vous êtes ici pour donner de la visibilité à votre entreprise, vous pouvez décider de **mettre en avant une photo** de votre choix pour, par exemple, promouvoir un produit.
 <br/>
 Et  n'ayez crainte, toutes **vos données seront sauvegardées** lors de la fermeture de l'application et vous les retrouverez intactes  lors de la réouverture de l'application.
+
+## Documentation
+
+Vous pouvez consulter la documentation de l'application **[ici](./Documents)**.
 
 ## Auteurs
 
@@ -57,4 +123,4 @@ Et  n'ayez crainte, toutes **vos données seront sauvegardées** lors de la ferm
 ## Licence
 
 Ce projet est **libre de droit** et consultable par tous. <br/>
-Vous pouvez aussi nous contacter pour toutes idées ou améliorations
+Vous pouvez aussi nous contacter pour toutes idées ou améliorations.
