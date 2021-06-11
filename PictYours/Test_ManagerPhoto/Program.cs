@@ -1,6 +1,5 @@
 ﻿using System;
 using BiblioClasse;
-using Stub;
 
 namespace Test_ManagerPhoto
 {

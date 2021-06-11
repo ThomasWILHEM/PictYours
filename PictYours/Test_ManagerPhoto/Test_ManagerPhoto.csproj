@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BiblioClasse\BiblioClasse.csproj" />
-    <ProjectReference Include="..\Stub\Stub.csproj" />
   </ItemGroup>
 
 </Project>

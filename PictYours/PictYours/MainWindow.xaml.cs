@@ -130,6 +130,7 @@ namespace PictYours
             if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
             {
                 VisualiseurPhoto.JaimeIcon.Kind = amateur.PhotosAimees.Contains(photo) ? PackIconKind.Star : PackIconKind.StarOutline;
+                VisualiseurPhoto.tooltipAimerPhoto.Text = amateur.PhotosAimees.Contains(photo) ? "Ne plus aimer la photo" : "Aimer la photo";
             }
 
             VisualiseurPhoto.SupprimerPhotoButton.Visibility = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Contains(photo) ? Visibility.Visible : Visibility.Collapsed;
