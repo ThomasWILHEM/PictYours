@@ -39,6 +39,21 @@ namespace PictYours.userControl
             {
                 try
                 {
+                    //Si amateur alors suppression de toutes les photos aimées
+                    if (LeManager.ManagerUtilisateur.UtilisateurActuel is Amateur amateur)
+                    {
+                        int nombrePhotoAimees = amateur.PhotosAimees.Count;
+                        for (int i = 0; i < nombrePhotoAimees; i++)
+                        {
+                            LeManager.ManagerPhoto.NePlusAimerUnePhoto(amateur,amateur.PhotosAimees[0]);
+                        }
+                    }
+                    //Suppression de toutes les photos de l'utilisateur
+                    int nombrePhotos = LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos.Count;
+                    for (int i = 0; i < nombrePhotos; i++)
+                    {
+                        LeManager.ManagerPhoto.SupprimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LeManager.ManagerUtilisateur.UtilisateurActuel.MesPhotos[0]);
+                    }
                     LeManager.ManagerUtilisateur.SupprimerCompte();
                     new Login().Show();
                     App.Current.Windows[0].Close();
