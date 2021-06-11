@@ -52,7 +52,7 @@
                             >
                             <Button.ToolTip>
                                 <ToolTip Style="{StaticResource ToolTipEffect}">
-                                    <TextBlock Text="Aimer la photo" Style="{StaticResource TextBlockToolTipStyle}"/>
+                                    <TextBlock x:Name="tooltipAimerPhoto" Style="{StaticResource TextBlockToolTipStyle}"/>
                                 </ToolTip>
                             </Button.ToolTip>
                             <materialDesign:PackIcon Kind="StarOutline" HorizontalAlignment="Center"  Width="40" Height="40" x:Name="JaimeIcon"/>

@@ -66,11 +66,13 @@ namespace PictYours.userControl
             {
 
                 LeManager.ManagerPhoto.NePlusAimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LaPhoto);
+                tooltipAimerPhoto.Text = "Aimer la photo";
                 JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.StarOutline;
             }
             else
             {
                 LeManager.ManagerPhoto.AimerUnePhoto(LeManager.ManagerUtilisateur.UtilisateurActuel, LaPhoto);
+                tooltipAimerPhoto.Text = "Ne plus aimer la photo";
                 JaimeIcon.Kind = MaterialDesignThemes.Wpf.PackIconKind.Star;
             }
         }
