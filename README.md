@@ -46,14 +46,14 @@
 - ### Polymorphisme sur le ToString() des classes
 	- #### ToString() dans Utilisateur.cs
 	```c#
-		public override string ToString()
+	public override string ToString()
         {
             return $"{Nom}({Pseudo}) Description:{Description}";
         }
 	```
 	- #### ToString() dans Amateur.cs (qui hérite indirectement de Utilisateur)
 	```c#
-		public override string ToString()
+	public override string ToString()
 		{
 			return $"{Nom} {Prenom}({Pseudo},{DateDeNaissance.ToShortDateString()})";
 		} 
@@ -62,7 +62,7 @@
 - ### Evénements personnalisés
 	> Création d'un événement, avec la classe d'argument associé, qui permet de détecter lorsque la propriété PhotoSelectionne change.
 	```c#
-		public class SelectedPhotoChangedEventArgs
+	public class SelectedPhotoChangedEventArgs
         {
             public Photo Photo { get; private set; }
             public SelectedPhotoChangedEventArgs(Photo photo) => Photo = photo;
