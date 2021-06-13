@@ -1,7 +1,14 @@
 # PictYours
 ![Image text](./PictYours/PictYours/app.ico)
 
+
+
 ## Description du projet
+<a href="https://youtu.be/hAz1yZ8xpz8">
+	<div align=center>
+		<img src="https://img.youtube.com/vi/hAz1yZ8xpz8/hqdefault.jpg">
+	</div>
+</a>
 
  >PictYours est une application type réseau social. Elle permet de poster des photos et d'intéragir avec les différentes photos. Cette application est destinée à tout le monde, que vous soyez un simple amateur de photo ou bien un commercial cherchant à augmenter sa visibilité.
 
