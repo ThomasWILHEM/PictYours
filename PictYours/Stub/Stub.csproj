@@ -7,61 +7,12 @@
   <ItemGroup>
     <None Remove="images_stub\estelle_rond.png" />
     <None Remove="images_stub\mozilla.png" />
-    <None Remove="images_stub\photos\estelle_rond.png" />
-    <None Remove="images_stub\photos\montagne.jpg" />
-    <None Remove="images_stub\photos\pp.jpg" />
-    <None Remove="images_stub\photos\user.png" />
-    <None Remove="images_stub\photos\vacances1.jpg" />
-    <None Remove="images_stub\photos\vacances2.jpg" />
-    <None Remove="images_stub\photos\vacances3.jpg" />
-    <None Remove="images_stub\photos\vacances4.jpg" />
-    <None Remove="images_stub\photos\vacances5.jpg" />
-    <None Remove="images_stub\photos\vacances6.jpg" />
     <None Remove="images_stub\pp.jpg" />
     <None Remove="images_stub\user.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="images_stub\photos\estelle_rond.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\montagne.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\pp.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\user.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\vacances6.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\profils\estelle_rond.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="images_stub\profils\mozilla.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\vacances1.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\vacances2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\vacances3.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\vacances4.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\photos\vacances5.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\profils\pp.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="images_stub\profils\user.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

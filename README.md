@@ -1,16 +1,20 @@
 # PictYours
+
 ![Image text](./PictYours/PictYours/app.ico)
 
 
 
 ## Description du projet
+
+ >PictYours est une application type réseau social. Elle permet de poster des photos et d'intéragir avec les différentes photos. Cette application est destinée à tout le monde, que vous soyez un simple amateur de photo ou bien un commercial cherchant à augmenter sa visibilité.
+
+
+### Voici la vidéo de présentation de l'application : 
 <a href="https://youtu.be/hAz1yZ8xpz8">
 	<div align=center>
 		<img src="https://img.youtube.com/vi/hAz1yZ8xpz8/hqdefault.jpg">
 	</div>
 </a>
-
- >PictYours est une application type réseau social. Elle permet de poster des photos et d'intéragir avec les différentes photos. Cette application est destinée à tout le monde, que vous soyez un simple amateur de photo ou bien un commercial cherchant à augmenter sa visibilité.
 
 ## Elements importants dans le code
 
@@ -117,6 +121,27 @@ Si vous êtes un **amateur** et que l'une des photos vous plait, vous pouvez aim
 Si vous êtes ici pour donner de la visibilité à votre entreprise, vous pouvez décider de **mettre en avant une photo** de votre choix pour, par exemple, promouvoir un produit.
 <br/>
 Et  n'ayez crainte, toutes **vos données seront sauvegardées** lors de la fermeture de l'application et vous les retrouverez intactes  lors de la réouverture de l'application.
+
+## Jeux d'essai
+
+>Un jeu d'essai est déjà installé dans l'application.<br/>
+Si vous souhaitez aller sur les comptes déja créés, voici les identifiants/mots de passe
+
+- **Florent Marques** (Amateur)
+	- Identifiant : ***flomSStaar***<br/> 
+	- Mot de passe : ***IUT63***
+- **Thomas Wilhem** (Amateur)
+	- Identifiant : ***Atrium*** <br/> 
+	- Mot de passe : ***IUT63***
+- **Daniel Craig** (Amateur)
+	- Identifiant : ***JamesBond***<br/> 
+	- Mot de passe : ***007***
+- **Estelle Tulipe** (Amateur)
+	- Identifiant : ***estelletulipe***<br/> 
+	- Mot de passe : ***mdp***
+- **Mozilla** (Commercial)
+	- Identifiant : ***mozilla***<br/> 
+	- Mot de passe : ***mieuxquechrome***
 
 ## Documentation
 
