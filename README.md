@@ -118,9 +118,9 @@ Une fois cela effectué, vous êtes libre d'explorer PictYours.
 >Dans PictYours, vous pouvez naviguer sur votre profil, poster des photos, mais aussi aller explorer les profils des autres utilisateurs. <br/>
 Si vous êtes un **amateur** et que l'une des photos vous plait, vous pouvez aimer cette photo.
 <br/>
-Si vous êtes ici pour donner de la visibilité à votre entreprise, vous pouvez décider de **mettre en avant une photo** de votre choix pour, par exemple, promouvoir un produit.
+Si vous êtes ici pour donner de la visibilité à votre entreprise, vous pouvez décider de mettre en avant une photo de votre choix pour, par exemple, promouvoir un produit.
 <br/>
-Et  n'ayez crainte, toutes **vos données seront sauvegardées** lors de la fermeture de l'application et vous les retrouverez intactes  lors de la réouverture de l'application.
+Et  n'ayez crainte, toutes vos données seront sauvegardées lors de la fermeture de l'application et vous les retrouverez intactes  lors de la réouverture de l'application.
 
 ## Jeux d'essai
 
