@@ -97,7 +97,8 @@
 	
     - Pour les comptes commerciaux
 
-		Un commercial peut, s'il le souhaite, `mettre en avant une de ses photos`. La photo se retrouvera alors en tête de liste sur le profil du commercial. 
+		Un commercial peut, s'il le souhaite, `mettre en avant une de ses photos`. La photo se retrouvera alors en tête de liste sur le profil du commercial.</br>
+		Il est aussi possible de voir le `nombre de fois que le profil a été visité` grâce à un compteur dans l'expander du profil.
  
 ## Comment lancer l'application
 Vous pouvez dès à présent `télécharger` l'installeur de l'application en cliquant **[ici](https://github.com/ThomasWILHEM/PictYours/releases)**. 
