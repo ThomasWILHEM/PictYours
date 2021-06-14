@@ -10,9 +10,9 @@
 
 
  - ### Voici la vidéo de présentation de l'application : 
-<a href="https://youtu.be/hAz1yZ8xpz8">
+<a href="https://www.youtube.com/watch?v=pZGSD-khNv4">
 	<div align=center>
-		<img src="https://img.youtube.com/vi/hAz1yZ8xpz8/hqdefault.jpg">
+		<img src="https://img.youtube.com/vi/pZGSD-khNv4/hqdefault.jpg">
 	</div>
 </a>
 
